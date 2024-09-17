@@ -1,0 +1,145 @@
+﻿@{
+    ViewData["Title"] = "Location - US Express";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+}
+<style>
+    .round {
+        position: relative;
+    }
+
+        .round label {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            height: 28px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 28px;
+        }
+
+            .round label:after {
+                border: 2px solid #fff;
+                border-top: none;
+                border-right: none;
+                content: "";
+                height: 6px;
+                left: 7px;
+                opacity: 0;
+                position: absolute;
+                top: 8px;
+                transform: rotate(-45deg);
+                width: 12px;
+            }
+
+        .round input[type="checkbox"] {
+            visibility: hidden;
+        }
+
+            .round input[type="checkbox"]:checked + label {
+                background-color: #66bb6a;
+                border-color: #66bb6a;
+            }
+
+                .round input[type="checkbox"]:checked + label:after {
+                    opacity: 1;
+                }
+</style>
+<div class="row-main container">
+
+    <div class="flex row-main-head">
+        <h2 class="title_page mb30">Quản lý Địa chỉ</h2>
+    </div>
+    <div class="wrap_bg mb20 list-locaion">
+        <div class="row">
+            <div class="col-md-4 mb20">
+                <div class="search-wrapper">
+                    <div class="form">
+                        <input id="search-p" type="text" class="input_search onclick-togle" name="" value=""
+                               placeholder="Nhập tên Tỉnh / Thành Phố...">
+                        <span class="search-btn">
+                            <button type="submit">
+                                <svg class="icon-svg">
+                                    <use xlink:href="images/icons/icon.svg#search"></use>
+                                </svg>
+                            </button>
+                        </span>
+                    </div>
+                    <a id="a-p" class="add open-popup" href="#add-location" onclick="_location.OpenFormAdd('a-p')"><i class="fa fa-plus-circle"></i></a>
+                </div>
+                <div style="height: 40px; display: none;" class="div_error">
+                    <span id="e_p_notselect" class=" mfp-hide error">Bạn chưa chọn Tỉnh/Thành phố</span>
+
+                </div>
+                <div class="suggest-locaion scrollbar-inner">
+                    <div id="imgLoading_p"style=" width: auto; height: 60px; display: none;">
+                        <img src="~/images/icons/loading.gif" style=" width: 50px; height: 50px;" />
+                    </div>
+                    <ul id="province_scroll_list">
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4 mb20">
+                <div id="sb_district" class="search-wrapper">
+                    <div class="form">
+                        <input id="search-d" type="text" class="input_search onclick-togle" name="" value=""
+                               placeholder="Nhập tên quận/huyện...">
+                        <span class="search-btn">
+                            <button type="submit">
+                                <svg class="icon-svg">
+                                    <use xlink:href="images/icons/icon.svg#search"></use>
+                                </svg>
+                            </button>
+                        </span>
+                    </div>
+                    <a id="a-d" class="add open-popup" href="#add-location" onclick="_location.OpenFormAdd('a-d')"><i class="fa fa-plus-circle"></i></a>
+                </div>
+                <div style="height: 40px; display: none;" class="div_error">
+                    <span id="e_d_notselect" class=" mfp-hide error">Bạn chưa chọn Quận / Huyện</span>
+                </div>
+
+                <div class="suggest-locaion scrollbar-inner">
+                    <div id="imgLoading_d"style=" width: auto; height: 60px; display: none;">
+                        <img src="~/images/icons/loading.gif" style=" width: 50px; height: 50px;" />
+                    </div>
+                    <ul id="district_scroll_list">
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4 mb20">
+                <div id="sb_ward" class="search-wrapper">
+                    <div class="form">
+                        <input id="search-w" type="text" class="input_search onclick-togle" name="" value=""
+                               placeholder="Nhập tên phường / xã / đường...">
+                        <span class="search-btn">
+                            <button type="submit">
+                                <svg class="icon-svg">
+                                    <use xlink:href="images/icons/icon.svg#search"></use>
+                                </svg>
+                            </button>
+                        </span>
+                    </div>
+                    <a id="a-w" class="add open-popup" href="#add-location" onclick="_location.OpenFormAdd('a-w')"><i class="fa fa-plus-circle"></i></a>
+                </div>
+                <div style="height: 40px; display: none;" class="div_error">
+                    <span id="e_w_notselect" class=" mfp-hide error">Bạn chưa chọn Phường / Xã</span>
+                </div>
+
+                <div class="suggest-locaion scrollbar-inner">
+                    <div id="imgLoading_w" style=" width: auto; height: 60px; display: none;">
+                        <img src="~/images/icons/loading.gif" style=" width: 50px; height: 50px;" />
+                    </div>
+                    <ul id="ward_scroll_list"> </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript" src="~/modules/location.js"></script>
+}

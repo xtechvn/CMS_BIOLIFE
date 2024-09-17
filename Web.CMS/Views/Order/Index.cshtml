@@ -1,0 +1,445 @@
+﻿﻿@{
+    ViewData["Title"] = "Quản lý đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+@using Entities.Models
+
+@using Entities.ViewModels;
+
+@model GenericViewModel<FilterOrder>
+
+
+@{
+    var SysTemType = (List<AllCode>)ViewBag.FilterOrder.SysTemType;
+    var Source = (List<AllCode>)ViewBag.FilterOrder.Source;
+    var Type = (List<AllCode>)ViewBag.FilterOrder.Type;
+    var Customers = (List<AllCode>)ViewBag.FilterOrder.Customers;
+    var Status = (List<AllCode>)ViewBag.Order_Status;
+    var PAYMENT_STATUS = (List<AllCode>)ViewBag.PAYMENT_STATUS;
+    var PERMISION_TYPE = (List<AllCode>)ViewBag.PERMISION_TYPE;
+    var SuggestOrder = (string[])ViewBag.FilterOrder.SuggestOrder;
+
+}
+<style>
+    .btn_reset {
+        position: absolute;
+        right: 32px;
+        top: 7px;
+        width: 20px;
+        height: 20px;
+        border: 0;
+        outline: 0;
+        border-radius: 50%;
+        cursor: pointer;
+        background: #C4C4C4
+    }
+</style>
+<section style=" overflow-x: hidden;">
+    <div class="bg-serach-main flex row-main-head">
+        <div class="form-group mb10 mr-2 operator-saler" style="min-width: 220px;">
+            <div class="datepicker-wrap add-lbl " style="width:100%">
+                <select class="select2 client-select main-staff-select" id="OrderNo" multiple="multiple" style="width:100% !important">
+                </select>
+            </div>
+        </div>
+        <div class="form-group mb10 mr-2">
+            <div class="datepicker-wrap" style="width:100%">
+                <input class="form-control date text-left filter_date_daterangepicker" id="filter_date_daterangepicker" type="text" name="datetimeOrder"
+                       placeholder="Ngày tạo" />
+            </div>
+        </div>
+         @*   <div class="row-main-head mb10 mr-2">
+                <div class="down-up">
+                    <a class="btn btn-default onclick" href="javascript:;">
+                        <i class="fa fa-bars"></i>
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+                    <div class="form-down text-nowrap" style="display: none;">
+                        <div class="grid-slide">
+                            <label class="check-list mb10 mr25 onblur " style="cursor: not-allowed">
+                                <input type="checkbox" id="codeCheck" checked disabled
+                                       class="checkbox-tb-column" data-id="1">
+                                <span class="checkmark"></span>
+                                Mã đơn
+                            </label>
+                            <label class="check-list mb10 mr25 onblur " style="cursor: not-allowed">
+                                <input type="checkbox" id="dateCheck" checked disabled
+                                       class="checkbox-tb-column" data-id="2">
+                                <span class="checkmark"></span>
+                                Ngày bắt đầu / kết thúc
+                            </label>
+                            <label class="check-list mb10 mr25 onblur " style="cursor: not-allowed">
+                                <input type="checkbox" id="clientCheck" checked disabled
+                                       class="checkbox-tb-column" data-id="3">
+                                <span class="checkmark"></span>
+                                Khách hàng
+                            </label>
+                            <label class="check-list mb10 mr25 onblur " style="cursor: not-allowed">
+                                <input type="checkbox" id="noteCheck" checked disabled
+                                       class="checkbox-tb-column" data-id="4">
+                                <span class="checkmark"></span>
+                                Nhãn đơn
+                            </label>
+                            <label class="check-list mb10 mr25 onblur " style="cursor: not-allowed">
+                                <input type="checkbox" id="payCheck" checked disabled
+                                       class="checkbox-tb-column" data-id="5">
+                                <span class="checkmark"></span>
+                                Thanh toán
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox" id="utmSourceCheck" onclick="_ordersCMS.changeSetting(6)"
+                                       class="checkbox-tb-column" data-id="6">
+                                <span class="checkmark"></span>
+                                Nguồn
+                            </label>
+                            <label class="check-list mb10 mr25 onblur " style="cursor: not-allowed">
+                                <input type="checkbox" id="profitCheck" disabled
+                                       class="checkbox-tb-column" data-id="7">
+                                <span class="checkmark"></span>
+                                Lợi nhuận
+                            </label>
+                            <label class="check-list mb10 mr25 ">
+                                <input type="checkbox" id="tum_medium" onclick="_ordersCMS.changeSetting(24)"
+                                       class="checkbox-tb-column" data-id="8" checked>
+                                <span class="checkmark"></span>
+                                Mã giới thiệu
+                            </label>
+                            <label id="sttChecklabel" class="check-list mb10 mr25 onblur " style="cursor: not-allowed">
+                                <input type="checkbox" id="sttCheck" disabled
+                                       class="checkbox-tb-column" data-id="9">
+                                <span class="checkmark"></span>
+                                Trạng thái
+                            </label>
+                            <label class="check-list mb10 mr25 onblur " style="cursor: not-allowed">
+                                <input type="checkbox" id="dateCreateCheck" checked disabled
+                                       class="checkbox-tb-column" data-id="10">
+                                <span class="checkmark"></span>
+                                Ngày tạo
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox" id="CreatedNameCheck" onclick="_ordersCMS.changeSetting(11)"
+                                       class="checkbox-tb-column" data-id="11">
+                                <span class="checkmark"></span>
+                                Người Tạo
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox" id="UpdatedDateCheck" onclick="_ordersCMS.changeSetting(12)"
+                                       class="checkbox-tb-column" data-id="12">
+                                <span class="checkmark"></span>
+                                Ngày Cập Nhật
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox" id="UpdatedNameCheck" onclick="_ordersCMS.changeSetting(13)"
+                                       class="checkbox-tb-column" data-id="13">
+                                <span class="checkmark"></span>
+                                Người Cập Nhật
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox" id="MainEmployee" onclick="_ordersCMS.changeSetting(14)"
+                                       class="checkbox-tb-column" data-id="14">
+                                <span class="checkmark"></span>
+                                Nhân Viên Chính
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox" id="SubEmployee" onclick="_ordersCMS.changeSetting(15)"
+                                       class="checkbox-tb-column" data-id="15">
+                                <span class="checkmark"></span>
+                                Nhân Viên Phụ
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox" id="Voucher" onclick="_ordersCMS.changeSetting(16)"
+                                       class="checkbox-tb-column" data-id="16">
+                                <span class="checkmark"></span>
+                                Voucher
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox" id="Operator" onclick="_ordersCMS.changeSetting(17)"
+                                       class="checkbox-tb-column" data-id="17">
+                                <span class="checkmark"></span>
+                                Điều hành viên
+                            </label>
+
+                            <label class="check-list mb10 mr25 onblur" style="cursor: not-allowed">
+                                <input type="checkbox" id="HINHTHUCTTb" onclick="_ordersCMS.changeSetting(20)" checked disabled
+                                       class="checkbox-tb-column" data-id="21">
+                                <span class="checkmark"></span>
+                                Hình thức thanh toán
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox" id="KHACHPT" onclick="_ordersCMS.changeSetting(23)"
+                                       class="checkbox-tb-column" data-id="22">
+                                <span class="checkmark"></span>
+                                Khách phải trả
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox" id="YcHoaDon" onclick="_ordersCMS.changeSetting(24)"
+                                       class="checkbox-tb-column" data-id="23">
+                                <span class="checkmark"></span>
+                                Yêu cầu hóa đơn
+
+                            </label>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div> *@
+        <button class="btn btn-default mb10" type="button" onclick="_ordersCMS.Export()" id="btnExport">
+            <i class="fa fa-file-excel-o" id="icon-export" title="Xuất excel">
+            </i>
+        </button>
+        <button type="button" class="btn btn-default bg-main mb10" style="margin-left:10px" onclick="_ordersCMS.SearchData()">
+            <svg class="icon-svg" style="vertical-align: sub;">
+                <use xlink:href="/images/icons/icon.svg#search"></use>
+            </svg>
+            Tìm kiếm
+        </button>
+
+        <div class="fillter-wrap mb10">
+            <a class="btn color-main blue" href="javascript:;" style="outline: 0;display: inline-block;">
+                Tìm kiếm nâng cao
+            </a>
+        </div>
+
+
+        <div class="fillter-search dropdown-content">
+            <div class="form-default row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <span class="mr-2 ">Hình thức</span>
+                        <label class="radio mr-2">
+                            <input type="radio" name="SysTemType" value="-1" checked="" onclick="_ordersCMS.SearchData()">
+                            <span class="checkmark"></span>
+                            Tất cả
+                        </label>
+                        <div class="wrap_input">
+
+@foreach (var item in SysTemType)
+                            {
+                            <label class="radio mr-3">
+                                <input type="radio" name="SysTemType" value="@item.CodeValue" onclick="_ordersCMS.SearchData()">
+                                <span class="checkmark"></span>
+
+@item.Description
+                                </label>
+}
+</div>
+</div>
+<div class="form-group">
+    <div class="datepicker-wrap" style="width:100% !important">
+        <select class="select2 client-select main-staff-select" id="ClientId" multiple="multiple" style="width:100% !important">
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <div class="datepicker-wrap" style="width:100%">
+        <input class="form-control date-range-filter" id="fromDate" type="text" name="fromDate" placeholder="Ngày bắt đầu">
+    </div>
+</div>
+<div class="form-group">
+    <div class="datepicker-wrap" style="width:100%">
+        <input class="form-control date-range-filter" id="toDate" type="text" name="toDate" placeholder="Ngày kết thúc">
+    </div>
+</div>
+<div class="form-group" style="width:100% !important">
+    <input type="text" class="form-control" id="Note" placeholder="Nhãn đơn" style="width:100% !important">
+</div>
+<div class="form-group" style="width:100% !important">
+
+    <select class="select2 client-select main-staff-select" id="CreateName" multiple="multiple" style="width:100% !important">
+    </select>
+</div>
+</div>
+<div class="col-md-6">
+    <div class="form-group" style="margin-top: 31px;"></div>
+    <div class="form-group">
+        <div class="multiple-select " style="width:100% !important">
+            <div class="select-btn select-service-type" id="ServiceType" style="width:100% !important">
+                <span class="btn-text-service">Tất cả dịch vụ</span>
+                <span class="arrow-dwn">
+                    <i class="fa fa-angle-down"></i>
+                </span>
+            </div>
+
+            <ul class="list-items" id="list-item-service-type">
+
+@foreach (var item in Type)
+                                {
+                <li class="item item-services" id="service_data_@item.CodeValue">
+                    <span class="checkbox" id="checkbox_service_type_@item.CodeValue">
+                        <i class="fa fa-check"></i>
+                    </span>
+                    <span class="item-text" id="service_text_@item.CodeValue">n</span>
+                    </li>
+}
+</ul>
+</div>
+</div>
+<div class="form-group">
+    <div class="multiple-select" style="width:100% !important">
+        <div class="select-btn select-btn-status" id="Status" style="width:100% !important">
+            <span class="btn-text-status">Tất cả trạng thái</span>
+            <span class="arrow-dwn">
+                <i class="fa fa-angle-down"></i>
+            </span>
+        </div>
+
+        <ul class="list-items list-item-status" id="list-item-status">
+
+@foreach (var item in Status)
+                                {
+            <li class="item item-status" id="status_data_@item.CodeValue">
+                <span class="checkbox" id="checkbox_status_@item.CodeValue">
+                    <i class="fa fa-check"></i>
+                </span>
+                <span class="item-text" id="status_text_@item.CodeValue">n</span>
+                </li>
+}
+</ul>
+</div>
+</div>
+<div class="form-group">
+    <div class="multiple-select" style="width:100% !important">
+        <div class="select-btn select-btn-HINHTHUCTT" id="HINHTHUCTT" style="width:100% !important">
+            <span class="btn-text-HINHTHUCTT">Tất cả hình thức thanh toán</span>
+            <span class="arrow-dwn">
+                <i class="fa fa-angle-down"></i>
+            </span>
+        </div>
+
+        <ul class="list-items list-item-HINHTHUCTT" id="list-item-HINHTHUCTT">
+
+@foreach (var item in PERMISION_TYPE)
+                                {
+
+@foreach (var item2 in PAYMENT_STATUS)
+                                    {
+            <li class="item item-HINHTHUCTT" id="HINHTHUCTT_data_@(item.CodeValue +" _"+ item2.CodeValue)">
+                <span class="checkbox" id="checkbox_HINHTHUCTT_@(item.CodeValue+" _"+ item2.CodeValue)">
+                    <i class="fa fa-check"></i>
+                </span>
+                <span class="item-text" id="HINHTHUCTT_text_@item.Description - @item2.Description">n - @item2.Description</span>
+                </li>
+
+}
+}
+
+</ul>
+</div>
+</div>
+
+<div class="form-group">
+    <select class="select2 client-select main-staff-select" id="OperatorId" multiple="multiple" style="width:100% !important">
+    </select>
+
+</div>
+<div class="form-group">
+    <select class="select2 client-select main-staff-select" id="BoongKingCode" multiple="multiple" style="width:100% !important">
+    </select>
+
+</div>
+<div class="form-group mb10 mr-2" style="display:none">
+    <select class="select2" name="" style="width: 150px;">
+        <option value="">Tất cả bộ phận phụ</option>
+        <option value="">Đại lý</option>
+        <option value="">Cộng tác viên</option>
+        <option value="">Mice/Corp/Doanh nghiệp</option>
+    </select>
+</div>
+<div class="form-group mb10 mr-2">
+    <input type="text" style="display:none" class="form-control" id="" placeholder="Nhân viên phụ">
+</div>
+</div>
+<div class="form-group text-center col-12 mt20 block">
+    <button type="submit" class="btn btn-default bg-main" onclick="_ordersCMS.SearchData()">
+        <svg class="icon-svg" style="vertical-align: sub;">
+            <use xlink:href="/images/icons/icon.svg#search"></use>
+        </svg>
+        Tìm kiếm
+    </button>
+    <a class="btn btn-default cancel" href="javascript:;">
+        Bỏ tìm kiếm nâng cao
+        <i class="fa fa-caret-up"></i>
+    </a>
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="row-main container">
+
+
+    <div class="">
+        <div id="grid-data">
+        </div>
+    </div>
+
+</div>
+</section>
+
+
+
+
+@section scripts {
+    <script type="text/javascript" src="~/js/zebra_datepicker.min.js"></script>
+    <script type="text/javascript" src="~/modules/orderCMS.js?v=13"></script>
+    <script type="text/javascript" src="~/modules/order_detail.js?v=13"></script>
+    <script type="text/javascript" src="~/modules/order_detail_common.js"></script>
+    <script type="text/javascript" src="~/modules/order_detail_html.js"></script>
+    <script type="text/javascript" src="~/modules/order_ws_excel.js"></script>
+
+
+
+
+}
+
+<style>
+    .row-main-head .down-up .form-down {
+        width: 370px !important;
+    }
+
+    .token-input-input-token {
+        min-width: 150px !important;
+    }
+
+        .token-input-input-token input {
+            background: #fff !important;
+            width: 100% !important;
+            font-size: 13px !important;
+            height: 30px !important;
+            line-height: 30px !important;
+            border: 1px solid #ccc !important;
+            padding: 0 5px !important;
+            outline: 0 !important;
+            box-shadow: none !important;
+            color: #000 !important;
+            border-radius: 0.25rem !important;
+        }
+
+    .grid-slide {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+
+    .loading {
+        position: fixed !important;
+        left: calc( 50% - 50px);
+        top: calc( 50% - 50px);
+    }
+
+    .hide-element {
+        display: none;
+    }
+
+    .onblur {
+        opacity: 0.5;
+    }
+
+    .list-item-status {
+        height: 250px !important;
+        overflow: scroll !important;
+    }
+</style>

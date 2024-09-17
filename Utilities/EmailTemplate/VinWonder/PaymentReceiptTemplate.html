@@ -1,0 +1,181 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Simple Email</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .btn-default {
+            display: inline-block;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 40px;
+            border-radius: 10px;
+            padding: 0 24px;
+            text-align: center;
+            background: #FF5B00;
+            transition: 0.2s all;
+            border: 1px solid #FF5B00;
+            cursor: pointer;
+        }
+
+            .btn-default.gray {
+                background: #E3EBF3;
+                color: #00264D;
+                border: 1px solid #E3EBF3;
+            }
+
+            .btn-default.full {
+                width: 100%;
+            }
+
+        table td {
+            padding: 6px;
+            vertical-align: top;
+        }
+    </style>
+</head>
+
+<body style="background-color: #f6f6f6; font-family:Arial; -webkit-font-smoothing: antialiased; font-size: 14px;color: #00264D; line-height: 1.4;max-width: 700px; margin: 0 auto; padding: 0; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+    <span class="preheader" style="color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;">
+        This is preheader text. Some clients will show this text as a preview.
+    </span>
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; width: 100%;">
+        <tr>
+            <td class="container" style="padding: 0;background: #fff url(https://static-image.adavigo.com/uploads/images/email/Mask.png) no-repeat right 0 top 0;">
+                <div class="content" style="margin: 0 auto; max-width: 700px;box-sizing: border-box; display: block; padding: 15px 20px;">
+                    <table role="presentation" border="0" width="100%">
+                        <tr>
+                            <td>
+                                <div style="font-size: 24px">
+                                    <span style="color:#00264D">Biên nhận thanh toán</span>
+                                </div>
+                                <div style="color: #698096;font-size:12px">
+                                    Số : #{{numberOfPayment}}<!--1696990607358065951-->
+                                    <br>
+                                    Ngày : {{timePayment}}<!--14 thg 4 2021, 11:59 (Thứ Tư)-->
+                                </div>
+                            </td>
+                            <td style="text-align: right;"><img width="100" alt="" src="https://static-image.adavigo.com/uploads/images/email/logo.png"></td>
+                        </tr>
+                    </table>
+                    <br />
+                    <div style="padding: 0 6px">
+                        <div style="border-top:3px solid #E3EBF3;"></div>
+                    </div>
+                    <br />
+                    <table role="presentation" border="0" width="100%">
+                        <tr>
+                            <td>
+                                <strong style="font-size: 16px">Thông tin khách hàng</strong>
+                                <table role="presentation" border="0" width="100%">
+                                    <tr>
+                                        <td>Tên khách </td>
+                                        <td style="color: #698096;">: {{customerName}}</td><!--Thoi Hang Nga Dao-->
+                                    </tr>
+                                    <tr>
+                                        <td>Email </td>
+                                        <td style="color: #698096;">: {{email}}</td><!--Example@gmail.com-->
+                                    </tr>
+                                    <tr>
+                                        <td>Điện thoại liên hệ </td>
+                                        <td style="color: #698096;">: {{phone}}</td><!--8413120339-->
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <strong style="font-size: 16px">Thông tin thanh toán</strong>
+                                <table role="presentation" border="0" width="100%">
+                                    <tr>
+                                        <td>Mã đơn hàng </td>
+                                        <td style="color: #698096;">: {{orderNo}}</td><!--690821082-->
+                                    </tr>
+                                    <tr>
+                                        <td>Tình trạng </td>
+                                        <td style="color: #698096;">: Đã thanh toán</td><!--Đã thanh toán-->
+                                    </tr>
+                                    <tr>
+                                        <td>Phương thức </td>
+                                        <td style="color: #698096;">: {{paymentMethod}}</td><!--Thẻ tín dụng-->
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <table role="presentation" border="0" width="100%">
+                        <tr>
+                            <td>
+                                <strong style="font-size: 16px;display: block;margin-bottom: 5px">Thông tin hành khách</strong>
+                                {{passengerList}}
+                                <!--<div style="color: #698096;">1. <strong>MISS Thi Hang Nga Dao</strong> (NGƯỜI LỚN)</div>
+                <div style="color: #698096;">2. <strong>MISS Hoang An Pham</strong> (NGƯỜI LỚN)</div>-->
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <strong style="font-size: 16px;display: block;margin-bottom: 5px">Thông tin giao dịch</strong>
+                    <table role="presentation" border="0" width="100%">
+                        <tr style="background: #F1F5F9;">
+                            <td>STT</td>
+                            <td style="width:100px">Hạng mục</td>
+                            <td>Mô tả hạng mục</td>
+                            <td>SL</td>
+                            <td style="width:150px">Đơn giá VND</td>
+                            <td style="width:150px">Tổng cộng VND</td>
+                        </tr>
+                        {{itemList}}
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="color: #698096;">
+                                <div>Tổng cộng</div>
+                                <div>Số tiền thanh toán</div>
+                            </td>
+                            <td>
+                                <div>{{total}}</div><!--1.301.800-->
+                                <div>{{amount}}</div><!--1.301.800-->
+                            </td>
+                        </tr>
+                    </table>
+                    <table role="presentation" border="0" width="100%">
+                        <tr>
+                            <td><img alt="" src="https://static-image.adavigo.com/uploads/images/email/chung-nhan.png"></td>
+                        </tr>
+                    </table>
+
+                    <div style="padding: 0 6px">
+                        <div style="border-top:3px solid #E3EBF3;margin-top:40px;margin-bottom:7px"></div>
+                    </div>
+                    <table role="presentation" border="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div style="color: #698096;">NẾU CÓ BẤT KỲ CÂU HỎI NÀO, VUI LÒNG LIÊN HỆ HOTLINE</div>
+                                    <div><strong>0936 191 192</strong></div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+
+
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

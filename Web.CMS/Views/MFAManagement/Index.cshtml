@@ -1,0 +1,122 @@
+﻿@{
+    ViewData["Title"] = "2FA Management - US Express";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string qrcode_uri = (string)ViewBag.QRCodeUri;
+    string SecretKey = (string)ViewBag.SecretKey;
+    string Username = (string)ViewBag.Username;
+    short status = (short)ViewBag.Status;
+}
+<style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    div.row, label.row {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+        div.row input {
+            width: 300px;
+            margin-right: 20px;
+        }
+
+        div.row button {
+            margin-left: 20px;
+        }
+        .logo {
+            max-width:150px;
+        }
+
+</style>
+
+<div class="row-main container flex">
+        <div class="row-main_col200">
+            <div class="wrap_bg wrap_bg2">
+                <h3 class="title-margin">Menu</h3>
+                <div class="form-group no-line">
+                    <div class="">
+                        <a href="#">Thông tin</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="row-main_col800">
+        <!--Main Display-->
+        <div id="main_content" class="wrap_bg wrap_bg2">
+            <div class="content_lightbox">
+                <label class="row bold"> Trạng thái kích hoạt: &nbsp;&nbsp; <strong class="text-danger">@(status == 0 ? "Chưa kích hoạt / Đã tắt bảo mật 2 lớp" : "Đã bật bảo mật 2 lớp") </strong></label>
+                <label class="row bold">Hướng dẫn cài đặt</label>
+                <div class="row">
+                        <div class="col-md-6">
+                            <p class="text">
+                                Sử dụng ứng dụng <strong><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" target="_blank">Google Authenticator</a></strong> trên Android
+                                hoặc ứng dụng <strong><a href="https://apps.apple.com/us/app/google-authenticator/id388497605" target="_blank">Google Authenticator</a></strong> trên iOS và quét mã QRCode dưới đây:
+                            </p>
+                            <div id="qrcode"> </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text">
+                                Hoặc nhập thông tin dưới đây vào ứng dụng <strong>Authenticator</strong> hoặc các trang Web hỗ trợ tạo mã OTP: <br /><br />
+                                Tên tài khoản:&nbsp; <strong>AdavigoCMS-@Username</strong><br />
+                                Khoá của bạn:&nbsp; <strong>@SecretKey</strong><br />
+                                Nhà cung cấp:&nbsp; <strong>Adavigo</strong><br />
+                                Loại Khoá (Nếu có):&nbsp; <strong>Dựa theo thời gian</strong><br />
+                            </p>
+                        </div>
+                </div>
+                <label class="row bold">Kiểm tra cài đặt</label>
+                <div class="row">
+                    Kiểm tra việc cài đặt đã thành công bằng cách nhập mã OTP được hiển thị từ ứng dụng vào khung dưới đây: <br>
+                </div>
+                <div class="row">
+                    <input id="i_gg_otp_test" class="form-control" max="6" type="number" placeholder="Mã OTP từ ứng dụng Authenticator..." value="" />
+                    <button class="btn btn-default" onclick="_mfa_management_model.OnMFATestGG();">Kiểm tra mã OTP</button>
+                </div>
+                <p id="error-text-ontest-gg" class="mfp-hide text text-danger"></p>
+                <div class="row">
+                   Hoặc kiểm tra mã dự phòng tại khung dưới đây: <br>
+                </div>
+                <div class="row">
+                    <input id="i_bcode_test" class="form-control" max="6" type="number" placeholder="Nhập vào mã dự phòng..." value="" />
+                    <button class="btn btn-default" onclick="_mfa_management_model.OnMFATestBackupCode();">Kiểm tra mã dự phòng</button>
+                </div>
+                <p id="error-text-ontest-bcode" class="mfp-hide text text-danger"></p>
+                <div class="row">
+                    <p class="text">
+                        Các chức năng:<br />
+                        -&nbsp;Kiểm tra mã OTP: Kiểm tra lại mã OTP sau khi đã cài đặt thành công ở phần "Hướng dẫn cài đặt." <br />
+                        -&nbsp;Kiểm tra mã dự phòng: Mã dự phòng là mã được bộ phận kỹ thuật cung cấp cho bạn trong trường hợp không thể đăng nhập được với mã QR Code hoặc thông tin bên trên<br />
+                        &nbsp;&nbsp;Vui lòng liên hệ với bộ phận kỹ thuật để được cung cấp mã này.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript" src="~/modules/mfa_management.js"></script>
+    <script type="text/javascript" src="~/lib/qrcode-js/qrcode.js"></script>
+    <script>
+    if (document.getElementById("qrcode") != null) {
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: "@qrcode_uri",
+                width: 200,
+                height: 200,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.Q
+            });
+     };
+    </script>
+
+}

@@ -1,0 +1,427 @@
+<!-- build:title -->CMS Template
+<!-- /build:title -->
+
+<!-- build:content -->
+<section class="main-container">
+    <div class="row-main container">
+
+        <div class="flex row-main-head">
+            <h2 class="title_page">Quản lý bài viết</h2>
+            <div class="btn-right text-right">
+                <a class="btn btn-default" href="">
+                    + Tạo bài viết
+                </a>
+                <div class="number-new text-center">
+                    Tổng số bài
+                    <div><strong>12</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-serach-main flex row-main-head">
+            <div class="search-wrapper">
+                <form action="" id="search">
+                    <input type="text" class="input_search onclick-togle" name="" value="" placeholder="UAM-85555/1">
+                    <span class="search-btn">
+                        <button type="submit">
+                            <svg class="icon-svg">
+                                <use xlink:href="images/icons/icon.svg#search"></use>
+                            </svg>
+                        </button>
+                    </span>
+                </form>
+            </div>
+            <button type="submit" class="btn btn-default bg-main mb10" style="margin-left:10px">
+                <svg class="icon-svg" style="vertical-align: sub;">
+                    <use xlink:href="images/icons/icon.svg#search"></use>
+                </svg>
+                Tìm kiếm
+            </button>
+            <div class="fillter-wrap mb10">
+                <a class="btn color-main" href="javascript:;" style="outline: 0;display: inline-block;">
+                    Tìm kiếm nâng cao
+                </a>
+            </div>
+
+
+            <div class="fillter-search dropdown-content">
+                <div class="form-default row">
+                    <div class="col-md-6 mb20">
+                        <div class="form-group">
+                            <label class="lbl">Tiêu đề</label>
+                            <div class="wrap_input">
+                                <input type="text" class="form-control" id=""
+                                    value="Apple có thể bán 250 triệu iPhone trong năm 2021">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl">News ID</label>
+                            <div class="wrap_input">
+                                <input type="text" class="form-control" id="" placeholder="434344">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl">Ngày đăng</label>
+                            <div class="wrap_input end_to_date flex">
+                                <div class="item">
+                                    <div class="datepicker-wrap">
+                                        <input id="datepicker" class="datepicker-input form-control" type="text"
+                                            placeholder="Từ ngày">
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="datepicker-wrap">
+                                        <input id="datepicker" class="datepicker-input form-control" type="text"
+                                            placeholder="Đến ngày">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl">Tác giả</label>
+                            <div class="wrap_input">
+                                <input type="text" class="form-control" id="" value="Chu Hà Tiểu Phương">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl">Trạng thái</label>
+                            <div class="wrap_input">
+                                <select class="form-control">
+                                    <option>Bài public</option>
+                                    <option>Bình thường</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb20">
+                        <div class="flex space-between mb8">
+                            <div>Chuyên mục</div>
+                            <div class="action">
+                                <a href="#" class="active" style="color:#da6b16;font-weight: 500;">Mở rộng</a>
+                                <a href="#" style="border-left: 1px solid #ccc;margin-left: 5px;padding-left: 5px;">Thu
+                                    gọn</a>
+                            </div>
+                        </div>
+
+                        <div class="user-hierarchy-tag"
+                            style="border: 1px solid #CCCCCC;border-radius: 3px;padding:15px;margin:0">
+                            <div class="scrollbar-inner">
+                                <ul class="user-hierarchy-ul mb0">
+                                    <li class="active">
+                                        <div class="onclick">
+                                            <label class="check-list mb10 mr25">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                                Quản lý người dùng
+                                            </label>
+                                        </div>
+                                        <div class="lever2" style="display: block;">
+                                            <label class="check-list mb10 mr25">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                                Thêm mới
+                                            </label>
+                                            <label class="check-list mb10 mr25">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                                Cập nhật
+                                            </label>
+                                            <label class="check-list mb10 mr25">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                                Xóa
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="onclick">
+                                            <label class="check-list mb10 mr25">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                                Phân quyền nhóm
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="onclick">
+                                            <label class="check-list mb10 mr25">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                                Quản lý nhóm hàng
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="onclick">
+                                            <label class="check-list mb10 mr25">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                                Quản lý menu
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="onclick">
+                                            <label class="check-list mb10 mr25">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                                Phân quyền nhóm
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="onclick">
+                                            <label class="check-list mb10 mr25">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                                Quản lý nhóm hàng
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="onclick">
+                                            <label class="check-list mb10 mr25">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                                Quản lý menu
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="onclick">
+                                            <label class="check-list mb10 mr25">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                                Phân quyền nhóm
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="onclick">
+                                            <label class="check-list mb10 mr25">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                                Quản lý nhóm hàng
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="onclick">
+                                            <label class="check-list mb10 mr25">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                                Quản lý menu
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group text-center col-12 mt20 block">
+                        <button type="submit" class="btn btn-default bg-main">
+                            <svg class="icon-svg" style="vertical-align: sub;">
+                                <use xlink:href="images/icons/icon.svg#search"></use>
+                            </svg>
+                            Tìm kiếm
+                        </button>
+                        <a class="btn btn-default cancel" href="javascript:;">
+                            Bỏ tìm kiếm nâng cao
+                            <i class="fa fa-caret-up"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="wrap_bg wrap_bg_no-padding mb20">
+            <div class="table-responsive table-default">
+                <table class="table table-gird">
+                    <thead>
+                        <tr class="bg-main2">
+                            <th class="center"></th>
+                            <th class="center">Ảnh</th>
+                            <th>Tiêu đề</th>
+                            <th>Ngày đăng</th>
+                            <th>Ngày sửa</th>
+                            <th>Trạng thái</th>
+                            <th>Tác giả</th>
+                            <th class="center">Lượt xem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="center">1</td>
+                            <td class="center"><img width="35" src="images/graphics/thumb4.jpg"></td>
+                            <td>
+                                <div>Covid-19: Thế giới hối hả khởi động chiến dịch tiêm chủng</div>
+                                <a href="#" class="italic blue">Mẹ và bé</a>
+                            </td>
+                            <td>20/12/2020 02:55</td>
+                            <td>20/12/2020 02:55</td>
+                            <td>Đã xuất bản</td>
+                            <td>Chu Hà Tiểu Phương</td>
+                            <td class="center">5</td>
+                        </tr>
+                        <tr>
+                            <td class="center">2</td>
+                            <td class="center"><img width="35" src="images/graphics/thumb4.jpg"></td>
+                            <td>
+                                <div>Covid-19: Thế giới hối hả khởi động chiến dịch tiêm chủng</div>
+                                <a href="#" class="italic blue">Mẹ và bé</a>
+                            </td>
+                            <td>20/12/2020 02:55</td>
+                            <td>20/12/2020 02:55</td>
+                            <td class="red">Bài bị hạ</td>
+                            <td>Chu Hà Tiểu Phương</td>
+                            <td class="center">5</td>
+                        </tr>
+                        <tr>
+                            <td class="center">3</td>
+                            <td class="center"><img width="35" src="images/graphics/thumb4.jpg"></td>
+                            <td>
+                                <div>Covid-19: Thế giới hối hả khởi động chiến dịch tiêm chủng</div>
+                                <a href="#" class="italic blue">Mẹ và bé</a>
+                            </td>
+                            <td>20/12/2020 02:55</td>
+                            <td>20/12/2020 02:55</td>
+                            <td>Đã xuất bản</td>
+                            <td>Chu Hà Tiểu Phương</td>
+                            <td class="center">5</td>
+                        </tr>
+                        <tr>
+                            <td class="center">4</td>
+                            <td class="center"><img width="35" src="images/graphics/thumb4.jpg"></td>
+                            <td>
+                                <div>Covid-19: Thế giới hối hả khởi động chiến dịch tiêm chủng</div>
+                                <a href="#" class="italic blue">Mẹ và bé</a>
+                            </td>
+                            <td>20/12/2020 02:55</td>
+                            <td>20/12/2020 02:55</td>
+                            <td class="blue">Lưu tạm</td>
+                            <td>Chu Hà Tiểu Phương</td>
+                            <td class="center">5</td>
+                        </tr>
+                        <tr>
+                            <td class="center">5</td>
+                            <td class="center"><img width="35" src="images/graphics/thumb4.jpg"></td>
+                            <td>
+                                <div>Covid-19: Thế giới hối hả khởi động chiến dịch tiêm chủng</div>
+                                <a href="#" class="italic blue">Mẹ và bé</a>
+                            </td>
+                            <td>20/12/2020 02:55</td>
+                            <td>20/12/2020 02:55</td>
+                            <td>Đã xuất bản</td>
+                            <td>Chu Hà Tiểu Phương</td>
+                            <td class="center">5</td>
+                        </tr>
+                        <tr>
+                            <td class="center">6</td>
+                            <td class="center"><img width="35" src="images/graphics/thumb4.jpg"></td>
+                            <td>
+                                <div>Covid-19: Thế giới hối hả khởi động chiến dịch tiêm chủng</div>
+                                <a href="#" class="italic blue">Mẹ và bé</a>
+                            </td>
+                            <td>20/12/2020 02:55</td>
+                            <td>20/12/2020 02:55</td>
+                            <td class="red">Bài bị hạ</td>
+                            <td>Chu Hà Tiểu Phương</td>
+                            <td class="center">5</td>
+                        </tr>
+                        <tr>
+                            <td class="center">7</td>
+                            <td class="center"><img width="35" src="images/graphics/thumb4.jpg"></td>
+                            <td>
+                                <div>Covid-19: Thế giới hối hả khởi động chiến dịch tiêm chủng</div>
+                                <a href="#" class="italic blue">Mẹ và bé</a>
+                            </td>
+                            <td>20/12/2020 02:55</td>
+                            <td>20/12/2020 02:55</td>
+                            <td>Đã xuất bản</td>
+                            <td>Chu Hà Tiểu Phương</td>
+                            <td class="center">5</td>
+                        </tr>
+                        <tr>
+                            <td class="center">8</td>
+                            <td class="center"><img width="35" src="images/graphics/thumb4.jpg"></td>
+                            <td>
+                                <div>Covid-19: Thế giới hối hả khởi động chiến dịch tiêm chủng</div>
+                                <a href="#" class="italic blue">Mẹ và bé</a>
+                            </td>
+                            <td>20/12/2020 02:55</td>
+                            <td>20/12/2020 02:55</td>
+                            <td class="blue">Lưu tạm</td>
+                            <td>Chu Hà Tiểu Phương</td>
+                            <td class="center">5</td>
+                        </tr>
+                        <tr>
+                            <td class="center">9</td>
+                            <td class="center"><img width="35" src="images/graphics/thumb4.jpg"></td>
+                            <td>
+                                <div>Covid-19: Thế giới hối hả khởi động chiến dịch tiêm chủng</div>
+                                <a href="#" class="italic blue">Mẹ và bé</a>
+                            </td>
+                            <td>20/12/2020 02:55</td>
+                            <td>20/12/2020 02:55</td>
+                            <td>Đã xuất bản</td>
+                            <td>Chu Hà Tiểu Phương</td>
+                            <td class="center">5</td>
+                        </tr>
+                        <tr>
+                            <td class="center">10</td>
+                            <td class="center"><img width="35" src="images/graphics/thumb4.jpg"></td>
+                            <td>
+                                <div>Covid-19: Thế giới hối hả khởi động chiến dịch tiêm chủng</div>
+                                <a href="#" class="italic blue">Mẹ và bé</a>
+                            </td>
+                            <td>20/12/2020 02:55</td>
+                            <td>20/12/2020 02:55</td>
+                            <td>Đã xuất bản</td>
+                            <td>Chu Hà Tiểu Phương</td>
+                            <td class="center">5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <ul id="pagination" class="pagination">
+
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <i class="fa fa-step-backward"></i>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link icon" href="#">
+                        <i class="fa fa-caret-left"></i>
+                    </a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link icon" href="#">
+                        <i class="fa fa-caret-right"></i>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <i class="fa fa-step-forward"></i>
+                    </a>
+                </li>
+
+                <span>Hiển thị 1 - 7 trên tổng số 50 hóa đơn</span>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- /build:content -->
+
+<!-- build:script2 -->
+<script type="text/javascript">
+
+</script>
+<!-- /build:script2 -->

@@ -1,0 +1,458 @@
+<!-- build:title -->CMS Template
+<!-- /build:title -->
+
+<!-- build:content -->
+<section class="main-container">
+    <div class="row-main container flex">
+        <div class="row-main_col200">
+            <a class="close-menu" href="javascrip:;">×</a>
+            <div class="sticky">
+                <h2 class="title_page">Người dùng</h2>
+                <div class="wrap_bg wrap_bg2">
+                    <div class="vai-tro">
+                        <h3 class="title-margin">Vai trò</h3>
+                        <div class="tag">
+                            <a href="#">Quản trị &nbsp;<span class="delete">×</span></a>
+                            <a href="#">Nhân viên &nbsp;<span class="delete">×</span></a>
+                            <a href="#">Khách hàng &nbsp;<span class="delete">×</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="wrap_bg wrap_bg2">
+                    <div class="trang-thai">
+                        <h3 class="title-margin">Trạng thái</h3>
+                        <label class="radio radio-block">
+                            <input type="radio" name="optradio" checked="">
+                            <span class="checkmark"></span>
+                            Tất cả
+                        </label>
+                        <label class="radio radio-block">
+                            <input type="radio" name="optradio">
+                            <span class="checkmark"></span>
+                            Đang hoạt động
+                        </label>
+                        <label class="radio radio-block">
+                            <input type="radio" name="optradio">
+                            <span class="checkmark"></span>
+                            Ngừng hoạt động
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-main_col800">
+            <a class="btn_show" href="javascrip:;">Hiển thị danh mục <i class="fa fa-caret-right"></i></a>
+            <div class="flex row-main-head">
+                <div class="search-wrapper">
+                    <form action="" id="search">
+                        <input type="text" class="input_search onclick-togle" name="" value=""
+                            placeholder="Tên đăng nhập, người dùng">
+                        <span class="search-btn">
+                            <button type="submit">
+                                <svg class="icon-svg">
+                                    <use xlink:href="images/icons/icon.svg#search"></use>
+                                </svg>
+                            </button>
+                        </span>
+                    </form>
+                </div>
+                <div class="btn-right text-right">
+                    <a class="btn btn-default" href="">
+                        + Thêm mới
+                    </a>
+                    <div class="down-up">
+                        <a class="btn btn-default onclick" href="javascript:;">
+                            <i class="fa fa-bars"></i>
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                        <div class="form-down">
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox" checked="">
+                                <span class="checkmark"></span>
+                                Tên đăng nhập
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Họ tên
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Điện thoại
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Ngày sinh
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Email
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Địa chỉ
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Trạng thái
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Hình ảnh
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Ngày tạo
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrap_bg wrap_bg_no-padding mb20">
+                <div class="table-responsive table-default">
+                    <table class="table table-nowrap">
+                        <thead>
+                            <tr class="bg-main2">
+                                <th>STT</th>
+                                <th>Tên đăng nhập</th>
+                                <th>Họ tên</th>
+                                <th>Điện thoại</th>
+                                <th>Ngày sinh</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>cuongle</td>
+                                <td class="name_img">
+                                    <div class="flex align-center">
+                                        <div class="ava">
+                                            <span class="thumb_img thumb_5x5">
+                                                <img src="images/graphics/img_4.jpg">
+                                            </span>
+                                        </div>
+                                        <div class="content">
+                                            Lê Văn Cường
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>0942.066.299</td>
+                                <td>14/01/1986</td>
+                                <td>cuongle@usexpres.vn</td>
+                            </tr>
+                            <tr class="bg-gray active">
+                                <td>2</td>
+                                <td>cuongle</td>
+                                <td class="name_img">
+                                    <div class="flex align-center">
+                                        <div class="ava">
+                                            <span class="thumb_img thumb_5x5">
+                                                <img src="images/graphics/img_4.jpg">
+                                            </span>
+                                        </div>
+                                        <div class="content">
+                                            Lê Văn Cường
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>0942.066.299</td>
+                                <td>14/01/1986</td>
+                                <td>cuongle@usexpres.vn</td>
+                            </tr>
+                            <tr class="info-detail">
+                                <td colspan="6">
+                                    <div class="tab-default">
+                                        <a href="#tab1" class="active">Thông tin</a>
+                                        <a href="#tab2">Phân quyền</a>
+                                    </div>
+                                    <div class="wrap">
+                                        <div class="tab-content">
+                                            <div id="tab1">
+                                                <div class="flex form-default">
+                                                    <div class="name">
+                                                        <h4>Nguyễn Tú Anh</h4>
+                                                        <div class="status active">Đang hoạt động</div>
+                                                    </div>
+                                                    <div class="info">
+                                                        <div class="ava">
+                                                            <span class="thumb_img thumb_5x5">
+                                                                <img src="images/graphics/img_4.jpg">
+                                                            </span>
+                                                            <div class="confirm-google">
+                                                                <div class="icon"></div>
+                                                                Xác nhận Google
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="info-form row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="lbl">
+                                                                    <span class="col-4">Họ tên:</span>
+                                                                    <span class="col-8">Nguyễn Tú Anh</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="lbl">
+                                                                    <span class="col-4">Tên đăng nhập:</span>
+                                                                    <span class="col-8">tuanh</span>
+                                                                </label>
+
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="lbl">
+                                                                    <span class="col-4">Tên người dùng:</span>
+                                                                    <span class="col-8">tuanh</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="lbl">
+                                                                    <span class="col-4">Điện thoại:</span>
+                                                                    <span class="col-8">0123456789</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="lbl">
+                                                                    <span class="col-4">Ngày sinh:</span>
+                                                                    <span class="col-8">11/12/1990</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="lbl">
+                                                                    <span class="col-4">Email:</span>
+                                                                    <span class="col-8">tuanh@gmail.com</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="lbl">
+                                                                    <span class="col-4">Địa chỉ:</span>
+                                                                    <span class="col-8">Tòa nhà Usexpress - Quận Cầu
+                                                                        giấy - Phường Dịch Vọng Hậu - Hà Nội</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group align-right col-12 mt20 block">
+                                                        <button type="submit" class="btn btn-default bg-main"><i
+                                                                class="fa fa-pencil-square-o"></i>Cập nhật</button>
+                                                        <button type="submit" class="btn btn-default bg-main"><i
+                                                                class="fa fa-files-o"></i>Sao chép</button>
+                                                        <button type="submit" class="btn btn-default bg-main"><i
+                                                                class="fa fa-key"></i>Reset mật khẩu</button>
+                                                        <button type="submit" class="btn btn-default red"><i
+                                                                class="fa fa-lock"></i>Khóa tài khoản</button>
+                                                        <button type="submit" class="btn btn-default red"><i
+                                                                class="fa fa-trash"></i>Xóa</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="tab2" style="display: none;">
+                                                <div class="row changer-admin">
+                                                    <div class="col-md-5">
+                                                        <label>Danh sách nhóm quyền</label>
+                                                        <ul class="list scrollbar-inner">
+                                                            <li>Supper Admin</li>
+                                                            <li>Admin</li>
+                                                            <li>Ban giám đốc</li>
+                                                            <li>Chăm sóc khách hàng</li>
+                                                            <li>Marketing</li>
+                                                            <li>Duyệt bài</li>
+                                                            <li>Nhập liệu</li>
+                                                            <li>Supper Admin</li>
+                                                            <li>Admin</li>
+                                                            <li>Ban giám đốc</li>
+                                                            <li>Chăm sóc khách hàng</li>
+                                                            <li>Marketing</li>
+                                                            <li>Duyệt bài</li>
+                                                            <li>Nhập liệu</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="changer_bnt">
+                                                        <a class="changer next" href=""><i
+                                                                class="fa fa-angle-right"></i></a>
+                                                        <a class="changer prev" href=""><i
+                                                                class="fa fa-angle-left"></i></a>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <label>Quyền được cấp</label>
+                                                        <ul class="list">
+                                                            <li>Supper Admin</li>
+                                                            <li>Marketing</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>cuongle</td>
+                                <td class="name_img">
+                                    <div class="flex align-center">
+                                        <div class="ava">
+                                            <span class="thumb_img thumb_5x5">
+                                                <img src="images/graphics/img_4.jpg">
+                                            </span>
+                                        </div>
+                                        <div class="content">
+                                            Lê Văn Cường
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>0942.066.299</td>
+                                <td>14/01/1986</td>
+                                <td>cuongle@usexpres.vn</td>
+                            </tr>
+                            <tr class="bg-gray">
+                                <td>4</td>
+                                <td>cuongle</td>
+                                <td class="name_img">
+                                    <div class="flex align-center">
+                                        <div class="ava">
+                                            <span class="thumb_img thumb_5x5">
+                                                <img src="images/graphics/img_4.jpg">
+                                            </span>
+                                        </div>
+                                        <div class="content">
+                                            Lê Văn Cường
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>0942.066.299</td>
+                                <td>14/01/1986</td>
+                                <td>cuongle@usexpres.vn</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>cuongle</td>
+                                <td class="name_img">
+                                    <div class="flex align-center">
+                                        <div class="ava">
+                                            <span class="thumb_img thumb_5x5">
+                                                <img src="images/graphics/img_4.jpg">
+                                            </span>
+                                        </div>
+                                        <div class="content">
+                                            Lê Văn Cường
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>0942.066.299</td>
+                                <td>14/01/1986</td>
+                                <td>cuongle@usexpres.vn</td>
+                            </tr>
+                            <tr class="bg-gray">
+                                <td>6</td>
+                                <td>cuongle</td>
+                                <td class="name_img">
+                                    <div class="flex align-center">
+                                        <div class="ava">
+                                            <span class="thumb_img thumb_5x5">
+                                                <img src="images/graphics/img_4.jpg">
+                                            </span>
+                                        </div>
+                                        <div class="content">
+                                            Lê Văn Cường
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>0942.066.299</td>
+                                <td>14/01/1986</td>
+                                <td>cuongle@usexpres.vn</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>cuongle</td>
+                                <td class="name_img">
+                                    <div class="flex align-center">
+                                        <div class="ava">
+                                            <span class="thumb_img thumb_5x5">
+                                                <img src="images/graphics/img_4.jpg">
+                                            </span>
+                                        </div>
+                                        <div class="content">
+                                            Lê Văn Cường
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>0942.066.299</td>
+                                <td>14/01/1986</td>
+                                <td>cuongle@usexpres.vn</td>
+                            </tr>
+                            <tr class="bg-gray">
+                                <td>8</td>
+                                <td>cuongle</td>
+                                <td class="name_img">
+                                    <div class="flex align-center">
+                                        <div class="ava">
+                                            <span class="thumb_img thumb_5x5">
+                                                <img src="images/graphics/img_4.jpg">
+                                            </span>
+                                        </div>
+                                        <div class="content">
+                                            Lê Văn Cường
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>0942.066.299</td>
+                                <td>14/01/1986</td>
+                                <td>cuongle@usexpres.vn</td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <ul id="pagination" class="pagination">
+
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fa fa-step-backward"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link icon" href="#">
+                            <i class="fa fa-caret-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link icon" href="#">
+                            <i class="fa fa-caret-right"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fa fa-step-forward"></i>
+                        </a>
+                    </li>
+
+                    <span>Hiển thị 1 - 7 trên tổng số 50 hóa đơn</span>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- /build:content -->
+
+<!-- build:script2 -->
+<script type="text/javascript">
+
+</script>
+<!-- /build:script2 -->

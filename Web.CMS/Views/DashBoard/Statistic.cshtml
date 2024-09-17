@@ -1,0 +1,70 @@
+﻿@{
+    Layout = null;
+}
+<div class="col-md-2 col-6">
+    <div class="content">
+        <div class="txt_12 gray">
+            Tổng đơn hàng : <span id="total_order_count"></span>
+        </div>
+        <div class="color-main txt_22">
+            <span id="total_amount">
+                <img src="~/images/icons/loading.gif" style=" width: 20px; height: 20px;" />
+            </span> đ
+        </div>
+        <div class="txt_12 gray">Tổng tiền đơn</div>
+    </div>
+</div>
+<div class="col-md-2 col-6">
+    <div class="content">
+        <div class="txt_12 gray">
+            Đơn hàng chờ thanh toán : <span id="pending_payment_order_count"></span>
+        </div>
+        <div class="color-main txt_22 red">
+            <span id="pending_payment_amount">
+                <img src="~/images/icons/loading.gif" style=" width: 20px; height: 20px;" />
+            </span> đ
+        </div>
+        <div class="txt_12 gray">Tổng tiền đơn chờ thanh toán</div>
+    </div>
+</div>
+<div class="col-md-2 col-6">
+    <div class="content">
+        <div class="txt_12 gray">
+            Khách hàng mới
+        </div>
+        <div class="color-main txt_22 red">
+            <span id="total_new_client">
+                <img src="~/images/icons/loading.gif" style=" width: 20px; height: 20px;" />
+            </span>
+        </div>
+        <div class="txt_12 gray">@DateTime.Now.ToString("dd/MM/yyyy")</div>
+    </div>
+</div>
+<div class="col-md-2 col-6">
+    <div class="content">
+        <div class="txt_12 gray">
+            Thu hồi công nợ
+        </div>
+        <div class="color-main txt_22 red">
+            <span id="total_debt_client">
+                0
+            </span> khách hàng
+        </div>
+        <div class="txt_12 gray">@DateTime.Now.ToString("dd/MM/yyyy")</div>
+    </div>
+</div>
+<div class="col-md-2 col-6">
+    <div class="content">
+        <div class="txt_12 gray">
+            Đơn hàng chưa hoàn thành
+        </div>
+        <div class="color-main txt_22 red">
+            <span id="total_incomplete_order">
+                0
+            </span> đơn hàng
+        </div>
+        <div class="animate-flicker txt_14">
+            <strong>Warning !!!</strong>
+        </div>
+    </div>
+</div>

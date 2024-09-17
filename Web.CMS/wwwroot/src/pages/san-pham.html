@@ -1,0 +1,866 @@
+<!-- build:title -->CMS Template
+<!-- /build:title -->
+
+<!-- build:content -->
+<section class="main-container">
+    <div class="row-main container flex">
+        <div class="row-main_col200">
+            <a class="close-menu" href="javascrip:;">×</a>
+            <h2 class="title_page">Sản phẩm</h2>
+            <div class="wrap_bg wrap_bg2">
+                <div class="vai-tro">
+                    <h3 class="title-margin">Tìm kiếm</h3>
+                    <div class="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="" placeholder="Theo mã sản phẩm">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="" placeholder="Theo tên sản phẩm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrap_bg wrap_bg2">
+                <h3 class="title-margin">
+                    Nhãn hàng
+                    <a href="#popup-them-nhom" class="open-popup fa fa-plus-circle"></a>
+                </h3>
+                <label class="check-list mb10">
+                    <input type="checkbox" checked>
+                    <span class="checkmark"></span>
+                    Amazon
+                </label>
+                <label class="check-list mb10">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    Costco
+                </label>
+                <label class="check-list">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    Jomashop
+                </label>
+            </div>
+            <div class="wrap_bg wrap_bg2">
+                <h3 class="title-margin">
+                    Nhóm hàng
+                    <a href="#popup-them-nhom" class="open-popup fa fa-plus-circle"></a>
+                </h3>
+                <div class="search-wrapper">
+                    <form action="" id="search">
+                        <div class="input-relative">
+                            <input type="text" class="input_search" name="" value="" placeholder="Tìm theo nhóm hàng">
+                            <button type="reset" class="btn_reset">×</button>
+                        </div>
+                        <span class="search-btn">
+                            <button type="submit">
+                                <svg class="icon-svg">
+                                    <use xlink:href="images/icons/icon.svg#search"></use>
+                                </svg>
+                            </button>
+                        </span>
+                    </form>
+                </div>
+                <ul class="ul-cate">
+                    <li class="all"><a href="">Tất cả</a></li>
+                    <li><a href="">Sản phẩm nổi bật</a></li>
+                    <li class="lever1">
+                        <a class="onclick-togle" href="javascrip:;">Đồ điện tử và công nghệ</a>
+                        <ul class="expand lever2">
+                            <li>
+                                <a href="">Laptop, tablet</a>
+                                <div class="control">
+                                    <a href=""><img src="images/icons/sql.png"></a>
+                                    <a href=""><img src="images/icons/edit.png"></a>
+                                </div>
+                            </li>
+                            <li><a href="">Màn hình</a></li>
+                        </ul>
+                    </li>
+                    <li class="lever1">
+                        <a class="onclick-togle" href="javascrip:;">Máy tính và phụ kiện</a>
+                        <ul class="expand lever2">
+                            <li>
+                                <a href="">Laptop, tablet</a>
+                                <div class="control">
+                                    <a href=""><img src="images/icons/sql.png"></a>
+                                    <a href=""><img src="images/icons/edit.png"></a>
+                                </div>
+                            </li>
+                            <li><a href="">Màn hình</a></li>
+                        </ul>
+                    </li>
+                    <li class="lever1"><a class="onclick-togle" href="javascrip:;">Điện thoại và phụ kiện</a></li>
+                </ul>
+            </div>
+            <div class="wrap_bg wrap_bg2">
+                <h3 class="title-margin">Thuộc tính</h3>
+                <div class="form">
+                    <div class="form-group">
+                        <select class="form-control">
+                            <option>--- Màu ---</option>
+                            <option>--- Màu ---</option>
+                            <option>--- Màu ---</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control">
+                            <option>--- Kích cỡ ---</option>
+                            <option>--- Màu ---</option>
+                            <option>--- Màu ---</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control">
+                            <option>--- Chất liệu ---</option>
+                            <option>--- Màu ---</option>
+                            <option>--- Màu ---</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="wrap_bg wrap_bg2">
+                <h3 class="title-margin">Trạng thái</h3>
+                <label class="radio radio-block">
+                    <input type="radio" name="optradio" checked="">
+                    <span class="checkmark"></span>
+                    Đang bán
+                </label>
+                <label class="radio radio-block">
+                    <input type="radio" name="optradio">
+                    <span class="checkmark"></span>
+                    Ngừng bán
+                </label>
+                <label class="radio radio-block">
+                    <input type="radio" name="optradio">
+                    <span class="checkmark"></span>
+                    Tất cả
+                </label>
+                <div class="flex align-center">
+                    <span>Số bản ghi: &nbsp;</span>
+                    <div class="form-group mb0">
+                        <select class="form-control">
+                            <option>100</option>
+                            <option>100</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-main_col800">
+            <a class="btn_show" href="javascrip:;">Hiển thị danh mục <i class="fa fa-caret-right"></i></a>
+            <div class="flex row-main-head">
+                <div class="search-wrapper">
+                    <form action="" id="search">
+                        <input type="text" class="input_search onclick-togle" name="" value=""
+                            placeholder="Tài khoản người dùng">
+                        <span class="search-btn">
+                            <button type="submit">
+                                <svg class="icon-svg">
+                                    <use xlink:href="images/icons/icon.svg#search"></use>
+                                </svg>
+                            </button>
+                        </span>
+                    </form>
+                </div>
+                <div class="btn-right text-right">
+                    <button type="submit" class="btn btn-default crawl"><i class="iconfont-crawl"></i>Thiết lập crawler
+                        sản phẩm</button>
+                    <a class="btn btn-default" href="">
+                        + Thêm mới
+                    </a>
+                    <a class="btn btn-default" href="">
+                        <i class="fa fa-file-excel-o"></i>
+                        Xuất file
+                    </a>
+                    <div class="down-up">
+                        <a class="btn btn-default onclick" href="javascript:;">
+                            <i class="fa fa-bars"></i>
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                        <div class="form-down" style="display: none;">
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox" checked="">
+                                <span class="checkmark"></span>
+                                Mã sản phẩm
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Tên sản phẩm
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Giá bán
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Giá mua
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Phí mua hộ
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Thuộc tính
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Nhãn hàng
+                            </label>
+                            <label class="check-list mb10 mr25">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Hình ảnh
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrap_bg wrap_bg_no-padding mb20">
+                <div class="table-responsive table-default">
+                    <table class="table table-nowrap table-product">
+                        <thead>
+                            <tr class="bg-main2">
+                                <th>STT</th>
+                                <th>Mã sản phẩm</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá bán</th>
+                                <th>Đã mua</th>
+                                <th>Phí mua hộ</th>
+                                <th>Biến thể</th>
+                                <th>Nhãn hàng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="placeholder">1</div>
+                                </td>
+                                <td>
+                                    <div class="placeholder" style="height: 21px;"></div>
+                                </td>
+                                <td class="name_img">
+                                    <div class="placeholder" style="height: 21px;"></div>
+                                </td>
+                                <td>
+                                    <div class="placeholder" style="height: 21px;"></div>
+                                </td>
+                                <td>
+                                    <div class="placeholder" style="height: 21px;">
+                                        </div</td> <td>
+                                        <div class="placeholder" style="height: 21px;">
+                                            </div</td> <td>
+                                            <div class="placeholder" style="height: 21px;"></div </td> <td>
+                                            <div class="placeholder" style="height: 21px;">
+                                                </div</td> </tr> <tr class="bg-gray bold">
+                                <td>2</td>
+                                <td class="plus"><strong>-</strong>&nbsp;&nbsp;(2)585422</td>
+                                <td class="name_img">
+                                    <div class="flex align-center">
+                                        <div class="ava tooltip-img">
+                                            <span class="thumb_img thumb_5x5">
+                                                <img src="images/graphics/img_4.jpg">
+                                            </span>
+                                            <div class="tooltip-inner fade">
+                                                <img src="images/graphics/img_4.jpg">
+                                            </div>
+                                        </div>
+                                        <div class="content">
+                                            Lê Văn Cường
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>140,000 &nbsp;<a class="edit color-main" href=""><i class="fa fa-edit"></i></a></td>
+                                <td>3</td>
+                                <td>40,000</td>
+                                <td>
+                                    Màu: Green</br>
+                                    Size: M
+                                </td>
+                                <td><img src="images/icons/Costco.png"></td>
+                            </tr>
+                            <tr class="show">
+                                <td></td>
+                                <td>SP00002</td>
+                                <td class="name_img">
+                                    <div class="flex align-center">
+                                        <div class="ava">
+                                            <span class="thumb_img thumb_5x5">
+                                                <img src="images/graphics/img_4.jpg">
+                                            </span>
+                                        </div>
+                                        <div class="content">
+                                            Lê Văn Cường
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>140,000 &nbsp;<a class="edit color-main" href=""><i class="fa fa-edit"></i></a></td>
+                                <td>3</td>
+                                <td>40,000</td>
+                                <td>
+                                    Màu: Green</br>
+                                    Size: M
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr class="bg-gray show">
+                                <td></td>
+                                <td>SP00002</td>
+                                <td class="name_img">
+                                    <div class="flex align-center">
+                                        <div class="ava">
+                                            <span class="thumb_img thumb_5x5">
+                                                <img src="images/graphics/img_4.jpg">
+                                            </span>
+                                        </div>
+                                        <div class="content">
+                                            Lê Văn Cường
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>140,000 &nbsp;<a class="edit color-main" href=""><i class="fa fa-edit"></i></a></td>
+                                <td>3</td>
+                                <td>40,000</td>
+                                <td>
+                                    Màu: Green</br>
+                                    Size: M
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr class="show">
+                                <td></td>
+                                <td>SP00002</td>
+                                <td class="name_img">
+                                    <div class="flex align-center">
+                                        <div class="ava">
+                                            <span class="thumb_img thumb_5x5">
+                                                <img src="images/graphics/img_4.jpg">
+                                            </span>
+                                        </div>
+                                        <div class="content">
+                                            Lê Văn Cường
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>140,000 &nbsp;<a class="edit color-main" href=""><i class="fa fa-edit"></i></a></td>
+                                <td>3</td>
+                                <td>40,000</td>
+                                <td>
+                                    Màu: Green</br>
+                                    Size: M
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr class="bg-gray show">
+                                <td></td>
+                                <td>SP00002</td>
+                                <td class="name_img">
+                                    <div class="flex align-center">
+                                        <div class="ava">
+                                            <span class="thumb_img thumb_5x5">
+                                                <img src="images/graphics/img_4.jpg">
+                                            </span>
+                                        </div>
+                                        <div class="content">
+                                            Lê Văn Cường
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>140,000 &nbsp;<a class="edit color-main" href=""><i class="fa fa-edit"></i></a></td>
+                                <td>3</td>
+                                <td>40,000</td>
+                                <td>
+                                    Màu: Green</br>
+                                    Size: M
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr class="line-white">
+                                <td colspan="8"></td>
+                            </tr>
+                            <tr class="bg-gray active">
+                                <td>3</td>
+                                <td class="plus"><strong>-</strong>&nbsp;&nbsp;(2)585422</td>
+                                <td class="name_img">
+                                    <div class="flex align-center">
+                                        <div class="ava">
+                                            <span class="thumb_img thumb_5x5">
+                                                <img src="images/graphics/img_4.jpg">
+                                            </span>
+                                        </div>
+                                        <div class="content">
+                                            Lê Văn Cường
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>140,000 &nbsp;<a class="edit color-main" href=""><i class="fa fa-edit"></i></a></td>
+                                <td>3</td>
+                                <td>40,000</td>
+                                <td>
+                                    Màu: Green</br>
+                                    Size: M
+                                </td>
+                                <td><img src="images/icons/amzon.png"></td>
+                            </tr>
+                            <tr class="info-detail">
+                                <td colspan="8">
+                                    <div class="tab-default">
+                                        <a href="#tab1" class="active">Thông tin</a>
+                                        <a href="#tab2">Lịch sử giá</a>
+                                    </div>
+                                    <div class="wrap">
+                                        <div class="tab-content">
+                                            <div id="tab1">
+                                                <div class="flex detail-product">
+                                                    <div class="head">
+                                                        <h2>New Apple MacBook Air (13-inch, 8GB RAM, 256GB SSD Storage)
+                                                            - Silver</h2>
+                                                        <span><i class="fa fa-check"></i>Đang bán</span>
+                                                    </div>
+                                                    <div class="col-img">
+                                                        <div class="img">
+                                                            <img src="images/graphics/sanpham.jpg">
+                                                        </div>
+                                                        <div class="thumb">
+                                                            <a href="#"><img src="images/graphics/thumb1.jpg"></a>
+                                                            <a href="#"><img src="images/graphics/thumb2.jpg"></a>
+                                                            <a href="#"><img src="images/graphics/thumb3.jpg"></a>
+                                                            <a href="#"><img src="images/graphics/thumb4.jpg"></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-info form-default">
+                                                        <div class="form-group">
+                                                            <label class="lbl">
+                                                                <span class="col-4">Mã hàng hóa:</span>
+                                                                <span class="col-8">B07AH9874T</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="lbl">
+                                                                <span class="col-4">Nhãn hàng:</span>
+                                                                <span class="col-8">
+                                                                    <img src="images/icons/amzon.png">
+                                                                    <a style="color: #005DA6;" href="">Kiểm tra sản
+                                                                        phẩm</a>
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="lbl">
+                                                                <span class="col-4">Nhà sản xuất:</span>
+                                                                <span class="col-8">B07AH9874T</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="lbl">
+                                                                <span class="col-4">Giá cũ:</span>
+                                                                <span class="col-8">B07AH9874T</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="lbl">
+                                                                <span class="col-4">Giá mới:</span>
+                                                                <span class="col-8">
+                                                                    <strong>120.00</strong>
+                                                                    <e class="gray txt_11">(Cập nhật: 05/04/2020 5h:30)
+                                                                    </e>
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="lbl">
+                                                                <span class="col-4">Giá cũ:</span>
+                                                                <span class="col-8">B07AH9874T</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="lbl">
+                                                                <span class="col-4">Giá cũ:</span>
+                                                                <span class="col-8">B07AH9874T</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="lbl">
+                                                                <span class="col-4">Biến thể:</span>
+                                                                <span class="col-8">
+                                                                    <div>Color: Blue</div>
+                                                                    <div>Size: M</div>
+                                                                    <div>Capacity: 256GB</div>
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-description">
+                                                        <div class="title_line">Mô tả</div>
+                                                        <div class="scrollbar-inner">
+                                                            <p>Stunning 13.3-inch Retina display with True Tone
+                                                                technology Backlit Magic Keyboard and Touch ID
+                                                                Tenth-generation Intel Core i3 processor Intel Iris Plus
+                                                                Graphics Fast SSD storage 8GB of memory Stereo speakers
+                                                                with wider stereo</p>
+                                                            <p>Stunning 13.3-inch Retina display with True Tone
+                                                                technology Backlit Magic Keyboard and Touch ID
+                                                                Tenth-generation Intel Core i3 processor Intel Iris Plus
+                                                                Graphics Fast SSD storage 8GB of memory Stereo speakers
+                                                                with wider stereo</p>
+                                                        </div>
+                                                        <div class="title_line">Thông số</div>
+                                                        <div class="scrollbar-inner">
+                                                            <p>Item Package Quantity: 1 Handle/Lever Placement: No
+                                                                Handle Part Number: BE479 V CEN 622</p>
+                                                            <p>1.1GHz dual-core 10th-generation Intel Core i3 processor
+                                                                with Turbo Boost up to 3.2GHz or 1.1GHz quad-core
+                                                                10th-generation Intel Core i5 processor with Turbo Boost
+                                                                up to 3.8GHz</p>
+                                                            <p>Item Package Quantity: 1 Handle/Lever Placement: No
+                                                                Handle Part Number: BE479 V CEN 622</p>
+                                                            <p>1.1GHz dual-core 10th-generation Intel Core i3 processor
+                                                                with Turbo Boost up to 3.2GHz or 1.1GHz quad-core
+                                                                10th-generation Intel Core i5 processor with Turbo Boost
+                                                                up to 3.8GHz</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group align-right col-12 mt20 block">
+                                                        <button type="submit" class="btn btn-default bg-main"><i
+                                                                class="fa fa-pencil-square-o"></i>Cập nhật</button>
+                                                        <button type="submit" class="btn btn-default bg-main"><i
+                                                                class="fa fa-files-o"></i>Sao chép</button>
+                                                        &nbsp;&nbsp;
+                                                        <button type="submit" class="btn btn-default red"><i
+                                                                class="fa fa-lock"></i>Ngừng bán</button>
+                                                        <button type="submit" class="btn btn-default red"><i
+                                                                class="fa fa-trash"></i>Xóa</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="tab2" style="display: none;">
+                                                <div class="table_crawl_top table-responsive table-default mt20">
+                                                    <table class="table table-nowrap table-border">
+                                                        <thead>
+                                                            <tr class="bg-gray">
+                                                                <th>Giá gốc</th>
+                                                                <th>Tỉ giá</th>
+                                                                <th>VNĐ</th>
+                                                                <th>Ngày tạo</th>
+                                                                <th class="text-center">Nguồn tạo</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>16.6$</td>
+                                                                <td>24.511</td>
+                                                                <td>406,882</td>
+                                                                <td>04/05/2020 14:52</td>
+                                                                <td class="text-center">
+                                                                    <span class="btn btn2 bg-success">App</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="scrollbar_crawl scrollbar-inner height_200">
+                                                    <div class="table-responsive table-default border-line">
+                                                        <table class="table table-nowrap">
+                                                            <thead>
+                                                                <tr class="bg-gray">
+                                                                    <th>Giá gốc</th>
+                                                                    <th>Tỉ giá</th>
+                                                                    <th>VNĐ</th>
+                                                                    <th>Ngày tạo</th>
+                                                                    <th class="text-center">Nguồn tạo</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>16.6$</td>
+                                                                    <td>24.511</td>
+                                                                    <td>406,882</td>
+                                                                    <td>04/05/2020 14:52</td>
+                                                                    <td class="text-center">
+                                                                        <span class="btn btn2 bg-success">App</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="bg-gray">
+                                                                    <td>16.6$</td>
+                                                                    <td>24.511</td>
+                                                                    <td>406,882</td>
+                                                                    <td>04/05/2020 14:52</td>
+                                                                    <td class="text-center">
+                                                                        <span class="btn btn2 bg-agray">hanhnt</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>16.6$</td>
+                                                                    <td>24.511</td>
+                                                                    <td>406,882</td>
+                                                                    <td>04/05/2020 14:52</td>
+                                                                    <td class="text-center">
+                                                                        <span class="btn btn2 bg-success">App</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>16.6$</td>
+                                                                    <td>24.511</td>
+                                                                    <td>406,882</td>
+                                                                    <td>04/05/2020 14:52</td>
+                                                                    <td class="text-center">
+                                                                        <span class="btn btn2 bg-success">App</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="bg-gray">
+                                                                    <td>16.6$</td>
+                                                                    <td>24.511</td>
+                                                                    <td>406,882</td>
+                                                                    <td>04/05/2020 14:52</td>
+                                                                    <td class="text-center">
+                                                                        <span class="btn btn2 bg-agray">hanhnt</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>16.6$</td>
+                                                                    <td>24.511</td>
+                                                                    <td>406,882</td>
+                                                                    <td>04/05/2020 14:52</td>
+                                                                    <td class="text-center">
+                                                                        <span class="btn btn2 bg-success">App</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>16.6$</td>
+                                                                    <td>24.511</td>
+                                                                    <td>406,882</td>
+                                                                    <td>04/05/2020 14:52</td>
+                                                                    <td class="text-center">
+                                                                        <span class="btn btn2 bg-success">App</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="bg-gray">
+                                                                    <td>16.6$</td>
+                                                                    <td>24.511</td>
+                                                                    <td>406,882</td>
+                                                                    <td>04/05/2020 14:52</td>
+                                                                    <td class="text-center">
+                                                                        <span class="btn btn2 bg-agray">hanhnt</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>16.6$</td>
+                                                                    <td>24.511</td>
+                                                                    <td>406,882</td>
+                                                                    <td>04/05/2020 14:52</td>
+                                                                    <td class="text-center">
+                                                                        <span class="btn btn2 bg-success">App</span>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="">
+                                <td>4</td>
+                                <td class="plus"><strong>+</strong>&nbsp;&nbsp;(2)585422</td>
+                                <td class="name_img">
+                                    <div class="flex align-center">
+                                        <div class="ava">
+                                            <span class="thumb_img thumb_5x5">
+                                                <img src="images/graphics/img_4.jpg">
+                                            </span>
+                                        </div>
+                                        <div class="content">
+                                            Lê Văn Cường
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>140,000 &nbsp;<a class="edit color-main" href=""><i class="fa fa-edit"></i></a></td>
+                                <td>3</td>
+                                <td>40,000</td>
+                                <td>
+                                    Màu: Green</br>
+                                    Size: M
+                                </td>
+                                <td><img src="images/icons/amzon.png"></td>
+                            </tr>
+                            <tr class="bg-gray">
+                                <td>5</td>
+                                <td class="plus"><strong>+</strong>&nbsp;&nbsp;(2)585422</td>
+                                <td class="name_img">
+                                    <div class="flex align-center">
+                                        <div class="ava">
+                                            <span class="thumb_img thumb_5x5">
+                                                <img src="images/graphics/img_4.jpg">
+                                            </span>
+                                        </div>
+                                        <div class="content">
+                                            Lê Văn Cường
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>140,000 &nbsp;<a class="edit color-main" href=""><i class="fa fa-edit"></i></a></td>
+                                <td>3</td>
+                                <td>40,000</td>
+                                <td>
+                                    Màu: Green</br>
+                                    Size: M
+                                </td>
+                                <td><img src="images/icons/amzon.png"></td>
+                            </tr>
+                            <tr class="">
+                                <td>6</td>
+                                <td class="plus"><strong>+</strong>&nbsp;&nbsp;(2)585422</td>
+                                <td class="name_img">
+                                    <div class="flex align-center">
+                                        <div class="ava">
+                                            <span class="thumb_img thumb_5x5">
+                                                <img src="images/graphics/img_4.jpg">
+                                            </span>
+                                        </div>
+                                        <div class="content">
+                                            Lê Văn Cường
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>140,000 &nbsp;<a class="edit color-main" href=""><i class="fa fa-edit"></i></a></td>
+                                <td>3</td>
+                                <td>40,000</td>
+                                <td>
+                                    Màu: Green</br>
+                                    Size: M
+                                </td>
+                                <td><img src="images/icons/amzon.png"></td>
+                            </tr>
+                            <tr class="bg-gray">
+                                <td>7</td>
+                                <td class="plus"><strong>+</strong>&nbsp;&nbsp;(2)585422</td>
+                                <td class="name_img">
+                                    <div class="flex align-center">
+                                        <div class="ava">
+                                            <span class="thumb_img thumb_5x5">
+                                                <img src="images/graphics/img_4.jpg">
+                                            </span>
+                                        </div>
+                                        <div class="content">
+                                            Lê Văn Cường
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>140,000 &nbsp;<a class="edit color-main" href=""><i class="fa fa-edit"></i></a></td>
+                                <td>3</td>
+                                <td>40,000</td>
+                                <td>
+                                    Màu: Green</br>
+                                    Size: M
+                                </td>
+                                <td><img src="images/icons/amzon.png"></td>
+                            </tr>
+                            <tr class="">
+                                <td>8</td>
+                                <td class="plus"><strong>+</strong>&nbsp;&nbsp;(2)585422</td>
+                                <td class="name_img">
+                                    <div class="flex align-center">
+                                        <div class="ava">
+                                            <span class="thumb_img thumb_5x5">
+                                                <img src="images/graphics/img_4.jpg">
+                                            </span>
+                                        </div>
+                                        <div class="content">
+                                            Lê Văn Cường
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>140,000 &nbsp;<a class="edit color-main" href=""><i class="fa fa-edit"></i></a></td>
+                                <td>3</td>
+                                <td>40,000</td>
+                                <td>
+                                    Màu: Green</br>
+                                    Size: M
+                                </td>
+                                <td><img src="images/icons/amzon.png"></td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <ul id="pagination" class="pagination">
+
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fa fa-step-backward"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link icon" href="#">
+                            <i class="fa fa-caret-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link icon" href="#">
+                            <i class="fa fa-caret-right"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fa fa-step-forward"></i>
+                        </a>
+                    </li>
+
+                    <span>Hiển thị 1 - 7 trên tổng số 50 hóa đơn</span>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="popup-them-nhom" class="white-popup">
+    <div class="content_lightbox">
+        <div class="head">
+            Thêm nhóm hàng
+        </div>
+        <div class="form-default">
+            <div class="form-group">
+                <label class="lbl">Tên nhóm</label>
+                <div class="wrap_input">
+                    <input type="text" class="form-control" id="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="lbl">Nhóm cha</label>
+                <div class="wrap_input">
+                    <select class="form-control">
+                        <option>--- Lựa chọn ---</option>
+                        <option>Level1</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group align-right mt20 block">
+                <button type="submit" class="btn btn-default bg-main"><i class="fa fa-floppy-o"></i>Lưu</button>
+                <button type="submit" class="btn btn-default cancel"><i class="fa fa-minus-circle"></i>Bỏ qua</button>
+            </div>
+        </div>
+    </div>
+    <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+</div>
+
+<!-- /build:content -->
+
+<!-- build:script2 -->
+<script type="text/javascript">
+
+</script>
+<!-- /build:script2 -->

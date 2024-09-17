@@ -1,0 +1,111 @@
+﻿@{
+    Layout = null;
+    var Saler = (Entities.Models.User)ViewBag.Saler;
+    var SalerGroup = (List<Entities.Models.User>)ViewBag.SalerGroup;
+}
+<style>
+    .select2-search__field{
+        width:auto !important;
+    }
+</style>
+<div class="border bg-white mb20">
+    <div class="lb-form pd10">
+        Thông tin phụ trách
+    </div>
+    <div class="pd10">
+        <div class="form-default3 pd10">
+            <div class="form-group">
+                <label class="lbl">Nhân viên chính <sup class="red">*</sup></label>
+                <div class="list-select-tag">
+                    <select class="form-control select2 js-example-basic-multiple" name="SalerId" id="SalerId">
+                        @if (Saler != null)
+                        {
+                            <option selected="selected" value="@Saler.Id">@Saler.FullName - @Saler.UserName</option>
+                        }
+                        
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-default3 pd10">
+            <div class="form-group">
+                <label class="lbl">Nhân viên phụ:</label><br />
+                <div class="list-select-tag">
+                    <select class="form-control select2 js-example-basic-multiple" name="SalerGroup" id="SalerGroup" multiple="multiple">
+                        @if (SalerGroup != null)
+                        {
+                            foreach (var item in SalerGroup)
+                            {
+                                <option selected="selected" value="@item.Id">@item.FullName - @item.UserName</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $("#SalerId").select2({
+        theme: 'bootstrap4',
+        placeholder: "Nhân viên chính",
+        maximumSelectionLength: 1,
+        ajax: {
+            url: "/OrderManual/UserSuggestion",
+            type: "post",
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                var query = {
+                    txt_search: params.term,
+                }
+
+                // Query parameters will be ?search=[term]&type=public
+                return query;
+            },
+            processResults: function (response) {
+                return {
+                    results: $.map(response.data, function (item) {
+                        return {
+                            text: item.fullname + ' - ' + item.email,
+                            id: item.id,
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    });
+    $("#SalerGroup").select2({
+        theme: 'bootstrap4',
+        placeholder: "Nhân viên phụ",
+        ajax: {
+            url: "/OrderManual/UserSuggestion",
+            type: "post",
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                var query = {
+                    txt_search: params.term,
+                }
+
+                // Query parameters will be ?search=[term]&type=public
+                return query;
+            },
+            processResults: function (response) {
+                return {
+                    results: $.map(response.data, function (item) {
+                        return {
+                            text: item.fullname + ' - ' + item.email,
+                            id: item.id,
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    });
+
+</script>
+
+

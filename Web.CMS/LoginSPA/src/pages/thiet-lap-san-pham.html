@@ -1,0 +1,220 @@
+<!-- build:title -->CMS Template
+<!-- /build:title -->
+
+<!-- build:content -->
+<section class="main-container">
+    <div class="row-main container flex">
+        <div class="row-main_col200">
+            <a class="close-menu" href="javascrip:;">×</a>
+            <div class="tab-default block bg-white">
+                <a href="#tl-dom" class="active close-menu2">
+                    <i class="iconfont-setting"></i>
+                    Thiết lập dom sản phẩm
+                    <i class="fa fa-chevron-right"></i>
+                </a>
+                <a href="#block-tk" class="close-menu2">
+                    <i class="fa fa-ban"></i>
+                    Chặn từ khóa
+                    <i class="fa fa-chevron-right"></i>
+                </a>
+                <a href="#list-tk" class="close-menu2">
+                    <i class="fa fa-list"></i>
+                    Danh sách sản phẩm khóa
+                    <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="row-main_col800">
+            <a class="btn_show" href="javascrip:;">Hiển thị danh mục <i class="fa fa-caret-right"></i></a>
+            <div class="mb20 tab-content">
+                <div id="tl-dom" class="wrap_bg form-default form-default__3">
+                    <div class="form-group row">
+                        <div class="col-sm-3 col-12 text-right mt5">Key Dom</div>
+                        <div class="col-sm-9 col-12">
+                            <input type="text" class="form-control" id=""
+                                value="priceblock_ourprice, price_inside_buybox">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-3 col-12 text-right mt5">Field name</div>
+                        <div class="col-sm-9 col-12 flex-btn">
+                            <select class="form-control">
+                                <option>Price-</option>
+                                <option>Bình thường</option>
+                            </select>
+                            <div class="flex-btn__right">
+                                <a class="edit btn-default" href="#"><i class="fa fa-pencil-square-o"></i></a>
+                                <a class="btn-default add ml-2" href="#"><i class="fa fa-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-3 col-12 text-right mt5">Nhãn hàng</div>
+                        <div class="col-sm-9 col-12">
+                            <select class="form-control" style="max-width:500px">
+                                <option>-- Áp dụng cho tất cả --</option>
+                                <option>Bình thường</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group align-right mt20 block">
+                        <button type="submit" class="btn btn-default bg-main"><i
+                                class="fa fa-edit mr-3"></i>Lưu</button>
+                    </div>
+                </div>
+                <div id="block-tk" class="" style="display: none">
+                    <div class="wrap_bg form-default form-default__3 mb30">
+                        <div class="form-group row">
+                            <div class="col-sm-3 col-12 text-right mt5">Từ khóa</div>
+                            <div class="col-sm-9 col-12">
+                                <input type="text" class="form-control" id=""
+                                    value="priceblock_ourprice, price_inside_buybox">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-3 col-12 text-right mt5">Phân loại từ khóa</div>
+                            <div class="col-sm-9 col-12">
+                                <select class="form-control" style="max-width:500px">
+                                    <option>-- Áp dụng cho tất cả --</option>
+                                    <option>Bình thường</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group male row">
+                            <div class="col-sm-3 col-12 text-right mt5">Trạng thái</div>
+                            <div class="col-sm-9 col-12 mt5">
+                                <label class="radio-inline"><input type="radio" name="optradio">Khóa/tạm dừng</label>
+                                <label class="radio-inline"><input type="radio" name="optradio">Mở khóa</label>
+                                <label class="radio-inline"><input type="radio" name="optradio">Chặn</label>
+                                <label class="radio-inline"><input type="radio" name="optradio">Bỏ chặn</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-3 col-12 text-right mt5">Nhãn hàng</div>
+                            <div class="col-sm-9 col-12">
+                                <select class="form-control" style="max-width:500px">
+                                    <option>-- Áp dụng cho tất cả --</option>
+                                    <option>Bình thường</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group align-right mt20 block">
+                            <button type="submit" class="btn btn-default bg-main"><i
+                                    class="fa fa-plus mr-2"></i>Thêm</button>
+                            <button type="submit" class="btn btn-default bg-main"><i
+                                    class="fa fa-edit mr-2"></i>Lưu</button>
+                        </div>
+                    </div>
+                    <div class="wrap_bg">
+                        <div class="table-responsive table-default">
+                            <table class="table table-nowrap">
+                                <thead>
+                                    <tr class="bg-main2">
+                                        <th>Nhãn hàng</th>
+                                        <th>Từ khóa</th>
+                                        <th>Chuyên mục</th>
+                                        <th>Mã sản phẩm</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Ngày tạo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="blue">UAM-DADD8888</td>
+                                        <td>30-04-2020 12h30</td>
+                                        <td>sextoy, gun</td>
+                                        <td>25.00.000</td>
+                                        <td>Trả qua VISA</td>
+                                        <td class="success">Đã thanh toán</td>
+                                    </tr>
+                                    <tr class="bg-gray">
+                                        <td class="blue">UAM-DADD8888</td>
+                                        <td>30-04-2020 12h30</td>
+                                        <td>sextoy, gun</td>
+                                        <td>25.00.000</td>
+                                        <td>Trả qua VISA</td>
+                                        <td class="oranger ">Chưa thanh toán</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="blue">UAM-DADD8888</td>
+                                        <td>30-04-2020 12h30</td>
+                                        <td>sextoy, gun</td>
+                                        <td>25.00.000</td>
+                                        <td>Trả qua VISA</td>
+                                        <td class="red">Hủy đơn</td>
+                                    </tr>
+                                    <tr class="bg-gray">
+                                        <td class="blue">UAM-DADD8888</td>
+                                        <td>30-04-2020 12h30</td>
+                                        <td>sextoy, gun</td>
+                                        <td>25.00.000</td>
+                                        <td>Trả qua VISA</td>
+                                        <td class="success">Đã thanh toán</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="list-tk" class="wrap_bg" style="display: none;">
+                    <div class="table-responsive table-default">
+                        <table class="table table-nowrap">
+                            <thead>
+                                <tr class="bg-main2">
+                                    <th>Nhãn hàng</th>
+                                    <th>Từ khóa</th>
+                                    <th>Chuyên mục</th>
+                                    <th>Mã sản phẩm</th>
+                                    <th>Ngày tạo</th>
+                                    <th>Ngày tạo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="blue">UAM-DADD8888</td>
+                                    <td>30-04-2020 12h30</td>
+                                    <td>sextoy, gun</td>
+                                    <td>25.00.000</td>
+                                    <td>Trả qua VISA</td>
+                                    <td class="success">Đã thanh toán</td>
+                                </tr>
+                                <tr class="bg-gray">
+                                    <td class="blue">UAM-DADD8888</td>
+                                    <td>30-04-2020 12h30</td>
+                                    <td>sextoy, gun</td>
+                                    <td>25.00.000</td>
+                                    <td>Trả qua VISA</td>
+                                    <td class="oranger ">Chưa thanh toán</td>
+                                </tr>
+                                <tr>
+                                    <td class="blue">UAM-DADD8888</td>
+                                    <td>30-04-2020 12h30</td>
+                                    <td>sextoy, gun</td>
+                                    <td>25.00.000</td>
+                                    <td>Trả qua VISA</td>
+                                    <td class="red">Hủy đơn</td>
+                                </tr>
+                                <tr class="bg-gray">
+                                    <td class="blue">UAM-DADD8888</td>
+                                    <td>30-04-2020 12h30</td>
+                                    <td>sextoy, gun</td>
+                                    <td>25.00.000</td>
+                                    <td>Trả qua VISA</td>
+                                    <td class="success">Đã thanh toán</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- /build:content -->
+
+<!-- build:script2 -->
+<script type="text/javascript">
+
+</script>
+<!-- /build:script2 -->

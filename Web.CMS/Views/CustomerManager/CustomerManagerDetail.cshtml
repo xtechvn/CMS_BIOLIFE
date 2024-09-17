@@ -1,0 +1,305 @@
+﻿@using Entities.Models
+@using Entities.ViewModels.CustomerManager
+@{
+    var AgencyType = (List<AllCode>)ViewBag.AgencyType;
+    var PermisionType = (List<AllCode>)ViewBag.PermisionType;
+    var ClientType = (List<AllCode>)ViewBag.ClientType;
+    var dataModel = (Client)ViewBag.dataModel;
+}
+@model CustomerManagerView
+<style>
+    .white-popup {
+        max-width: 1200px !important;
+    }
+</style>
+<form id="CustomerManager_Detail" onsubmit="return false">
+    @if (dataModel != null)
+    {
+        <div class="grid grid__2 grid-don-hang gap10 mb20">
+            <div class="grid-item border">
+                <div class="lb-form">Thông tin khách hàng cơ bản</div>
+                <div class="form-default3 pd10">
+                    <div class="row">
+                        <div class="col-md-4 mb10" style="display:none;"><label class="lbl">Đối tượng <sup class="red">*</sup></label></div>
+                        <div class="col-md-8 mb10" style="display:none;">
+                            <input id="CustomerManager_Id" value="@dataModel.Id" style="display:none" />
+                            <input id="id_ClientType" value="@dataModel.ClientType" style="display:none" />
+                            <input id="ClientCode" value="@dataModel.ClientCode" style="display:none" />
+                            <input id="JoinDate" value="@dataModel.JoinDate.ToString("yyyy/MM/dd HH:mm:ss")" style="display:none" />
+                            @if (dataModel.AgencyType == 0)
+                            {
+                                <label class="radio mr-3">
+                                    <input type="radio" value="0" id="optradio" name="optradio" disabled checked="checked">
+                                    <span class="checkmark"></span>
+                                    Tổ chức
+                                </label>
+                                <label class="radio mr-3">
+                                    <input value="1" type="radio" id="optradio" disabled name="optradio">
+                                    <span class="checkmark"></span>
+                                    Cá nhân
+                                </label>
+                            }
+                            else
+                            {
+                                <label class="radio mr-3">
+                                    <input type="radio" value="0" id="optradio" disabled name="optradio">
+                                    <span class="checkmark"></span>
+                                    Tổ chức
+                                </label>
+                                <label class="radio mr-3">
+                                    <input value="1" type="radio" id="optradio" disabled name="optradio" checked="checked">
+                                    <span class="checkmark"></span>
+                                    Cá nhân
+                                </label>
+                            }
+
+                        </div>
+                        <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Tên khách hàng <sup class="red">*</sup></label></div>
+                        <div class="col-md-8 mb10">
+                            <input type="text" class="form-control" value="@dataModel.ClientName" asp-for="@Model.Client_name">
+                        </div>
+                        @if (dataModel.AgencyType == 0)
+                        {
+
+
+                            <div class="col-md-4 mb10"><label id="sothue_cmnd" class="lbl mt5 mb0">Mã số thuế </label></div>
+                        }
+                        else
+                        {
+                            <div class="col-md-4 mb10"><label id="sothue_cmnd" class="lbl mt5 mb0">Số CCCD </label></div>
+                        }
+
+                        <div class="col-md-8 mb10">
+                            <input type="text" class="form-control" value="@dataModel.TaxNo" asp-for="@Model.Maso_Id">
+                        </div>
+                        <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Điện thoại <sup class="red">*</sup></label></div>
+                        <div class="col-md-8 mb10">
+                            <input type="text" maxlength="15" value="@dataModel.Phone" class="form-control" asp-for="@Model.phone">
+                        </div>
+                        <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Email <sup class="red">*</sup></label></div>
+                        <div class="col-md-8 mb10">
+                            <input type="text" value="@dataModel.Email" class="form-control" asp-for="@Model.email">
+                        </div>
+                        <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Địa chỉ giao dịch </label></div>
+                        <div class="col-md-8 mb10">
+                            <input type="text" class="form-control" value="@dataModel.BusinessAddress" asp-for="@Model.DiaChi_giaodich">
+                        </div>
+                        <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Địa chỉ xuất hóa đơn </label></div>
+                        <div class="col-md-8 mb10">
+                            <input type="text" class="form-control" value="@dataModel.BusinessAddress" asp-for="@Model.DC_hoadon">
+                        </div>
+                        <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Loại khách hàng <sup class="red">*</sup></label></div>
+                        <div class="col-md-8 mb10">
+                            <select class="select2 form-control" value="@dataModel.ClientType" asp-for="@Model.id_loaikhach" style="width: 100%;">
+                                <option value="-1">Tất cả loại khách hàng</option>
+                                @if (ClientType != null)
+                                {
+
+                                    foreach (var item in ClientType)
+                                    {
+                                        if (item.CodeValue == dataModel.ClientType)
+                                        {
+                                           
+                                                <option value="@item.CodeValue" selected="selected"> @item.Description</option>
+                                            
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.CodeValue"> @item.Description</option>
+
+                                        }
+                                    }
+                                }
+                            </select>
+                            <label id="id_loaikhach_err" class="lbl mt5 red"> </label>
+                        </div>
+                        <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Nhóm khách hàng <sup class="red">*</sup></label></div>
+                        <div class="col-md-8 mb10">
+                            <select class="select2 form-control" asp-for="@Model.id_nhomkhach" value="@dataModel.PermisionType" style="width: 100%; ">
+                                <option value="-1">Tất cả nhóm khách hàng</option>
+                                @if (PermisionType != null)
+                                {
+                                    foreach (var item in PermisionType)
+                                    {
+                                        if (item.CodeValue == dataModel.PermisionType)
+                                        {
+                                            <option value="@item.CodeValue" selected="selected">@item.Description</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.CodeValue">@item.Description</option>
+                                        }
+
+                                    }
+                                }
+
+
+                            </select>
+                            <label id="id_nhomkhach_err" class="lbl mt5 red"> </label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="grid-item border">
+                <div class="lb-form">Ghi chú</div>
+
+
+                <div class="form-default3 pd10">
+                    <div class="col-md-12 mb10">
+
+                        <textarea id="Note" name="Note" class="form-control" style="height: 360px;">@dataModel.Note</textarea>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="text-center">
+            <button onclick="$.magnificPopup.close();" class="btn btn-default btn btn-default cancel">Bỏ qua</button>
+            <button onclick="_customer_manager_Detail.OnUpdataClient()" class="btn btn-default">Lưu</button>
+        </div>
+    }
+    else
+    {
+        <div class="grid grid__2 grid-don-hang gap10 mb20">
+            <div class="grid-item border">
+                <div class="lb-form">Thông tin khách hàng cơ bản</div>
+                <div class="form-default3 pd10">
+                    <div class="row">
+                        <input type="hidden" value="0" asp-for="@Model.Id" name="Id">
+                        <div class="col-md-4 mb10" style="display:none;"><label class="lbl">Đối tượng <sup class="red">*</sup></label></div>
+                        <div class="col-md-8 mb10" style="display:none;">
+                            <label class="radio mr-3" onclick="_customer_manager.Showlabel(0)">
+                                <input type="radio" value="0" id="optradio" name="optradio" checked="checked">
+                                <span class="checkmark"></span>
+                                Tổ chức
+                            </label>
+                            <label class="radio mr-3" onclick="_customer_manager.Showlabel(1)">
+                                <input value="1" type="radio" id="optradio" name="optradio">
+                                <span class="checkmark"></span>
+                                Cá nhân
+                            </label>
+                        </div>
+                        <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Tên khách hàng <sup class="red">*</sup></label></div>
+                        <div class="col-md-8 mb10">
+                            <input type="text" class="form-control" asp-for="@Model.Client_name">
+
+                        </div>
+                        <div class="col-md-4 mb10"><label id="sothue_cmnd" class="lbl mt5 mb0">Mã số thuế </label></div>
+                        <div class="col-md-8 mb10">
+                            <input type="text" class="form-control" asp-for="@Model.Maso_Id">
+
+                        </div>
+                        <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Điện thoại <sup class="red">*</sup></label></div>
+                        <div class="col-md-8 mb10">
+                            <input type="text" maxlength="15" class="form-control" asp-for="@Model.phone">
+
+                        </div>
+                        <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Email <sup class="red">*</sup></label></div>
+                        <div class="col-md-8 mb10">
+                            <input type="text" class="form-control" asp-for="@Model.email">
+
+                        </div>
+                        <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Địa chỉ giao dịch </label></div>
+                        <div class="col-md-8 mb10">
+                            <input type="text" class="form-control" asp-for="@Model.DiaChi_giaodich">
+
+                        </div>
+                        <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Địa chỉ xuất hóa đơn </label></div>
+                        <div class="col-md-8 mb10">
+                            <input type="text" class="form-control" asp-for="@Model.DC_hoadon">
+
+                        </div>
+                        <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Loại khách hàng <sup class="red">*</sup></label></div>
+                        <div class="col-md-8 mb10">
+                            <select class="form-control select2" asp-for="@Model.id_loaikhach" style="width: 100%;" onchange="_customer_manager.OnChangeClientType()">
+                                <option value="">Tất cả loại khách hàng</option>
+                                @if (ClientType != null)
+                                {
+
+                                    foreach (var item in ClientType)
+                                    {
+
+                                        <option value="@item.CodeValue"> @item.Description</option>
+
+                                    }
+
+                                }
+                            </select>
+
+                        </div>
+                        <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Nhóm khách hàng <sup class="red">*</sup></label></div>
+                        <div class="col-md-8 mb10">
+                            <select class="select2 form-control" asp-for="@Model.id_nhomkhach" style="width: 100%;">
+                                <option value="">Tất cả nhóm khách hàng</option>
+                                @if (PermisionType != null)
+                                {
+                                    foreach (var item in PermisionType)
+                                    {
+                                        <option value="@item.CodeValue">@item.Description</option>
+                                    }
+                                }
+                            </select>
+
+                        </div>
+
+                        @*<div id="lbl_pass" style="display:none" class="col-md-4 mb10"><label class="lbl mt5 mb0">Mật khẩu <sup class="red">*</sup></label></div>
+                            <div id="pass" style="display:none" class="col-md-8 mb10">
+                                <input type="text" class="form-control" asp-for="@Model.pass">
+
+                            </div>
+                            <div id="lbl_pass_backup" style="display:none" class="col-md-4 mb10"><label class="lbl mt5 mb0">Nhập lại mật khẩu <sup class="red">*</sup></label></div>
+                            <div id="pass_backup" style="display:none" class="col-md-8 mb10">
+                                <input type="text" class="form-control" asp-for="@Model.pass_backup">
+
+                            </div>*@
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="grid-item border">
+                <div class="lb-form">Thông tin thanh toán</div>
+                <div class="form-default3 pd10">
+                    <div class="row">
+                        <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Số tài khoản</label></div>
+                        <div class="col-md-8 mb10">
+                            <input type="text" class="form-control" asp-for="@Model.So_tk">
+                            <label id="So_tk_err" style="color: red;"></label>
+                        </div>
+                        <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Chủ tài khoản</label></div>
+                        <div class="col-md-8 mb10">
+                            <input type="text" class="form-control" id="Name_tk">
+                            <label id="Name_tk_err" style="color: red;"></label>
+                        </div>
+                        <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Tên ngân hàng</label></div>
+                        <div class="col-md-8 mb10">
+                            <input type="text" class="form-control" id="Name_nh">
+                            <label id="Name_nh_err" style="color: red;"></label>
+                        </div>
+                        <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Chi nhánh</label></div>
+                        <div class="col-md-8 mb10">
+                            <input type="text" class="form-control" id="diachi_chinhanh">
+                            <label id="diachi_chinhanh_err" style="color: red;"></label>
+                        </div>
+                        <div class="col-12 mb10"><label class="lbl">Ghi chú</label></div>
+                        <div class="col-md-12 mb10">
+                            <textarea asp-for="@Model.Note" class="form-control" style="height: 150px;"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button onclick="$.magnificPopup.close();" class="btn btn-default btn btn-default cancel">Bỏ qua</button>
+            <button onclick="_customer_manager.OnCreateClient()" class="btn btn-default">Thêm</button>
+        </div>
+    }
+
+</form>
+@section scripts {
+    <script src="~/lib/tagify/tagify.polyfills.min.js"></script>
+
+}

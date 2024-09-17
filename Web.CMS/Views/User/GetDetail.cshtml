@@ -1,0 +1,172 @@
+﻿@{
+    Layout = null;
+}
+@using Entities.Models
+@using Entities.ViewModels
+@using Entities.ViewModels.Department
+@model UserDataViewModel
+
+@{
+    var _RoleList = (List<Role>)ViewBag.RoleList;
+    var is_MFA_enabled = (bool)ViewBag.IsMFAEnabled;
+}
+
+<tr class="info-detail">
+    <td colspan="7">
+        <div class="tab-default">
+            <a class="btn-panel-detail active" data-tab="1">Thông tin</a>
+            <a class="btn-panel-detail" data-tab="2">Vai trò</a>
+        </div>
+
+        <div class="wrap">
+            <div class="tab-content">
+                <div class="tab-detail" data-id="1">
+                    <div class="flex form-default">
+                        <div class="name">
+                            <h4>@Model.FullName</h4>
+                            <div class="status text-status-user">@(Model.Status == 0 ? "Đang hoạt động":"Tạm ngừng")</div>
+                        </div>
+                        <div class="info">
+                            <div class="ava">
+                                <span class="thumb_img thumb_5x5">
+                                    <img src="@(Model.Avata ?? string.Empty)" onerror="_imageError(this)" />
+                                </span>
+                                @if (is_MFA_enabled)
+                                {
+                                    <div class="confirm-google ">
+                                        <div class="icon"></div>
+                                        Xác nhận Google
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                        <div class="info-form row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="lbl">
+                                        <span class="col-4">Họ tên:</span>
+                                        <span class="col-8">@Model.FullName</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="lbl">
+                                        <span class="col-4">Tên đăng nhập:</span>
+                                        <span class="col-8">@Model.UserName</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="lbl">
+                                        <span class="col-4">Điện thoại:</span>
+                                        <span class="col-8">@Model.Phone</span>
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="lbl">
+                                        <span class="col-4">Vai trò:</span>
+                                        <span class="col-8">
+                                            @foreach (var item in _RoleList.Where(s => Model.RoleIdList.Contains(s.Id)))
+                                            {
+                                                <p>@item.Name</p>
+                                            }
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="lbl">
+                                        <span class="col-4">Email:</span>
+                                        <span class="col-8">@Model.Email</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="lbl">
+                                        <span class="col-4">Địa chỉ:</span>
+                                        <span class="col-8">
+                                            @Model.Address
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="lbl">
+                                        <span class="col-4">Phòng ban:</span>
+                                        <span class="col-8">
+                                            @Model.DepartmentName
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="lbl">
+                                        <span class="col-4">Chức vụ:</span>
+                                        <span class="col-8">
+                                            @Model.UserPositionName
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="lbl">
+                                        <span class="col-4">Ngày sinh:</span>
+                                        <span class="col-8">@(Model.BirthDay == null ? "N/A" : ((DateTime)Model.BirthDay).ToString("dd/MM/yyyy"))</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group align-right col-12 mt20 block">
+                            <button type="submit" class="btn btn-default bg-main" onclick="_user.OnOpenGenQrFrom('@Model.Id')">
+                                <i class="fa fa-pencil-square-o"></i>Gen QR Code
+                            </button>
+                            <button type="submit" class="btn btn-default bg-main" onclick="_user.OnOpenEditForm('@Model.Id')">
+                                <i class="fa fa-pencil-square-o"></i>Cập nhật
+                            </button>
+                            <button type="submit" class="btn btn-default bg-main" onclick="_user.OnOpenCopyForm('@Model.Id')">
+                                <i class="fa fa-files-o"></i>Sao chép
+                            </button>
+                            <button type="submit" class="btn btn-default bg-main" onclick="_user.OnResetPassword('@Model.Id');">
+                                <i class="fa fa-key"></i>Reset mật khẩu
+                            </button>
+                            <button type="button" class="btn btn-default btn-change-user-status red" data-id="@Model.Id">
+                                <i class="fa fa-lock"></i><span> @(Model.Status == 0 ? "Khóa tài khoản": "Mở tài khoản")</span>
+                            </button>
+                            <button type="submit" class="btn btn-default red @((is_MFA_enabled)? "":"disabled")" onclick="_user.OnResetMFA('@Model.Id');">
+                                <i class="fa fa-lock"></i> Reset 2FA
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-detail" data-id="2" style="display: none;">
+                    <div class="row changer-admin">
+                        <div class="col-md-5">
+                            <label>Danh sách vai trò</label>
+                            <ul class="list scrollbar-inner data-left" data-id="@Model.Id" style="overflow-y:auto;">
+                                @foreach (var item in _RoleList.Where(s => !Model.RoleIdList.Contains(s.Id)))
+                                {
+                                    <li data-id="@item.Id">@item.Name</li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="changer_bnt">
+                            <a class="changer next" onclick="_user.OnUpdateRole('@Model.Id',0)">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                            <a class="changer prev" onclick="_user.OnUpdateRole('@Model.Id',1)">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        </div>
+                        <div class="col-md-5">
+                            <label>Vai trò hiện tại</label>
+                            <ul class="list scrollbar-inner data-right" data-id="@Model.Id" style="overflow-y:auto;">
+                                @foreach (var item in _RoleList.Where(s => Model.RoleIdList.Contains(s.Id)))
+                                {
+                                    <li data-id="@item.Id">@item.Name</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </td>
+</tr>

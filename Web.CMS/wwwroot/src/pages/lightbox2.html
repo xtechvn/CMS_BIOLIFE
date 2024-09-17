@@ -1,0 +1,1793 @@
+<!-- build:title -->CMS Template
+<!-- /build:title -->
+
+<!-- build:content -->
+
+<!--SECTION CONTAINER -->
+
+<section class="section clearfix mt40">
+    <div class="container">
+        <table class="table table-nowrap">
+            <thead>
+                <tr>
+                    <th>
+                        <label class="check-list number">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            &nbsp;
+                        </label>
+                    </th>
+                    <th>Service Id</th>
+                    <th>Rate Code</th>
+                    <th>Services Code</th>
+                    <th style="min-width: 130px;">Name</th>
+                    <th>Base Price</th>
+                    <th>Weekend Rate</th>
+                    <th class="text-center" style="min-width: 350px;">Profit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <label class="check-list number">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            &nbsp;
+                        </label>
+                    </td>
+                    <td>567</td>
+                    <td>160</td>
+                    <td data-toggle="modal" data-target="#myModal0" style="padding: 20px">
+                        Popup <span><a style="color: #0060ab;" href="https://vnexpress.net/" target="_blank">vnexpress</a></span></br>
+                        Tạo đơn hàng
+                    </td>
+                    <td class="blue">Vé vào cửa Người Lớn</td>
+                    <td>120,000</td>
+                    <td>0</td>
+                    <td>
+                        <div class="flex align-center justify-center">
+                            <input type="text" class="form-control text-center" id="" value="4,000" style="width: 90px;">
+                            <span class="status-green ml-2">VNĐ</span>
+                            <span class="status-gray ml-2">%</span>
+                            <a class="blue ml-2" href="#">Chính sách chung</a>
+                        </div>
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+        <!-- <p data-toggle="modal" data-target="#myModal0" style="padding: 20px">
+            Popup <a href="https://vnexpress.net/" target="_blank">vnexpress</a></br>
+            Tạo đơn hàng
+        </p> -->
+        <p data-toggle="modal" data-target="#myModal1">Popup thêm dịch vụ khách sạn</p>
+        <p data-toggle="modal" data-target="#myModal2">Popup thêm phòng khách sạn</p>
+        <p data-toggle="modal" data-target="#myModal3">Popup Thêm mới khách hàng</p>
+        <p data-toggle="modal" data-target="#myModal4">Popup sửa khách hàng</p>
+        <p data-toggle="modal" data-target="#myModal5">Popup dịch vụ tour du lịch</p>
+        <p data-toggle="modal" data-target="#myModal6">Popup Thêm dịch vụ vé máy bay</p>
+        <p data-toggle="modal" data-target="#myModal7">Popup Chi tiết công nợ khách hàng</p>
+        <p data-toggle="modal" data-target="#myModal8">Popup Chỉnh sửa code dịch vụ</p>
+        <p data-toggle="modal" data-target="#myModal9">Popup Trả code dịch vụ</p>
+    </div>
+</section>
+
+<div class="modal-dialog" style="max-width: 600px;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">&nbsp;</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <table style="width: 100%;border-spacing: 0;">
+                <tr>
+                    <td colspan="2" style="padding:10pt;line-height: 150%;color: #222222;background:#fff;text-align: center;font-size: 18px;">
+                        <p style="margin-bottom: 15px;">Quét mã Qr Code</p>
+                        <p style="margin-bottom: 15px;">
+                            <img src="images/graphics/qrcode.png" alt="">
+                        </p>
+                        <p style="margin-bottom:15px">Nhập mã: <strong>YOZDGWROJNNTFEZ24HV7VPA727XKJ5DQ</strong></p>
+                        <p style="margin-bottom:15px">
+                            <a style="display: inline-block;background: purple;color: #fff;width: 49%;text-decoration: none;border-radius: 6px;padding: 10px;" href="#">Tải mã Qr</a>
+                            <a style="display: inline-block;background: green;color: #fff;width: 49%;text-decoration: none;border-radius: 6px;padding: 10px;" href="#">Tải mã Qr</a>
+                        </p>
+                        <p style="margin-bottom:15px">Download Google Authenticator</p>
+                        <p style="margin-bottom:15px">
+                            <a style="display: inline-block;width: 49%;"><img style="width: 100%;" src="images/graphics/google-play.png" alt=""></a>
+                            <a style="display: inline-block;width: 49%;"><img style="width: 100%;" src="images/graphics/app-store.png" alt=""></a>
+                        </p>
+    
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal-dialog" style="max-width: 490px;">
+    <div class="modal-content">
+        
+        <div class="modal-body" style="padding: 20px;">
+            <div class="text-center mb30">
+                <h2 class="txt_18 color-main">
+                    Chào mừng bạn đến với hệ thông quản trị của Adavigo
+                </h2>
+                <span style="color: #999;">Vui lòng lựa chọn Công ty</span>
+            </div>
+            <div class="form-group">
+                <label class="lbl">Tên công ty</label>
+                <select class="form-control select2" name="" id="">
+                    <option value="">Công ty Travel</option>
+                    <option value="">Hà Nội</option>
+                    <option value="">Hồ Chí Minh</option>
+                </select>
+            </div>
+            <a href="#" class="btn-default full">Xác nhận</a>
+        </div>
+    </div>
+</div>
+
+
+<!-- POPUP TẠO ĐƠN HÀNG -->
+<div class="modal fade" id="myModal0">
+    <div class="modal-dialog" style="max-width: 100%;">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Tạo đơn hàng</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="grid grid__2 grid-don-hang gap10 mb20">
+                    <div class="grid-item">
+                        <div class="border mb10">
+                            <div class="lb-form">Thông tin khách hàng</div>
+                            <div class="form-default3 pd10">
+                                <div class="form-group">
+                                    <div class="wrap_input">
+                                        <input type="text" class="form-control" id="" placeholder="Tìm kiếm khách hàng theo tên, điện thoại, địa chỉ email">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border">
+                            <div class="lb-form">Thông tin phụ trách</div>
+                            <div class="form-default3 pd10">
+                                <div class="form-group">
+                                    <label class="lbl">Nhân viên chính <sup class="red">*</sup></label>
+                                    <div class="list-select-tag">
+                                        <select name="" id="select-staff" multiple data-allow-clear="1" style="width: 100%;"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group mb0">
+                                    <label class="lbl">Nhân viên phụ</label>
+                                    <div class="list-select-tag">
+                                        <select class="form-control select2" name="" id="">
+                                        <option value="">Nguyễn Văn A</option>
+                                        <option value="">Nguyễn Văn B</option>
+                                        <option value="">Nguyễn Văn C</option>
+                                    </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <div class="border">
+                            <div class="lb-form">Thông tin cơ bản</div>
+                            <div class="form-default3 pd10">
+                                <div class="form-group">
+                                    <label class="lbl">Nhãn đơn <sup class="red">*</sup></label>
+                                    <div class="wrap_input">
+                                        <input type="text" class="form-control" id="">
+                                    </div>
+                                </div>
+                                <div class="grid grid__2 gap10">
+                                    <div class="form-group">
+                                        <label class="lbl">Chi nhánh <sup class="red">*</sup></label>
+                                        <div class="wrap_input">
+                                            <select class="form-control">
+                                            <option>Chọn</option>
+                                            <option>Bình thường</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="lbl">Nguồn hàng <sup class="red">*</sup></label>
+                                        <div class="wrap_input">
+                                            <select class="form-control">
+                                            <option>Chọn</option>
+                                            <option>Bình thường</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb0">
+                                    <label class="lbl">Ghi chú</label>
+                                    <div class="wrap_input">
+                                        <textarea class="form-control" style="height: 90px;"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-default btn btn-default cancel">Bỏ qua</button>
+                    <button type="submit" class="btn btn-default">Tạo</button>
+                </div>
+                <p data-toggle="modal" data-target="#myModal7">Popup Chi tiết công nợ khách hàng</p>
+            </div>
+<!-- POPUP Chi tiết công nợ khách hàng -->
+<div class="modal fade" id="myModal7">
+    <div class="modal-dialog" style="max-width: 600px">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Chi tiết công nợ khách hàng DL100001</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6 mb10">Công nợ VMB</div>
+                    <div class="col-6 mb10">: 30,000,000 vnđ</div>
+                    <div class="col-6 mb10">Công nợ KS</div>
+                    <div class="col-6 mb10">: 0/0</div>
+                    <div class="col-6 mb10">Thời gian thu hồi công nợ</div>
+                    <div class="col-6 mb10">: 15/02/2023</div>
+                    <div class="col-6 mb10">Nhân viên phụ trách</div>
+                    <div class="col-6 mb10">: Nguyễn Thanh Bình - Kinh doanh 1</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+        </div>
+    </div>
+</div>
+
+<!-- POPUP THÊM DỊCH VỤ KHÁC SẠN -->
+<div class="modal fade" id="myModal1">
+    <div class="modal-dialog" style="max-width: 100%;">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Thêm dịch vụ khách sạn</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="border pd10">
+                    <div class="flex-auto mb15">
+                        <div class="form-group hotel">
+                            <label class="lbl">Khách sạn <sup class="red">*</sup></label>
+                            <div class="wrap_input">
+                                <input type="text" class="form-control" id="" placeholder="Tìm kiếm khách sạn theo tên">
+                            </div>
+                        </div>
+                        <div class="form-group number-hotel" style="min-width: 100px;width: 100px;">
+                            <label class="lbl">Số phòng <sup class="red">*</sup></label>
+                            <div class="wrap_input">
+                                <input type="text" class="form-control" id="">
+                            </div>
+                        </div>
+                        <div class="form-group checkin-hotel" style="min-width: 150px;width: 150px;">
+                            <label class="lbl">Ngày check in <sup class="red">*</sup></label>
+                            <div class="datepicker-wrap" style="width:100%">
+                                <input class="form-control datepicker-input " type="text" name="birthday">
+                            </div>
+                        </div>
+                        <div class="form-group checkout-hotel" style="min-width: 150px;width: 150px;">
+                            <label class="lbl">Ngày check out <sup class="red">*</sup></label>
+                            <div class="datepicker-wrap" style="width:100%">
+                                <input class="form-control datepicker-input " type="text" name="birthday">
+                            </div>
+                        </div>
+                        <div class="form-group operator" style="min-width: 200px;width: 200px;">
+                            <label class="lbl">Điều hành viên <sup class="red">*</sup></label>
+                            <div class="wrap_input">
+                                <select class="select2" name="" style="width: 100%;">
+                                    <option value="">Chọn</option>
+                                    <option value="">Đại lý</option>
+                                    <option value="">Cộng tác viên</option>
+                                    <option value="">Mice/Corp/Doanh nghiệp</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="txt_14 bold mb10">Bảng kê dịch vụ phòng <small>(Đơn giá đã bao gồm thuế phí + Phí dịch vụ Adavigo)</small></div>
+                    <div class="table-responsive table-gray">
+                        <table class="table table-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th style="min-width: 200px;">Hạng phòng<sup class="red">*</sup></th>
+                                    <th style="min-width: 200px;">Gói<sup class="red">*</sup></th>
+                                    <th style="min-width: 200px;">Thời gian sử dụng<sup class="red">*</sup></th>
+                                    <th class="text-right">Thành tiền gói</th>
+                                    <th class="text-right">Thành tiền phòng</th>
+                                    <th>Tác vụ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        <select class="select2" name="" style="width: 100%;">
+                                            <option value="">Chọn</option>
+                                            <option value="">Đại lý</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-center">
+                                            <a class="fa fa-plus-circle green txt_14 mr-2" href="#"></a>
+                                            <select class="select2" name="" style="width: 100%;">
+                                                <option value="">Chọn</option>
+                                                <option value="">Đại lý</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td><input class="form-control datepicker-input " type="text" name="birthday"></td>
+                                    <td class="text-right">0</td>
+                                    <td class="text-right">0</td>
+                                    <td class="txt_14">
+                                        <a class="fa fa-files-o mr-1" href="#"></a>
+                                        <a class="fa fa-plus-circle green mr-1 green" href="#"></a>
+                                        <a class="fa fa-trash-o" href="#"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">2</td>
+                                    <td rowspan="2">
+                                        <select class="select2" name="" style="width: 100%;">
+                                            <option value="">Chọn</option>
+                                            <option value="">Đại lý</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-center">
+                                            <a class="fa fa-trash-o txt_14 mr-2" href="#"></a>
+                                            <a class="fa fa-plus-circle green txt_14 mr-2" href="#"></a>
+                                            <select class="select2" name="" style="width: 100%;">
+                                                <option value="">Chọn</option>
+                                                <option value="">Đại lý</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td><input class="form-control datepicker-input " type="text" name="birthday"></td>
+                                    <td class="text-right">0</td>
+                                    <td rowspan="2" class="text-right">0</td>
+                                    <td rowspan="2" class="txt_14">
+                                        <a class="fa fa-files-o mr-1" href="#"></a>
+                                        <a class="fa fa-plus-circle green mr-1 green" href="#"></a>
+                                        <a class="fa fa-trash-o" href="#"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-center">
+                                            <a class="fa fa-trash-o txt_14 mr-2" href="#"></a>
+                                            <a class="fa fa-plus-circle green txt_14 mr-2" href="#"></a>
+                                            <select class="select2" name="" style="width: 100%;">
+                                                <option value="">Chọn</option>
+                                                <option value="">Đại lý</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td><input class="form-control datepicker-input " type="text" name="birthday"></td>
+                                    <td class="text-right">0</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>
+                                        <select class="select2" name="" style="width: 100%;">
+                                            <option value="">Chọn</option>
+                                            <option value="">Đại lý</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-center">
+                                            <a class="fa fa-plus-circle green txt_14 mr-2" href="#"></a>
+                                            <select class="select2" name="" style="width: 100%;">
+                                                <option value="">Chọn</option>
+                                                <option value="">Đại lý</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td><input class="form-control datepicker-input " type="text" name="birthday"></td>
+                                    <td class="text-right">0</td>
+                                    <td class="text-right">0</td>
+                                    <td class="txt_14">
+                                        <a class="fa fa-files-o mr-1" href="#"></a>
+                                        <a class="fa fa-plus-circle green mr-1 green" href="#"></a>
+                                        <a class="fa fa-trash-o" href="#"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Tổng cộng</td>
+                                    <td class="text-right">0</td>
+                                    <td class="text-right">0</td>
+                                    <td></td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="txt_14 bold mb10">Bảng kê phụ thu, dịch vụ khác <small>(Đơn giá đã bao gồm thuế phí + Phí dịch vụ Adavigo)</small></div>
+                    <div class="table-responsive table-gray">
+                        <table class="table table-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th style="min-width: 250px;">Nội dung</th>
+                                    <th class="text-right">Thành tiền</th>
+                                    <th class="text-right"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Phòng 1 - Suite Ocean View - Gói SOV123 - Ngày 12/12/2022</td>
+                                    <td class="text-right">2,000,000</td>
+                                    <td class="text-right">
+                                        <a class="red" href=""><i class="fa fa-times"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        <select class="select2" name="" style="width: 100%;">
+                                            <option value="">Chọn</option>
+                                            <option value="">Đại lý</option>
+                                            <option value="">Cộng tác viên</option>
+                                            <option value="">Mice/Corp/Doanh nghiệp</option>
+                                        </select>
+                                    </td>
+                                    <td class="text-right"><input type="text" class="form-control text-right" id="" value="0"></td>
+                                    <td class="text-right">
+                                        <a class="red" href=""><i class="fa fa-times"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <a href="#" class="blue ml-2 mb10"><i class="fa fa-plus-circle green"></i> Thêm phụ thu</a>
+                                                <a href="#" class="blue ml-2 mb10"><i class="fa fa-plus-circle green"></i> Thêm dịch vụ khác</a>
+                                            </div>
+                                            <div class="col-md-3 text-right"><strong>Tổng cộng</strong></div>
+                                        </div>
+                                    </td>
+                                    <td class="text-right">0</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="bold mb15 txt_14">Danh sách đoàn</div>
+                    <div class="border pd10">
+                        <div class="bold txt_14 mb10">Thông tin thành viên chính</div>
+                        <div class="row row_min">
+                            <div class="col-xl-4 col-lg-3 col-md-6 mb15">
+                                <label class="lbl mb5">Họ và tên <sup class="red">*</sup></label>
+                                <input type="text" class="form-control" id="">
+                            </div>
+                            <div class="col-xl-2 col-lg-3 col-md-6 mb15">
+                                <label class="lbl mb5">Ngày sinh <sup class="red">*</sup></label>
+                                <input class="form-control datepicker-input " type="text" name="birthday">
+                            </div>
+                            <div class="col-xl-2 col-lg-3 col-md-6 mb15">
+                                <label class="lbl mb5">Loại phòng <sup class="red">*</sup></label>
+                                <select class="select2" name="" style="width: 100%;">
+                                    <option value="">Chọn</option>
+                                    <option value="">Đại lý</option>
+                                </select>
+                            </div>
+                            <div class="col-xl-2 col-lg-3 col-md-6 mb15">
+                                <label class="lbl mb5">Quốc gia <sup class="red">*</sup></label>
+                                <select class="select2" name="" style="width: 100%;">
+                                    <option value="">Chọn</option>
+                                    <option value="">Đại lý</option>
+                                </select>
+                            </div>
+                            <div class="col-xl-2 col-lg-3 col-md-6 mb15">
+                                <label class="lbl mb5">Quốc tịch <sup class="red">*</sup></label>
+                                <select class="select2" name="" style="width: 100%;">
+                                    <option value="">Chọn</option>
+                                    <option value="">Đại lý</option>
+                                </select>
+                            </div>
+                            <div class="col-xl-4 col-lg-3 col-md-6 mb15">
+                                <label class="lbl mb5">Điện thoai <sup class="red">*</sup></label>
+                                <input type="text" class="form-control" id="">
+                            </div>
+                            <div class="col-xl-4 col-lg-3 col-md-6 mb15">
+                                <label class="lbl mb5">Email <sup class="red">*</sup></label>
+                                <input type="text" class="form-control" id="">
+                            </div>
+                            <div class="col-xl-4 col-lg-3 col-md-6 mb15">
+                                <label class="lbl mb5">Ghi chú</label>
+                                <input type="text" class="form-control" id="">
+                            </div>
+                        </div>
+                        <div class="bold txt_14 mb10">Thông tin danh sách thành viên khác</div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Bạn có thể copy & paste danh sách. Sau đó nhấn enter để hệ thống tự insert. Nội dung  phải theo mẫu gồm: Họ và tên, Ngày sinh, Loại phòng, Ghi chú (Cách nhau bởi dấu (,), ghi chú có thể để trống). Ví dụ Nguyễn Thành Nghĩa, 01/01/1989,Phòng 1,
+                            " style="height: 200px;"></textarea>
+                        </div>
+                        <div class="table-responsive table-gray">
+                            <table class="table table-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th style="min-width: 200px;">Họ và tên<sup class="red">*</sup></th>
+                                        <th style="min-width: 100px;">Ngày sinh<sup class="red">*</sup></th>
+                                        <th style="min-width: 120px;">Loại phòng<sup class="red">*</sup></th>
+                                        <th style="min-width: 220px;">Ghi chú</th>
+                                        <th style="width: 60px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><input type="text" class="form-control" id=""></td>
+                                        <td><input class="form-control datepicker-input " type="text" name="birthday"></td>
+                                        <td>
+                                            <select class="select2" name="" style="width: 100%;">
+                                                <option value="">Chọn</option>
+                                                <option value="">Đại lý</option>
+                                            </select>
+                                        </td>
+                                        <td class="text-right"><input type="text" class="form-control" id=""></td>
+                                        <td>
+                                            <a class="red" href=""><i class="fa fa-times"></i></a> &nbsp;
+                                            <a class="blue" href=""><i class="fa fa-plus-circle green"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="">
+                        Tệp đính kèm <i class="fa fa-paperclip"></i>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-default btn btn-default cancel">Bỏ qua</button>
+                        <button type="submit" class="btn btn-default">Thêm</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- POPUP Thêm phòng khách sạn -->
+<div class="modal fade" id="myModal2">
+    <div class="modal-dialog" style="max-width: 100%;">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Thêm phòng khách sạn</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="border pd10">
+                    <div class="table-responsive table-gray">
+                        <table class="table table-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Thứ tự phòng</th>
+                                    <th style="width: 200px;">Hạng phòng</th>
+                                    <th style="width: 200px;">Gói</th>
+                                    <th class="text-right">Giá bán</th>
+                                    <th style="width: 120px;">Ngày</th>
+                                    <th class="text-right">Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="2">1</td>
+                                    <td rowspan="2">
+                                        <select class="select2" name="" style="width: 100%;">
+                                            <option value="">Chọn</option>
+                                            <option value="">Đại lý</option>
+                                            <option value="">Cộng tác viên</option>
+                                            <option value="">Mice/Corp/Doanh nghiệp</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="select2" name="" style="width: 100%;">
+                                            <option value="">Chọn</option>
+                                            <option value="">Đại lý</option>
+                                            <option value="">Cộng tác viên</option>
+                                            <option value="">Mice/Corp/Doanh nghiệp</option>
+                                        </select>
+                                    </td>
+
+                                    <td class="text-right">3,000,000</td>
+                                    <td>12/12/2022</td>
+                                    <td class="text-right">0</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <select class="select2" name="" style="width: 100%;">
+                                            <option value="">Chọn</option>
+                                            <option value="">Đại lý</option>
+                                            <option value="">Cộng tác viên</option>
+                                            <option value="">Mice/Corp/Doanh nghiệp</option>
+                                        </select>
+                                    </td>
+
+                                    <td class="text-right">3,000,000</td>
+                                    <td>12/12/2022</td>
+                                    <td class="text-right">0</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">2</td>
+                                    <td rowspan="2">
+                                        <select class="select2" name="" style="width: 100%;">
+                                            <option value="">Chọn</option>
+                                            <option value="">Đại lý</option>
+                                            <option value="">Cộng tác viên</option>
+                                            <option value="">Mice/Corp/Doanh nghiệp</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="select2" name="" style="width: 100%;">
+                                            <option value="">Chọn</option>
+                                            <option value="">Đại lý</option>
+                                            <option value="">Cộng tác viên</option>
+                                            <option value="">Mice/Corp/Doanh nghiệp</option>
+                                        </select>
+                                    </td>
+
+                                    <td class="text-right">3,000,000</td>
+                                    <td>12/12/2022</td>
+                                    <td class="text-right">0</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <select class="select2" name="" style="width: 100%;">
+                                            <option value="">Chọn</option>
+                                            <option value="">Đại lý</option>
+                                            <option value="">Cộng tác viên</option>
+                                            <option value="">Mice/Corp/Doanh nghiệp</option>
+                                        </select>
+                                    </td>
+
+                                    <td class="text-right">3,000,000</td>
+                                    <td>12/12/2022</td>
+                                    <td class="text-right">0</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-default btn btn-default cancel">Bỏ qua</button>
+                        <button type="submit" class="btn btn-default">Chọn</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- POPUP Thêm mới khách hàng -->
+<div class="modal fade" id="myModal3">
+    <div class="modal-dialog" style="max-width: 100%;">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Thêm mới khách hàng</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="grid grid__2 grid-don-hang gap10 mb20">
+                    <div class="grid-item border">
+                        <div class="lb-form">Thông tin khách hàng cơ bản</div>
+                        <div class="form-default3 pd10">
+                            <div class="row">
+                                <div class="col-md-4 mb10"><label class="lbl">Đối tượng <sup class="red">*</sup></label></div>
+                                <div class="col-md-8 mb10">
+                                    <label class="radio mr-3">
+                                            <input type="radio" name="optradio" checked="">
+                                            <span class="checkmark"></span>
+                                            Tổ chức
+                                        </label>
+                                    <label class="radio mr-3">
+                                            <input type="radio" name="optradio">
+                                            <span class="checkmark"></span>
+                                            Cá nhân
+                                        </label>
+                                </div>
+                                <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Tên khách hàng <sup class="red">*</sup></label></div>
+                                <div class="col-md-8 mb10">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Mã số thuế <sup class="red">*</sup></label></div>
+                                <div class="col-md-8 mb10">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Điện thoại <sup class="red">*</sup></label></div>
+                                <div class="col-md-8 mb10">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Email <sup class="red">*</sup></label></div>
+                                <div class="col-md-8 mb10">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Địa chỉ giao dịch <sup class="red">*</sup></label></div>
+                                <div class="col-md-8 mb10">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Địa chỉ xuất hóa đơn <sup class="red">*</sup></label></div>
+                                <div class="col-md-8 mb10">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Loại KH <sup class="red">*</sup></label></div>
+                                <div class="col-md-8 mb10">
+                                    <select class="select2" name="" style="width: 100%;">
+                                            <option value="">B2C</option>
+                                            <option value="">Đại lý</option>
+                                            <option value="">Cộng tác viên</option>
+                                            <option value="">Mice/Corp/Doanh nghiệp</option>
+                                        </select>
+                                </div>
+                                <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Nhom KH <sup class="red">*</sup></label></div>
+                                <div class="col-md-8 mb10">
+                                    <select class="select2" name="" style="width: 100%;">
+                                            <option value="">Không được nợ</option>
+                                            <option value="">Đại lý</option>
+                                            <option value="">Cộng tác viên</option>
+                                            <option value="">Mice/Corp/Doanh nghiệp</option>
+                                        </select>
+                                </div>
+                                <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Nguồn <sup class="red">*</sup></label></div>
+                                <div class="col-md-8 mb10">
+                                    <select class="select2" name="" style="width: 100%;">
+                                            <option value="">Chọn</option>
+                                            <option value="">Đại lý</option>
+                                            <option value="">Cộng tác viên</option>
+                                            <option value="">Mice/Corp/Doanh nghiệp</option>
+                                        </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid-item border">
+                        <div class="lb-form">Thông tin thanh toán</div>
+                        <div class="form-default3 pd10">
+                            <div class="row">
+                                <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Số tài khoản</label></div>
+                                <div class="col-md-8 mb10">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Chủ tài khoản</label></div>
+                                <div class="col-md-8 mb10">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Tên ngân hàng</label></div>
+                                <div class="col-md-8 mb10">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Chi nhánh</label></div>
+                                <div class="col-md-8 mb10">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <div class="col-12 mb10"><label class="lbl">Ghi chú</label></div>
+                                <div class="col-md-12 mb10">
+                                    <textarea class="form-control" style="height: 150px;"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-default btn btn-default cancel">Bỏ qua</button>
+                    <button type="submit" class="btn btn-default">Thêm</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- POPUP sửa khách hàng -->
+<div class="modal fade" id="myModal4">
+    <div class="modal-dialog" style="max-width: 100%;">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Thêm sửa khách hàng</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="grid grid__2 grid-don-hang gap10 mb20">
+                    <div class="grid-item border">
+                        <div class="lb-form">Thông tin khách hàng cơ bản</div>
+                        <div class="form-default3 pd10">
+                            <div class="row">
+                                <div class="col-md-4 mb10"><label class="lbl">Đối tượng <sup class="red">*</sup></label></div>
+                                <div class="col-md-8 mb10">
+                                    <label class="radio mr-3">
+                                            <input type="radio" name="optradio" checked="">
+                                            <span class="checkmark"></span>
+                                            Tổ chức
+                                        </label>
+                                    <label class="radio mr-3">
+                                            <input type="radio" name="optradio">
+                                            <span class="checkmark"></span>
+                                            Cá nhân
+                                        </label>
+                                </div>
+                                <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Tên khách hàng <sup class="red">*</sup></label></div>
+                                <div class="col-md-8 mb10">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Mã số thuế <sup class="red">*</sup></label></div>
+                                <div class="col-md-8 mb10">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Điện thoại <sup class="red">*</sup></label></div>
+                                <div class="col-md-8 mb10">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Email <sup class="red">*</sup></label></div>
+                                <div class="col-md-8 mb10">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Địa chỉ giao dịch <sup class="red">*</sup></label></div>
+                                <div class="col-md-8 mb10">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Địa chỉ xuất hóa đơn <sup class="red">*</sup></label></div>
+                                <div class="col-md-8 mb10">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                                <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Loại KH <sup class="red">*</sup></label></div>
+                                <div class="col-md-8 mb10">
+                                    <select class="select2" name="" style="width: 100%;">
+                                            <option value="">B2C</option>
+                                            <option value="">Đại lý</option>
+                                            <option value="">Cộng tác viên</option>
+                                            <option value="">Mice/Corp/Doanh nghiệp</option>
+                                        </select>
+                                </div>
+                                <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Nhom KH <sup class="red">*</sup></label></div>
+                                <div class="col-md-8 mb10">
+                                    <select class="select2" name="" style="width: 100%;">
+                                            <option value="">Không được nợ</option>
+                                            <option value="">Đại lý</option>
+                                            <option value="">Cộng tác viên</option>
+                                            <option value="">Mice/Corp/Doanh nghiệp</option>
+                                        </select>
+                                </div>
+                                <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Nguồn <sup class="red">*</sup></label></div>
+                                <div class="col-md-8 mb10">
+                                    <select class="select2" name="" style="width: 100%;">
+                                            <option value="">Chọn</option>
+                                            <option value="">Đại lý</option>
+                                            <option value="">Cộng tác viên</option>
+                                            <option value="">Mice/Corp/Doanh nghiệp</option>
+                                        </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid-item border">
+                        <div class="lb-form">Ghi chú <small>((30/3,000 ký tự))</small></div>
+                        <div class="form-default3 pd10">
+                            <textarea class="form-control" placeholder="Khách hàng có doanh thu lớn" style="height: 350px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-default btn btn-default cancel">Bỏ qua</button>
+                    <button type="submit" class="btn btn-default">Lưu</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- POPUP dịch vụ tour du lịch -->
+<div class="modal fade" id="myModal5">
+    <div class="modal-dialog" style="max-width: 100%;">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Thêm dịch vụ tour du lịch</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row row_min">
+                    <div class="col-lg-3 col-md-6 mb15">
+                        <label class="lbl mb5">Loại tour <sup class="red">*</sup></label>
+                        <select class="select2" name="" style="width: 100%;">
+                            <option value="">Chọn</option>
+                            <option value="">Đại lý</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb15">
+                        <label class="lbl mb5">Điểm đi <sup class="red">*</sup></label>
+                        <select class="select2" name="" style="width: 100%;">
+                            <option value="">Chọn</option>
+                            <option value="">Đại lý</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb15">
+                        <label class="lbl mb5">Điểm đến <sup class="red">*</sup></label>
+                        <select class="select2" name="" style="width: 100%;">
+                            <option value="">Chọn</option>
+                            <option value="">Đại lý</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb15">
+                        <label class="lbl mb5">Hình thức tổ chức <sup class="red">*</sup></label>
+                        <select class="select2" name="" style="width: 100%;">
+                            <option value="">Chọn</option>
+                            <option value="">Đại lý</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb15">
+                        <label class="lbl mb5">Ngày bắt đầu <sup class="red">*</sup></label>
+                        <div class="datepicker-wrap" style="width:100%">
+                            <input class="form-control datepicker-input " type="text" name="birthday">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb15">
+                        <label class="lbl mb5">Ngày kết thúc <sup class="red">*</sup></label>
+                        <div class="datepicker-wrap" style="width:100%">
+                            <input class="form-control datepicker-input " type="text" name="birthday">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb15">
+                        <label class="lbl mb5">Điều hành viên <sup class="red">*</sup></label>
+                        <select class="select2" name="" style="width: 100%;">
+                            <option value="">Chọn</option>
+                            <option value="">Đại lý</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="bold mb15 txt_14">Bảng kê dịch vụ</div>
+                <div class="table-responsive table-gray">
+                    <table class="table table-nowrap">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th style="min-width: 200px;">Nội dung</th>
+                                <th class="text-right">Đơn giá</th>
+                                <th class="text-right">Số lượng</th>
+                                <th class="text-right" style="width: 120px;">Tiền trước VAT</th>
+                                <th class="text-right" style="width: 80px;">VAT (%)</th>
+                                <th class="text-right" style="width: 110px;">Tiền sau VAT</th>
+                                <th class="text-right"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <select class="select2" name="" style="width: 100%;">
+                                        <option value="">Chọn</option>
+                                        <option value="">Đại lý</option>
+                                        <option value="">Cộng tác viên</option>
+                                        <option value="">Mice/Corp/Doanh nghiệp</option>
+                                    </select>
+                                </td>
+                                <td class="text-right"><input type="text" class="form-control text-right" id="" value="0"></td>
+                                <td class="text-right"><input type="text" class="form-control text-right" id="" value="1"></td>
+                                <td class="text-right">0</td>
+                                <td class="text-right"><input type="text" class="form-control text-right" id="" value="10.00"></td>
+                                <td class="text-right"></td>
+                                <td class="text-right">
+                                    <a class="red" href=""><i class="fa fa-times"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <a href="#" class="blue ml-2 mb10"><i class="fa fa-plus-circle green"></i> Thêm dòng</a>
+                                    <a href="#" class="blue ml-2 mb10"><i class="fa fa-plus-circle green"></i> Thêm dịch vụ khác</a>
+                                </td>
+                                <td class="text-right">Tổng cộng</td>
+                                <td></td>
+                                <td class="text-right">0</td>
+                                <td></td>
+                                <td class="text-right">0</td>
+                                <td></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="bold mb15 txt_14">Danh sách đoàn</div>
+
+                <div class="table-responsive table-gray">
+                    <table class="table table-nowrap">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th style="min-width: 200px;">Họ và tên</th>
+                                <th style="min-width: 120px;">Ngày sinh</th>
+                                <th style="min-width: 120px;">Điện thoại</th>
+                                <th style="min-width: 200px;">Ghi chú</th>
+                                <th style="width: 60px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td class="text-right"><input type="text" class="form-control" id=""></td>
+                                <td>
+                                    <div class="datepicker-wrap" style="width:100%">
+                                        <input class="form-control datepicker-input " type="text" name="birthday">
+                                    </div>
+                                </td>
+                                <td class="text-right"><input type="text" class="form-control" id=""></td>
+                                <td class="text-right"><input type="text" class="form-control" id=""></td>
+                                <td>
+                                    <a class="red" href=""><i class="fa fa-times"></i></a> &nbsp;
+                                    <a class="blue" href=""><i class="fa fa-plus-circle green"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="">
+                    Tệp đính kèm <i class="fa fa-paperclip"></i>
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-default btn btn-default cancel">Bỏ qua</button>
+                    <button type="submit" class="btn btn-default">Thêm</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- POPUP Thêm dịch vụ vé máy bay -->
+<div class="modal fade" id="myModal6">
+    <div class="modal-dialog" style="max-width: 100%;">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Thêm dịch vụ vé máy bay</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row row_min">
+                    <div class="col-xl-2 col-lg-3 col-md-6 mb15">
+                        <label class="lbl mb5">Hành trình <sup class="red">*</sup></label>
+                        <select class="select2" name="" style="width: 100%;">
+                            <option value="">Chọn</option>
+                            <option value="">Đại lý</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-6 mb15">
+                        <label class="lbl mb5">Điểm đi <sup class="red">*</sup></label>
+                        <select class="select2" name="" style="width: 100%;">
+                            <option value="">Chọn</option>
+                            <option value="">Đại lý</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-6 mb15">
+                        <label class="lbl mb5">Điểm đến <sup class="red">*</sup></label>
+                        <select class="select2" name="" style="width: 100%;">
+                            <option value="">Chọn</option>
+                            <option value="">Đại lý</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-6 mb15">
+                        <label class="lbl mb5">Ngày đi <sup class="red">*</sup></label>
+                        <div class="datepicker-wrap" style="width:100%">
+                            <input class="form-control datepicker-input " type="text" name="birthday">
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-6 mb15">
+                        <label class="lbl mb5">Ngày về <sup class="red">*</sup></label>
+                        <div class="datepicker-wrap" style="width:100%">
+                            <input class="form-control datepicker-input " type="text" name="birthday">
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-6 mb15">
+                        <label class="lbl mb5">Điều hành viên <sup class="red">*</sup></label>
+                        <select class="select2" name="" style="width: 100%;">
+                            <option value="">Chọn</option>
+                            <option value="">Đại lý</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-6 col-md-6 mb15">
+                        <label class="lbl mb5">Hãng bay <sup class="red">*</sup></label>
+                        <input type="text" class="form-control" id="" placeholder="Tìm kiếm hãng bay theo tên">
+                    </div>
+                    <div class="col-xl-4 col-lg-3 col-md-6 mb15">
+                        <label class="lbl mb5">Chuyến bay <sup class="red">*</sup></label>
+                        <select class="select2" name="" style="width: 100%;">
+                            <option value="">Chọn</option>
+                            <option value="">Đại lý</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-6 mb15">
+                        <label class="lbl mb5">Mã đặt chỗ <sup class="red">*</sup></label>
+                        <input type="text" class="form-control" id="">
+                    </div>
+
+                </div>
+                <div class="bold mb15 txt_14">Bảng kê dịch vụ <small>((Đơn giá đã bao gồm thuế phí + Phí dịch vụ Adavigo))</small></div>
+                <div class="table-responsive table-gray">
+                    <table class="table table-nowrap">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th style="min-width: 200px;">Nội dung</th>
+                                <th class="text-right">Đơn giá</th>
+                                <th class="text-right">Số lượng</th>
+                                <th class="text-right" style="width: 110px;">Thành tiền</th>
+                                <th class="text-right"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <select class="select2" name="" style="width: 100%;">
+                                        <option value="">Chọn</option>
+                                        <option value="">Đại lý</option>
+                                        <option value="">Cộng tác viên</option>
+                                        <option value="">Mice/Corp/Doanh nghiệp</option>
+                                    </select>
+                                </td>
+                                <td class="text-right"><input type="text" class="form-control text-right" id="" value="0"></td>
+                                <td class="text-right"><input type="text" class="form-control text-right" id="" value="1"></td>
+                                <td class="text-right">0</td>
+                                <td class="text-right">
+                                    <a class="red" href=""><i class="fa fa-times"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <a href="#" class="blue ml-2 mb10"><i class="fa fa-plus-circle green"></i> Thêm dòng</a>
+                                    <a href="#" class="blue ml-2 mb10"><i class="fa fa-plus-circle green"></i> Thêm dịch vụ khác</a>
+                                </td>
+                                <td class="text-right">Tổng cộng</td>
+                                <td class="text-right">0</td>
+                                <td class="text-right">0</td>
+                                <td></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="bold mb10 txt_14">Danh sách đoàn</div>
+                <div class="border pd10">
+                    <div class="bold txt_14 mb10">Thông tin thành viên chính</div>
+                    <div class="row row_min">
+                        <div class="col-lg-3 col-md-6 mb15">
+                            <label class="lbl mb5">Họ và tên <sup class="red">*</sup></label>
+                            <input type="text" class="form-control" id="">
+                        </div>
+                        <div class="col-lg-3 col-md-6 mb15">
+                            <label class="lbl mb5">Điện thoai <sup class="red">*</sup></label>
+                            <input type="text" class="form-control" id="">
+                        </div>
+                        <div class="col-lg-3 col-md-6 mb15">
+                            <label class="lbl mb5">Email <sup class="red">*</sup></label>
+                            <input type="text" class="form-control" id="">
+                        </div>
+                    </div>
+                    <div class="bold txt_14 mb10">Thông tin danh sách thành viên khác</div>
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Bạn có thể copy & paste danh sách. Sau đó nhấn enter để hệ thống tự insert. Nội dung  phải theo mẫu gồm: Giới tính,Họ và tên, Ngày sinh, Ghi chú, Tổng giá (Cách nhau bởi dấu (,)). Ví dụNam, Nguyễn Thành Tâm, 01/01/1987, ,3,000,000
+                        " style="height: 200px;"></textarea>
+                    </div>
+                    <div class="table-responsive table-gray">
+                        <table class="table table-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Giới tính<sup class="red">*</sup></th>
+                                    <th style="min-width: 200px;">Họ và tên<sup class="red">*</sup></th>
+                                    <th style="min-width: 120px;">Ngày sinh<sup class="red">*</sup></th>
+                                    <th style="min-width: 200px;">Ghi chú</th>
+                                    <th style="min-width: 220px;">
+                                        Tổng giá<sup class="red">*</sup>
+                                        <div><small>(Tổng khách phải trả cho cả chuyến bay)</small></div>
+                                    </th>
+                                    <th style="width: 60px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td><input class="form-control datepicker-input " type="text" name="birthday"></td>
+                                    <td class="text-right"><input type="text" class="form-control" id=""></td>
+                                    <td>
+                                        <div class="datepicker-wrap" style="width:100%">
+                                            <input class="form-control datepicker-input " type="text" name="birthday">
+                                        </div>
+                                    </td>
+                                    <td class="text-right"><input type="text" class="form-control" id=""></td>
+                                    <td class="text-right"><input type="text" class="form-control" id=""></td>
+                                    <td>
+                                        <a class="red" href=""><i class="fa fa-times"></i></a> &nbsp;
+                                        <a class="blue" href=""><i class="fa fa-plus-circle green"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="">
+                    Tệp đính kèm <i class="fa fa-paperclip"></i>
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-default btn btn-default cancel">Bỏ qua</button>
+                    <button type="submit" class="btn btn-default">Thêm</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- POPUP Chỉnh sửa code dịch vụ -->
+<div class="modal fade" id="myModal8">
+    <div class="modal-dialog" style="max-width: 400px">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Chỉnh sửa code dịch vụ</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-default3">
+                    <div class="form-group">
+                        <label class="lbl">Max <sup class="red">*</sup></label>
+                        <div class="wrap_input">
+                            <input type="text" class="form-control" id="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Nội dung <sup class="red">*</sup></label>
+                        <div class="wrap_input">
+                            <textarea class="form-control" style="height: 120px;"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Ghi chú</label>
+                        <div class="wrap_input">
+                            <textarea class="form-control" style="height: 120px;"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group mb0">
+                        <label class="lbl">Tệp đính kèm <i class="fa fa-paperclip"></i></label>
+                        <ul class="mb0">
+                            <li>
+                                <span>Bang_gia_dinh_kem_ lan_1 (12/12/2022 09:00)</span>
+                                <a href="#" class="fa fa-trash-o"></a>
+                                <a href="#" class="fa fa-eye"></a>
+                                <a href="#" class="fa fa-download"></a>
+                            </li>
+                            <li>
+                                <span>Bang_gia_dinh_kem_ lan_1 (12/12/2022 09:00)</span>
+                                <a href="#" class="fa fa-trash-o"></a>
+                                <a href="#" class="fa fa-eye"></a>
+                                <a href="#" class="fa fa-download"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="line-bottom"></div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-default cancel">Bỏ qua</button>
+                        <button type="submit" class="btn btn-default">Lưu</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- POPUP Trả code dịch vụ -->
+<div class="modal fade" id="myModal9">
+    <div class="modal-dialog" style="max-width: 800px">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Trả code dịch vụ</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-default3">
+                    <div class="form-group">
+                        <label class="lbl">Tiêu đề <sup class="red">*</sup></label>
+                        <div class="wrap_input">
+                            <input type="text" class="form-control" id="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Người nhận <sup class="red">*</sup></label>
+                        <div class="wrap_input">
+                            <input type="text" class="form-control" id="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Tệp đính kèm <sup class="red">*</sup></label>
+                        <div class="wrap_input">
+                            <input type="file" id="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Nội dung <sup class="red">*</sup></label>
+                        <div class="wrap_input">
+                            <!-- <textarea class="form-control" style="height: 300px;"></textarea> -->
+                            <div id="wrapper-email" style="width: 100%; font-size: 14px; line-height: 20px; padding: 30px; background: #EBEDEF; font-family: Helvetica,Arial,sans-serif;" data-mce-style="width: 100%; font-size: 14px; line-height: 20px; padding: 30px; background: #EBEDEF; font-family: Helvetica,Arial,sans-serif;">
+                                <div style="max-width: 600px; background: #ffffff; margin: 0 auto; overflow: hidden; padding: 30px;" data-mce-style="max-width: 600px; background: #ffffff; margin: 0 auto; overflow: hidden; padding: 30px;">
+                                    <div style="overflow: hidden; padding: 10px 0; border-bottom: 2px solid #0060ab;" data-mce-style="overflow: hidden; padding: 10px 0; border-bottom: 2px solid #0060ab;">
+                                        <table style="font-size: 12px;" data-mce-style="font-size: 12px;" class="mce-item-table">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="width: 20%;" data-mce-style="width: 20%;">
+                                                        <a href="https://www.adavigo.com" data-mce-href="https://www.adavigo.com"> <img src="https://www.adavigo.com/images/logo/logo-adavigo.png" style="width: 100px; height: 40px; border-radius: 3px;" data-mce-src="https://www.adavigo.com/images/logo/logo-adavigo.png" data-mce-style="width: 100px; height: 40px; border-radius: 3px;">                                                            </a>
+                                                    </td>
+                                                    <td>
+                                                        <div style="float: right; line-height: 22px;" data-mce-style="float: right; line-height: 22px;">
+                                                            <p style="margin: 0;" data-mce-style="margin: 0;"><strong>CÔNG TY CỔ PHẦN THƯƠNG MẠI &amp; DỊCH VỤ QUỐC TẾ ĐẠI VIỆT</strong></p>
+                                                            <p style="margin: 0;" data-mce-style="margin: 0;">ADAVIGO - Xứng Tầm Đẳng Cấp - Hotline: <span style="position: relative; font-size: 16px; font-style: normal; font-weight: 600; line-height: 20px; letter-spacing: 0em; color: #0060ab;" data-mce-style="position: relative; font-size: 16px; font-style: normal; font-weight: 600; line-height: 20px; letter-spacing: 0em; color: #0060ab;">0936.191.192</span></p>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="content-email">
+                                        <div class="body-main">
+                                            <p style="font-size: 13px;" data-mce-style="font-size: 13px;">Dear Anh/Chị phòng bán hàng,</p>
+                                            <p style="font-size: 13px;" data-mce-style="font-size: 13px;">Admin gửi thông tin Code dịch vụ như sau:</p>
+                                            <p style="font-size: 13px;" data-mce-style="font-size: 13px;">Danh sách code dịch vụ</p>
+                                            <table style="border: 0; border-spacing: 0; text-indent: 0; border-collapse: collapse; font-size: 13px; width: 100%; margin-bottom: 15px;" data-mce-style="border: 0; border-spacing: 0; text-indent: 0; border-collapse: collapse; font-size: 13px; width: 100%; margin-bottom: 15px;"
+                                                class="mce-item-table" data-mce-selected="1">
+                                                <tbody>
+                                                    <tr style="font-weight: 600;" data-mce-style="font-weight: 600;">
+                                                        <td style="border: 1px solid #999; padding: 5px;" data-mce-style="border: 1px solid #999; padding: 5px;">Mã dịch vụ</td>
+                                                        <td style="border: 1px solid #999; padding: 5px;" data-mce-style="border: 1px solid #999; padding: 5px;">Loại dịch vụ</td>
+                                                        <td style="border: 1px solid #999; padding: 5px;" data-mce-style="border: 1px solid #999; padding: 5px;">Nhà cung cấp</td>
+                                                        <td style="border: 1px solid #999; padding: 5px;" data-mce-style="border: 1px solid #999; padding: 5px;">Ghi chú</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border: 1px solid #999; padding: 5px;" data-mce-style="border: 1px solid #999; padding: 5px;">1212121</td>
+                                                        <td style="border: 1px solid #999; padding: 5px;" data-mce-style="border: 1px solid #999; padding: 5px;">Vé máy bay</td>
+                                                        <td style="border: 1px solid #999; padding: 5px;" data-mce-style="border: 1px solid #999; padding: 5px;">Vietnam Airlines</td>
+                                                        <td style="border: 1px solid #999; padding: 5px;" data-mce-style="border: 1px solid #999; padding: 5px;"><br></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border: 1px solid #999; padding: 5px;" data-mce-style="border: 1px solid #999; padding: 5px;">1212</td>
+                                                        <td style="border: 1px solid #999; padding: 5px;" data-mce-style="border: 1px solid #999; padding: 5px;">Nhà hàng</td>
+                                                        <td style="border: 1px solid #999; padding: 5px;" data-mce-style="border: 1px solid #999; padding: 5px;">PGCHL</td>
+                                                        <td style="border: 1px solid #999; padding: 5px;" data-mce-style="border: 1px solid #999; padding: 5px;">121</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border: 1px solid #999; padding: 5px;" data-mce-style="border: 1px solid #999; padding: 5px;">121212</td>
+                                                        <td style="border: 1px solid #999; padding: 5px;" data-mce-style="border: 1px solid #999; padding: 5px;">Khách sạn</td>
+                                                        <td style="border: 1px solid #999; padding: 5px;" data-mce-style="border: 1px solid #999; padding: 5px;">Selectum Noa Cam Ranh</td>
+                                                        <td style="border: 1px solid #999; padding: 5px;" data-mce-style="border: 1px solid #999; padding: 5px;"><br></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <p style="">Mọi thắc mắc vui lòng liên hệ phòng điều hành</p>
+                                            <p style="font-size: 13px;" data-mce-style="font-size: 13px;">Trân trọng!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer-email" style="max-width: 600px; margin: auto; height: auto; overflow: hidden; background: #0159a1; color: #fff; padding: 10px 30px;" data-mce-style="max-width: 600px; margin: auto; height: auto; overflow: hidden; background: #0159a1; color: #fff; padding: 10px 30px;">
+                                    <p style="font-size: 12px; text-align: center; margin: 5px 0;" data-mce-style="font-size: 12px; text-align: center; margin: 5px 0;">CÔNG TY CỔ PHẦN THƯƠNG MẠI &amp; DỊCH VỤ QUỐC TẾ ĐẠI VIỆT</p>
+                                    <p style="font-size: 12px; text-align: center; margin: 5px 0;" data-mce-style="font-size: 12px; text-align: center; margin: 5px 0;">Số chứng nhận đăng ký kinh doanh: 108008526 cấp bởi sở kế hoạch và đầu tư thành phố Hà Nội ngày 03/10/2017</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="line-bottom"></div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-default cancel">Đóng</button>
+                        <button type="submit" class="btn btn-default">Gửi</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- POPUP Trả code dịch vụ -->
+<div class="modal-dialog" style="max-width: 800px">
+    <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title">Thông tin địa điểm khu vui chơi</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="tab-default">
+                <a href="#tab1" class="active">Thông tin</a>
+                <a href="#tab2">Mô tả chi tiết</a>
+            </div>
+            <div class="form-default">
+                <div class="form-group">
+                    <label class="lbl">Tên địa điểm <span class="obligatory">*</span></label>
+                    <div class="wrap_input">
+                        <select class="form-control" style="max-width: 300px;">
+                            <option>Top left</option>
+                            <option>Màn hình</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="lbl">Dịch vụ <span class="obligatory">*</span></label>
+                    <div class="wrap_input">
+                        <select class="form-control" style="max-width: 300px;">
+                            <option>Top left</option>
+                            <option>Màn hình</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb20">
+                    <div class="txt_14 mb10">Ảnh địa điểm <span class="gray">(Chấp nhận ảnh đuôi jpg, png. Giới hạn 10 mb)</span></div>
+                    <div class="row list-choose">
+                        <div class="col-md-2 col-sm-3 col-4 mb10">
+                            <div class="choose-ava">
+                                <img src="images/graphics/img_4.jpg">
+                                <button type="button" class="delete">×</button>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-3 col-4 mb10">
+                            <div class="choose-ava">
+                                <img src="images/graphics/img_4.jpg">
+                                <button type="button" class="delete">×</button>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-3 col-4 mb10">
+                            <div class="choose-ava">
+                                <img src="images/graphics/img_4.jpg">
+                                <button type="button" class="delete">×</button>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-3 col-4 mb10">
+                            <div class="choose-ava">
+                                <img src="images/graphics/img_4.jpg">
+                                <button type="button" class="delete">×</button>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-3 col-4 mb10">
+                            <label class="choose choose-wrap">
+                                <input type="file" name="myFile">
+                                <div class="choose-content">
+                                    <img src="images/icons/camera.png">
+                                    <span>80x80</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="lbl">Bài viết liên quan</label>
+                    <div class="wrap_input">
+                        <div class="input-search-tag" style="width: 100%;">
+                            <div class="list-select-tag">
+                                <div class="item">
+                                    <span>Học trò vùng cao nghỉ học vì sợ nhà vệ sinh</span>
+                                    <a class="delete" href="#">×</a>
+                                </div><div class="item">
+                                    <span>Công ty TNa</span>
+                                    <a class="delete" href="#">×</a>
+                                </div><div class="item">
+                                    <span>Công ty TNHH Thanh Đa</span>
+                                    <a class="delete" href="#">×</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="lbl">Bài viết liên quan</label>
+                    <div class="wrap_input">
+                        <div class="input-search-tag" style="width: 100%;">
+                            <div class="list-select-tag">
+                                <div class="item">
+                                    <span>Cú sốc ban ngày chưa hết thì đến lượt nỗi sợ buổi tối. Khi đêm xuống, muốn đi vệ sinh, Dúa dùng đèn pin soi và rủ đông bạn đi cùng. Có đêm cô bé gặp sự cố xấu hổ, sáng mai nghỉ học, bỏ về nhà.</span>
+                                    <a class="delete" href="#">×</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="search-wrapper">
+                            <input type="text" class="input_search form-control" name="" value="" placeholder="Nhập tiêu đề bài viết cần tìm..." style="max-width: 300px;">
+                            <span class="search-btn">
+                                <button type="submit">
+                                    <svg class="icon-svg">
+                                        <use xlink:href="images/icons/icon.svg#search"></use>
+                                    </svg>
+                                </button>
+                            </span>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="lbl mt0">Trạng thái</label>
+                    <div class="wrap_input flex">
+                        <label class="radio radio-block">
+                            <input type="radio" name="optradio" checked="">
+                            <span class="checkmark"></span>
+                            Kích hoạt
+                        </label>
+                        <label class="radio radio-block ml-4">
+                            <input type="radio" name="optradio">
+                            <span class="checkmark"></span>
+                            Khóa tạm dừng
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group align-right mt20 block">
+                    <button type="submit" class="btn btn-default bg-main"><i class="fa fa-floppy-o"></i>Lưu</button>
+                    <button type="submit" class="btn btn-default cancel"><i class="fa fa-minus-circle"></i>Bỏ qua</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- POPUP Tạo mới chính sách giá -->
+<div class="modal-dialog" style="max-width: 100%">
+    <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title">Cấu hình giá vé Vinwonder</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="tab-default border-bottom">
+                <a href="#tab1" class="active">Nhập thông tin</a>
+                <a href="#tab2">Sửa giá</a>
+            </div>
+            <p>Sau khi hoàn thành chỉnh sửa, vui lòng đăng tập tin Excel lên. Bạn có thể kiểm tra những sản phẩm mới tạo 1 lần nữa ở bên dưới </p>
+            <div class="mb10"><input type="file" name="myFile"></div>
+            <div class="red p-3 rounded mb20" style="background: #F3DFDF;">Lỗi xảy ra: File upload không đúng định dạng. Hệ thống không nhận biết được các cột</div>
+
+            <div class="flex">
+                <div class="flex-form-group mb15">
+                    <label class="flex-text">Hiệu lực</label>
+                    <div class="flex-input">
+                        <div class="datepicker-wrap row row_min">
+                            <div class="col-6"><input class="form-control datepicker-input" type="text" name="birthday" placeholder="Từ ngày"></div>
+                            <div class="col-6"><input class="form-control datepicker-input" type="text" name="birthday" placeholder="Đến ngày"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ml-5"></div>
+                <div class="flex-form-group mb15">
+                    <label class="flex-text">Lợi nhuận chung</label>
+                    <div class="flex-input">
+                        <div class="flex align-center">
+                            <div class="input-tag-price">
+                                <input type="text" class="form-control" id="" value="5,000" style="width: 100px;">
+                                <span class="status-green">VNĐ</span>
+                                <span class="status-gray ml-2">%</span>
+                            </div>
+                            <button type="submit" class="btn btn-default agray ml-2" style="padding: 0 10px;"><i class="fa fa-edit mr-0"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-form-group mb15">
+                <label class="flex-text">Tên chiến dịch</label>
+                <div class="flex-input">
+                    <select class="select2" name="">
+                        <option value="">-- Tạo mới giá vé Vinwonder từ: 01/08/2023 đến 30/12/2023 --</option>
+                        <option value="">Đại lý</option>
+                        <option value="">Cộng tác viên</option>
+                        <option value="">Mice/Corp/Doanh nghiệp</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-responsive table-default table-gray table-modal mb20">
+                <table class="table table-nowrap">
+                    <thead>
+                        <tr>
+                            <th>
+                                <label class="check-list number">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    &nbsp;
+                                </label>
+                            </th>
+                            <th>Service Id</th>
+                            <th>Rate Code</th>
+                            <th>Services Code</th>
+                            <th style="min-width: 130px;">Name</th>
+                            <th>Base Price</th>
+                            <th>Weekend Rate</th>
+                            <th class="text-center" style="min-width: 350px;">Profit</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label class="check-list number">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    &nbsp;
+                                </label>
+                            </td>
+                            <td>567</td>
+                            <td>160</td>
+                            <td>NT-VVC-SAU-16H-CT2-TE</td>
+                            <td class="blue">Vé vào cửa Người Lớn</td>
+                            <td>120,000</td>
+                            <td>0</td>
+                            <td>
+                                <div class="flex align-center justify-center">
+                                    <input type="text" class="form-control text-center" id="" value="4,000" style="width: 90px;">
+                                    <span class="status-green ml-2">VNĐ</span>
+                                    <span class="status-gray ml-2">%</span>
+                                    <a class="blue ml-2" href="#">Chính sách chung</a>
+                                </div>
+                            </td>
+                            <td><strong>120,000</strong></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="check-list number">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    &nbsp;
+                                </label>
+                            </td>
+                            <td>567</td>
+                            <td>160</td>
+                            <td>NT-VVC-SAU-16H-CT2-TE</td>
+                            <td class="blue">Vé vào cửa Người Lớn</td>
+                            <td>120,000</td>
+                            <td>0</td>
+                            <td>
+                                <div class="flex align-center justify-center">
+                                    <span>Lợi nhuận chung</span>
+                                    <div class="input-tag-price ml-2">
+                                        <input type="text" class="form-control" id="" value="5,000" style="width: 100px;">
+                                        <span class="status-green">VNĐ</span>
+                                        <span class="status-gray ml-2">%</span>
+                                    </div>
+                                    <button type="submit" class="btn btn-default agray ml-2" style="padding: 0 10px;"><i class="fa fa-edit mr-0"></i></button>
+                                </div>
+                            </td>
+                            <td><strong>120,000</strong></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="check-list number">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    &nbsp;
+                                </label>
+                            </td>
+                            <td>567</td>
+                            <td>160</td>
+                            <td>NT-VVC-SAU-16H-CT2-TE</td>
+                            <td class="blue">Vé vào cửa Người Lớn</td>
+                            <td>120,000</td>
+                            <td>0</td>
+                            <td>
+                                <div class="flex align-center justify-center">
+                                    <input type="text" class="form-control text-center" id="" value="4,000" style="width: 90px;">
+                                    <div class="ml-2">
+                                        <span class="status-green">VNĐ</span>
+                                        <span class="status-gray ml-2">%</span>
+                                        <a class="blue ml-2" href="#">Chính sách chung</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="bold">120,000</div>
+                                <small class="blue">320,000</small>
+                            </td>
+                        </tr>
+                
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-right">Tổng cộng:  12 bản ghi </div>
+
+            <div class="form-default">
+                <div class="form-group align-right mt20 block">
+                    <button type="submit" class="btn btn-default bg-main"><i class="fa fa-floppy-o"></i>Cập nhật</button>
+                    <button type="submit" class="btn btn-default cancel"><i class="fa fa-minus-circle"></i>Đóng</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- /build:content -->
+
+<!-- build:script2 -->
+<script>
+    $(function() {
+        // Data nhân viên
+        var dataStaff = [{
+            id: 1,
+            use: 'Nguyễn Thành Nhân',
+            text: '<span>thanhnhan@gmail.com</span> - Phòng kinh doanh',
+        }, {
+            id: 2,
+            use: 'Nguyễn Văn A',
+            text: '<span>vana@gmail.com</span> - Phòng bán hàng',
+        }, {
+            id: 3,
+            use: 'Trần Văn B',
+            text: '<span>tranvanb@gmail.com</span> - Phòng sản phẩm',
+        }, ];
+        $('#select-staff').each(function() {
+            $(this).select2({
+                theme: 'bootstrap4',
+                width: 'style',
+                data: dataStaff,
+                escapeMarkup: function(markup) {
+                    return markup;
+                },
+                templateResult: function(data) {
+                    return `<div class="item-staff"><span>${data.use}</span><div class="email">${data.text}</div></div>`;
+                },
+                templateSelection: function(data) {
+                    return `<div class="item-staff"><span>${data.use}</span><div class="email">${data.text}</div></div>`;
+                },
+            });
+        });
+        // End Data nhân viên
+    });
+
+    $(document).ready(function() {
+        $('.popup-2').click(function() {
+            $.magnificPopup.open({
+                items: {
+                    src: '#popup-chi-tiet-cong-no'
+                },
+                type: 'inline',
+                modal: false
+            });
+        });
+    });
+</script>
+<!-- /build:script2 -->

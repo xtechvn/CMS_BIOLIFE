@@ -1,0 +1,67 @@
+﻿@{
+    Layout = null;
+}
+@using Utilities
+@using Entities.ViewModels
+@using Entities.Models
+@model GenericViewModel<ArticleViewModel>
+@{
+    var id = (string)ViewBag.ListID;
+}
+<div class="table-responsive table-default">
+    <input type="hidden" id="data-total-record" value="@Model.TotalRecord" />
+    <table class="table table-gird">
+        <thead>
+            <tr class="bg-main2">
+                <th class="center"></th>
+                <th class="center">Ảnh</th>
+                <th>Tiêu đề</th>
+                <th>Ngày đăng</th>
+                <th>Ngày cập nhật gần nhất</th>
+                <th>Trạng thái</th>
+                <th>Tác giả</th>
+                <th class="center">Lượt xem</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.ListData != null && Model.ListData.Count > 0)
+            {
+                var counter = (Model.CurrentPage - 1) * Model.PageSize;
+                foreach (var item in Model.ListData)
+                {
+                    counter++;
+                    <tr>
+                        <td class="center">@counter</td>
+                        <td class="center"><img width="35" src="@(item.Image11 ??  item.Image43 ?? item.Image169)" onerror="_imageError(this)"></td>
+                        <td>
+                            <div><a href="/news/detail/@item.Id">@item.Title</a></div>
+                            <a href="#" class="italic blue">@item.ArticleCategoryName</a>
+                        </td>
+                        <td>@(item.PublishDate != DateTime.MinValue ? item.PublishDate.Value.ToString("dd/MM/yyyy HH:mm") : string.Empty)</td>
+                        <td>@(item.ModifiedOn != DateTime.MinValue ? item.ModifiedOn.Value.ToString("dd/MM/yyyy HH:mm") : string.Empty)</td>
+                        <td>@item.ArticleStatusName</td>
+                        <td>@item.AuthorName</td>
+                        <td id="pv_@item.Id" class="center">0</td>
+                    </tr>
+                }
+                
+            }
+        </tbody>
+    </table>
+</div>
+
+@await Component.InvokeAsync("Paging", new
+{
+    pageModel = new Paging()
+    {
+        TotalRecord = Model.TotalRecord,
+        TotalPage = Model.TotalPage,
+        CurrentPage = Model.CurrentPage,
+        PageSize = Model.PageSize,
+        RecordName = "bài viết",
+        PageAction = "_news.OnPaging({0})"
+    }
+})
+<script>
+   _news.LoadPageView(@id); 
+</script>

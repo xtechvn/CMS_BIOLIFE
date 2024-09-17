@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewData["Title"] = "Quản lý danh mục";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .search-wrapper {
+        max-width: 480px;
+        width: 100%;
+        margin-bottom: 10px;
+        position: relative;
+        border: 1px solid #D9D9D9;
+        border-radius: 5px;
+    }
+
+    .text-inactive {
+        font-size: 13px;
+        color: red;
+        margin-left: 20px;
+    }
+
+    .group__aff_checkbox {
+        position: absolute;
+        right: 120px;
+    }
+
+        .group__aff_checkbox .check-list {
+            float: left;
+            margin-left: 20px;
+        }
+</style>
+<div class="row-main container flex">
+    <div class="row-main_col200">
+        <h2 class="title_page">Nhóm hàng</h2>
+        <div class="wrap_bg wrap_bg2">
+            <div class="vai-tro">
+                <h3 class="title-margin">Tim kiếm</h3>
+                <div class="search-wrapper">
+                    <input type="text" id="ip-kup-search-group-product" placeholder="Tên nhóm hàng">
+                    <span class="search-btn">
+                        <button type="button">
+                            <svg class="icon-svg">
+                                <use xlink:href="images/icons/icon.svg#search"></use>
+                            </svg>
+                        </button>
+                    </span>
+                </div>
+                <label class="radio radio-block">
+                    <input type="radio" name="optradio" onclick="_groupProduct.OnSearchByStatus(-1)" checked="checked">
+                    <span class="checkmark"></span>
+                    Tất cả
+                </label>
+                <label class="radio radio-block">
+                    <input type="radio" name="optradio" onclick="_groupProduct.OnSearchByStatus(0)">
+                    <span class="checkmark"></span>
+                    Đang hoạt động
+                </label>
+                <label class="radio radio-block">
+                    <input type="radio" name="optradio" onclick="_groupProduct.OnSearchByStatus(1)">
+                    <span class="checkmark"></span>
+                    Ngừng hoạt động
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row-main_col800">
+        <div class="wrap_bg">
+            <div class="widget-menu">
+                <div class="form-group">
+                    <button type="button" class="btn" onclick="_groupProduct.Expand()">Mở rộng</button>
+                    <button type="button" class="btn" onclick="_groupProduct.Collapse()">Thu gọn</button>
+                    <button type="button" class="btn" onclick="_groupProduct.AddOrUpdatePosition()">
+                        <i class="fa fa-plus-circle"></i>Tạo kích thước
+                    </button>
+                    <button type="button" class="btn" id="btn-add-parent-category" style="float:right;">
+                        <i class="fa fa-plus-circle"></i>Tạo Website
+                    </button>
+                </div>
+                <div class="wrap-widget">
+                    <div class="widget-header">
+                        <h4><i class="fa fa-bars"></i>Danh sách chuyên mục</h4>
+                    </div>
+                  
+                    <ul class="dd-list" id="grid-data">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/modules/groupProductManager.js"></script>
+}

@@ -1,0 +1,95 @@
+﻿@{
+    Layout = null;
+
+}
+@using Entities.Models
+@{
+    var _StrTreeViewCate = (string)ViewBag.StringTreeViewCate;
+    var _ListAuthor = (List<User>)ViewBag.ListAuthor;
+}
+<div class="content_lightbox" style="width:100%;">
+    <div class="form-default2 mb20">
+        <div class="form-group">
+            <label class="lbl">Tiêu đề</label>
+            <div class="wrap_input">
+                <input type="text" class="form-control" id="ip-relation-title" placeholder="Nhập từ khóa bài viết">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="lbl">Chuyên mục</label>
+            <div class="wrap_input user-hierarchy-tag border-hierarchy-tag">
+                <div class="">
+                    <ul class="user-hierarchy-ul mb0" style="overflow: auto;text-align:justify; height:250px;" id="panel-relation-category">
+                        @Html.Raw(_StrTreeViewCate)
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="lbl">Tác giả</label>
+            <div class="wrap_input">
+                <select class="form-control select2" style="width:100%;" id="ip-relation-authorid">
+                    <option value="-1">Tất cả</option>
+                    @foreach (var item in _ListAuthor)
+                    {
+                        <option value="@item.Id">@item.UserName</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="center">
+            <button type="button" class="btn btn-default" onclick="_newsRelation.OnSearch()">
+                <i class="fa fa-search"></i>Tìm kiếm
+            </button>
+            &nbsp;
+            <button type="button" class="btn btn-default cancel" onclick="$.magnificPopup.close();">
+                <i class="fa fa-minus-circle"></i>Bỏ qua
+            </button>
+        </div>
+    </div>
+    <div class="table-responsive table-default" id="grid-relation-data">
+        <table class="table table-gird" style="border: 1px solid #dee2e6;">
+            <thead>
+                <tr class="bg-main2">
+                    <th class="center">#</th>
+                    <th class="center">STT</th>
+                    <th>Tiêu đề</th>
+                    <th>Thời gian đăng</th>
+                    <th>Tác giả</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="5"><span class="error">Thao tác tìm kiếm để hiển thị dữ liệu</span></td>
+                </tr>
+                @*<tr>
+                    <td class="center">
+                    <label class="check-list mb10">
+                    <input type="checkbox" class="ckb-select-relation" value="25">
+                    <span class="checkmark"></span>
+                    </label>
+                    <input type="hidden" class="article-image" value="/images/graphics/thumb4.jpg" />
+                    </td>
+                    <td class="center">1</td>
+                    <td>
+                    <div class="article-title">Covid-19: Thế giới hối hả khởi động chiến dịch tiêm chủng</div>
+                    <a class="italic blue">Mẹ và bé</a>
+                    </td>
+                    <td>20/12/2020 02:55</td>
+                    <td><span class="article-author">Chu Hà Tiểu Phương</span></td>
+                    </tr>*@
+            </tbody>
+        </table>
+    </div>
+    <div class="center mt15">
+        <button type="button" class="btn btn-default" onclick="_newsRelation.OnAddRelation();">
+            Chèn bài viết
+        </button>
+        &nbsp;
+        <button type="button" class="btn btn-default cancel" onclick="$.magnificPopup.close();">
+            <i class="fa fa-minus-circle"></i>Bỏ qua
+        </button>
+    </div>
+</div>
+
+<script src="~/modules/news_relation.js?v=5"></script>

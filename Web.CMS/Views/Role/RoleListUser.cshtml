@@ -1,0 +1,45 @@
+﻿@{
+    Layout = null;
+}
+@using Entities.ViewModels
+@model RoleUserViewModel
+
+@if (Model.ListUser.Count > 0)
+{
+    <table class="table table-nowrap">
+        <thead>
+            <tr>
+                <th>Họ tên</th>
+                <th>Tài khoản</th>
+                <th>Ngày tạo</th>
+                <th class="text-center">Trạng thái</th>
+                <th>Địa chỉ</th>
+                <th>Gỡ</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ListUser)
+            {
+            <tr>
+                <td>@item.FullName</td>
+                <td>@item.UserName</td>
+                <td>@item.CreatedOn</td>
+                <td class="text-center">
+                    @if (item.Status == 0)
+                    {
+                        <strong class="btn btn2 bg-success">Hoạt động</strong>
+                    }
+                    else
+                    {
+                        <strong class="btn btn2 bg-red">Tạm ngừng</strong>
+                    }
+                </td>
+                <td>@item.Address</td>
+                <td>
+                    <a class="fa fa-times" onclick="_role.OnDeleteUser('@Model.RoleId','@item.Id')"></a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}

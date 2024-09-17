@@ -1,0 +1,79 @@
+﻿@{
+    Layout = null;
+}
+@using Entities.Models
+@model IEnumerable<Department>
+
+@{
+    void RecursiveGridRow(Department item, int level = 0)
+    {
+        var childDatas = Model.Where(s => s.ParentId == item.Id);
+        <tr>
+            <td>
+                <a class="cursor-pointer" onclick="_department.ShowAddOrUpdate(0,'@item.Id')" title="Thêm phòng ban con">
+                    <i class="fa fa-plus"></i>
+                </a>
+            </td>
+            <td>
+                <div class="department_name" style="padding-left:@(level*20)px;">
+                    @item.DepartmentName
+                </div>
+            </td>
+            <td>@item.Description</td>
+            <td>
+
+                <a class="cursor-pointer" onclick="_department.ShowAddOrUpdate('@item.Id','@item.ParentId')" title="Chỉnh sửa">
+                    <i class="fa fa-edit"></i>
+                </a> &nbsp;&nbsp;
+                <a class="cursor-pointer" onclick="_department.OnDelete('@item.Id')" title="Xóa">
+                    <i class="fa fa-times"></i>
+                </a>
+            </td>
+        </tr>
+        @if (childDatas != null && childDatas.Any())
+        {
+            level++;
+            foreach (var child in childDatas)
+            {
+                RecursiveGridRow(child, level);
+            }
+        }
+    }
+}
+
+<div class="table-responsive table-default table-gray">
+    <table class="table table-nowrap">
+        <thead>
+            <tr>
+                <th style="width: 20px;">#</th>
+                <th>Tên phòng ban</th>
+                <th style="min-width: 300px;">Mô tả</th>
+                <th style="width: 100px;">Tác vụ</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                var parents = Model.Where(s => s.ParentId == 0);
+                foreach (var item in parents)
+                {
+                    RecursiveGridRow(item);
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <div class="search-null center mt40 mb40">
+                            <div class="mb24">
+                                <img src="/images/graphics/icon-search.png" alt="">
+                            </div>
+                            <h2 class="title txt_24">Không tìm thấy kết quả</h2>
+                            <div class="gray">Chúng tôi không tìm thấy thông tin mà bạn cần, vui lòng thử lại</div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

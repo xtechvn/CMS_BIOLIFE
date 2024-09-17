@@ -1,0 +1,829 @@
+﻿@{ ViewData["Title"] = "Quản lý khách hàng"; }
+@using Entities.Models
+@{
+    var AgencyType = (List<AllCode>)ViewBag.AgencyType;
+    var PermisionType = (List<AllCode>)ViewBag.PermisionType;
+    var ClientType = (List<AllCode>)ViewBag.ClientType;
+}
+
+<div class="row-main container bg-white rounded p-3" style="overflow-x: hidden;">
+    <div class="line-bottom" style="padding-bottom: 0;">
+        <div class="tab-default mb0" data-tab-container="tab-container-1">
+            <a href="#" class="active" data-lbl="danh-sach-phong">Danh sách khách hàng</a>
+
+        </div>
+    </div>
+
+    <div class="flex fillter-donhang">
+        <div class="form-group mb10 mr-2" style="min-width: 500px;">
+
+            <select class="select2 client-select main-staff-select" id="client" multiple="multiple" style="width:100% !important">
+            </select>
+        </div>
+        <div class="form-group select-list filter-list mb10 mr-2">
+            <div class="relative select-user">
+                <a href="javascript:;" class="btn-default white onclick">
+                    <i class="icofont-filter"></i>
+                    <span>Bộ lọc</span>
+                    <svg class="icon-svg ml-1">
+                        <use xlink:href="#CaretDown"></use>
+                    </svg>
+                </a>
+                <div class="select-option form-down" style="width: 600px;display:none;">
+                    <div class="wrap-tab">
+                        <div class="tab-default" style="border-bottom: 1px solid #CCCCCC;" id="myTab" role="tablist">
+                            <a href="#setting-tab1" class="active" data-toggle="tab" data-target="#setting-tab1" type="button" role="tab" aria-controls="setting-tab1" aria-selected="true">Khách hàng</a>
+                            @*<a href="#setting-tab2" data-toggle="tab" data-target="#setting-tab2" type="button" role="tab" aria-controls="setting-tab2" aria-selected="true">Người liên hệ</a>
+                                <a href="#setting-tab3" data-toggle="tab" data-target="#setting-tab3" type="button" role="tab" aria-controls="setting-tab3" aria-selected="true">Thông tin mua hàng</a>
+                                <a href="#setting-tab4" data-toggle="tab" data-target="#setting-tab4" type="button" role="tab" aria-controls="setting-tab4" aria-selected="true">Tìm kiếm nâng cao</a>*@
+                        </div>
+                        <div class="tab-content" id="myTabContent">
+                            <div id="setting-tab1" class="tab-pane fade " aria-labelledby="setting-tab1" role="tabpanel">
+                                <div class="">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="lbl">Mã KH</label>
+                                                <div class="wrap_input">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="lbl">Điện thoại</label>
+                                                <div class="wrap_input">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="lbl">Email</label>
+                                                <div class="wrap_input">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="lbl">Địa chỉ</label>
+                                                <div class="wrap_input">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="lbl">Người phụ trách</label>
+                                                <div class="wrap_input">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="lbl">Người tạo</label>
+                                                <div class="wrap_input">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label class="lbl">Sinh nhật</label>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <div class="wrap_input">
+                                                            <input type="text" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <div class="wrap_input">
+                                                            <input type="text" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <div class="wrap_input">
+                                                            <input type="text" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label class="lbl">Thời gian tạo khách hàng</label>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <div class="wrap_input">
+                                                            <input type="text" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <div class="wrap_input">
+                                                            <input type="text" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="lbl">Người giới thiệu</label>
+                                                <div class="wrap_input">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="lbl">Liên hệ cuối</label>
+                                                <div class="wrap_input">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="lbl">Giới tính</label>
+                                                <div class="wrap_input">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="lbl">Mối quan hệ</label>
+                                                <div class="wrap_input">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="lbl">Người kinh doanh</label>
+                                                <div class="wrap_input">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="lbl">Nguồn khách hàng</label>
+                                                <div class="wrap_input">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="lbl">Tổng điểm thưởng</label>
+                                                <div class="wrap_input">
+                                                    <input type="text" class="form-control mb-2">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="lbl">Tổng tiền thưởng</label>
+                                                <div class="wrap_input">
+                                                    <input type="text" class="form-control mb-2">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group mb-0">
+                                                <label class="lbl">Mô tả</label>
+                                                <div class="wrap_input">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group flex justify-content-between mt-3 pt-3 border-top">
+                                    <a href="javascript:;" onclick="_customer_manager.SeverFilter()" class="text-primary">
+                                        <b>
+                                            <i class="icofont-plus-circle"></i>Tạo bộ
+                                            lọc
+                                        </b>
+                                    </a>
+                                    <div class="flex align-items-center">
+                                        <a href="" class="text-primary">Khôi phục mặc định</a>
+                                        <button type="submit" class="btn btn-primary">Áp dụng</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="setting-tab2" class="tab-pane fade" aria-labelledby="setting-tab2" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="lbl">Tên người liên hệ</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="lbl">Số điện thoại liên hệ</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="lbl">Email</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="lbl">Giới tính</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="lbl">Sinh nhật người liên hệ</label>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <div class="wrap_input">
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <div class="wrap_input">
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <div class="wrap_input">
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="lbl">Ghi chú liên hệ</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group flex justify-content-between mt-3 pt-3 border-top">
+                                    <a href="javascript:;" onclick="_customer_manager.SeverFilter()" class="text-primary">
+                                        <b>
+                                            <i class="icofont-plus-circle"></i>Tạo bộ
+                                            lọc
+                                        </b>
+                                    </a>
+                                    <div class="flex align-items-center">
+                                        <a href="" class="text-primary">Khôi phục mặc định</a>
+                                        <button type="submit" class="btn btn-primary">Áp dụng</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="setting-tab3" class="tab-pane fade show active" aria-labelledby="setting-tab3" role="tabpanel">
+                                <form id="bo-loc-tab3" onsubmit="return false">
+                                    <div class="row">
+
+                                        @*<div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="lbl">Đối tượng</label>
+                                                <div class="wrap_input">
+                                                    <select class="select2" name="" id="AgencyType" style="width: 150px; height: 30px;">
+                                                        <option value="-1">Tất cả đối tượng</option>
+                                                        @if (AgencyType != null)
+                                                        {
+                                                            foreach (var item in AgencyType)
+                                                            {
+                                                                <option value="@item.CodeValue">@item.Description</option>
+                                                            }
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="lbl">loại khách hàng</label>
+                                                <div class="wrap_input">
+                                                    <select class="select2" id="ClientType" name="" style="width: 220px; height: 30px;">
+                                                        <option value="-1">Tất cả loại khách hàng</option>
+                                                        @if (ClientType != null)
+                                                        {
+                                                            foreach (var item in ClientType)
+                                                            {
+                                                                <option value="@item.CodeValue">@item.Description</option>
+
+                                                            }
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*<div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="lbl">Thời gian tạo</label>
+                                                    <div class="wrap_input">
+                                                        <div class="datepicker-wrap" style="width:100%">
+                                                            <input class="form-control date text-left filter_date_daterangepicker" id="createdate" type="text"
+                                                                   name="datetimeApprove" style="min-width: 180px !important" placeholder="Thời gian tạo" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>*@
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="lbl">Người tạo</label>
+                                                <div class="wrap_input">
+
+                                                    <select class="select2 client-select main-staff-select" id="CreatedBy" multiple="multiple" style="width:100% !important">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="lbl">Tổng thanh toán</label>
+                                                <div class="wrap_input ">
+                                                    <div id="minamount_form" style="display: flex;">
+                                                        <div><input type="text" class="form-control mb10 mr-2 currency" id="minamount" placeholder="Từ" style="width:120px"></div>
+                                                        <div> <input type="text" class="form-control mb10 mr-2 currency" id="maxamount" placeholder="Đến" style="width:120px"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group flex justify-content-between mt-3 pt-3 border-top">
+                                        <a href="#add-bo-loc" class="text-primary open-popup">
+                                            <b>
+                                                <i class="icofont-plus-circle"></i>Tạo bộ lọc
+                                            </b>
+                                        </a>
+                                        <div class="flex align-items-center">
+                                            <a href="javascripts:;" onclick="_customer_manager.Clearboloc('bo-loc-tab3')" class="text-primary">Khôi phục mặc định</a>
+                                            <button type="button" onclick="_customer_manager.SearchData2()" class="btn btn-primary">Áp dụng</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                            <div id="setting-tab4" class="tab-pane fade" aria-labelledby="setting-tab4" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group wrap_input">
+                                            <label class="radio mb0 ml5">
+                                                <input type="radio" name="">
+                                                <span class="checkmark"></span>
+                                                Đã sử dụng
+                                            </label>
+                                            <label class="radio mb0 ml5">
+                                                <input type="radio" name="">
+                                                <span class="checkmark"></span>
+                                                Đã xóa
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="lbl">Thêm điều kiện lọc</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="lbl">Nhóm khách hàng</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="lbl">Thời gian tạo khách hàng</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="lbl">Mã tiếp thị liên kết</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="lbl">Chiến dịch</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="lbl">Trạng thái cơ hội</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="lbl">Thời gian tạo cơ hội</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="lbl">Người phụ trách cơ hội</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="lbl">Quốc gia</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="lbl">Tỉnh/TP</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="lbl">Quận/Huyện</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group flex justify-content-between mt-3 pt-3 border-top">
+                                    <a href="javascript:;" onclick="_customer_manager.SeverFilter()" class="text-primary flex gap10">
+                                        <i class="icofont-plus-circle"></i>Tạo bộ
+                                        lọc
+                                    </a>
+                                    <div class="flex align-items-center gap10">
+                                        <a href="" class="text-primary">Khôi phục mặc định</a>
+                                        <button type="submit" class="btn btn-primary px-3">Áp dụng</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group mb10 mr-2" style="min-width: 250px;">
+
+            <select class="select2 client-select main-staff-select" id="filter-client" multiple="multiple" style="width:100% !important" placeholder="Bộ lọc đã lưu">
+            </select>
+        </div>
+        <div class="form-group mb10 mr-2">
+            <select class="select2" id="PermisionType" name="" style="width: 220px; height: 30px;">
+                <option value="-1">Tất cả nhóm khách hàng</option>
+                @if (PermisionType != null)
+                {
+                    foreach (var item in PermisionType)
+                    {
+                        <option value="@item.CodeValue">@item.Description</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="form-group mb10 mr-2" style="min-width: 260px;">
+            <select class="select2 client-select main-staff-select" id="txtNguoiTao" multiple="multiple" style="width:100% !important">
+            </select>
+        </div>
+
+        <div class="relative">
+            <a href="javascript:;" class="btn btn-default white onclick-filter">
+                <svg class="icon-svg mr-1">
+                    <use xlink:href="#Calendar"></use>
+                </svg>
+                <span id="check_radio_name">Tất cả</span>
+                <svg class="icon-svg ml-1">
+                    <use xlink:href="#CaretDown"></use>
+                </svg>
+            </a>
+            <div class="select-option form-down-filter" id="bo-loc-date" style="display:none">
+                <ul class="scroll-inner">
+                    <li>
+                        <label class="radio">
+                            <input type="radio" name="optradio" value="0" checked="">
+                            <span class="checkmark"></span>
+                            Tất cả
+                        </label>
+                    </li>
+
+                    <li>
+                        <label class="radio">
+                            <input type="radio" name="optradio" value="1">
+                            <span class="checkmark"></span>
+                            Hôm nay
+                        </label>
+                    </li>
+                    <li>
+                        <label class="radio">
+                            <input type="radio" name="optradio" value="2">
+                            <span class="checkmark"></span>
+                            Hôm qua
+                        </label>
+                    </li>
+                    <li>
+                        <label class="radio">
+                            <input type="radio" name="optradio" value="3">
+                            <span class="checkmark"></span>
+                            Tuần trước
+                        </label>
+                    </li>
+                    <li>
+                        <label class="radio">
+                            <input type="radio" name="optradio" value="4">
+                            <span class="checkmark"></span>
+                            Tháng này
+                        </label>
+                    </li>
+                    <li>
+                        <label class="radio">
+                            <input type="radio" name="optradio" value="5">
+                            <span class="checkmark"></span>
+                            Tháng trước
+                        </label>
+                    </li>
+                    <li>
+                        <label class="radio">
+                            <input type="radio" name="optradio" value="6">
+                            <span class="checkmark"></span>
+                            Quý này
+                        </label>
+                    </li>
+                    <li>
+                        <label class="radio">
+                            <input type="radio" name="optradio" value="7">
+                            <span class="checkmark"></span>
+                            Quý trước
+                        </label>
+                    </li>
+                    <li>
+                        <label class="radio">
+                            <input type="radio" name="optradio" value="8">
+                            <span class="checkmark"></span>
+                            Khác
+                        </label>
+                        <div class="flex mb-3 gap10 flex-nowrap align-items-center justify-content-between">
+                            @*<div class="wrap_input">
+                                    <input type="text" class="form-control" placeholder="Ngày bắt đầu">
+                                </div>
+                                <i class="icofont-arrow-right"></i>
+                                <div class="wrap_input">
+                                    <input type="text" class="form-control" placeholder="Ngày kết thúc">
+                                </div>*@
+                            <div class="datepicker-wrap" style="width:100%">
+                                <input class="form-control date text-left filter_date_daterangepicker" id="createdate" type="text"
+                                       name="datetimeApprove" style="min-width: 180px !important" placeholder="Thời gian tạo" />
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="text-right">
+                    <a href="javascript:;" onclick="_customer_manager.Closeboloc()">Hủy bỏ</a>
+                    <a href="javascript:;" onclick="_customer_manager.getList()" class="ml-3 btn btn-primary">Áp dụng</a>
+                </div>
+            </div>
+        </div>
+        <div class="form-group mb10 mr-2" style="display:none">
+            <select class="select2" name="" style="width: 180px;">
+                <option value="">Tất cả bộ phận phụ trách</option>
+                <option value="">Đại lý</option>
+                <option value="">Cộng tác viên</option>
+                <option value="">Mice/Corp/Doanh nghiệp</option>
+            </select>
+        </div>
+
+        <div class="form-group mb10 mr-2">
+            @*<button class="btn-search btn-default" type="button" onclick="_customer_manager.Export()" id="btnExport">
+                    <i class="fa fa-file-excel-o" id="icon-export" title="Xuất excel">
+                    </i>
+                </button>*@
+            <button type="button" class="btn btn-default bg-main" onclick="_customer_manager.SearchData()">
+                <svg class="icon-svg" style="vertical-align: sub;">
+                    <use xlink:href="/images/icons/icon.svg#search"></use>
+                </svg>
+                Tìm kiếm
+            </button>
+        </div>
+        <div class="">
+            <div class="">
+                @*@if (ViewBag.buttomThem == 1)
+                    {
+                        <button type="button" class="btn btn-default bg-main mb10 mr-2" onclick="_customer_manager.OpenPopup('')"><i class="fa fa-plus-circle"></i>Tạo mới khách hàng</button>
+                    }*@
+
+                <div class="row-main-head mb10 mr-2" style="display:none;">
+                    <div class="down-up ">
+                        <a class="btn btn-default onclick" href="javascript:;">
+                            <i class="fa fa-bars"></i>
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                        <div class="form-down text-nowrap" style="display: none;">
+                            <div class="grid-slide">
+                                <label class="check-list mb10 mr25">
+                                    <input type="checkbox" id="STT" onclick="_customer_manager.ChangeSetting(1)" class="checkbox-tb-column" data-id="1">
+                                    <span class="checkmark"></span>
+                                    STT
+                                </label>
+                                <label class="check-list mb10 mr25">
+                                    <input type="checkbox" id="MaKH" onclick="_customer_manager.ChangeSetting(2)" class="checkbox-tb-column" data-id="2">
+                                    <span class="checkmark"></span>
+                                    Mã KH
+                                </label>
+                                <label class="check-list mb10 mr25">
+                                    <input type="checkbox" id="TenKH" onclick="_customer_manager.ChangeSetting(3)" class="checkbox-tb-column" data-id="3">
+                                    <span class="checkmark"></span>
+                                    Tên KH
+                                </label>
+                                <label class="check-list mb10 mr25">
+                                    <input type="checkbox" id="LienHe" onclick="_customer_manager.ChangeSetting(4)" class="checkbox-tb-column" data-id="4">
+                                    <span class="checkmark"></span>
+                                    Liên hệ
+                                </label>
+                                <label class="check-list mb10 mr25">
+                                    <input type="checkbox" id="DoiTuong" onclick="_customer_manager.ChangeSetting(5)" class="checkbox-tb-column" data-id="5">
+                                    <span class="checkmark"></span>
+                                    Đối tượng
+                                </label>
+                                <label class="check-list mb10 mr25">
+                                    <input type="checkbox" id="LoaiKH" onclick="_customer_manager.ChangeSetting(6)" class="checkbox-tb-column" data-id="6">
+                                    <span class="checkmark"></span>
+                                    Loại KH
+                                </label>
+                                <label class="check-list mb10 mr25">
+                                    <input type="checkbox" id="NhomKH" onclick="_customer_manager.ChangeSetting(7)" class="checkbox-tb-column" data-id="7">
+                                    <span class="checkmark"></span>
+                                    Nhóm KH
+                                </label>
+
+                                <label class="check-list mb10 mr25">
+                                    <input type="checkbox" id="TongTT" onclick="_customer_manager.ChangeSetting(8)" class="checkbox-tb-column" data-id="8">
+                                    <span class="checkmark"></span>
+                                    Tổng thanh toán
+                                </label>
+                                <label class="check-list mb10 mr25">
+                                    <input type="checkbox" id="VNPhuTrach" onclick="_customer_manager.ChangeSetting(9)" class="checkbox-tb-column" data-id="9">
+                                    <span class="checkmark"></span>
+                                    Nhân viên phụ trách
+                                </label>
+
+                                <label class="check-list mb10 mr25">
+                                    <input type="checkbox" id="NgayTao" onclick="_customer_manager.ChangeSetting(10)" class="checkbox-tb-column" data-id="10">
+                                    <span class="checkmark"></span>
+                                    Ngày tạo
+                                </label>
+
+                                <label class="check-list mb10 mr25">
+                                    <input type="checkbox" id="NgayCN" onclick="_customer_manager.ChangeSetting(11)" class="checkbox-tb-column" data-id="11">
+                                    <span class="checkmark"></span>
+                                    Ngày cập nhật
+                                </label>
+
+                                <label class="check-list mb10 mr25">
+                                    <input type="checkbox" id="NguoiTao" onclick="_customer_manager.ChangeSetting(12)" class="checkbox-tb-column" data-id="12">
+                                    <span class="checkmark"></span>
+                                    Người tạo
+                                </label>
+                                <label class="check-list mb10 mr25">
+                                    <input type="checkbox" id="Status" onclick="_customer_manager.ChangeSetting(13)" class="checkbox-tb-column" data-id="13">
+                                    <span class="checkmark"></span>
+                                    Trạng thái
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex gap10 mb10 align-items-center justify-content-between">
+        <div class="flex gap10 left-button">
+
+            <div class="relative filter-nguonkh">
+
+            </div>
+
+        </div>
+        <div class="right-button flex gap10 ">
+
+            <button type="button" class="btn btn-outline-secondary" onclick="_customer_manager.Export()" id="btnExport">
+                <i class="icofont-download" id="icon-export" title="Xuất excel"></i>
+                Xuất Excel
+            </button>
+            @if (ViewBag.buttomThem == 1)
+            {
+                <button type="button" class="btn btn-primary" onclick="_customer_manager.OpenPopup('')">
+                    <i class="icofont-plus-circle"></i>
+                    Tạo mới khách hàng
+                </button>
+            }
+
+        </div>
+    </div>
+
+    <div class="wrap_bg wrap_bg_no-padding mb20">
+        <div id="grid_data_client">
+            <img src="/images/icons/loading.gif" style=" width: 100px; height: 100px; margin-left:46%;" id="imgLoading_client" />
+        </div>
+    </div>
+
+</div>
+<div id="add-bo-loc" class="white-popup mfp-hide">
+    <div class="content_lightbox">
+        <div class="head">
+            Lưu bộ lọc
+        </div>
+        <div class="form-default">
+
+            <div class="form-group">
+                <label class="lbl">Tên bộ lọc</label>
+                <div class="wrap_input">
+                    <input type="text" class="form-control" id="Cache_name">
+                    <label id="Cache_name-error" class="error" for="Cache_name" style="display:none;">Tên bộ lọc không thể bỏ trống</label>
+                </div>
+            </div>
+            <div class="form-group align-right mt20 block">
+                <button type="button" class="btn btn-default bg-main" onclick="_customer_manager.SeverFilter()"><i class="fa fa-floppy-o"></i>Lưu</button>
+                <button type="button" class="btn btn-default cancel" onclick="$.magnificPopup.close();"><i class="fa fa-minus-circle"></i>Bỏ qua</button>
+            </div>
+        </div>
+    </div>
+    <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+</div>
+
+
+
+
+@section scripts {
+
+    <script type="text/javascript" src="/modules/customer_manager.js"></script>
+    <script type="text/javascript" src="~/js/zebra_datepicker.min.js"></script>
+    <script>
+        $('#createdate').daterangepicker({
+            autoUpdateInput: false,
+            locale: {
+                cancelLabel: 'Clear'
+            }
+        });
+        $('#createdate').on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val('');
+            isPickerApprove = false;
+        });
+        $('#createdate').on('apply.daterangepicker', function (ev, picker) {
+            $(this).val(picker.startDate.format('DD /MM/YYYY') + ' - ' + picker.endDate.format('DD /MM/YYYY'));
+            isPickerApprove = true;
+        });
+    </script>
+
+}
+

@@ -1,0 +1,72 @@
+﻿@{
+    Layout = null;
+}
+@using Entities.ViewModels
+@using Entities.Models
+@model GenericViewModel<UserGridModel>
+
+<table class="table table-nowrap">
+    <thead>
+        <tr class="bg-main2">
+            <th>STT</th>
+            <th>Tên đăng nhập</th>
+            <th width="20%">Họ tên</th>
+            <th>Điện thoại</th>
+            <th>Ngày sinh</th>
+            <th>Email</th>
+            <th>Vai trò</th>
+            <th>Phòng ban</th>
+            <th>Chức vụ</th>
+            <th class="mfp-hide">Địa chỉ</th>
+            <th class="mfp-hide">Trạng thái</th>
+            <th class="mfp-hide">Ngày tạo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int counter = 0;
+        }
+        @foreach (var item in Model.ListData)
+        {
+            counter++;
+        <tr class="@((counter % 2 == 0)? "line-item bg-gray" : "line-item")" data-id="@item.Id" data-ajaxdetail="false">
+            <td>@((Model.CurrentPage-1) * Model.PageSize + counter)</td>
+            <td>@item.UserName</td>
+            <td class="name_img">
+                <div class="flex align-center">
+                    <div class="ava">
+                        <span class="thumb_img thumb_5x5">
+                            <img src="@(item.Avata ?? string.Empty )" onerror="_imageError(this)" />
+                        </span>
+                    </div>
+                    <div class="content">
+                        @item.FullName
+                    </div>
+                </div>
+            </td>
+            <td>@item.Phone</td>
+            <td>@(item.BirthDay == null ? "N/A" : ((DateTime)item.BirthDay).ToString("dd/MM/yyyy"))</td>
+            <td>@item.Email</td>
+            <td>@string.Join(", ", item.RoleList.Select(s => s.Name)) </td>
+            <td>@(item.UserDepartment==null || item.UserDepartment.DepartmentName==null?"": item.UserDepartment.DepartmentName) </td>
+            <td>@(item.UserPosition==null || item.UserPosition.Name==null?"": item.UserPosition.Name) </td>
+            <td class="mfp-hide">@item.Address</td>
+            <td class="mfp-hide">@(item.Status == 1 ? "Tạm ngừng":"Đang hoạt động")</td>
+            <td class="mfp-hide">@(item.CreatedOn == null ? "N/A" : ((DateTime)item.CreatedOn).ToString("dd/MM/yyyy"))</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@await Component.InvokeAsync("Paging", new
+{
+    pageModel = new Paging()
+    {
+        TotalRecord = Model.TotalRecord,
+        TotalPage = Model.TotalPage,
+        CurrentPage = Model.CurrentPage,
+        PageSize = Model.PageSize,
+        RecordName = "người dùng",
+        PageAction = "_user.OnPaging({0})"
+    }
+})

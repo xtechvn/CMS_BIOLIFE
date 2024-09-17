@@ -1,0 +1,44 @@
+﻿@using Entities.ViewModels;
+@{
+    Layout = null;
+}
+@model List<OrderPaymentRequest>
+<div class="border bg-white mb20">
+    <div class="p-3">
+        <h6 class="bold mb-2">Yêu cầu xuất hóa đơn</h6>
+        <div class="table-responsive table-gray">
+            <table class="table table-nowrap">
+                <thead>
+                    <tr>
+                        <th style="width: 50px;">STT</th>
+                        <th>Mã hóa đơn</th>
+                        <th>Nội dung</th>
+                        <th>Số tiền</th>
+                        <th>Trạng thái</th>
+                        <th style="width: 250px;">Ngày gửi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if(Model != null && Model.Count > 0)
+                    {
+                        var i = 0;
+                        foreach(var item in Model)
+                        {
+                            i++;
+                            <tr>
+                                <td>@i</td>
+                                <td>@item.OrderNo</td>
+                                <td>@item.Note</td>
+                                <td>@item.Amount.ToString("N0")</td>
+                                <td>@item.StatusName</td>
+                                <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
+                            </tr>
+                        }
+                    }
+                    
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

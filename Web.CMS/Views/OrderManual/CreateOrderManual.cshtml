@@ -1,0 +1,129 @@
+﻿@{
+    Layout = null;
+}
+@using Entities.Models
+@{
+    var branch = (List<AllCode>)ViewBag.Branch;
+}
+<style>
+    .stop-scrolling {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .client-suggestion {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        max-height: 300px;
+        width: 100%;
+        cursor: pointer;
+        min-height: 150px;
+        z-index: 2;
+    }
+    .select2-container {
+        z-index: 1000;
+    }
+</style>
+<div class="modal fade" id="create_order_manual" style="display: block;" data-select2-id="myModal0" aria-modal="true" role="dialog">
+    <div class="modal-dialog" style="max-width: 95%; margin-top: 70px;">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Tạo đơn hàng</h4>
+                <button type="button" class="close" data-dismiss="modal" onclick="_order_manual.Close()">×</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="form-create-order-manual" onsubmit="return false">
+                    <div class="grid grid__2 grid-don-hang gap10 mb20">
+                        <div class="grid-item">
+                            <div class="border mb10">
+                                <div class="lb-form">Thông tin khách hàng</div>
+                                <div class="form-default3 pd10">
+                                    <div class="form-group">
+                                        <div class="wrap_input">
+                                            <select class="select2 client-select" id="client-select" style="width:100% !important">
+                                            </select>
+                                        </div>
+                                        <div class="wrap_input error_client_select" style="display:none;">
+                                            <p class="txt_error error error_client_select_p" style="font-size:11px;color:red;"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border">
+                                <div class="lb-form">Thông tin phụ trách</div>
+                                <div class="form-default3 pd10">
+                                    <div class="form-group">
+                                        <label class="lbl">Nhân viên chính <sup class="red">*</sup></label>
+                                        <select class="select2 main-staff-select" id="main-staff" style="width:100% !important">
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb0">
+                                        <label class="lbl">Nhân viên phụ</label>
+                                        <select class="select2" id="sub-staff" style="width:100% !important" multiple="multiple">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="border">
+                                <div class="lb-form">Thông tin cơ bản</div>
+                                <div class="form-default3 pd10">
+                                    <div class="form-group">
+                                        <label class="lbl">Nhãn đơn <sup class="red">*</sup></label>
+                                        <div class="wrap_input">
+                                            <input type="text" class="form-control" id="order_label" name="order_label">
+                                        </div>
+                                    </div>
+                                    <div class="grid grid__2 gap10">
+                                        <div class="form-group">
+                                            <label class="lbl">Chi nhánh <sup class="red">*</sup></label>
+                                            <div class="wrap_input">
+                                                <select class="form-control" id="branch">
+                                                    @foreach (var a in branch)
+                                                    {
+                                                        <option value="@(a.CodeValue)">@(a.Description)</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="lbl">Nguồn tạo đơn <sup class="red">*</sup></label>
+                                            <div class="wrap_input">
+                                                <select class="form-control" disabled="disabled" style="background-color:lightgray">
+                                                    <option selected="selected">Offline </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb0">
+                                        <label class="lbl">Ghi chú</label>
+                                        <div class="wrap_input">
+                                            <textarea class="form-control" id="note" style="height: 90px;"></textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-default btn btn-default cancel" onclick="_order_manual.Close();">Bỏ qua</button>
+                        <button id="btn_summit_order" disabled class="btn btn-default" onclick="_order_detail_create.Summit();">Tạo</button>
+                        <img src="/images/icons/loading.gif" style="width: 35px;height: 35px;margin-left: 10px;margin-bottom: 10px; display:none;" class="img_loading_summit coll">
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    _order_detail_create.Initialization();
+</script>

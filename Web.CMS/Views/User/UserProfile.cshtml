@@ -1,0 +1,111 @@
+﻿@{
+    Layout = null;
+}
+@using Entities.Models
+@using Entities.ViewModels
+@model UserDataViewModel
+@{
+    var RoleList = (List<Role>)ViewBag.RoleList;
+}
+<form id="form-user-profile">
+    <div class="flex">
+        <div class="up-file mb15">
+            <div class="ava default mb10">
+                <img class="img-preview" src="@(Model.Avata ?? string.Empty)" onerror="_imageError(this)" />
+            </div>
+            <label class="choose">
+                <input type="file" name="imagefile" onchange="_account.OnChangeImage()" />
+                chọn ảnh
+            </label>
+        </div>
+        <div class="form-default row">
+            <div class="col-md-6">
+                <input type="hidden" asp-for="@Model.Id" />
+                <input type="hidden" asp-for="@Model.Status" />
+                <div class="form-group">
+                    <label class="lbl">Họ tên</label>
+                    <div class="wrap_input">
+                        <input type="text" class="form-control" asp-for="@Model.FullName" placeholder="Nhập họ và tên" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="lbl">Tên đăng nhập</label>
+                    <div class="wrap_input">
+                        <input type="text" class="form-control" asp-for="@Model.UserName" disabled="disabled" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="lbl">Email</label>
+                    <div class="wrap_input">
+                        <input type="text" class="form-control" asp-for="@Model.Email" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="lbl">Phòng ban</label>
+                    <div class="wrap_input">
+                        <input type="text" class="form-control" value="@Model.DepartmentName" disabled="disabled" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="lbl">Vai Trò</label>
+                    <div class="wrap_input">
+                        @foreach (var item in RoleList.Select(s => s.Name))
+                        {
+                            <p style="margin-bottom: 5px;">@item</p>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="lbl">Điện thoại</label>
+                    <div class="wrap_input">
+                        <input type="text" class="form-control" asp-for="@Model.Phone" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="lbl">Địa chỉ</label>
+                    <div class="wrap_input">
+                        <input type="text" class="form-control" asp-for="@Model.Address" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="lbl">Ngày sinh</label>
+                    <div class="wrap_input">
+                        <input class="datepicker-input form-control" type="text" name="BirthDayPicker" value="@(Model.BirthDay == null ? "" : ((DateTime)Model.BirthDay).ToString("dd/MM/yyyy"))">
+                    </div>
+                </div>
+                <div class="form-group male">
+                    <label class="lbl">Giới tính</label>
+                    <label class="radio-inline"><input type="radio" asp-for="@Model.Gender" value="1">Nam</label>
+                    <label class="radio-inline"><input type="radio" asp-for="@Model.Gender" value="0">Nữ</label>
+                </div>
+                <div class="form-group">
+                    <label class="lbl">Ghi chú</label>
+                    <div class="wrap_input">
+                        <input type="text" class="form-control" asp-for="@Model.Note">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group align-right col-12 mt20 block">
+                <button type="button" class="btn btn-default" onclick="_account.OnUpdate()"><i class="fa fa-floppy-o"></i>Lưu</button>
+                <button type="button" class="btn btn-default cancel" onclick="$.magnificPopup.close();"><i class="fa fa-ban"></i>Bỏ qua</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript" defer>
+    $('.datepicker-input').daterangepicker({
+               singleDatePicker: true,
+               showDropdowns: true,
+               minYear: 1901,
+               maxYear: parseInt(moment().format('YYYY'), 10),
+               locale: {
+                   format: 'DD/MM/YYYY'
+               }
+           }, function (start, end, label) {
+               $(this).val(start.format('MM/DD/YYYY'));
+               $(this).change();
+           });
+</script>

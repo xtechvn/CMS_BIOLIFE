@@ -1,0 +1,104 @@
+﻿@using Entities.Models
+@{
+    var _ListMenu = (List<Menu>)ViewBag.Menu;
+    var ListNotify = (List<Menu>)ViewBag.GetListNotify;
+    var _ParentMenus = _ListMenu.Where(s => s.ParentId == 0).OrderBy(s => s.OrderNo);
+    var ActivedParentId = (int)ViewBag.ParentId;
+    var ActivedMenuId = (int)ViewBag.MenuId;
+
+    void GenChildMenu(int parentId)
+    {
+        var childDatas = _ListMenu.Where(s => s.ParentId == parentId);
+        @if (childDatas != null && childDatas.Any())
+        {
+            @foreach (var subMenu in childDatas)
+            {
+
+                <li>
+                    <a class="@(subMenu.Id == ActivedMenuId ? "active" : string.Empty)" href="@subMenu.Link">
+                        <img src="@subMenu.Icon" style="width:40px;">
+                        @subMenu.Name
+                    </a>
+                </li>
+
+                GenChildMenu(subMenu.Id);
+            }
+        }
+    }
+}
+
+<section class="menu-left"style="width:77px !important">
+
+    @*<a class="btn_control_menu" href="javascripts:;">
+        <svg class="icon-svg">
+            <use xlink:href="/images/icons/icon.svg#menu"></use>
+        </svg>
+    </a>*@
+    <h1 class="logo" title="new-ca" href="/">
+        <a href="/" class="before"><img src="/images/menu/Logo_gọn.png" alt=""></a>
+        <a href="/" class="after"><img src="/images/graphics/logo-a.svg" alt=""></a>
+    </h1>
+    <div class="nav-left">
+        <ul class="accordion">
+            @*<li class="accordion-item ">
+                    <a href="/Order/Index"><i class="fa fa-newspaper-o"></i><span>Đơn hàng</span></a>
+                    <span class="click open"></span>
+                    <ul class="level2 collapse" style="display: block;">
+                        <li><a href="#">Giao dịch tin nhắn chuyển khoản</a></li>
+                        <li><a href="#">Doanh thu theo phòng ban</a></li>
+                        <li><a href="#">Công nợ phải trả NCC</a></li>
+                    </ul>
+                </li>*@
+            @foreach (var parent in _ParentMenus)
+            {
+                var parent_link = parent.Link;
+                var childDatas = _ListMenu.Where(s => s.ParentId == parent.Id);
+                if (string.IsNullOrEmpty(parent_link))
+                {
+                    var first_child = _ListMenu.FirstOrDefault(s => s.ParentId == parent.Id && !string.IsNullOrEmpty(s.Link));
+                    parent_link = first_child.Link;
+                }
+            <li class="accordion-item " style="margin-bottom: 0 !important">
+                <a class="@(parent.Id == ActivedParentId ? "active" : string.Empty)" href="@parent_link"style="padding:0 !important">
+                    <img src="@parent.Icon" style="width:24px;"> <span>@parent.Name</span>
+                </a>
+                @if (childDatas!=null && childDatas.Any())
+                    {
+                <span class="click"></span>
+                    }
+                <ul class="level2 collapse" style=" display: @(childDatas != null && childDatas.Any(x=>x.Id == ActivedMenuId) ? "block" : "none");">
+                    @{
+                        if (childDatas != null && childDatas.Any())
+                        {
+                        @foreach (var subMenu in childDatas)
+                            {
+
+                        <li>
+                            <a class="@(subMenu.Id == ActivedMenuId ? "active" : string.Empty)" href="@subMenu.Link">
+                                <img src="@subMenu.Icon" style="width:40px;">
+                                <span> @subMenu.Name</span>
+                            </a>
+                        </li>
+
+                            }
+                        }
+                    }
+
+                </ul>
+            </li>
+            }
+
+
+        </ul>
+    </div>
+    <form method="post" asp-controller="account" asp-action="logout" style="color:white;">
+        <a class="out" onclick="$(this).closest('form').submit(); _account.logOut()" style="cursor:pointer">
+            @*<svg class="icon-svg">
+            <use xlink:href="/images/icons/icon.svg#Out"></use>
+        </svg>*@
+            <img src="/images/menu/Đăng xuất.svg" style="width:24px;">
+            Đăng xuất
+        </a>
+    </form>
+</section>
+

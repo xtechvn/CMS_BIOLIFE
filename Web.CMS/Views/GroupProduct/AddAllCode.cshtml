@@ -1,0 +1,69 @@
+﻿@model Entities.Models.AllCode
+@{
+    Layout = null;
+    var utm_source = (bool)ViewBag.utm_source;
+    var utm_medium = (bool)ViewBag.utm_medium;
+    var utm_campaign = (bool)ViewBag.utm_campaign;
+}
+<div id="them-chien-dich" class="white-popup">
+    <div class="content_lightbox">
+        <div class="form-default">
+            <form id="add-allcode">
+                @if (utm_source)
+                {
+                    <div class="form-group">
+                        <label class="lbl">Utm source</label>
+                        <div class="wrap_input">
+                            <input type="text" class="form-control " hidden asp-for="@Model.Type" value="UTM_SOURCE">
+                            <input type="text" class="form-control " asp-for="@Model.Description" id="utm_source-add">
+                        </div>
+                    </div>
+                }
+                @if (utm_medium)
+                {
+                    <div class="form-group">
+                        <label class="lbl">Utm medium</label>
+                        <div class="wrap_input">
+                            <input type="text" class="form-control " hidden asp-for="@Model.Type" value="UTM_MEDIUM">
+                            <input type="text" class="form-control " asp-for="@Model.Description" id="utm_medium-add">
+                        </div>
+                    </div>
+                }
+                @if (utm_campaign)
+                {
+                    <div class="form-group">
+                        <label class="lbl">Utm campaign</label>
+                        <div class="wrap_input">
+                            <input type="text" class="form-control " hidden asp-for="@Model.Type" value="UTM_CAMPAIGN">
+                            <input type="text" class="form-control " asp-for="@Model.Description" id="utm_campaign-add">
+                        </div>
+                    </div>
+                }
+            </form>
+
+            <div class="form-group align-right mt20 block">
+                @if (utm_source)
+                {
+                    <button type="submit" onclick="_menu.AddUtmSource()" class="btn btn-default bg-main">
+                        <i class="fa fa-floppy-o"></i>Lưu
+                    </button>
+                }
+                @if (utm_campaign)
+                {
+                    <button type="submit" onclick="_menu.AddUtmCampaign()" class="btn btn-default bg-main">
+                        <i class="fa fa-floppy-o"></i>Lưu
+                    </button>
+                }
+                @if (utm_medium)
+                {
+                    <button type="submit" onclick="_menu.AddUtmMedium()" class="btn btn-default bg-main">
+                        <i class="fa fa-floppy-o"></i>Lưu
+                    </button>
+                }
+                <button type="button" class="btn btn-default cancel" onclick="$.magnificPopup.close();">
+                    <i class="fa fa-minus-circle"></i>Bỏ qua
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,155 @@
+/**
+iconfont Webfont
+*/
+@font-face {
+	font-family: 'iconfont';
+	src: url('iconfont.eot?1658311375546');
+	src: url('iconfont.eot?#iefix-1658311375546') format('embedded-opentype'),
+		url('iconfont.woff2?1658311375546') format('woff2'),
+		url('iconfont.woff?1658311375546') format('woff'),
+		url('iconfont.ttf?1658311375546') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^='iconfont-']:before,
+[class*=' iconfont-']:before {
+	font-family: 'iconfont';
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 1;
+	font-weight: normal;
+	font-style: normal;
+	speak: none;
+	text-decoration: inherit;
+	font-size: inherit;
+	text-transform: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/*
+Glyphs list
+*/
+ .iconfont-address:before {
+			content: '\ea01';
+		}
+
+		 .iconfont-bang-gia:before {
+			content: '\ea02';
+		}
+
+		 .iconfont-bao-cao:before {
+			content: '\ea03';
+		}
+
+		 .iconfont-box:before {
+			content: '\ea04';
+		}
+
+		 .iconfont-car:before {
+			content: '\ea05';
+		}
+
+		 .iconfont-compass:before {
+			content: '\ea06';
+		}
+
+		 .iconfont-crawl:before {
+			content: '\ea07';
+		}
+
+		 .iconfont-dashbroad:before {
+			content: '\ea08';
+		}
+
+		 .iconfont-elite:before {
+			content: '\ea09';
+		}
+
+		 .iconfont-face:before {
+			content: '\ea0a';
+		}
+
+		 .iconfont-hair:before {
+			content: '\ea0b';
+		}
+
+		 .iconfont-hair2:before {
+			content: '\ea0c';
+		}
+
+		 .iconfont-he-thong:before {
+			content: '\ea0d';
+		}
+
+		 .iconfont-history:before {
+			content: '\ea0e';
+		}
+
+		 .iconfont-hotel:before {
+			content: '\ea0f';
+		}
+
+		 .iconfont-mail:before {
+			content: '\ea10';
+		}
+
+		 .iconfont-map:before {
+			content: '\ea11';
+		}
+
+		 .iconfont-payment:before {
+			content: '\ea12';
+		}
+
+		 .iconfont-plane:before {
+			content: '\ea13';
+		}
+
+		 .iconfont-quick-sale:before {
+			content: '\ea14';
+		}
+
+		 .iconfont-search:before {
+			content: '\ea15';
+		}
+
+		 .iconfont-send:before {
+			content: '\ea16';
+		}
+
+		 .iconfont-setting:before {
+			content: '\ea17';
+		}
+
+		 .iconfont-shipped:before {
+			content: '\ea18';
+		}
+
+		 .iconfont-smartphone:before {
+			content: '\ea19';
+		}
+
+		 .iconfont-twiter:before {
+			content: '\ea1a';
+		}
+
+		 .iconfont-user:before {
+			content: '\ea1b';
+		}
+
+		 .iconfont-user2:before {
+			content: '\ea1c';
+		}
+
+		 .iconfont-vector:before {
+			content: '\ea1d';
+		}
+
+		 .iconfont-web-crawler:before {
+			content: '\ea1e';
+		}
+
+		

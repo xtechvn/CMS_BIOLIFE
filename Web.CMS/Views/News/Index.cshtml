@@ -1,0 +1,153 @@
+﻿
+@{
+    ViewData["Title"] = "Quản lý bài viết";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Entities.Models
+@{
+    var _ListArticleStatus = (List<AllCode>)ViewBag.ListArticleStatus;
+    var _ListAuthor = (List<User>)ViewBag.ListAuthor;
+    var _StrTreeViewCate = (string)ViewBag.StringTreeViewCate;
+}
+
+<div class="row-main container">
+    <div class="flex row-main-head">
+        <h2 class="title_page">Quản lý bài viết</h2>
+        <div class="btn-right text-right">
+            <a class="btn btn-default" href="/news/detail/0">
+                + Tạo bài viết
+            </a>
+            <div class="number-new text-center">
+                Tổng số bài
+                <div><strong id="total-article-filter">0</strong></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-serach-main flex row-main-head">
+        <div class="search-wrapper dynamic-dom">
+            <input type="text" class="input_search onclick-togle" id="BasicTitle" placeholder="Nhập tiêu đề bài viết">
+            <span class="search-btn">
+                <button type="button">
+                    <svg class="icon-svg">
+                        <use xlink:href="/images/icons/icon.svg#search"></use>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <button type="button" class="btn btn-default bg-main mb10 dynamic-dom" style="margin-left:10px" onclick="_news.BasicSearch()">
+            <svg class="icon-svg" style="vertical-align: sub;">
+                <use xlink:href="/images/icons/icon.svg#search"></use>
+            </svg>
+            Tìm kiếm
+        </button>
+        <div class="fillter-wrap mb10 dynamic-dom">
+            <a class="btn color-main" style="outline: 0;display: inline-block;" onclick="_news.OnOpenAdvanceSearch()">
+                Tìm kiếm nâng cao
+            </a>
+        </div>
+
+        <div class="fillter-search dropdown-content">
+            <form id="form-advance-search">
+                <div class="form-default row">
+                    <div class="col-md-6 mb20">
+                        <div class="form-group">
+                            <label class="lbl">Tiêu đề</label>
+                            <div class="wrap_input">
+                                <input type="text" class="form-control" id="AdvanceTitle" placeholder="Tiêu đề bài viết">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl">News ID</label>
+                            <div class="wrap_input">
+                                <input type="number" class="form-control" id="ArticleId" placeholder="Id bài viết">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl">Ngày đăng</label>
+                            <div class="wrap_input end_to_date flex">
+                                <div class="item">
+                                    <div class="datepicker-wrap">
+                                        <input id="FromDate" class="datepicker-input form-control" type="text"
+                                               placeholder="Từ ngày" />
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="datepicker-wrap">
+                                        <input id="ToDate" class="datepicker-input form-control" type="text"
+                                               placeholder="Đến ngày" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl">Tác giả</label>
+                            <div class="wrap_input">
+                                <select class="form-control select2" style="width:100%;" id="AuthorId">
+                                    <option value="-1">Tất cả</option>
+                                    @foreach (var item in _ListAuthor)
+                                    {
+                                        <option value="@item.Id">@item.UserName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl">Trạng thái</label>
+                            <div class="wrap_input">
+                                <select class="form-control select2" style="width:100%;" id="ArticleStatus">
+                                    <option value="-1">Tất cả</option>
+                                    @foreach (var item in _ListArticleStatus)
+                                    {
+                                        <option value="@item.CodeValue">@item.Description</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb20">
+                        <div class="flex space-between mb8">
+                            <div>Chuyên mục</div>
+                            <div class="action">
+                                <a class="cur-pointer" onclick="_news.OpenCategoryPanel()">
+                                    Mở rộng
+                                </a>
+                                <a class="cur-pointer" onclick="_news.CloseCategoryPanel()" style="border-left: 1px solid #ccc;margin-left: 5px;padding-left: 5px;">
+                                    Thu gọn
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="user-hierarchy-tag" style="border: 1px solid #CCCCCC;border-radius: 3px;padding:15px;margin:0">
+                            <div class="scrollbar-inner">
+                                <ul class="user-hierarchy-ul mb0" id="panel-category-filter">
+                                    @Html.Raw(_StrTreeViewCate)
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group text-center col-12 mt20 block">
+                        <button type="button" class="btn btn-default bg-main" onclick="_news.AdvanceSearch()">
+                            <svg class="icon-svg" style="vertical-align: sub;">
+                                <use xlink:href="/images/icons/icon.svg#search"></use>
+                            </svg>
+                            Tìm kiếm
+                        </button>
+                        <button type="button" class="btn btn-default cancel" onclick="_news.OnCloseAdvanceSearch()">
+                            Bỏ tìm kiếm nâng cao
+                            <i class="fa fa-caret-up"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="wrap_bg wrap_bg_no-padding mb20" id="grid-data">
+
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/modules/news.js?v=13"></script>
+}

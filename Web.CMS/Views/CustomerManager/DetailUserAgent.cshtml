@@ -1,0 +1,90 @@
+﻿@using Entities.Models
+@using Entities.ViewModels.UserAgent
+
+@model UserAgentViewModel
+<style>
+    .select2-container {
+        z-index: 1043;
+    }
+</style>
+<input value="@ViewBag.client " id="UserAgent_Client" style="display:none;"/>
+<form id="UserAgent_Detail" onsubmit="return false">
+    @if (Model != null)
+    {
+        <input type="text" class="form-control"id="id_userid"value="@Model.Id" style="display:none;">
+        <div class="row">
+            <div class="col-md-4 mb10"><label class="lbl mt5 mb0">Nhân viên hiện tại </label></div>
+            <div class="col-md-8 mb10">
+                <input type="text" class="form-control" value="@Model.UserId_Name" disabled>
+            </div>
+            <div class="col-md-4 mb10"><label id="sothue_cmnd" class="lbl mt5 mb0">Nhân viên mới </label><sup class="red">*</sup></div>
+            <div class="col-md-8 mb10">
+                <div class="wrap_input">
+                    <select class="select2 client-select" id="UserId_new" name="UserId_new" multiple="multiple" style="width:100% !important">
+                    </select>
+                </div>
+                <label id="UserId_new-error" class="error" for="UserId_new"></label>
+            </div>
+
+        </div>
+        <div class="text-center">
+            <button onclick="$.magnificPopup.close();" class="btn btn-default btn btn-default cancel">Bỏ qua</button>
+            <button onclick="_customer_manager_Detail.OnUpdataUserAgent()" class="btn btn-default">Lưu</button>
+        </div>
+    }
+    else
+    {
+        <input type="text" class="form-control" value="0" id="id_userid" style="display:none;">
+        <div class="row">
+
+            <div class="col-md-4 mb10"><label id="sothue_cmnd" class="lbl mt5 mb0">Nhân viên mới </label><sup class="red">*</sup></div>
+            <div class="col-md-8 mb10">
+                <div class="wrap_input">
+                    <select class="select2 client-select" id="UserId_new" name="UserId_new" multiple="multiple" style="width:100% !important">
+                    </select>
+                </div>
+                <label id="UserId_new-error" class="error" for="UserId_new"></label>
+            </div>
+
+        </div>
+        <div class="text-center">
+            <button onclick="$.magnificPopup.close();" class="btn btn-default btn btn-default cancel">Bỏ qua</button>
+            <button onclick="_customer_manager_Detail.OnUpdataUserAgent()" class="btn btn-default">Lưu</button>
+        </div>
+    }
+
+</form>
+
+<script>
+
+    $("#UserId_new").select2({
+        theme: 'bootstrap4',
+        placeholder: "Tên nhân viên",
+        maximumSelectionLength: 1,
+        ajax: {
+            url: "/CustomerManager/UserSuggestion",
+            type: "post",
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                var query = {
+                    txt_search: params.term,
+                }
+
+                // Query parameters will be ?search=[term]&type=public
+                return query;
+            },
+            processResults: function (response) {
+                return {
+                    results: $.map(response.data, function (item) {
+                        return {
+                            text: item.fullname + ' - ' + item.email,
+                            id: item.id,
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    });
+</script>

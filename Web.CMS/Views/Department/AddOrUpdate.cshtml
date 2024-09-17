@@ -1,0 +1,74 @@
+﻿@{
+    Layout = null;
+    List<Entities.Models.AllCode> branch = (List<Entities.Models.AllCode>)ViewBag.Branch;
+}
+@using Entities.Models
+@using Entities.ViewModels.Department
+@model DepartmentViewModel
+
+<form id="form_department">
+    <div class="row row_min">
+        <div class="grid-item col-md-12">
+            <div class="form-default3 pd10">
+                <div class="row row_min">
+                    @* <div class="form-group col-6">
+                        <label class="lbl">Mã phòng ban <sup class="red">*</sup></label>
+                        <div class="wrap_input">
+                        <input type="text" class="form-control" asp-for="@Model.DepartmentCode" />
+                        </div>
+                        </div>*@
+                    <div class="form-group col-12">
+                        <label class="lbl">Tên phòng ban <sup class="red">*</sup></label>
+                        <div class="wrap_input">
+                            <input type="hidden" asp-for="@Model.Id" />
+                            <input type="hidden" asp-for="@Model.ParentId" />
+                            <input type="text" class="form-control" asp-for="@Model.DepartmentName" />
+                        </div>
+                    </div>
+                    <div class="form-group col-12">
+                        <label class="lbl">Mô tả</label>
+                        <div class="wrap_input">
+                            <textarea class="form-control" style="height: 90px;" asp-for="@Model.Description"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group col-12">
+                        <label class="lbl">Chi nhánh</label>
+                        <div class="wrap_input">
+                            <select id="branch-code" class="select2 branch-code" name="branch-code" style="width: 100%;">
+                                @if (branch != null && branch.Count > 0)
+                                {
+                                    if (Model.Branch == -1)
+                                    {
+                                        <option value="-1" selected="selected">———— Tất cả ————</option>
+
+                                    }
+                                    else
+                                    {
+                                        <option value="-1">———— Tất cả ————</option>
+                                    }
+                                    foreach (var item in branch)
+                                    {
+                                        if (Model.Branch != null && Model.Branch == item.CodeValue)
+                                        {
+                                            <option value="@(item.CodeValue)" selected="selected">@item.Description</option>
+
+                                        }
+                                        else
+                                        {
+                                            <option value="@(item.CodeValue)">@item.Description</option>
+
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="text-right">
+    <button type="button" class="btn btn-default btn btn-default cancel" data-dismiss="modal">Bỏ qua</button>
+    <button type="button" class="btn btn-default" onclick="_department.OnSave()">@(Model.Id > 0 ? "Cập nhật" : "Thêm mới")</button>
+</div>

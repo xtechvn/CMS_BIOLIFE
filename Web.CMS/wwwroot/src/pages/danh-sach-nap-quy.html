@@ -1,0 +1,281 @@
+<!-- build:title -->CMS Template
+<!-- /build:title -->
+
+<!-- build:content -->
+<section class="main-container">
+    <div class="row-main container">
+        <h2 class="txt_18 bold mb20">Danh sách nạp quỹ</h2>
+        <div class="flex fillter-donhang">
+            <div class="form-group mb10 mr-2">
+                <input type="text" class="form-control" id="" placeholder="Mã giao dịch" style="width: 150px;">
+            </div>
+            <div class="form-group mb10 mr-2">
+                <select class="select2" name="" style="width: 150px;">
+                    <option value="">Tất cả loại quỹ</option>
+                    <option value="">Đại lý</option>
+                    <option value="">Cộng tác viên</option>
+                    <option value="">Mice/Corp/Doanh nghiệp</option>
+                </select>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <select class="select2" name="" style="width: 150px;">
+                    <option value="">Tất cả loại giao dịch</option>
+                    <option value="">Đại lý</option>
+                    <option value="">Cộng tác viên</option>
+                    <option value="">Mice/Corp/Doanh nghiệp</option>
+                </select>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <select class="select2" name="" style="width: 150px;">
+                    <option value="">Tất cả hình thức thanh toán</option>
+                    <option value="">Đại lý</option>
+                    <option value="">Cộng tác viên</option>
+                    <option value="">Mice/Corp/Doanh nghiệp</option>
+                </select>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <div class="datepicker-wrap" style="width:100%">
+                    <input class="form-control datepicker-input " type="text" name="birthday" placeholder="Ngày giao dịch">
+                </div>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <input type="text" class="form-control" id="" placeholder="Người tạo">
+            </div>
+            <div class="form-group mb10 mr-2">
+                <input type="text" class="form-control" id="" placeholder="Người duyệt">
+            </div>
+            <div class="form-group mb10 mr-2">
+                <div class="datepicker-wrap" style="width:100%">
+                    <input class="form-control datepicker-input " type="text" name="birthday" placeholder="Ngày duyệt">
+                </div>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <select class="select2" name="" style="width: 180px;">
+                    <option value="">Tất cả trạng thái</option>
+                    <option value="">Đại lý</option>
+                    <option value="">Cộng tác viên</option>
+                    <option value="">Mice/Corp/Doanh nghiệp</option>
+                </select>
+            </div>
+            <div class="row-main-head mb10 mr-2">
+                <div class="down-up">
+                    <a class="btn btn-default onclick" href="javascript:;">
+                        <i class="fa fa-bars"></i>
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+                    <div class="form-down" style="display: none;">
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox" checked="">
+                            <span class="checkmark"></span>
+                            Hình thức
+                        </label>
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Mã đơn
+                        </label>
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Ngày bắt đầu
+                        </label>
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Ngày kết thúc
+                        </label>
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Nhãn đơn
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="mb10 mr-2">
+                <button class="btn-search btn-default" type="submit">
+                    <svg class="icon-svg">
+                        <use xlink:href="images/icons/icon.svg#search"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="tab-default" style="border-bottom: 1px solid #CCCCCC;">
+            <a href="#" class="active">Tất cả (55)</a>
+            <a href="#">Đang xử lý (15)</a>
+            <a href="#">Thanh toán thiếu (0)</a>
+            <a href="#">Từ chối (5)</a>
+            <a href="#">Thành công (30)</a>
+        </div>
+
+        <div class="wrap_bg wrap_bg_no-padding mb20">
+            <div class="table-responsive table-default table-gray">
+                <table class="table table-nowrap">
+                    <thead>
+                        <tr>
+                            <th style="width: 30px;">STT</th>
+                            <th style="width: 100px;">Mã giao dịch</th>
+                            <th style="width: 140px;">Tiêu đề</th>
+                            <th style="width: 100px;">Loại quỹ</th>
+                            <th class="text-right" style="width: 100px;">Số tiền nạp</th>
+                            <th style="width: 100px;">Loại giao dịch</th>
+                            <th style="width: 200px;">Hình thức thanh toán</th>
+                            <th style="width: 120px;">Ngày giao dịch</th>
+                            <th style="width: 140px;">Người tạo</th>
+                            <th style="width: 120px;">Ngày duyệt</th>
+                            <th style="width: 120px;">Người duyệt</th>
+                            <th style="width: 120px;">Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <a class="blue" href="#">B000004</a>
+                            </td>
+                            <td>Nạp quỹ vé máy bay</td>
+                            <td>Vé máy bay</td>
+                            <td class="text-right">
+                                <div class="green">20,000,000/</div>
+                                <div>30,000,000</div>
+                            </td>
+                            <td>Nạp tiền</td>
+                            <td>
+                                <div>Chuyển khoản</div>
+                                [Techcombank - 01909282922]
+                            </td>
+                            <td>07/02/2023</td>
+                            <td>
+                                <div>Lê Tất Thành</div>
+                                letatthanh@gmail.com
+                            </td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                            <td>
+                                <div class="on-off-btn">
+                                    <i id="Status_0_325" class="fa fa-check status-grey" onclick="_customer_manager.OnResetStatus(325,'0')"></i>
+                                    <i id="Status_1_325" class="fa fa-power-off status-red" aria-hidden="true" onclick="_customer_manager.OnResetStatus(325,'1')"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>
+                                <a class="blue" href="#">B000004</a>
+                            </td>
+                            <td>Nạp quỹ vé máy bay</td>
+                            <td>Vé máy bay</td>
+                            <td class="text-right">
+                                <div class="green">20,000,000/</div>
+                                <div>30,000,000</div>
+                            </td>
+                            <td>Nạp tiền</td>
+                            <td>
+                                <div>Chuyển khoản</div>
+                                [Techcombank - 01909282922]
+                            </td>
+                            <td>07/02/2023</td>
+                            <td>
+                                <div>Lê Tất Thành</div>
+                                letatthanh@gmail.com
+                            </td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                            <td><span class="status-green">Thành công</span></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>
+                                <a class="blue" href="#">B000004</a>
+                            </td>
+                            <td>Nạp quỹ vé máy bay</td>
+                            <td>Vé máy bay</td>
+                            <td class="text-right">
+                                <div class="green">20,000,000/</div>
+                                <div>30,000,000</div>
+                            </td>
+                            <td>Nạp tiền</td>
+                            <td>
+                                <div>Chuyển khoản</div>
+                                [Techcombank - 01909282922]
+                            </td>
+                            <td>07/02/2023</td>
+                            <td>
+                                <div>Lê Tất Thành</div>
+                                letatthanh@gmail.com
+                            </td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                            <td><span class="status-blue">Thanh toán thiếu</span></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>
+                                <a class="blue" href="#">B000004</a>
+                            </td>
+                            <td>Nạp quỹ vé máy bay</td>
+                            <td>Vé máy bay</td>
+                            <td class="text-right">
+                                <div class="green">20,000,000/</div>
+                                <div>30,000,000</div>
+                            </td>
+                            <td>Nạp tiền</td>
+                            <td>
+                                <div>Chuyển khoản</div>
+                                [Techcombank - 01909282922]
+                            </td>
+                            <td>07/02/2023</td>
+                            <td>
+                                <div>Lê Tất Thành</div>
+                                letatthanh@gmail.com
+                            </td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                            <td><span class="status-red">Từ chối</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <ul id="pagination" class="pagination">
+
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <i class="fa fa-step-backward"></i>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link icon" href="#">
+                        <i class="fa fa-caret-left"></i>
+                    </a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link icon" href="#">
+                        <i class="fa fa-caret-right"></i>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <i class="fa fa-step-forward"></i>
+                    </a>
+                </li>
+
+                <span>Hiển thị 1 - 7 trên tổng số 50 hóa đơn</span>
+            </ul>
+        </div>
+
+
+    </div>
+</section>
+
+
+
+<!-- /build:content -->
+
+<!-- build:script2 -->
+<script type="text/javascript">
+</script>
+<!-- /build:script2 -->

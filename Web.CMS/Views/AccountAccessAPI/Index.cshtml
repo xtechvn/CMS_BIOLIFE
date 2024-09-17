@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Entities.ViewModels.AccountAccessAPI.AccountAccessApiViewModel>
+
+
+@{
+    ViewData["Title"] = "Quản lí quyền truy cập dự án";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="flex row-main-head mt-4 mb-3">
+    <div class="title_page align-items-center m-0" style="height:100%;font-size:26px;font-weight:700">Quản lý User truy cập API</div>
+    <div style="margin-left:10px" class="btn-left text-right">
+        <btn style="width:112px" class="btn btnadd btn-success" onclick="_accountAccessAPI.ShowAddform()">
+            + Tạo mới
+        </btn>
+    </div>
+</div>
+
+
+<div class="wrap_bg wrap_bg_no-padding mb20">
+    <div class="table-responsive table-default">
+        <table class="table table-nowrap">
+            <thead>
+                <tr class="bg-main2" style="background-color:#C5E7F2">
+                    <th>STT</th>
+                    <th>Tên Dự Án </th>
+                    <th>UserName</th>
+                    <th>Mô tả</th>
+                    <th>Ngày Tạo</th>
+                    <th>Ngày Cập nhật</th>
+                    <th>Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int i = 1; 
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@i</td>
+                        @* <td style="display:none" id="id">@item.Id</td> *@
+                        <td id="codename">
+                            @Html.DisplayFor(modelItem => item.CodeName)
+                        </td>
+                        <td onclick="_accountAccessAPI.ShowUpdateform('@item.Id','@item.Id_AllCode','@item.Id_AccountAccessAPIPermission')" style="color:#3B56B4">
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CreateDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.UpdateLast)</td>
+                        <td>
+                            @(item.Status == 0 ? "Đang chạy" : Html.Raw("<span class='text-danger'>Khóa/Tạm dừng</span>"))
+                        </td>
+                    </tr>
+                    i++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section scripts {
+    <script type="text/javascript" src="~/modules/accountaccessapi.js" asp-append-version="true"></script>
+}
+
+

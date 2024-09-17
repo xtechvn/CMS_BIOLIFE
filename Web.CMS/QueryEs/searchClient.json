@@ -1,0 +1,32 @@
+﻿{
+  "endpoint": "{index_name}/_search?filter_path=hits.hits._source.email,hits.hits._source.phone,hits.hits._source.clientname,hits.hits._source.id,hits.hits._source.clienttype,hits.hits._source.userid,hits.hits._source._id",
+  "input_query": {
+    "query": {
+      "bool": {
+        "should": [
+          {
+            "match_phrase": {
+              "phone": "{keyword}"
+            }
+          },
+          {
+            "match_phrase": {
+              "email": "{keyword}"
+            }
+          },
+          {
+            "match_phrase": {
+              "clientname": "{keyword}"
+            }
+          },
+          {
+            "match_phrase": {
+              "clientcode": "{keyword}"
+            }
+          }
+        ]
+      }
+    },
+    "_source": [ "email", "phone", "clientname", "id", "clienttype", "userid" ]
+  }
+}

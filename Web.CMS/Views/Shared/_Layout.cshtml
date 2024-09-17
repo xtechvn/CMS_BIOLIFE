@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html lang="vi" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="" />
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title> @ViewData["Title"] </title>
+    <link type="image/x-icon"  href="~/images/img-search.png"  rel="shortcut icon" />
+
+    <link href="/css/bootstrap.css" media="all" rel="stylesheet">
+
+    <link type="text/css" href="/css/select2-bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/css/select2.min.css" />
+
+    <link href="/css/gg-font.css" rel="stylesheet">
+    <link href="/lib/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet" />
+    <link href="/lib/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="/lib/magnific-popup/magnific-popup.css" rel="stylesheet" />
+    <link href="/lib/token-input/token-input.css" rel="stylesheet" />
+    <link href="/lib/croppie/croppie.css" rel="stylesheet" />
+    <link href="/lib/sweetalert2/sweetalert2.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/css/icofont/icofont.min.css" />
+    <link rel="stylesheet" href="/css/style.css" media="all" />
+    <link rel="stylesheet" href="/css/style-v2.css" media="all" />
+    <link rel="stylesheet" href="/css/site.css" media="all" />
+
+    <link rel="stylesheet" href="/css/icofont/icofont.min.css" />
+    <!-- build:head -->
+</head>
+<body class="homepage">
+    <style>
+        .select2-container .select2-search--inline {
+            float:none !important;
+        }
+        .select2-selection__choice__remove {
+            border: aliceblue !important;
+        }
+        .section-main {
+            padding-left: 80px !important;
+        }
+        .modal{
+            z-index:1000 !important;
+        }
+    </style>
+    <section class="section-main clearfix">
+        @await Component.InvokeAsync("Menu")
+        <!--HEADER-->
+        @await Component.InvokeAsync("TopBar")
+        <!--END HEADER-->
+        <section class="main-container">
+
+
+            @RenderBody()
+        </section>
+    </section>
+
+
+    <!--Back to top-->
+    <a href="javascript:;" id="to_top"><i class="ic ic-caret-up"></i></a>
+
+    <div class="mask-content"></div>
+
+    <!--popup-->
+
+    <div id="magnific-popup-confirm" class="white-popup mfp-hide">
+        <div class="content_lightbox">
+            <div class="head red magnific-title"></div>
+            <p class="magnific-body"></p>
+            <div class="form-default">
+                <div class="form-group align-right mt20 block">
+                    <button type="button" class="btn btn-default red btn-confirm-action" onclick="_magnific.OnConfirm();"><i class="fa fa-check"></i>Đồng ý</button>
+                    <button type="button" class="btn btn-default cancel" onclick="$.magnificPopup.close();"><i class="fa fa-minus-circle"></i>Bỏ qua</button>
+                </div>
+            </div>
+        </div>
+        <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+    </div>
+
+    <div id="magnific-popup-alert" class="white-popup mfp-hide">
+        <div class="content_lightbox">
+            <div class="head red">
+                Thông báo từ hệ thống
+            </div>
+            <p>Xin vui lòng liên hệ với bộ phận kỹ thuật để được cấp tài khoản</p>
+            <div class="form-default">
+                <div class="form-group align-right align-center justify-between mt20">
+                    <div>
+                        <i class="fa fa-phone" style="border: 1px solid #333;
+                        border-radius: 50%;
+                        width: 16px;
+                        height: 16px;
+                        text-align: center;
+                        line-height: 16px;
+                        font-size: 11px;
+                        margin-right: 5px;">
+                        </i>
+                        Hỗ trợ: 1900.633.600
+                    </div>
+                    <button type="submit" class="btn btn-default cancel"><i class="fa fa-minus-circle"></i>Bỏ qua</button>
+                </div>
+            </div>
+        </div>
+        <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+    </div>
+
+    <div id="magnific-popup-large" class="user-popup popup-width2 white-popup mfp-hide">
+        <div class="content_lightbox">
+            <div class="head magnific-title"></div>
+            <div class="flex magnific-body"></div>
+        </div>
+        <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+    </div>
+
+    <div id="magnific-popup-small" class="white-popup mfp-hide">
+        <div class="content_lightbox">
+            <div class="head magnific-title"></div>
+            <div class="form-default magnific-body"></div>
+        </div>
+        <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+    </div>
+
+    <div id="magnific-popup-small-header" class="white-popup mfp-hide">
+        <div class="content_lightbox">
+            <div class="head bg-gray magnific-title"></div>
+            <div class="wrap mb20  magnific-body"></div>
+        </div>
+        <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+    </div>
+
+    <div id="magnific-popup-password" class="white-popup mfp-hide">
+        <div class="content_lightbox">
+            <div class="head red">
+                Reset mật khẩu thành công !
+            </div>
+            <div class="row align-center">
+                <div class="col-5">Mật khẩu mới</div>
+                <div class="col-7 magnific-body" style="font-size: 50px">97525</div>
+            </div>
+            <div class="form-default">
+                <div class="form-group align-right mt20 block">
+                    <button type="button" class="btn btn-default cancel" onclick="$.magnificPopup.close();"><i class="fa fa-minus-circle"></i>Đóng</button>
+                </div>
+            </div>
+        </div>
+        <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+    </div>
+
+    <div class="modal fade" id="global_modal_popup" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--end popup-->
+    <!--Jquery lib-->
+    <!--Jquery lib-->
+    <script type="text/javascript" src="~/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="~/js/select2.min.js"></script>
+    <script type="text/javascript" src="~/js/swiper.min.js"></script>
+    <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
+    <!-- build:script -->
+    <script type="text/javascript" src="~/lib/jquery-ui-1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.validate.js"></script>
+    <script type="text/javascript" src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+    <script type="text/javascript" src="~/lib/toastr/toastr.min.js"></script>
+    <script type="text/javascript" src="~/lib/token-input/jquery.tokeninput.js"></script>
+    <script type="text/javascript" src="~/lib/magnific-popup/jquery.magnific-popup.js"></script>
+    <script type="text/javascript" src="~/lib/croppie/croppie.js"></script>
+    <script type="text/javascript" src="~/lib/sweetalert2/sweetalert2.js"></script>
+    <script type="text/javascript" src="~/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery.scrollbar.min.js"></script>
+    <script type="text/javascript" src="~/js/svgxuse.js"></script>
+    <script type="text/javascript" src="~/lib/tinymce/tinymce.min.js"></script>
+
+    <script type="text/javascript" src="~/js/common.js"></script>
+    <script type="text/javascript" src="~/modules/common.js"></script>
+    <script type="text/javascript" src="~/lib/cms-common.js"></script>
+
+    <script type="text/javascript" src="~/js/moment.min.js"></script>
+    <script type="text/javascript" src="~/js/daterangepicker.js"></script>
+    <script type="text/javascript" src="~/modules/widget_attachfile.js" defer></script>
+
+
+    <!-- build:script -->
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

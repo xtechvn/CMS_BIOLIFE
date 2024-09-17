@@ -1,0 +1,108 @@
+﻿@using Entities.Models
+@using Entities.ViewModels.AccountAccessAPI
+@model IEnumerable<Entities.Models.AllCode>
+
+@{
+    Layout = null;
+    var obj_update = (AccountAccessApiViewModel)ViewBag.ViewModel;
+}
+<style>
+    .modal-dialog {
+        max-width: 648px !important;
+    }
+
+    .content-form {
+        padding: 10px 40px 0px 40px !important;
+    }
+</style>
+
+<div class="modal fade" id="UpdateOrDeleteAAA" aria-modal="true" role="dialog" style="display: block; padding-top: 5%; background: rgba(0,0,0,0.5); ">
+    <div class="modal-dialog" style="max-width: 95%;">
+        <div class="modal-content">
+            <div class="container-fluid content-form rounded rounded-2" style="background-color:#EDEDED;height:81px">
+                <ul class="m-0" style="max-width:107px;">
+                    <li class="mt-1 mb-3" style="font-weight:700">
+                        Cập nhật User
+                    </li>
+                    <li class="pb-1" style="border-bottom: 2px solid #4BAC4D;">
+                        Thông tin
+                    </li>
+                </ul>
+            </div>
+            <!-- Modal Header -->
+            <form class="content-form needs-validation" novalidate onsubmit="return false">
+                <div>
+                    <div class="content_lightbox">
+                        <div class="form-default">
+
+                            <div class="form-group">
+                                <label class="lbl">Tên dự án</label>
+                                <div class="wrap_input">
+                                    <select id="codevalue" class="form-control">
+                                        @foreach (var code in Model)
+                                        {
+                                            <option value="@code.CodeValue">@code.Description</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                          @*   <input type="text" style="display:none" value="@obj_update.Id" id="Id"> *@
+
+                            <div class="form-group">
+                                <label class="lbl">Tên truy cập</label>
+                                <div class="wrap_input">
+                                    <input type="text" class="form-control" value="@obj_update.UserName" id="username" placeholder="Nhập tên truy cập...">
+                                    <div class="invalid-feedback" style="font-size:inherit">Tên đăng không được bỏ trống và chỉ chứa chữ cái,chữ số ,dấu . và dấu _</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="lbl">Mật khẩu</label>
+                                <div class="wrap_input">
+                                    <input type="password" class="form-control" value="" id="password" placeholder="Nhập mật khẩu...">
+                                    <div class="invalid-feedback" style="font-size:inherit">Mật khẩu phải có ít nhất phải chứa 6 kí tự, ít nhất 1 chữ cái và 1 số</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="lbl">Mô tả</label>
+                                <div class="wrap_input">
+                                    <input type="text" class="form-control" value="@obj_update.Description" id="description" placeholder="Nhập mô tả...">
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-bottom:79px">
+                                <label class="lbl">Trạng thái</label>
+                                <div class="wrap_input">
+                                    <label class="radio">
+                                        <input type="radio" value="0" name="status"  @(obj_update.Status == 0 ? "checked" : string.Empty) />
+                                        <span class="checkmark"></span>
+                                        Hoạt động
+                                    </label>
+                                    <label class="radio" style="margin-left:20px;">
+                                        <input type="radio" value="1" name="status" @(obj_update.Status == 1 ? "checked" : string.Empty) />
+                                        <span class="checkmark"></span>
+                                        Tạm dừng
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group align-right mt20 block">
+                                <button onclick="_accountAccessAPI.ResetPassword('@obj_update.Id')" class="btn btn-secondary">Reset mật khẩu</button>
+                                <button onclick="_accountAccessAPI.Close('UpdateOrDeleteAAA')" style="width:86px" class="btn btn-warning">Bỏ qua</button>
+                                <button type="submit" style="width:86px" onclick="_accountAccessAPI.Update('@obj_update.Id','@obj_update.Id_AccountAccessAPIPermission')" class="btn btn-success">Lưu</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+

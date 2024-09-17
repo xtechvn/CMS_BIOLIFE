@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html>
+<html lang="vi" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta name="viewport" content="width=device-width;initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=yes">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Email Order Notification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        th {
+            color: black
+        }
+
+        td {
+            color: black
+        }
+    
+    </style>
+</head>
+
+<body class="" style="background-color: #ffffff; font-family: sans-serif; -webkit-font-smoothing: antialiased; font-size: 16px; line-height: 27px; margin: 0; padding: 0; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+
+    <div style="width: 800px; max-width: 100%;margin: 20px auto;color: #00264D;font-size:16px;background: #fff">
+        <table cellspacing="0" cellpadding="0" width="100%" style="background: #F1F5F9;border-top: 3px solid #070BA0;padding:5px 15px;">
+            <tr>
+                <td><img alt="" src="https://static-image.adavigo.com/uploads/images/logo.png"></td>
+                <td style="text-align: right"><img alt="" src="https://static-image.adavigo.com/uploads/images/hotline.png"></td>
+            </tr>
+        </table>
+        <div style="padding: 15px;">
+            <!--table thông tin order-->
+            <table cellspacing="0" cellpadding="0" width="100%">
+                <tr>
+                   
+                </tr>
+            </table>
+            <!--end table thông tin order-->
+            <!--table thông tin khách hàng-->
+            <table cellspacing="0" cellpadding="0" width="100%">
+
+            <!--end table thông tin hành khách-->
+            <!--table thông tin chuyến bay đi - về-->
+                <table cellspacing="0" cellpadding="0" width="100%">
+                    <tr style="{{isDisplayGo}}">
+                        <td colspan="6">
+                            <div style="border-bottom:1px solid #E3EBF3"></div>
+                        </td>
+                    </tr>
+                    <tr style="{{isDisplayGo}}">
+                        <td colspan="6">
+                            <br />
+                            <div style="font-size: 18px;"><strong>Thông tin chuyến bay đi</strong></div>
+							
+                        </td>
+                        <td colspan="2" style="text-align: right">
+                        </td>
+
+                    </tr>
+                    <tr style="{{isDisplayGo}}">
+                        <td colspan="4">
+                            <!--<img alt="" width="40" height="40" src="{{logoAirlineGo}}" style="float: left; background-size: cover; background-image: url({{logoAirlineGo}}); ">-->
+                            <div style="margin-bottom: 10px; background-color: #fff;">
+                                <img width="120px"  style="background-color: #fff;max-height="50px";" src="{{logoAirlineGo}}">
+								
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr style="padding: 10px;background: rgba(88, 211, 243, .2);border-top: 1px solid rgba(88, 211, 243, .8);border-bottom: 1px solid rgba(88, 211, 243, .8);{{isDisplayGo}}">
+                        <td colspan="3">
+                           
+
+                            <span style="margin-left:6px">Mã đặt chỗ:</span><br />
+                            <strong style="color: #FF5B00;font-size:18px">{{flyOrderNoGo}}</strong>
+                        </td>
+                        <td colspan="3" style="text-align:right">
+                            <span style="text-align:right">Tình trạng:</span></br >
+                            <span style="text-align:right">Đã xác nhận</span>
+                        </td>
+                    </tr>
+                    <tr style="{{isDisplayGo}}">
+                        <td colspan="4">
+                            </br>
+                            <div style="font-size: 18px;"><strong>Thông tin hành khách</strong></div>
+                        </td>
+                    </tr>
+                    <tr colspan="6">
+                        <td style='border: 1px solid #999; padding: 8px; text-align: center; font-weight: bold;'>STT</td>
+                        <td colspan='3' style='border: 1px solid #999; padding: 8px; text-align: center; font-weight: bold; '>Tên hành khách</td>
+                        <td colspan='3'style='border: 1px solid #999; padding: 8px; text-align: center; font-weight: bold; '>Hành lý</td>
+
+                    </tr>
+                    <tr colspan='6' style="font-size: 14px;{{isDisplayGo}}">
+                        {{passengerList}}
+                    </tr>
+
+                    <tr style="{{isDisplayGo}}">
+                        <td colspan="2">
+                            <br />
+                            <div><strong>THÔNG TIN HÀNH TRÌNH</strong></div>
+                        </td>
+                        <td colspan="2" style="text-align: right">
+                        </td>
+
+                    </tr>
+                    <tr style="text-align: center;{{isDisplayGo}}">
+                        <td style="border: 1px solid #999; padding: 2px; font-weight: bold; text-align: center; ">Chuyến bay</td>
+                        <td style="border: 1px solid #999; padding: 4px; font-weight: bold; text-align: center;">Ngày bay</td>
+                        <td style="border: 1px solid #999; padding: 2px; font-weight: bold; text-align: center;">Giờ bay</td>
+                        <td style="border: 1px solid #999; padding: 4px; font-weight: bold; text-align: center;">Sân bay đi</td>
+                        <td style="border: 1px solid #999; padding: 2px; font-weight: bold; text-align: center; ">Giờ đến</td>
+                        <td style="border: 1px solid #999; padding: 4px; font-weight: bold; text-align: center; ">Sân bay đến</td>
+                    </tr>
+                    <tr style="text-align: center;{{isDisplayGo}}">
+                        <td style="border: 1px solid #999; padding: 2px; text-align: center; ">{{flyCodeGo}}</td>
+                        <td style="border: 1px solid #999; padding: 4px; text-align: center; ">{{dateGo}}</td>
+                        <td style="border: 1px solid #999; padding: 2px; text-align: center; ">{{timeFromGo}}</td>
+                        <td style="border: 1px solid #999; padding: 4px; text-align: center; ">{{addressGoFrom}}</td>
+                        <td style="border: 1px solid #999; padding: 2px; text-align: center; ">{{timeToGo}}</td>
+                        <td style="border: 1px solid #999; padding: 4px; text-align: center; ">{{addressGoTo}}</td>
+                    </tr>
+
+                    <tr style="{{isDisplayGo}}">
+                        <td colspan="6">
+                            </br>
+                            <div>
+                                <strong>
+                                    Hành khách phải đeo khẩu trang khi đến nhà ga và trên máy bay!
+                                </strong><br />
+                                <span> <strong>Giấy tờ tùy thân:</strong><p style="margin-bottom: 0rem !important"> Quý khách vui lòng mang theo 1 trong các giấy tờ tùy thân sau: Chứng minh nhân dân (trong hạn 15 năm, không nhòe số, ảnh), Passport, Giấy phép lái xe.</p> </span>
+                                <p style="margin-bottom: 0rem !important">- Trẻ em dưới 14 tuổi dùng Giấy khai sinh bản chính hoặc bản sao trích lục dấu đỏ (Không dùng bản photo công chứng) khi làm thủ tục.</p>
+                                <p style="margin-bottom: 0rem !important">- Vui lòng có mặt tại sân bay 120 phút trước giờ bay để làm thủ tục khởi hành.</p>
+                                <span><strong>Thông tin trên vé:</strong> <p style="margin-bottom: 0rem !important"> Quý khách vui lòng đọc kỹ mọi thông tin trên vé (Họ & tên, hành trình, ngày giờ bay) trước khi xác nhận thông tin xuất vé. Chúng tôi sẽ không chịu trách nhiệm nào về sai sót thông tin trên vé sau khi quý khách đã xác nhận thông tin xuất vé.</p></span>
+                                <div style="text-align:center;"><strong>  KÍNH CHÚC QUÝ KHÁCH CÓ CHUYẾN BAY TỐT ĐẸP!</strong></div>
+                            </div>
+                            <div style="border-bottom:1px solid #E3EBF3;margin-bottom: 10px"></div>
+                        </td>
+                    </tr>
+                    <tr style="{{isDisplayBack}}">
+                        <td colspan="6">
+                            <br />
+                            <div style="font-size: 18px;"><strong>Thông tin chuyến bay về</strong></div>
+                        </td>
+                        <td colspan="2" style="text-align: right">
+                        </td>
+                    </tr>
+                    <tr style="{{isDisplayBack}}">
+                        <td colspan="4">
+                            <!--<img alt="" src="https://static-image.adavigo.com/uploads/images/email/bamboo.png" style="float: left;">-->
+                            <!--<img alt="" width="40" height="40" src="{{logoAirlineBack}}" style="float: left; background-size: cover; background-image: url({{logoAirlineGo}}); ">-->
+                            <div style="margin-bottom: 10px; background-color: #fff;">
+
+                                <img width="120px" style="background-color: #fff;max-height="50px";" src="{{logoAirlineBack}}">
+							
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="padding: 10px;background: rgba(88, 211, 243, .2);border-top: 1px solid rgba(88, 211, 243, .8);border-bottom: 1px solid rgba(88, 211, 243, .8);{{isDisplayBack}} ">
+                        <td colspan="3">
+                           
+                            <span>Mã đặt chỗ :</span><br />
+                            <strong style="color: #FF5B00;font-size:18px">{{flyOrderNoBack}}</strong>
+                        </td>
+                        <td colspan="3" style="text-align:right">
+                            <span style="text-align:right">Tình trạng:</span></br >
+                            <span  style="text-align:right">Đã xác nhận</span>
+                        </td>
+
+                    </tr>
+                    <tr style="{{isDisplayBack}}">
+                        <td colspan="4">
+                            </br>
+                            <div style="font-size: 18px;"><strong>Thông tin hành khách</strong></div>
+                        </td>
+                    </tr>
+                    <tr colspan="6" style="{{isDisplayBack}}">
+                        <td style='border: 1px solid #999; padding: 8px; text-align: center; font-weight: bold;'>STT</td>
+                        <td colspan='3' style='border: 1px solid #999; padding: 8px; text-align: center; font-weight: bold; '>Tên hành khách</td>
+                     
+                        <td  colspan='3'style='border: 1px solid #999; padding: 8px; text-align: center; font-weight: bold; '>Hành lý</td>
+                    </tr>
+                   
+                       {{passengerList2}}
+                    <tr>
+                        <td colspan="6" style="{{isDisplayBack}}">
+                            <br />
+                            <div><strong>THÔNG TIN HÀNH TRÌNH</strong></div>
+                        </td>
+                        <td colspan="2" style="text-align: right">
+                        </td>
+
+                    </tr>
+                    <tr style="text-align: center;{{isDisplayBack}}">
+                        <td style="border: 1px solid #999; padding: 2px; font-weight: bold; text-align: center; ">Chuyến bay</td>
+                        <td style="border: 1px solid #999; padding: 4px; font-weight: bold; text-align: center; ">Ngày bay</td>
+                        <td style="border: 1px solid #999; padding: 2px; font-weight: bold; text-align: center; ">Giờ bay</td>
+                        <td style="border: 1px solid #999; padding: 4px; font-weight: bold; text-align: center; ">Sân bay đi</td>
+                        <td style="border: 1px solid #999; padding: 2px; font-weight: bold; text-align: center; ">Giờ đến</td>
+                        <td style="border: 1px solid #999; padding: 4px; font-weight: bold; text-align: center; ">Sân bay đến</td>
+                    </tr>
+                    <tr style="text-align: center;{{isDisplayBack}}">
+                        <td style="border: 1px solid #999; padding: 2px; text-align: center; ">{{flyCodeBack}}</td>
+                        <td style="border: 1px solid #999; padding: 4px; text-align: center; ">{{dateBack}}</td>
+                        <td style="border: 1px solid #999; padding: 2px; text-align: center; ">{{timeFromBack}}</td>
+                        <td style="border: 1px solid #999; padding: 4px; text-align: center; ">{{addressBackFrom}}</td>
+                        <td style="border: 1px solid #999; padding: 2px; text-align: center; ">{{timeToBack}}</td>
+                        <td style="border: 1px solid #999; padding: 4px; text-align: center; ">{{addressBackTo}}</td>
+                    </tr>
+
+                    <tr>
+                        
+                        <td colspan="6"style="{{isDisplayBack}}">
+                            </br>
+                            <div>
+                                <strong>
+                                    Hành khách phải đeo khẩu trang khi đến nhà ga và trên máy bay!
+                                </strong><br />
+                                <span> <strong>Giấy tờ tùy thân:</strong><p style="margin-bottom: 0rem !important"> Quý khách vui lòng mang theo 1 trong các giấy tờ tùy thân sau: Chứng minh nhân dân (trong hạn 15 năm, không nhòe số, ảnh), Passport, Giấy phép lái xe.</p> </span>
+                                <p style="margin-bottom: 0rem !important">- Trẻ em dưới 14 tuổi dùng Giấy khai sinh bản chính hoặc bản sao trích lục dấu đỏ (Không dùng bản photo công chứng) khi làm thủ tục.</p>
+                                <p style="margin-bottom: 0rem !important">- Vui lòng có mặt tại sân bay 120 phút trước giờ bay để làm thủ tục khởi hành.</p>
+                                <span><strong>Thông tin trên vé:</strong> <p style="margin-bottom: 0rem !important"> Quý khách vui lòng đọc kỹ mọi thông tin trên vé (Họ & tên, hành trình, ngày giờ bay) trước khi xác nhận thông tin xuất vé. Chúng tôi sẽ không chịu trách nhiệm nào về sai sót thông tin trên vé sau khi quý khách đã xác nhận thông tin xuất vé.</p></span>
+                                <div style="text-align:center;"><strong>  KÍNH CHÚC QUÝ KHÁCH CÓ CHUYẾN BAY TỐT ĐẸP!</strong></div>
+                            </div>
+                            <div style="border-bottom:1px solid #E3EBF3"></div>
+                        </td>
+                    </tr>
+
+                </table>
+        
+        </div>
+  
+    </div>
+</body>
+
+</html>

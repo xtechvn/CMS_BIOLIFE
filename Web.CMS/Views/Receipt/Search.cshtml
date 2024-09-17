@@ -1,0 +1,119 @@
+﻿@{
+    Layout = null;
+}
+@using Entities.ViewModels
+@using Utilities
+@model GenericViewModel<ContractPayViewModel>
+
+@if (Model == null || Model.ListData == null || Model.ListData.Count == 0)
+{
+    <div class="search-null center mb40">
+        <div class="mb24">
+            <img src="/images/graphics/icon-search.png" alt="">
+        </div>
+        <h2 class="title txt_24">Không tìm thấy kết quả</h2>
+        <div class="gray">Chúng tôi không tìm thấy thông tin mà bạn cần, vui lòng thử lại</div>
+    </div>
+}
+else
+{
+    <div class="table-responsive table-default table-gray">
+        <table class="table table-nowrap">
+            <thead>
+                <tr>
+                    <th style="width: 30px;">STT</th>
+                    <th style="width: 100px;">Mã phiếu</th>
+                    <th style="width: 140px;">Loại nghiệp vụ</th>
+                    <th style="width: 100px;">Hình thức</th>
+                    <th style="width: 100px;">Khách hàng</th>
+                
+                    <th style="width: 100px;" class="text-right">Số tiền</th>
+                    <th style="width: 200px;">Nội dung</th>
+                    <th style="width: 120px;">Đơn hàng</th>
+                    <th style="width: 140px;">Ngày tạo</th>
+                    <th style="width: 140px;">Người tạo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ListData != null && Model.ListData.Count > 0)
+                {
+                    var counter = (Model.CurrentPage - 1) * Model.PageSize;
+                    foreach (var item in Model.ListData)
+                    {
+                        counter++;
+                        <tr>
+                            <td class="center ">@counter</td>
+                            <td class="text-nowrap">
+                                <a class="blue" href="/Receipt/Detail?contractPayId=@item.PayId">
+                                    @item.BillNo
+                                </a>
+                            </td>
+                            <td class="text-break">@item.ContractPayType</td>
+                            <td class="text-break">@item.PayTypeStr</td>
+                            <td class="text-break">
+                                <a href="/CustomerManager/Detail?id=@item.ClientId"><span class="blue"> @item.ClientName</span></a>
+                            </td>
+                    
+                            <td class="text-right">
+                                @if (item.Type == (int)DepositHistoryConstant.CONTRACT_PAY_TYPE.THU_TIEN_DON_HANG)
+                                {
+                                    @if (item.TotalDeposit >= item.Amount)
+                                    {
+                                        <div class="green">@item.TotalDeposit.ToString("N0")/ </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="red">@item.TotalDeposit.ToString("N0")/ </div>
+                                    }
+                                    <div>@item.Amount.ToString("N0")</div>
+                                }
+                               
+                            </td>
+                            <td class=" text-break">@item.Note</td>
+                            <td class=" text-break">
+                                @if (item.Type == (int)DepositHistoryConstant.CONTRACT_PAY_TYPE.THU_TIEN_DON_HANG && item.DataContent != null)
+                                {
+                                    var counterContent = 1;
+                                    foreach (var dataNo in item.DataContent)
+                                    {
+                                        <a class="blue" href="/Order/@dataNo.DataId">
+                                            @dataNo.DataNo
+                                        </a>
+                                        @if (counterContent < item.DataContent.Count)
+                                        {
+                                            <span>,</span>
+                                        }
+                                        counterContent += 1;
+                                    }
+                                }
+                               
+                            </td>
+                            @if (item.CreatedDate != null)
+                            {
+                                <td class=" text-break">@item.CreatedDate.Value.ToString("dd-MM-yyyy HH:mm")</td>
+                            }
+                            else
+                            {
+                                <td class=" text-break">@item.CreatedDate</td>
+                            }
+                            <td class=" text-break">@item.UserName </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@await Component.InvokeAsync("Paging", new
+{
+    pageModel = new Paging()
+    {
+        TotalRecord = Model.TotalRecord,
+        TotalPage = Model.TotalPage,
+        CurrentPage = Model.CurrentPage,
+        PageSize = Model.PageSize,
+        RecordName = "kết quả lọc",
+        PageAction = "_receipt_service.OnPaging({0})"
+    }
+})

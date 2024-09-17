@@ -1,0 +1,67 @@
+﻿@{
+    Layout = null;
+}
+@using Entities.Models
+@using Entities.ViewModels
+@model Role
+@{
+    var tabActive = (int)ViewBag.TabActive;
+}
+<tr class="info-detail">
+    <td colspan="5">
+        <div class="tab-default">
+            <a class="@(tabActive == 1 ?"active":"")" data-tab="1">Thông tin</a>
+            <a class="@(tabActive == 2 ?"active":"")" data-tab="2" data-id="@Model.Id">Thành viên</a>
+            <a data-tab="3" data-id="@Model.Id">Phân quyền</a>
+        </div>
+        <div class="wrap">
+            <div class="tab-content">
+                <div class="tab-detail" data-id="1" @(tabActive == 1 ? "" : "style=display:none")>
+                    <div class="form-default full">
+                        <div class="form-group">
+                            <label class="lbl">
+                                <span class="col-4">Tên nhóm:</span>
+                                <span class="col-8">@Model.Name</span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl">
+                                <span class="col-4">Trạng thái:</span>
+                                <span class="col-8">@(Model.Status == 0 ?"Bình thường": "Khóa/tạm dừng")</span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl">
+                                <span class="col-4">Mô tả:</span>
+                                <span class="col-8">@Model.Description</span>
+                            </label>
+                        </div>
+                        <div class="form-group align-right col-12 mt20 block">
+                            <button type="button" class="btn btn-default bg-main" onclick="_role.OnOpenEditForm('@Model.Id')">
+                                <i class="fa fa-pencil-square-o"></i>Cập nhật
+                            </button>
+                            <button type="button" class="btn btn-default red" onclick="_role.OnDelete('@Model.Id')">
+                                <i class="fa fa-trash"></i>Xóa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-detail user-hierarchy" data-id="2" @(tabActive == 2 ? "" : "style=display:none;")>
+                    <div class="hed">
+                        Danh sách người dùng được phân quyền trong nhóm <strong class="blue">@Model.Name</strong>
+                    </div>
+                    <div class="table-responsive table-default grid-user-role" data-roleid="@Model.Id">
+                        @if (tabActive == 2)
+                        {
+                            var _userRoleModel = (RoleUserViewModel)ViewBag.ListUserInRole;
+                            @await Html.PartialAsync("~/Views/Role/RoleListUser.cshtml", _userRoleModel)
+                        }
+                    </div>
+                </div>
+                <div class="tab-detail user-hierarchy-tag grid-menu-permission" data-id="3" style="display: none;">
+
+                </div>
+            </div>
+        </div>
+    </td>
+</tr>

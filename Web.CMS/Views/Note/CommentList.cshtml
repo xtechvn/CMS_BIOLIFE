@@ -1,0 +1,26 @@
+﻿@{
+    Layout = null;
+}
+@using Entities.ViewModels
+@model List<NoteViewModel>
+@{
+    var ManageUser = (int)ViewBag.UserId;
+}
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in Model.OrderByDescending(s => s.UpdateTime))
+    {
+        <li>
+            <div><strong class="note-comment" data-id="@item.Id">@item.Comment</strong></div>
+            <div class="txt_12">@(item.UpdateTime != null ? item.UpdateTime.Value.ToString("dd/MM/yyyy HH:mm") : "N/A") by <strong>@item.UserName</strong></div>
+            @if (item.UserId == ManageUser)
+            {
+                <div class="option">
+                    <a class="delete blue" onclick="_note.OnEditComment('@item.Id','@item.Comment')"><i class="fa fa-pencil"></i></a>
+                    &nbsp;&nbsp;
+                    <a class="delete red" onclick="_note.DeleteComment('@item.Id')"><i class="fa fa-times"></i></a>
+                </div>
+            }
+        </li>
+    }
+}

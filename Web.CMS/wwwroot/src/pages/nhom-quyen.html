@@ -1,0 +1,639 @@
+<!-- build:title -->CMS Template
+<!-- /build:title -->
+
+<!-- build:content -->
+<section class="main-container">
+    <div class="row-main container flex">
+        <div class="row-main_col200">
+            <a class="close-menu" href="javascrip:;">×</a>
+            <h2 class="title_page">Nhóm quyền</h2>
+            <div class="wrap_bg wrap_bg2">
+                <div class="vai-tro">
+                    <h3 class="title-margin">Tên nhóm</h3>
+                    <div class="tag">
+                        <a href="#">Quản trị &nbsp;<span class="delete">×</span></a>
+                        <a href="#">Nhân viên &nbsp;<span class="delete">×</span></a>
+                        <a href="#">Khách hàng &nbsp;<span class="delete">×</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="wrap_bg wrap_bg2">
+                <div class="trang-thai">
+                    <h3 class="title-margin">Trạng thái</h3>
+                    <label class="radio radio-block">
+                        <input type="radio" name="optradio" checked="">
+                        <span class="checkmark"></span>
+                        Tất cả
+                    </label>
+                    <label class="radio radio-block">
+                        <input type="radio" name="optradio">
+                        <span class="checkmark"></span>
+                        Đang hoạt động
+                    </label>
+                    <label class="radio radio-block">
+                        <input type="radio" name="optradio">
+                        <span class="checkmark"></span>
+                        Ngừng hoạt động
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row-main_col800">
+            <a class="btn_show" href="javascrip:;">Hiển thị danh mục <i class="fa fa-caret-right"></i></a>
+            <div class="flex row-main-head">
+                <div class="search-wrapper">
+                    <input type="text" class="input_search onclick-togle" name="" value=""
+                    placeholder="Tài khoản người dùng">
+                <span class="search-btn">
+                    <button type="submit">
+                        <svg class="icon-svg">
+                            <use xlink:href="images/icons/icon.svg#search"></use>
+                        </svg>
+                    </button>
+                </span>
+                </div>
+                <div class="btn-right text-right">
+                    <a class="btn btn-default" href="">
+                        + Thêm mới
+                    </a>
+                </div>
+            </div>
+            <div class="wrap_bg wrap_bg_no-padding mb20">
+                <div class="table-responsive table-default">
+                    <table class="table table-nowrap">
+                        <thead>
+                            <tr class="bg-main2">
+                                <th>STT</th>
+                                <th>Tên nhóm</th>
+                                <th>Mô tả</th>
+                                <th>Trạng thái</th>
+                                <th>Số thành viên</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Admin</td>
+                                <td>Truy cập vào các menu của hệ thống</td>
+                                <td>Bình thường</td>
+                                <td><strong class="blue">10</strong></td>
+                            </tr>
+                            <tr class="bg-gray active">
+                                <td>2</td>
+                                <td>Cộng tác viên</td>
+                                <td>Bộ phân partime nhập sản phẩm</td>
+                                <td>Khóa/tạm dừng</td>
+                                <td><strong class="blue">23</strong></td>
+                            </tr>
+                            <tr class="info-detail">
+                                <td colspan="6">
+                                    <div class="tab-default">
+                                        <a href="#tab1" class="active">Thông tin</a>
+                                        <a href="#tab2">Thành viên</a>
+                                        <a href="#tab3">Phân quyền</a>
+                                    </div>
+                                    <div class="wrap">
+                                        <div class="tab-content">
+                                            <div id="tab1">
+                                                <div class="form-default full">
+                                                    <div class="form-group">
+                                                        <label class="lbl">
+                                                            <span class="col-4">Tên nhóm:</span>
+                                                            <span class="col-8">Cộng tác viên</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="lbl">
+                                                            <span class="col-4">Trạng thái:</span>
+                                                            <span class="col-8">Bình thường</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="lbl">
+                                                            <span class="col-4">Mô tả:</span>
+                                                            <span class="col-8">Bộ phân partime nhập sản phẩm</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group align-right col-12 mt20 block">
+                                                        <button type="submit" class="btn btn-default bg-main"><i
+                                                                class="fa fa-pencil-square-o"></i>Cập nhật</button>
+                                                        <button type="submit" class="btn btn-default red"><i
+                                                                class="fa fa-trash"></i>Xóa</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="tab2" class="user-hierarchy" style="display: none;">
+                                                <div class="hed">Danh sách người dùng được phân quyền trong nhóm <strong
+                                                        class="blue">nhập liệu</strong></div>
+                                                <div class="table-responsive table-default">
+                                                    <table class="table table-nowrap">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Họ tên</th>
+                                                                <th>Tài khoản</th>
+                                                                <th>Ngày tạo</th>
+                                                                <th class="text-center">Trạng thái</th>
+                                                                <th>Địa chỉ</th>
+                                                                <th>Gỡ</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Lê Văn Cường</td>
+                                                                <td>cuonglv</td>
+                                                                <td>25/03/2020</td>
+                                                                <td class="text-center">
+                                                                    <strong class="btn btn2 bg-success">Bình
+                                                                        thường</strong>
+                                                                </td>
+                                                                <td>Số nhà 14 ngõ ao sen 5 - Hà Đông - Hà Nội</td>
+                                                                <td>
+                                                                    <a class="fa fa-times"></a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Lê Văn Cường</td>
+                                                                <td>cuonglv</td>
+                                                                <td>25/03/2020</td>
+                                                                <td class="text-center"><strong
+                                                                        class="btn btn2 bg-red">Khóa</strong></td>
+                                                                <td>Số nhà 14 ngõ ao sen 5 - Hà Đông - Hà Nội</td>
+                                                                <td>
+                                                                    <a class="fa fa-times"></a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Lê Văn Cường</td>
+                                                                <td>cuonglv</td>
+                                                                <td>25/03/2020</td>
+                                                                <td class="text-center"><strong
+                                                                        class="btn btn2 bg-success">Bình
+                                                                        thường</strong></td>
+                                                                <td>Số nhà 14 ngõ ao sen 5 - Hà Đông - Hà Nội</td>
+                                                                <td>
+                                                                    <a class="fa fa-times"></a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div id="tab3" class="user-hierarchy-tag" style="display: none;">
+                                                <div class="row">
+                                                    <div class="col-md-4 mb20">
+                                                        <div class="user-tag">
+                                                            <h4 class="title">User được gán quyền</h4>
+                                                            <div class="tag">
+                                                                <a href="#">Quản trị &nbsp;<span
+                                                                        class="delete">×</span></a>
+                                                                <a href="#">Nhân viên &nbsp;<span
+                                                                        class="delete">×</span></a>
+                                                                <a href="#">Khách hàng &nbsp;<span
+                                                                        class="delete">×</span></a>
+                                                            </div>
+                                                            <ul class="token-input-list-facebook"><li class="token-input-token-facebook"><p>vinhht</p><span class="token-input-delete-token-facebook">×</span></li><li class="token-input-token-facebook"><p>binh.dt</p><span class="token-input-delete-token-facebook">×</span></li><li class="token-input-input-token-facebook"><input type="text" autocomplete="off" autocapitalize="off" id="token-input-input-user-role-1" style="outline: none; width: 46px;"><tester style="position: absolute; top: -9999px; left: -9999px; width: auto; font-size: 14px; font-family: Verdana, sans-serif; font-weight: 400; letter-spacing: 0px; white-space: nowrap;"></tester></li></ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-8 flex">
+                                                        <div class="col-xl-4 col-md-6">
+                                                            <h4 class="title">Hệ thống</h4>
+                                                            <ul class="user-hierarchy-ul">
+                                                                <li class="active">
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Quản lý người dùng
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="lever2" style="display: block;">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Thêm mới
+                                                                        </label>
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Cập nhật
+                                                                        </label>
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Xóa
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Phân quyền nhóm
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Quản lý nhóm hàng
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Quản lý menu
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-xl-4 col-md-6">
+                                                            <h4 class="title">Sản phẩm</h4>
+                                                            <ul class="user-hierarchy-ul">
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Quản lý người dùng
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="lever2">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Thêm mới
+                                                                        </label>
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Cập nhật
+                                                                        </label>
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Xóa
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Phân quyền nhóm
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Quản lý nhóm hàng
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Quản lý menu
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-xl-4 col-md-6">
+                                                            <h4 class="title">Đơn hàng</h4>
+                                                            <ul class="user-hierarchy-ul">
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Quản lý người dùng
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="lever2">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Thêm mới
+                                                                        </label>
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Cập nhật
+                                                                        </label>
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Xóa
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Phân quyền nhóm
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Quản lý nhóm hàng
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Quản lý menu
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-xl-4 col-md-6">
+                                                            <h4 class="title">Hệ thống</h4>
+                                                            <ul class="user-hierarchy-ul">
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Quản lý người dùng
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="lever2">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Thêm mới
+                                                                        </label>
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Cập nhật
+                                                                        </label>
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Xóa
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Phân quyền nhóm
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Quản lý nhóm hàng
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Quản lý menu
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-xl-4 col-md-6">
+                                                            <h4 class="title">Sản phẩm</h4>
+                                                            <ul class="user-hierarchy-ul">
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Quản lý người dùng
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="lever2">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Thêm mới
+                                                                        </label>
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Cập nhật
+                                                                        </label>
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Xóa
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Phân quyền nhóm
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Quản lý nhóm hàng
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Quản lý menu
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-xl-4 col-md-6">
+                                                            <h4 class="title">Đơn hàng</h4>
+                                                            <ul class="user-hierarchy-ul">
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Quản lý người dùng
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="lever2">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Thêm mới
+                                                                        </label>
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Cập nhật
+                                                                        </label>
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Xóa
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Phân quyền nhóm
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Quản lý nhóm hàng
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="onclick">
+                                                                        <label class="check-list mb10 mr25">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark"></span>
+                                                                            Quản lý menu
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Cộng tác viên</td>
+                                <td>Bộ phân partime nhập sản phẩm</td>
+                                <td>Khóa/tạm dừng</td>
+                                <td><strong class="blue">23</strong></td>
+                            </tr>
+                            <tr class="bg-gray">
+                                <td>4</td>
+                                <td>Cộng tác viên</td>
+                                <td>Bộ phân partime nhập sản phẩm</td>
+                                <td>Khóa/tạm dừng</td>
+                                <td><strong class="blue">23</strong></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Cộng tác viên</td>
+                                <td>Bộ phân partime nhập sản phẩm</td>
+                                <td>Khóa/tạm dừng</td>
+                                <td><strong class="blue">23</strong></td>
+                            </tr>
+                            <tr class="bg-gray">
+                                <td>6</td>
+                                <td>Cộng tác viên</td>
+                                <td>Bộ phân partime nhập sản phẩm</td>
+                                <td>Khóa/tạm dừng</td>
+                                <td><strong class="blue">23</strong></td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Cộng tác viên</td>
+                                <td>Bộ phân partime nhập sản phẩm</td>
+                                <td>Khóa/tạm dừng</td>
+                                <td><strong class="blue">23</strong></td>
+                            </tr>
+                            <tr class="bg-gray">
+                                <td>8</td>
+                                <td>Cộng tác viên</td>
+                                <td>Bộ phân partime nhập sản phẩm</td>
+                                <td>Khóa/tạm dừng</td>
+                                <td><strong class="blue">23</strong></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <ul id="pagination" class="pagination">
+
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fa fa-step-backward"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link icon" href="#">
+                            <i class="fa fa-caret-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link icon" href="#">
+                            <i class="fa fa-caret-right"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fa fa-step-forward"></i>
+                        </a>
+                    </li>
+
+                    <span>Hiển thị 1 - 7 trên tổng số 50 hóa đơn</span>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- /build:content -->
+
+<!-- build:script2 -->
+<script type="text/javascript">
+
+</script>
+<!-- /build:script2 -->

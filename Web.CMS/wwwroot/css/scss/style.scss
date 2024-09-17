@@ -1,0 +1,22 @@
+@import "var.scss";
+@import "reset.scss";
+@import "fonts/iconfont/iconfont.css";
+@import "font.scss";
+@import "vendors.scss";
+@import "placeholder.scss";
+// Plugin
+@import "modal.scss";
+@import "scrollbar.scss";
+@import "form-lightbox.scss";
+@import "lightgallery.scss";
+@import "datepicker.min.scss";
+@import "swiper.scss";
+// @import "scss/bootstrap.min.css";
+@import "fontAwesome/css/font-awesome.min.css";
+//Layout
+@import "header.scss";
+@import "inline.scss";
+@import "element.scss";
+
+/**RESPONSIVE**/
+@import "responsive.scss";

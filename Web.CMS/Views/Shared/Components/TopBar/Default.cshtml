@@ -1,0 +1,142 @@
+﻿@{
+    var userId = !string.IsNullOrEmpty(ViewBag.UserId) ? int.Parse(ViewBag.UserId) : 0;
+}
+@*<section id="topbar" class="section top_bar">
+        <div class="flex container align-center">
+            <a href="javascript:;" class="all-menu all-menu-tablet"><span class="hamburger"></span></a>
+            <a class="logo" href="/"><img src="/images/graphics/logo_adavigo.jpg"></a>
+            <div class="header-right">
+                <ul>
+                    <li class="user-name menu-bar onclick-togle">
+                        <a class="lk-user-name">
+                            <strong>Chào: @ViewBag.UserName</strong>
+                            <i class="fa fa-user"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a onclick="_account.OnGetDatailUser()" style="cursor:pointer"><i class="fa fa-user"></i> Thông tin tài khoản</a></li>
+                            <li><a onclick="_account.OnGetChangePassUser()" style="cursor:pointer"><i class="fa fa-key"></i> Thay đổi mật khẩu</a></li>
+                            <li>
+                                <form method="post" asp-controller="account" asp-action="logout">
+                                    <a onclick="$(this).closest('form').submit(); _account.logOut()" style="cursor:pointer"><i class="fa fa-external-link"></i>Đăng xuất</a>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>*@
+<style>
+    a {
+        color: black;
+    }
+</style>
+<section id="topbar" class="section top_bar" style="width: -webkit-fill-available;">
+    <div class="flex  align-center">
+        <a href="javascript:;" class="all-menu all-menu-tablet"><span class="hamburger"></span></a>
+        <a class="logo" href="#"><img src="https://be-travel.adavigo.com/images/graphics/logo_adavigo.jpg"></a>
+        <div class="header-right">
+            <ul style="margin-right: 15px;">
+                @*<li class="setting">
+                    <a href="javascript:void(0);">
+                        <strong>Thiết lập</strong>
+                        <i class="iconfont-setting"></i>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="#"><i class="fa fa-user"></i>Quản lý người dùng</a></li>
+                        <li><a href="#"><i class="fa fa-reply-all"></i>Phân quyền nhóm</a></li>
+                        <li><a href="#"><i class="fa fa-file-word-o"></i>Danh sách chuyên mục</a></li>
+                    </ul>
+                </li>*@
+                <li class="wrap-notifi">
+                    <a class="notifi onclick" href="javascript:;" id="coutn-noti2" onclick="_noti.UpdateNotifyAll()">
+                        <i class="fa fa-bell-o" onclick="_noti.UpdateNotifyAll()"></i>
+                        <span id="coutn-noti" ></span>
+                        <span>Thông báo</span>
+                    </a>
+                    <div class="list list-noti" id="note-tt">
+                        <span class="note">Không có thông báo từ hệ thống</span>
+                        <ul id="Notify" class="scroll-inner"></ul>
+                        <a class="view-all" href="javascript:;">Xem tất cả</a>
+                    </div>
+                    <audio id="myAudio" controls style="display:none!important;">
+                        <source src="~/Template/aoudio/adavigo_tone.mp3" type="audio/mpeg" />
+                    </audio>
+                </li>
+
+                <li class="user-name menu-bar onclick-togle">
+                    <a class="lk-user-name" href="javascripts:;" title="@ViewBag.UserName">
+                        <strong>Chào: @ViewBag.UserName</strong>
+                        <i class="fa fa-user"></i>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a onclick="_account.OnGetDatailUser()" style="cursor:pointer"><i class="fa fa-user"></i> Thông tin tài khoản</a></li>
+                        <li><a onclick="_account.OnGetChangePassUser()" style="cursor:pointer"><i class="fa fa-key"></i> Thay đổi mật khẩu</a></li>
+                        <li>
+                            <form method="post" asp-controller="account" asp-action="logout">
+                                <a onclick="$(this).closest('form').submit(); _account.logOut()" style="cursor:pointer"><i class="fa fa-external-link"></i>Đăng xuất</a>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+
+               
+
+            </ul>
+        </div>
+    </div>
+</section>
+@* <script type="text/javascript" src="~/modules/notify.js" defer></script>
+<script>
+    var _menu_html = {
+        html_menu_notify: '<li class= "active"  onclick="_noti.UpdateNotify($(this))" data="{id}"> <a href="{link}" > <span class="ava"><img src="/images/icons/user.png"></span> {note}  <div class="time">{date}</div></a></li> ',
+        html_menu_notify_active: '<li class="ava"  onclick="_noti.UpdateNotify($(this))" data="{id}"> <a href="{link}" > <span class="ava"><img src="/images/icons/user.png"></span> {note}  <div class="time">{date}</div></a></li> ',
+        html_menu_notify_coutn: '<span class="coutn">{coutn}<input id="lst_id_not_seen" value="{value}" style="display:none;"/><input id="total_not" value="{total_not}" style="display:none;"/>',
+        html_menu_notify_coutn2: '<input id="lst_id_not_seen" value="{value}" style="display:none;"/><input id="total_not" value="{coutn}" style="display:none;"/>',
+        html_menu_notify_thongbao: ' <span class="note">{note}</span> <ul id="Notify" class="scroll-inner"></ul >    <a class="view-all" href="javascript:;">Xem tất cả</a>',
+
+    }
+
+
+
+    // listener Notify Publish
+    var eventSource = new EventSource('/Sse/getNotify');
+   eventSource.onopen = function (event) {
+        console.log("opend"); // kết nối tới sse
+    }
+    eventSource.onmessage = function (event) {
+        var total_not = $('#total_not').val();
+        var data = JSON.parse(event.data);
+      @*  console.log("total_not_seen: " + data.total_not_seen)
+        console.log("total_not: " + total_not)*@
+       @* $('#note-tt').html(_menu_html.html_menu_notify_thongbao.replace('{note}', "Thông báo từ hệ thống"))
+        if (data.total_not_seen > total_not) {
+
+            document.getElementById('myAudio').play();
+        }
+        if (data.total_not_seen > 0) {
+
+                $('#coutn-noti').html(_menu_html.html_menu_notify_coutn.replace('{coutn}', data.total_not_seen).replace('{value}', data.lst_id_not_seen).replace('{total_not}', data.total_not_seen))
+
+        } else {
+                $('#coutn-noti').html(_menu_html.html_menu_notify_coutn2.replace('{coutn}', 0).replace('{value}', data.lst_id_not_seen))
+            }
+        data.lst_not_seen_detail.forEach(function (item) {
+
+            var base_date = (new Date(1970, 0, 1, 7, 0, 0)).getTime();
+            var date = new Date(base_date + item.seen_date * 1000);
+            if (item.seen_status == 0) {
+                $('#Notify').append(_menu_html.html_menu_notify_active.replace('{link}', item.link_redirect).replaceAll('{id}', item.notify_id).replace('{note}', item.content).replace('{date}', _global_function.GetDayText(date)))
+
+            } else {
+                $('#Notify').append(_menu_html.html_menu_notify.replace('{link}', item.link_redirect).replaceAll('{id}', item.notify_id).replace('{note}', item.content).replace('{date}', _global_function.GetDayText(date)))
+
+            }
+        })
+
+    }
+    eventSource.onerror = function (event) {
+        console.log("closed"); // vì cho chạy liên tục nên không cần đóng
+    }
+</script>
+ *@

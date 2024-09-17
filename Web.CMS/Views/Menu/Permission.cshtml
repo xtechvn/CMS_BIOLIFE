@@ -1,0 +1,56 @@
+﻿@{
+    Layout = null;
+}
+@using Entities.Models
+@using Entities.ViewModels
+@model MenuPermissionModel
+
+@{
+    var permissions = (IEnumerable<Permission>)ViewBag.Permissions;
+}
+
+
+
+
+<div class="modal fade" id="menu-add-or-update" aria-modal="true" role="dialog" style="display: block; padding-top: 5%; background: rgba(0,0,0,0.5); ">
+    <div class="modal-dialog" style="max-width: 95%;">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Cập nhật các quyền thuộc menu</h4>
+                <button type="button" class="close" onclick="_menu.Close()">×</button>
+            </div>
+            <div>
+                <div class="row row_min">
+                    <div class="grid-item col-md-12">
+                        <div class="form-default3 pd10">
+                            <div class="row row_min">
+                                <label class="lbl gray">Danh sách các quyền thuộc menu</label>
+                                <input type="hidden" id="ip_menu_id" value="@Model.menu_id" />
+                                <div class="grid grid__2 gap10 mb20" id="block_permission_options">
+                                    @if (permissions != null && permissions.Any())
+                                    {
+                                        foreach (var item in permissions)
+                                        {
+                                            <label class="check-list">
+                                                <input type="checkbox" class="ckb__permission" value="@item.Id"
+                                                       @(Model.permission_ids.Contains(item.Id) ? "checked" : string.Empty) />
+                                                <span class="checkmark"></span>
+                                                @item.Name
+                                            </label>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button type="button" class="btn btn-default btn btn-default cancel" data-dismiss="modal">Bỏ qua</button>
+                    <button type="button" class="btn btn-default" onclick="_menu.OnSavePermission()">Cập nhật</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

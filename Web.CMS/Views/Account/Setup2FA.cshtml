@@ -1,0 +1,121 @@
+﻿@{
+    ViewData["Title"] = "Adavigo - 2FA";
+    Layout = "~/Views/Shared/_NoMenuLayout.cshtml";
+    string qrcode_uri = (string)ViewBag.QRCodeUri;
+    string SecretKey = (string)ViewBag.SecretKey;
+    string issurer = (string)ViewBag.Issurer;
+    short status = (short)ViewBag.Status;
+}
+<style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    div.row, label.row {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+        div.row input {
+            width: 300px;
+            margin-right: 20px;
+        }
+
+        div.row button {
+            margin-left: 20px;
+        }
+</style>
+
+<div class="row-main flex">
+    <div class="container">
+        <!--Main Display-->
+        <div class="wrap_bg wrap_bg2">
+            <div class="content_lightbox">
+                <label class="row bold"> Kích hoạt bảo mật 2 lớp</label>
+                <div class="row">
+                    <p>
+                        Kể từ lần đăng nhập kế tiếp. Chức năng bảo mật 2 lớp đã được bật. Chức năng này giúp <br />Tăng cường bảo mật bằng cách thêm 1 lớp mã OTP (mã sử dụng một lần) giúp hạn chế đăng nhập trong trường hợp bạn bị lộ tên tài khoản và mật khẩu.<br />
+                        <strong class="text-danger"> Vui lòng làm theo hướng dẫn bên dưới để cài đặt bảo mật 2 lớp, bạn sẽ không thể đăng nhập trong lần tiếp theo nếu không làm theo hướng dẫn và nhận được đúng mã OTP. <br /> HÃY CẨN THẬN!.</strong><br />
+                        Sau khi đã thực hiện tất cả các cài đặt và kiểm tra mã OTP thành công, vui lòng nhấn vào nút <strong style="color: #4BAC4D;">Xác nhận</strong> để kích hoạt tính năng này.
+                    </p>
+                </div>
+                <label class="row bold"> Trạng thái kích hoạt: &nbsp;&nbsp; <strong class="text-danger">@(status == 0 ? "Chưa kích hoạt / Đã tắt bảo mật 2 lớp" : "Đã bật bảo mật 2 lớp") </strong></label>
+                <label class="row bold">Hướng dẫn cài đặt</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text">
+                            Sử dụng ứng dụng <strong><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" target="_blank">Google Authenticator</a></strong> trên Android<br />
+                            hoặc ứng dụng <strong><a href="https://apps.apple.com/us/app/google-authenticator/id388497605" target="_blank">Google Authenticator</a></strong> trên iOS và quét mã QRCode dưới đây:
+                        </p>
+                        <div id="qrcode"> </div>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="text">
+                            Hoặc nhập thông tin dưới đây vào ứng dụng <strong>Authenticator</strong> hoặc các trang Web, ứng dụng hỗ trợ tạo mã OTP: <br /><br />
+                            Tên tài khoản:&nbsp; <strong>@issurer</strong><br />
+                            Khoá của bạn:&nbsp; <strong>@SecretKey</strong><br />
+                            Nhà cung cấp:&nbsp; <strong>Adavigo</strong><br />
+                            Loại Khoá (Nếu có):&nbsp; <strong>Dựa theo thời gian</strong><br />
+                        </p>
+                    </div>
+
+                </div>
+                <label class="row bold">Kiểm tra cài đặt</label>
+                <div class="row">
+                    Kiểm tra việc cài đặt đã thành công bằng cách nhập mã OTP được hiển thị từ ứng dụng vào khung dưới đây: <br>
+                </div>
+                <div class="row">
+                    <input id="otp-test" class="form-control" max="6" type="number" placeholder="Mã OTP từ ứng dụng Authenticator..." value="" />
+                    <button class="btn btn-default" onclick="_account_2fa_setup.OnMFATestGG();">Kiểm tra mã OTP</button>
+                </div>
+
+                <label class="row bold">Sau khi đã hoàn thành việc kiểm tra mã OTP / mã dự phòng, nhấn vào phím &nbsp;<strong style="color: #4BAC4D;">Hoàn thành</strong>&nbsp; bên dưới để hoàn tất việc cài đặt.</label>
+                <button onclick="_account_2fa_setup.Confirm();" class="btn btn-default" style="cursor:pointer"><i class="fa fa-check"></i>Hoàn thành</button>
+                <p id="error-text-onconfirm" class="mfp-hide text text-danger"></p>
+                @*
+        <div class="row">
+            <p class="text">
+                Các chức năng:<br />
+                -&nbsp;Kiểm tra mã OTP: Kiểm tra lại mã OTP sau khi đã cài đặt thành công ở phần "Hướng dẫn cài đặt." <br />
+                -&nbsp;Kiểm tra mã dự phòng: Mã dự phòng là mã được bộ phận kỹ thuật cung cấp cho bạn trong trường hợp không thể đăng nhập được với mã QR Code hoặc thông tin bên trên<br />
+                &nbsp;&nbsp;Vui lòng liên hệ với bộ phận kỹ thuật để được cung cấp mã này.
+            </p>
+        </div>
+                *@
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
+@section scripts{
+    <script type="text/javascript" src="~/lib/qrcode-js/qrcode.js" asp-append-version="true"></script>
+    <script>
+    if (document.getElementById("qrcode") != null) {
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: "@qrcode_uri",
+                width: 200,
+                height: 200,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.Q
+            });
+        };
+    </script>
+    <script type="text/javascript" src="~/modules/account_2fa_setup.js" asp-append-version="true"></script>
+    <script>
+        _account_2fa_setup.Initialization()
+    </script>
+}

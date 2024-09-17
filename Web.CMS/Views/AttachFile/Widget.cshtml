@@ -1,0 +1,128 @@
+﻿@using Entities.Models;
+@using Entities.ViewModels.Attachment;
+@{
+    long DataId = (long)ViewBag.DataId;
+    int Type = (int)ViewBag.Type;
+    int UserId = (int)ViewBag.UserId;
+    List<AttachFile> data = (List<AttachFile>)ViewBag.Data;
+    List<string> videoExtensionList = (List<string>)ViewBag.VideoExtension;
+    List<string> imageExtensionList = (List<string>)ViewBag.ImageExtension;
+    string id = DateTime.Now.ToString("yyyyMMddhhmmss") + DataId + Type;
+    AttachmentsOption options = (AttachmentsOption)ViewBag.Option;
+    string default_icon = "/images/icons/document.png";
+    string elemnent_id = (string)ViewBag.ID;
+
+}
+
+
+<style>
+    .attachment-widget .delete-file {
+        background: #ED5C6A;
+        color: #fff;
+        position: absolute;
+        right: -7px;
+        top: -7px;
+        z-index: 2;
+        border: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        outline: 0;
+        cursor: pointer;
+    }
+    .file p {
+        overflow:hidden;
+    }
+    .file-widget-@id .choose-ava {
+        width: 100% !important;
+    }
+</style>
+
+<div id="file-widget-@id" class="bg-white mb20 attachment-widget file-widget-@id" style="width:100% !important;" data-dataid="@DataId" data-type="@Type">
+    <div class="lb-form pd10">
+        Tệp đính kèm <i class="fa fa-paperclip"></i>
+    </div>
+    <div class="row list-choose lightgallery attachment-file-gallery">
+        @if (data != null && data.Count > 0)
+        {
+            foreach (var item in data)
+            {
+                var file_name = item.Path.Remove(0, item.Path.LastIndexOf('/') + 1);
+                if (imageExtensionList.Contains(item.Ext))
+                {
+                    <div class="col-sm-3 col-4 mb10 file" style="max-width:150px;" data-path="@item.Path" data-id="@item.Id" data-ext="@item.Ext">
+                        @if (options.allow_edit)
+                        {
+                            <button type="button" class="delete-file" onclick="$(this).closest('.file').remove()">x</button>
+
+                        }
+                        <div class="choose-ava lightgallery">
+                            <a href="@item.Path" target="_blank"><img src="@item.Path" /></a>
+                        </div>
+                        <p>
+                            <span>@(file_name.Substring(0, file_name.Length <= 100 ? file_name.Length : 100))</span>
+
+                        </p>
+                    </div>
+                }
+                else if (videoExtensionList.Contains(item.Ext))
+                {
+                    <div class="col-sm-3 col-4 mb10 file" style="max-width:150px;" data-path="@item.Path" data-id="@item.Id">
+                        @if (options.allow_edit)
+                        {
+                            <button type="button" class="delete-file" onclick="$(this).closest('.file').remove()">x</button>
+
+                        }                        
+                        <div class="lg-video-cont lg-has-iframe lightgallery">
+                            <a target="_blank" href="@item.Path">@file_name</a>
+                        </div>
+                        <p>
+                            <span>@(file_name.Substring(0, file_name.Length <= 100 ? file_name.Length : 100))</span>
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-sm-3 col-4 mb10 file" style="max-width:150px;" data-path="@item.Path" data-id="@item.Id">
+                        @if (options.allow_edit)
+                        {
+                            <button type="button" class="delete-file" onclick="$(this).closest('.file').remove()">x</button>
+
+                        }                        
+                    <div class="choose-ava lightgallery">
+                        <a target="_blank" href="@item.Path">
+                            <img src="@default_icon" alt="img1"/>
+                        </a>
+                       
+                    </div>
+                        <p>
+                            <span>@(file_name.Substring(0, file_name.Length <= 100 ? file_name.Length : 100))</span>
+                        </p>
+                    </div>
+                }
+            }
+        }
+
+
+    </div>
+    <div class="flex align-center mb20 attach-edit">
+        <div class="flex align-center pd10 mb20">
+            <label class="choose mb0" style="width: 100% !important;">
+                <input type="file" class="attachfile-add" multiple style="display: none;">
+                <a class="btn-default" href="javascript:;" onclick="$(this).closest('.choose').find('.attachfile-add').trigger('click')" style="color: #fff;cursor: pointer; margin-top:10px;">
+                    <i class="fa fa-upload"></i>&nbsp;&nbsp;Upload file
+                </a>
+                <a id="confirm-file" href="javascript:;" class="btn-default confirm-file mfp-hide" style="color: white; display:none;">Lưu tệp đính kèm</a>
+            </label>
+            <div class="gray txt_12" style="margin-top: 10px; width: 100% !important;">
+                <p style="margin-left: 3px;">Upload nhiều file cùng lúc. Định dạng: .jpg,.png, .gif,.pdf, .doc & docx. Dung lượng tối đa 10Mb.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        const _attach_@(id) = new AttachmentWidget('file-widget-@id',@Json.Serialize(options));
+    </script>
+
+
+
+</div>

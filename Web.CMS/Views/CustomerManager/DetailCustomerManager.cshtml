@@ -1,0 +1,214 @@
+﻿@using Entities.Models
+@using Utilities.Contants
+@using Entities.ViewModels.CustomerManager
+@using Entities.ViewModels.UserAgent
+@model CustomerManagerViewModel
+@{
+    var data_UserAgent = (List<UserAgentViewModel>)ViewBag.userAgent;
+}
+<style>
+    .main-customer .btn-default {
+        height: auto !important;
+        min-height:35px !important;
+    } 
+</style>
+<div class="bg-white rounded p-3 side-left">
+    <div class="flex flex-nowrap gap10 align-items-center mb-3">
+        <div class="img-avatar ">
+            <img class="rounded-circle" src="@(Model.Avartar != null? Model.Avartar:"/images/graphics/no-avt.png" )" width="70" height="70">
+        </div>
+        <h6 class="text-uppercase">@Model.ClientName</h6>
+    </div>
+  @*   <div class="flex gap10 flex-nowrap align-items-center">
+        <span class="text-nowrap">Hoàn thiện hồ sơ</span>
+        <div class="bar">
+            <div class="percent" style="width: 30%;">30%</div>
+        </div>
+    </div> *@
+    <div class="flex gap10 flex-nowrap align-items-center my-3">
+        <a href="javascripts:;" onclick="_customer_manager.OpenPopup('@Model.Id')" title="Sửa thông tin khách hàng" class="btn border"><i class="icofont-ui-edit"></i></a>
+        @*<a href="" class="btn border"><i class="icofont-book-alt"></i></a>
+        <a href="" class="btn border"><i class="icofont-share"></i></a>
+        <a href="" class="btn border text-danger"><i class="icofont-trash"></i></a>*@
+    </div>
+    <div class="box-info-user p-3 mb-3">
+        <h6 class="text-uppercase mb-3">
+            <i class="icofont-ui-rate-blank mr-2"></i>ACTION OF
+            POVERTY
+        </h6>
+        <div class="row">
+            <div class="col-6">
+                <p><i class="icofont-phone  mr-2"></i>@(Model.Phone != null ? Model.Phone : "Chưa có dữ liệu")</p>
+            </div>
+
+            <div class="col-6">
+                <p><i class="icofont-birthday-cake mr-2"></i>@(Model.Birthday != null ? ((DateTime)Model.Birthday).ToString("dd/MM/yyyy") : "Chưa có dữ liệu")</p>
+            </div>
+            <div class="col-6">
+
+                @if (Model.Gender != null)
+                {
+                    if (Model.Gender == 0)
+                    {
+                        <p>
+                            <i class="fa fa-venus-mars mr-2"></i>Nam
+                        </p>
+                    }
+                    else
+                    {
+                        <p>
+                            <i class="fa fa-venus-mars mr-2"></i>Nữ
+                        </p>
+                    }
+
+                }
+                else
+                {
+                    <p>
+                        <i class="fa fa-venus-mars mr-2"></i>Chưa có dữ liệu
+                    </p>
+                }
+
+            </div>
+            <div class="col-6">
+                <p class="m-0"><i class="icofont-book-alt mr-2"></i>Chưa có dữ liệu</p>
+            </div>
+            <div class="col-12">
+                <p><i class="icofont-email mr-2"></i>@(Model.Email != null ? Model.Email : "Chưa có dữ liệu")</p>
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-center mb-3">
+        <div class="col-6">
+            <p class="m-0"><i class="icofont-birthday-cake mr-2"></i>Mối quan hệ</p>
+        </div>
+        <div class="col-6">
+            <div class="select-list">
+                <div class="relative select-user">
+                    <a href="#" class=" btn-default white">
+                        <i class="icofont-user"></i>
+                        <span>@Model.client_type_name</span>
+                        <svg class="icon-svg ml-1">
+                            <use xlink:href="#CaretDown"></use>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-center mb-3">
+        <div class="col-6">
+            <p class="m-0"><i class="icofont-user-alt-7 mr-2"></i>Người phụ trách</p>
+        </div>
+        <div class="col-6">
+            <div class="select-list">
+                <div class="relative select-user">
+                    <a href="#" class="btn-default white">
+                        <i class="icofont-user"></i>
+                       @if (data_UserAgent != null && data_UserAgent.Count > 0)
+                            {
+                            <span>@data_UserAgent[0].UserId_Name </span>
+                                data_UserAgent.Remove(data_UserAgent[0]);
+                            }
+                       
+                        <svg class="icon-svg ml-1">
+                            <use xlink:href="#CaretDown"></use>
+                        </svg>
+                    </a>
+                    <div class="select-option w-100 p-2" style="display: none">
+                        <ul class="scroll-inner">
+                            <li>
+                                <label class="flex flex-nowrap mb-3">
+                                    <span class="avatar_inner">
+                                        <svg class="icon-svg">
+                                            <use xlink:href="#user2"></use>
+                                        </svg>
+                                    </span>
+                                    Chưa có người phụ trách
+                                </label>
+                            </li>
+
+                            <li>
+                                <label class="flex flex-nowrap mb-3">
+                                    <span class="avatar_inner">
+                                        <svg class="icon-svg">
+                                            <use xlink:href="#user2"></use>
+                                        </svg>
+                                    </span>
+                                    Admin HT
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-center mb-3">
+        <div class="col-6">
+            <p class="m-0"><i class="icofont-users mr-2"></i>Người liên quan</p>
+        </div>
+        <div class="col-6">
+            <div class="flex align-items-center justify-content-end gap10">
+                <div class="list-avt pl-4">
+                    @if (data_UserAgent != null && data_UserAgent.Count > 0)
+                    {
+                        foreach(var item in data_UserAgent)
+                        {
+                            <img onclick="_customer_manager_Detail.OpenPopupUserAgent('@item.Id',@Model.Id)" class="rounded-circle" width="30" title="@item.UserId_Name" height="30" src="@(item.Avata != "" ? item.Avata:"/images/graphics/no-avt.png")">
+                        }
+                    }
+                   
+                   
+                </div>
+                <a href="javascripts:;" onclick="_customer_manager_Detail.OpenPopupUserAgent('0',@Model.Id)" title="Thêm nhân viên phụ trách" class="btn-add-user"><i class="icofont-ui-add"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3 mx-0">
+        @*<div class="col-4 px-1">
+            <div class="item-thongke text-center p-2">
+                <div class="icon rounded-circle text-white" style="background: #4A80B8">
+                    <i class="icofont-book-alt"></i>
+                </div>
+                <p class="mb-0">Liên hệ lần cuối</p>
+                <b style="font-size: 24px;">10</b>
+            </div>
+        </div>
+        <div class="col-4  px-1">
+            <div class="item-thongke text-center p-2">
+                <div class="icon rounded-circle  text-white" style="background: #B87F4A">
+                    <i class="icofont-ui-rate-blank"></i>
+                </div>
+                <p class="mb-0">Liên hệ lần cuối</p>
+                <b style="font-size: 24px;">10</b>
+            </div>
+        </div>*@
+        <div class="col-4  px-1">
+            <div class="item-thongke text-center p-2">
+                <div class="icon rounded-circle  text-white" style="background: #4AB88A"><i class="icofont-money"></i></div>
+                <p class="mb-0">Giá trị đơn hàng</p>
+                <b >@Model.TotalAmount.ToString("N0") đ</b>
+            </div>
+        </div>
+    </div>
+    <div class="box-info-item">
+        <h3>Thông tin chính</h3>
+        <table class="w-100">
+            <tbody>
+                <tr>
+                    <td>Nguồn</td>
+                    <td>Phát triển thị trường</td>
+                </tr>
+                <tr>
+                    <td>Người tạo</td>
+                    <td>@Model.Create_name</td>
+                </tr>
+                <tr>
+                    <td>Ngày tạo</td>
+                    <td> @Model.JoinDate.ToString("dd/MM/yyyy HH:MM:ss")</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

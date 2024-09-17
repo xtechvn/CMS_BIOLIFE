@@ -1,0 +1,60 @@
+﻿@using Entities.Models
+@using Entities.ViewModels
+@{
+    Layout = null;
+    var locationTypeList = (List<string>)ViewBag.LocationTypeList;
+    var lbl = (string)ViewBag.Label;
+}
+
+<div class="form-default2">
+    <div class="form-group">
+        <label id="l_type" class="lbl">Loại</label>
+        <div class="wrap_input">
+            <select class="form-control" id="selectLocationType" onchange="_location.AddPopupChangeLocationType()">
+                @if (locationTypeList != null)
+                {
+                    foreach (var item in locationTypeList)
+                    {
+                        <option value="@locationTypeList.IndexOf(@item)">@item</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label id="l_lbl" class="lbl">@locationTypeList[0]</label>
+        <div class="wrap_input">
+            <input type="text" class="form-control " placeholder="Nhập tên @locationTypeList[0] mới." id="i_a_name">
+            <span id="e_fa" class="mfp-hide error">Bạn chưa nhập @locationTypeList[0]</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label id="l_lbl" class="lbl">Trạng thái</label>
+        <div class="wrap_input ">
+            <div class="form-check form-check-inline" style="width:40%">
+                <input class="form-check-input" style="padding-right: 5%" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="0">
+                <label class="form-check-label" style="padding-left: 3%" for="inlineRadio1">Bình thường</label>
+            </div>
+            <div class="form-check form-check-inline" style="width:40%">
+                <input class="form-check-input" style="padding-right: 5%" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="1">
+                <label class="form-check-label" style="padding-left: 3%" for="inlineRadio2">Khóa / Tạm dừng</label>
+            </div>
+
+        </div>
+    </div>
+   
+    <div class="align-right mt20 block">
+        <img id="onapply_location"  src="~/images/icons/loading.gif" style=" width: 20px; height: 20px; display: none;" />
+        <button onclick="_location.OnAddLocation()" class="btn btn-default bg-main" id="btnAddLocation">
+            <i class="fa fa-floppy-o"></i>Thêm
+        </button>
+        &nbsp;
+        <button type="button" class="btn btn-default cancel" onclick="$.magnificPopup.close();">
+            <i class="fa fa-minus-circle"></i>Bỏ qua
+        </button>
+    </div>
+</div>
+<script>
+    document.getElementById("inlineRadio1").checked = true;
+</script>
+

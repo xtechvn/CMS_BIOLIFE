@@ -1,0 +1,24 @@
+﻿@{
+    Layout = null;
+}
+@using Entities.Models
+@model Department
+<tr>
+    <td>
+        <div class="flex">
+            <div style="margin-left: 10px;">
+                <span>@Model.DepartmentCode</span>
+            </div>
+        </div>
+    </td>
+    <td>@Model.DepartmentName</td>
+    <td>@Model.Description</td>
+    <td>
+        <a class="cursor-pointer" onclick="_de.ShowAddOrUpdate('@Model.Id')" title="Chỉnh sửa">
+            <i class="fa fa-edit"></i>
+        </a> &nbsp;&nbsp;
+        <a class="cursor-pointer" onclick="_de.ShowAddOrUpdate('@Model.Id')" title="Xóa">
+            <i class="fa fa-times"></i>
+        </a>
+    </td>
+</tr>

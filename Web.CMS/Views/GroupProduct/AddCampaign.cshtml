@@ -1,0 +1,27 @@
+﻿@{ 
+    Layout = null;
+    //var enumCampaign = Utilities.Contants.Constants.CampaignType.;
+}
+<!--POPUP THÊM CHIẾN DỊCH-->
+<div id="them-chien-dich" class="white-popup">
+    <div class="content_lightbox">
+        <div class="form-default">
+            <div class="form-group">
+                <label class="lbl">Tên chiến dịch</label>
+                <div class="wrap_input">
+                    <input type="text" class="form-control error" id="tenchiendich-add">
+                </div>
+            </div>
+            <div class="form-group align-right mt20 block">
+                <button onclick="_menu.AddCampaign()" class="btn btn-default bg-main">
+                    <i class="fa fa-floppy-o"></i>Lưu
+                </button>
+                <button type="button" class="btn btn-default cancel" onclick="$.magnificPopup.close();">
+                    <i class="fa fa-minus-circle"></i>Bỏ qua
+                </button>
+            </div>
+        </div>
+    </div>
+    @*<button title="Close (Esc)" type="button" class="mfp-close">×</button>*@
+
+</div>

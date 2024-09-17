@@ -1,0 +1,71 @@
+﻿@using Entities.Models
+@using Entities.ViewModels
+@using Entities.ViewModels.Funding
+@model BankingAccount
+
+
+<form id="form-create" onsubmit="return false">
+    @if(Model == null)
+{
+    <div class="row">
+        <input type="text" style="display:none" class="form-control"  asp-for="@Model.Id">
+        <input type="text" style="display:none" class="form-control" value="@ViewBag.ClientId" asp-for="@Model.ClientId">
+        <div class="col-4 mb10"><label class="lbl mt5 mb0">Số tài khoản <sup class="red">*</sup></label></div>
+        <div class="col-8 mb10">
+            <input type="text" class="form-control" asp-for="@Model.AccountNumber" name="AccountNumber">
+        </div>
+        <div class="col-4 mb10"><label class="lbl mt5 mb0">Chủ tài khoản <sup class="red">*</sup></label></div>
+        <div class="col-8 mb10">
+            <input type="text" class="form-control" asp-for="@Model.AccountName" name="AccountName">
+        </div>
+        <div class="col-4 mb10"><label class="lbl mt5 mb0">Tên ngân hàng <sup class="red">*</sup></label></div>
+        <div class="col-8 mb10">
+            <input type="text" class="form-control" asp-for="@Model.BankId" name="BankId">
+        </div>
+        <div class="col-4 mb10"><label class="lbl mt5 mb0">Chi nhánh </label></div>
+        <div class="col-8 mb10">
+            <input type="text" class="form-control" asp-for="@Model.Branch" name="Branch">
+        </div>
+
+    </div>
+
+    <div class="line-bottom"></div>
+
+    <div class="text-center">
+        <button  onclick="$.magnificPopup.close();" class="btn btn-default btn btn-default cancel">Bỏ qua</button>
+        <button  onclick="_customer_manager_Detail.OnSetupPaymentAccount()" class="btn btn-default">Thêm</button>
+    </div>
+        }
+ else
+{
+<div class="row">
+    <input type="text" style="display:none" class="form-control"  asp-for="@Model.Id">
+    <input type="text" style="display:none" class="form-control" value="@ViewBag.ClientId" asp-for="@Model.ClientId">
+    <div class="col-4 mb10"><label class="lbl mt5 mb0">Số tài khoản <sup class="red">*</sup></label></div>
+    <div class="col-8 mb10">
+        <input type="text" class="form-control" asp-for="@Model.AccountNumber" name="AccountNumber" value="@Model.AccountNumber">
+    </div>
+    <div class="col-4 mb10"><label class="lbl mt5 mb0">Chủ tài khoản <sup class="red">*</sup></label></div>
+    <div class="col-8 mb10">
+        <input type="text" class="form-control" asp-for="@Model.AccountName" name="AccountName" value="@Model.AccountName">
+    </div>
+    <div class="col-4 mb10"><label class="lbl mt5 mb0">Tên ngân hàng <sup class="red">*</sup></label></div>
+    <div class="col-8 mb10">
+        <input type="text" class="form-control" asp-for="@Model.BankId" name="BankId" value="@Model.BankId">
+    </div>
+    <div class="col-4 mb10"><label class="lbl mt5 mb0">Chi nhánh </label></div>
+    <div class="col-8 mb10">
+        <input type="text" class="form-control" asp-for="@Model.Branch">
+    </div>
+
+</div>
+    <div class="line-bottom"></div>
+
+    <div class="text-center">
+        <button  onclick="$.magnificPopup.close();" class="btn btn-default btn btn-default cancel">Bỏ qua</button>
+        <button  onclick="_customer_manager_Detail.OnSetupPaymentAccount()" class="btn btn-default">Lưu</button>
+
+    </div>
+}
+</form> 
+

@@ -1,0 +1,85 @@
+﻿@{
+    Layout = null;
+}
+@using Entities.Models
+@using Entities.ViewModels
+@model MenuUpsertViewModel
+
+
+<div class="modal fade" id="menu-add-or-update" aria-modal="true" role="dialog" style="display: block; padding-top: 5%; background: rgba(0,0,0,0.5); ">
+    <div class="modal-dialog" style="max-width: 95%;">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Thêm mới / Cập nhật menu</h4>
+                <button type="button" class="close" onclick="_menu.Close()">×</button>
+            </div>
+            <div>
+                <div class="modal-body">
+                    <form id="form_menu">
+                        <div class="row row_min">
+                            <div class="grid-item col-md-12">
+                                <div class="form-default3 pd10">
+                                    <div class="row row_min">
+                                        <div class="form-group col-6">
+                                            <label class="lbl">Tên menu <sup class="red">*</sup></label>
+                                            <div class="wrap_input">
+                                                <input type="hidden" asp-for="@Model.Id" />
+                                                <input type="hidden" asp-for="@Model.ParentId" />
+                                                <input type="text" class="form-control" asp-for="@Model.Name" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label class="lbl">Mã menu</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control" asp-for="@Model.MenuCode" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label class="lbl">Icon</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control" asp-for="@Model.Icon" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label class="lbl">Tiêu Đề</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control" asp-for="@Model.Title" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <label class="lbl">Đường dẫn</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control" asp-for="@Model.Link" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <label class="lbl">Trạng thái</label>
+                                            <div class="wrap_input">
+                                                <label class="radio">
+                                                    <input type="radio" asp-for="@Model.Status" value="0" />
+                                                    <span class="checkmark"></span>
+                                                    Hoạt động
+                                                </label>
+                                                <label class="radio" style="margin-left:20px;">
+                                                    <input type="radio" asp-for="@Model.Status" value="1" />
+                                                    <span class="checkmark"></span>
+                                                    Tạm dừng
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="text-right">
+                        <button type="button" class="btn btn-default btn btn-default cancel" data-dismiss="modal">Bỏ qua</button>
+                        <button type="button" class="btn btn-default" onclick="_menu.OnSave()">@(Model.Id > 0 ? "Cập nhật" : "Thêm mới")</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

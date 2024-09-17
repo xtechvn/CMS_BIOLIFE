@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+}
+@using Entities.ViewModels.DashBoard
+@model IEnumerable<HistoryViewModel>
+<style>
+    .list-notifi.scrollbar-inner {
+        height: calc(113vh - 4px) !important;
+    }
+    a {
+        color: black;
+    }
+</style>
+<div class="wrap_bg mb20" style="height:100%;">
+    <div class="line-bottom">
+        <a href="/order">
+            <h3 class="txt_14 uppercase">CÁC HOẠT ĐỘNG GẦN ĐÂY <i class="fa fa-arrow-circle-o-down"></i></h3>
+        </a>
+    </div>
+    <ul class="list-notifi scrollbar-inner">
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var item in Model)
+            {
+                <li>
+                    <i class="fa fa-check"></i>
+                    <a href="/Order/@item.OrderId"><span class="blue">@item.UserVerify</span> chuyển trạng thái đơn hàng @item.OrderNo - @item.OrderStatus</a>
+                    <div class="date">Thời gian: @((item.UpdateLast ?? item.CreatedDate).Value.ToString("dd/MM/yyyy HH:mm"))</div>
+                </li>
+            }
+        }
+    </ul>
+</div>

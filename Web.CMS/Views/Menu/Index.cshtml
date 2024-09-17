@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Quản lý menu hệ thống";
+}
+<style>
+    .modal-dialog {
+        max-width: 680px !important;
+    }
+    .modal-content {
+        padding: 10px 20px 20px 20px !important;
+    }
+</style>
+<section style="overflow-x: hidden;">
+    <div class="row-main container">
+        <h2 class="txt_18 bold mb20">Danh sách menu hệ thống</h2>
+        <div class="flex fillter-donhang">
+            <button type="button" class="btn btn-default mb10 mr-2" onclick="_menu.ShowAddOrUpdate(0)">
+                <i class="fa fa-plus"></i>Tạo Menu
+            </button>
+            <div class="form-group mb10 mr-2">
+                <input type="text" class="form-control" id="ip_search_name" placeholder="Tên menu" style="width: 200px;">
+            </div>
+            <div class="form-group mb10 mr-2">
+                <input type="text" class="form-control" id="ip_search_link" placeholder="Link menu" style="width: 200px;">
+            </div>
+            <div class="mb10 mr-2">
+                <button type="button" class="btn btn-default bg-main" onclick="_menu.OnSearch()">
+                    <svg class="icon-svg" style="vertical-align: sub;">
+                        <use xlink:href="/images/icons/icon.svg#search"></use>
+                    </svg>
+                    Tìm kiếm
+                </button>
+            </div>
+        </div>
+        <div id="grid_data" class="wrap_bg wrap_bg_no-padding mb20">
+        </div>
+    </div>
+</section>
+
+@section scripts {
+<script type="text/javascript" src="~/modules/menu.js"></script>
+}

@@ -1,0 +1,345 @@
+﻿@{
+    Layout = null;
+}
+@using Entities.Models
+@{
+    var _RoleList = (List<Role>)ViewBag.RoleList;
+    var _DepartmentList = (List<Department>)ViewBag.DepartmentList;
+    var _UserPosition = (List<UserPosition>)ViewBag.UserPosition;
+    var _UserRoleList = (List<int>)ViewBag.UserRoleList;
+    string company_type= (string)ViewBag.CompanyType;
+    async Task ShowDepartment(Department item, int level = 0)
+    {
+        var childs = _DepartmentList.Where(s => s.ParentId == item.Id);
+        string str_level = string.Empty;
+        for (int i = 0; i < level; i++)
+        {
+            str_level += "---";
+        }
+
+        <option value="@item.Id">@str_level @item.DepartmentName</option>
+
+        @if (childs != null && childs.Any())
+        {
+            level++;
+            foreach (var child in childs)
+            {
+                await ShowDepartment(child, level);
+            }
+        }
+    }
+}
+@model User
+<form id="form-create-user" data-companytype="@(company_type??"")">
+    <div class="user-popup popup-width2 white-popup flex">
+        <div class="up-file mb15">
+            <div class="ava default mb10">
+                <img class="img-preview" src="@(Model.Avata ?? string.Empty)" onerror="_imageError(this)" />
+            </div>
+            <label class="choose">
+                <input type="file" name="imagefile" onchange="_user.OnChangeImage()" />
+                chọn ảnh
+            </label>
+        </div>
+        <div class="form-default row">
+            @if (Model.Id == 0)
+            {
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="lbl">Họ tên</label>
+                        <div class="wrap_input">
+                            <input type="text" class="form-control" asp-for="@Model.FullName" placeholder="Nhập họ và tên" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Tên đăng nhập</label>
+                        <div class="wrap_input">
+                            <input type="text" class="form-control" asp-for="@Model.UserName" placeholder="Nhập họ và tên" autocomplete="off" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Mật khẩu</label>
+                        <div class="wrap_input">
+                            <input type="password" class="form-control" asp-for="@Model.Password" autocomplete="off" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Gõ lại mật khẩu</label>
+                        <div class="wrap_input">
+                            <input type="password" class="form-control" name="RePassword">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Vai trò</label>
+                        <div class="wrap_input">
+                            <select class="form-control select2_modal_multiple" multiple name="RoleId" required id="RoleId" style="width:100%!important;">
+                                <option></option>
+                                @foreach (var item in _RoleList)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Phòng ban</label>
+                        <div class="wrap_input">
+                            <select class="form-control DepartmentId" asp-for="@Model.DepartmentId" style="width:100%!important;">
+                                <option></option>
+
+                                @if (_DepartmentList != null && _DepartmentList.Any())
+                                {
+                                    var depParents = _DepartmentList.Where(s => s.ParentId == 0);
+                                    foreach (var item in depParents)
+                                    {
+                                        await ShowDepartment(item);
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Chức vụ </label>
+                        <div class="wrap_input">
+                            <select class="form-control UserPositionId" asp-for="@Model.UserPositionId" style="width:100%!important;">
+                                <option></option>
+
+                                @if (_UserPosition != null && _UserPosition.Any())
+                                {
+                                    foreach (var item in _UserPosition)
+                                    {
+                                        if (Model.UserPositionId == item.Id)
+                                        {
+                                            <option value="@item.Id" data-lvl="@item.Rank" selected="selected">@item.Name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Id" data-lvl="@item.Rank">@item.Name</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Ngày sinh</label>
+                        <div class="wrap_input">
+                            <input id="datepicker" class="datepicker-input form-control" type="text" name="BirthDayPicker" value="@(Model.BirthDay == null ? "" : ((DateTime)Model.BirthDay).ToString("dd/MM/yyyy"))">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="lbl">Điện thoại</label>
+                        <div class="wrap_input">
+                            <input type="text" class="form-control" name="Phone" value="@Model.Phone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Địa chỉ</label>
+                        <div class="wrap_input">
+                            <input type="text" class="form-control" name="Address" value="@Model.Address">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Email</label>
+                        <div class="wrap_input">
+                            <input type="text" class="form-control" name="Email" value="@Model.Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Trạng thái</label>
+                        <div class="wrap_input">
+                            <select class="form-control" name="Status" value="@Model.Status">
+                                <option value="0">Kích hoạt</option>
+                                <option value="1">Tạm ngưng</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Ghi chú</label>
+                        <div class="wrap_input">
+                            <input type="text" class="form-control" asp-for="@Model.Note">
+                        </div>
+                    </div>
+                    <div class="form-group male">
+                        <label class="lbl">Giới tính</label>
+                        <label class="radio-inline"><input type="radio" asp-for="@Model.Gender" value="1">Nam</label>
+                        <label class="radio-inline"><input type="radio" asp-for="@Model.Gender" value="0">Nữ</label>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6">
+                    <input type="hidden" asp-for="@Model.Id" />
+                    <div class="form-group">
+                        <label class="lbl">Họ tên</label>
+                        <div class="wrap_input">
+                            <input type="text" class="form-control" asp-for="@Model.FullName" placeholder="Nhập họ và tên" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Tên đăng nhập</label>
+                        <div class="wrap_input">
+                            <input type="text" class="form-control" asp-for="@Model.UserName" disabled="disabled" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Email</label>
+                        <div class="wrap_input">
+                            <input type="text" class="form-control" asp-for="@Model.Email" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Điện thoại</label>
+                        <div class="wrap_input">
+                            <input type="text" class="form-control" asp-for="@Model.Phone" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Vai trò</label>
+                        <div class="wrap_input">
+                            <select class="form-control select2_modal_multiple" multiple name="RoleId" required id="RoleId" style="width:100%!important;">
+                                <option></option>
+
+                                @if (_UserRoleList != null && _UserRoleList.Count > 0)
+                                {
+                                    @foreach (var item in _RoleList)
+                                    {
+                                        if (_UserRoleList.Contains(item.Id))
+                                        {
+                                            <option value="@item.Id" selected="selected">@item.Name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    @foreach (var item in _RoleList)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Phòng ban</label>
+                        <div class="wrap_input">
+                            <select class="form-control DepartmentId" asp-for="@Model.DepartmentId" style="width:100%!important;">
+                                <option></option>
+
+                                @if (_DepartmentList != null && _DepartmentList.Any())
+                                {
+                                    var depParents = _DepartmentList.Where(s => s.ParentId == 0);
+                                    foreach (var item in depParents)
+                                    {
+                                        await ShowDepartment(item);
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Chức vụ </label>
+                        <div class="wrap_input">
+                            <select class="form-control UserPositionId" asp-for="@Model.UserPositionId" style="width:100%!important;">
+                                <option></option>
+
+                                @if (_UserPosition != null && _UserPosition.Any())
+                                {
+                                    foreach (var item in _UserPosition)
+                                    {
+                                        if (Model.UserPositionId == item.Id)
+                                        {
+                                            <option value="@item.Id" data-lvl="@item.Rank" selected="selected">@item.Name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Id" data-lvl="@item.Rank">@item.Name</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Ngày sinh</label>
+                        <div class="wrap_input">
+                            <input id="datepicker" class="datepicker-input form-control" type="text" name="BirthDayPicker" value="@(Model.BirthDay == null ? "" : ((DateTime)Model.BirthDay).ToString("dd/MM/yyyy"))">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="lbl">Địa chỉ</label>
+                        <div class="wrap_input">
+                            <input type="text" class="form-control" asp-for="@Model.Address" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Trạng thái</label>
+                        <div class="wrap_input">
+                            <select class="form-control" asp-for="@Model.Status">
+                                <option value="0">Kích hoạt</option>
+                                <option value="1">Tạm ngưng</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="lbl">Ghi chú</label>
+                        <div class="wrap_input">
+                            <input type="text" class="form-control" asp-for="@Model.Note">
+                        </div>
+                    </div>
+                    <div class="form-group male">
+                        <label class="lbl">Giới tính</label>
+                        <label class="radio-inline"><input type="radio" asp-for="@Model.Gender" value="1">Nam</label>
+                        <label class="radio-inline"><input type="radio" asp-for="@Model.Gender" value="0">Nữ</label>
+                    </div>
+                    <div class="form-group male">
+                        <label class="lbl" style="width: 120px;">Công ty</label>
+                        @if (company_type.ToLower().Contains("0"))
+                        {
+                            <label class="radio-inline"><input class="company-type" checked="checked" type="checkbox" value="0">Travel</label>
+
+                        }
+                        else
+                        {
+                            <label class="radio-inline"><input class="company-type" type="checkbox" value="0">Travel</label>
+
+                        }
+                        @if (company_type.ToLower().Contains("1"))
+                        {
+                            <label class="radio-inline"><input class="company-type" checked="checked" type="checkbox" value="1">Phú Quốc</label>
+
+                        }
+                        else
+                        {
+                            <label class="radio-inline"><input class="company-type" type="checkbox" value="1">Phú Quốc</label>
+
+                        }
+                        @if (company_type.ToLower().Contains("2"))
+                        {
+                            <label class="radio-inline"><input class="company-type" checked="checked" type="checkbox" value="2">Đại Việt</label>
+
+                        }
+                        else
+                        {
+                            <label class="radio-inline"><input class="company-type" type="checkbox" value="2">Đại Việt</label>
+
+                        }
+                    </div>
+                </div>
+            }
+            <div class="form-group align-right col-12 mt20 block">
+                <button type="button" class="btn btn-default red" onclick="_user.OnUpdateUser()"><i class="fa fa-floppy-o"></i>Lưu</button>
+                <button type="button" class="btn btn-default cancel" data-dismiss="modal"><i class="fa fa-ban"></i>Bỏ qua</button>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,103 @@
+﻿@{
+    Layout = null;
+}
+@using Entities.Models
+@model IEnumerable<Menu>
+
+@{
+    void RecursiveGridRow(Menu item, int level = 0)
+    {
+        var childDatas = Model.Where(s => s.ParentId == item.Id);
+        <tr>
+            <td class="color-main">
+                <a class="cursor-pointer" onclick="_menu.ShowAddOrUpdate(0,'@item.Id')" title="Thêm menu con">
+                    <i class="fa fa-plus"></i>
+                </a>
+            </td>
+            <td class="text-center" style="background:black;"><img src="@item.Icon"></td>
+            <td>
+                <div class="menu_name" style="padding-left:@(level*20)px;">
+                    @item.Name
+                </div>
+            </td>
+            <td>@item.MenuCode</td>
+            <td>
+                <div class="menu_link">
+                    @item.Link
+                </div>
+            </td>
+            <td>
+                @if (item.Status == 0)
+                {
+                    <span class="green">Hoạt động</span>
+                }
+                else
+                {
+                    <span class="red">Tạm dừng</span>
+                }
+            </td>
+            <td>
+                <a class="cursor-pointer" onclick="_menu.ShowAddOrUpdate('@item.Id','@item.ParentId')" title="Chỉnh sửa">
+                    <i class="fa fa-edit"></i>
+                </a> &nbsp;&nbsp;
+                <a class="cursor-pointer" onclick="_menu.OnChangeStatus('@item.Id','@(item.Status == 0? 1: 0)')" title="Chuyển trạng thái">
+                    <i class="fa fa-exchange"></i>
+                </a> &nbsp;&nbsp;
+                @if (!string.IsNullOrEmpty(item.Link))
+                {
+                    <a class="cursor-pointer" onclick="_menu.ShowPermision('@item.Id')" title="Xem quyền thuộc menu">
+                        <i class="fa fa-user"></i>
+                    </a>
+                }
+            </td>
+        </tr>
+        @if (childDatas != null && childDatas.Any())
+        {
+            level++;
+            foreach (var child in childDatas)
+            {
+                RecursiveGridRow(child, level);
+            }
+        }
+    }
+}
+
+<div class="table-responsive table-default table-gray">
+    <table class="table table-nowrap">
+        <thead>
+            <tr>
+                <th style="width: 20px;">#</th>
+                <th class="text-center" style="width: 20px;">Icon</th>
+                <th>Tên Menu</th>
+                <th>Mã Menu</th>
+                <th>Url</th>
+                <th>Trạng thái</th>
+                <th style="width: 100px;">Tác vụ</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                var parents = Model.Where(s => s.ParentId == 0);
+                foreach (var item in parents)
+                {
+                    RecursiveGridRow(item);
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="7" class="text-center">
+                        <div class="search-null center mt40 mb40">
+                            <div class="mb24">
+                                <img src="/images/graphics/icon-search.png" alt="">
+                            </div>
+                            <h2 class="title txt_24">Không tìm thấy kết quả</h2>
+                            <div class="gray">Chúng tôi không tìm thấy thông tin mà bạn cần, vui lòng thử lại</div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Admin - Adavigo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Entities.ViewModels.DashBoard
+@{
+    var histories = (IEnumerable<HistoryViewModel>)ViewBag.Histories;
+}
+
+<div class="row-main container flex">
+    <div class="row-main-left">
+        <div class="wrap_bg mb20 thong_ke_top">
+            <h2 class="title_cate">Kết quả bán hàng hôm nay</h2>
+            <div class="row">
+                <partial name="~/Views/DashBoard/Statistic.cshtml" />
+            </div>
+        </div>
+        <div class="wrap_bg mb20">
+            <partial name="~/Views/DashBoard/ChartRevenu.cshtml" />
+        </div>
+        <div class="wrap_bg">
+            <partial name="~/Views/DashBoard/ChartLabel.cshtml" />
+        </div>
+    </div>
+    <div class="row-main-right">
+        @await Html.PartialAsync("~/Views/DashBoard/LogActivityToday.cshtml",histories)
+    </div>
+</div>
+@section scripts {
+@*<script type="text/javascript" src="/lib/apexchart/apexcharts.js"></script>*@
+<script type="text/javascript" src="/lib/Chart/Chart.js"></script>
+<script type="text/javascript" src="/lib/Chart/Chart.PieceLabel.js"></script>
+<script src="/modules/dashBoard.js"></script>
+<script src="/js/aes.js"></script>
+
+}

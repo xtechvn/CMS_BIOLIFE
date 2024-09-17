@@ -1,0 +1,20 @@
+﻿@{
+    Layout = null;
+}
+<div class="flex-head">
+    <h2 class="title_cate" id="revenu7Days">Biểu đồ thống kê doanh thu theo đơn vị kinh doanh tháng @DateTime.Now.ToString("MM/yyyy")</h2>
+    <div class="btn-right text-right" hidden>
+        <a class="export btn" href="">
+            <i class="fa fa-file-excel-o"></i>Xuất excel
+        </a>
+    </div>
+</div>
+<div class="tab-default cur-pointer">
+    <button onclick="_dashBoard.GetChartRevenuByUnit(2)" class="btn btn-primary btn_change_chart">Phòng ban</button>
+    <button onclick="_dashBoard.GetChartRevenuByUnit(3)" class="btn btn_change_chart ml10">Nhân viên</button>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <canvas id="revenuLabelChart" class="chartjs-render-monitor" height="80vh"></canvas>
+    </div>
+</div>

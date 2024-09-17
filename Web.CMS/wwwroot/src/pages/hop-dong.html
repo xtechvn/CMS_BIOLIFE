@@ -1,0 +1,593 @@
+<!-- build:title -->CMS Template
+<!-- /build:title -->
+
+<!-- build:content -->
+<section class="main-container">
+    <div class="row-main container">
+        <!-- Danh sách hợp đồng -->
+        <h2 class="txt_18 bold mb20">Danh sách hợp đồng</h2>
+        <div class="flex fillter-donhang">
+            <div class="form-group mb10 mr-2">
+                <input type="text" class="form-control" id="" placeholder="Mã HĐ, Tên KH, Điện thoại, Email" style="width: 220px;">
+            </div>
+            <div class="form-group mb10 mr-2">
+                <select class="select2" name="" style="width: 160px;">
+                    <option value="">Tất Trạng thái</option>
+                    <option value="">Đại lý</option>
+                    <option value="">Cộng tác viên</option>
+                    <option value="">Mice/Corp/Doanh nghiệp</option>
+                </select>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <select class="select2" name="" style="width: 160px;">
+                    <option value="">Tất cả tình trạng</option>
+                    <option value="">Đại lý</option>
+                    <option value="">Cộng tác viên</option>
+                    <option value="">Mice/Corp/Doanh nghiệp</option>
+                </select>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <select class="select2" name="" style="width: 160px;">
+                    <option value="">Tất cả đối tượng KH</option>
+                    <option value="">Đại lý</option>
+                    <option value="">Cộng tác viên</option>
+                    <option value="">Mice/Corp/Doanh nghiệp</option>
+                </select>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <select class="select2" name="" style="width: 160px;">
+                    <option value="">Tất cả loại KH</option>
+                    <option value="">Đại lý</option>
+                    <option value="">Cộng tác viên</option>
+                    <option value="">Mice/Corp/Doanh nghiệp</option>
+                </select>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <select class="select2" name="" style="width: 150px;">
+                    <option value="">Tất cả nhóm KH</option>
+                    <option value="">Đại lý</option>
+                    <option value="">Cộng tác viên</option>
+                    <option value="">Mice/Corp/Doanh nghiệp</option>
+                </select>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <div class="datepicker-wrap" style="width:100%">
+                    <input class="form-control datepicker-input " type="text" name="birthday" placeholder="Ngày hết hạn">
+                </div>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <select class="select2" name="" style="width: 150px;">
+                    <option value="">Tất cả loại công nợ</option>
+                    <option value="">Đại lý</option>
+                    <option value="">Cộng tác viên</option>
+                    <option value="">Mice/Corp/Doanh nghiệp</option>
+                </select>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <select class="select2" name="" style="width: 200px;">
+                    <option value="">Tất cả bộ phận phụ trách</option>
+                    <option value="">Đại lý</option>
+                    <option value="">Cộng tác viên</option>
+                    <option value="">Mice/Corp/Doanh nghiệp</option>
+                </select>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <input type="text" class="form-control" id="" placeholder="Người phụ trách">
+            </div>
+            <div class="form-group mb10 mr-2">
+                <input type="text" class="form-control" id="" placeholder="Người tạo">
+            </div>
+            <div class="form-group mb10 mr-2">
+                <div class="datepicker-wrap" style="width:100%">
+                    <input class="form-control datepicker-input " type="text" name="birthday" placeholder="Ngày tạo">
+                </div>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <select class="select2" name="" style="width: 180px;">
+                    <option value="">Tất cả bộ phận duyệt</option>
+                    <option value="">Đại lý</option>
+                    <option value="">Cộng tác viên</option>
+                    <option value="">Mice/Corp/Doanh nghiệp</option>
+                </select>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <input type="text" class="form-control" id="" placeholder="Người duyệt">
+            </div>
+            <div class="form-group mb10 mr-2">
+                <div class="datepicker-wrap" style="width:100%">
+                    <input class="form-control datepicker-input " type="text" name="birthday" placeholder="Ngày duyệt">
+                </div>
+            </div>
+            <div class="row-main-head mb10 mr-2">
+                <div class="down-up">
+                    <a class="btn btn-default onclick" href="javascript:;">
+                        <i class="fa fa-bars"></i>
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+                    <div class="form-down" style="display: none;">
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox" checked="">
+                            <span class="checkmark"></span>
+                            Hình thức
+                        </label>
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Mã đơn
+                        </label>
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Ngày bắt đầu
+                        </label>
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Ngày kết thúc
+                        </label>
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Nhãn đơn
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="mb10 mr-2">
+                <button class="btn-search btn-default" type="submit">
+                    <svg class="icon-svg">
+                        <use xlink:href="images/icons/icon.svg#search"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="line-bottom" style="padding-bottom: 0;">
+            <div class="row">
+                <div class="tab-default col-md-9 mb0 mt10">
+                    <a href="#" class="active">Tất cả (55)</a>
+                    <a href="#">Lưu nháp (15)</a>
+                    <a href="#">Đã từ chối  (30)</a>
+                    <a href="#">Chờ TBP duyệt (30)</a>
+                    <a href="#">Chờ giám đốc duyệt (3)</a>
+                    <a href="#">Đã duyệt (2)</a>
+                </div>
+                <div class="col-md-3 text-right mt10"><button type="submit" class="btn btn-default">Tạo hợp đồng</button></div>
+            </div>
+        </div>
+        <div class="wrap_bg wrap_bg_no-padding mb40">
+            <div class="table-responsive table-default table-scroll">
+                <table class="table table-nowrap">
+                    <thead>
+                        <tr>
+                            <th style="width: 30px;">STT</th>
+                            <th style="min-width: 100px;">Mã hợp đồng</th>
+                            <th style="min-width: 100px;">Ngày hết hạn</th>
+                            <th style="min-width: 100px;">Tên khách hàng</th>
+                            <th style="min-width: 100px;">Dịch vụ đăng ký</th>
+                            <th style="min-width: 100px;">Loại công nợ</th>
+                            <th style="min-width: 100px;">Đối tượng KH</th>
+                            <th style="min-width: 100px;">Loại KH</th>
+                            <th style="min-width: 100px;">Nhóm KH</th>
+                            <th style="min-width: 100px;">Người phụ trách</th>
+                            <th style="min-width: 100px;">Ngày tạo</th>
+                            <th style="min-width: 100px;">Người tạo</th>
+                            <th style="min-width: 100px;">Ngày duyệt</th>
+                            <th style="min-width: 100px;">Người duyệt</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <a class="blue" href="#">HD20230004</a>
+                                <span class="status-oranger">chờ TBP duyệt</span>
+                            </td>
+                            <td>
+                                01/08/2024
+                                <div class="green">[Còn hạn]</div>
+                            </td>
+                            <td>
+                                <div class="blue">(Chị) Mrs. Tuệ An</div>
+                                0983632288
+                                <div>tuean@vietpowertravel.com</div>
+                            </td>
+                            <td>
+                                Vé máy bay Khách sạn
+                            </td>
+                            <td>7 ngày</td>
+                            <td>Cá nhân</td>
+                            <td>B2B - Đại lý cấp 1</td>
+                            <td>Không phải ký quỹ</td>
+                            <td>Nguyễn Thanh Bình - Kinh doanh 1</td>
+                            <td>01/01/2022 09:00</td>
+                            <td>Nguyễn Thanh Bình - Kinh doanh 1</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>
+                                <a class="blue" href="#">HD20230004</a>
+                                <span class="status-green">Đã duyệt</span>
+                            </td>
+                            <td>
+                                01/08/2024
+                                <div class="green">[Còn hạn]</div>
+                            </td>
+                            <td>
+                                <div class="blue">(Chị) Mrs. Tuệ An</div>
+                                0983632288
+                                <div>tuean@vietpowertravel.com</div>
+                            </td>
+                            <td>
+                                Vé máy bay Khách sạn
+                            </td>
+                            <td>7 ngày</td>
+                            <td>Cá nhân</td>
+                            <td>B2B - Đại lý cấp 1</td>
+                            <td>Không phải ký quỹ</td>
+                            <td>Nguyễn Thanh Bình - Kinh doanh 1</td>
+                            <td>01/01/2022 09:00</td>
+                            <td>Nguyễn Thanh Bình - Kinh doanh 1</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>
+                                <a class="blue" href="#">HD20230004</a>
+                                <span class="status-gray">Lưu nháp</span>
+                            </td>
+                            <td>
+                                01/08/2024
+                                <div class="red">[Hết hạn]</div>
+                            </td>
+                            <td>
+                                <div class="blue">(Chị) Mrs. Tuệ An</div>
+                                0983632288
+                                <div>tuean@vietpowertravel.com</div>
+                            </td>
+                            <td>
+                                Vé máy bay Khách sạn
+                            </td>
+                            <td>7 ngày</td>
+                            <td>Cá nhân</td>
+                            <td>B2B - Đại lý cấp 1</td>
+                            <td>Không phải ký quỹ</td>
+                            <td>Nguyễn Thanh Bình - Kinh doanh 1</td>
+                            <td>01/01/2022 09:00</td>
+                            <td>Nguyễn Thanh Bình - Kinh doanh 1</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>
+                                <a class="blue" href="#">HD20230004</a>
+                                <span class="status-red">Đã từ chối</span>
+                            </td>
+                            <td>
+                                01/08/2024
+                                <div class="red">[Hết hạn]</div>
+                            </td>
+                            <td>
+                                <div class="blue">(Chị) Mrs. Tuệ An</div>
+                                0983632288
+                                <div>tuean@vietpowertravel.com</div>
+                            </td>
+                            <td>
+                                Vé máy bay Khách sạn
+                            </td>
+                            <td>7 ngày</td>
+                            <td>Cá nhân</td>
+                            <td>B2B - Đại lý cấp 1</td>
+                            <td>Không phải ký quỹ</td>
+                            <td>Nguyễn Thanh Bình - Kinh doanh 1</td>
+                            <td>01/01/2022 09:00</td>
+                            <td>Nguyễn Thanh Bình - Kinh doanh 1</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination-flex">
+                <div class="select-number">
+                    Hiển thị &nbsp;
+                    <select class="form-control">
+                    <option>30</option>
+                    <option>30</option>
+                    <option>30</option>
+                    <option>30</option>
+                </select>&nbsp; trong số &nbsp; <strong>55</strong> &nbsp; kết quả lọc
+                </div>
+                <ul id="pagination" class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fa fa-step-backward"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link icon" href="#">
+                            <i class="fa fa-caret-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link icon" href="#">
+                            <i class="fa fa-caret-right"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fa fa-step-forward"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Chi tiết hợp đồng -->
+        <h2 class="txt_18 bold mb20">Danh sách hợp đồng/ Chi tiết hợp đồng HD202300003</h2>
+        <div class="border bg-white mb10" style="padding: 0 20px;">
+            <div class="row">
+                <div class="col-md-6 pd10">
+                    <div class="row">
+                        <div class="col-5 gray mb10">Trạng thái</div>
+                        <div class="col-7 mb10"><span class="status-oranger">chờ TBP duyệt</span></div>
+                        <div class="col-5 gray mb10">Khách hàng</div>
+                        <div class="col-7 mb10 blue">Công ty TNHH Truyền Thống</div>
+                        <div class="col-5 gray mb10">Dịch vụ đăng ký</div>
+                        <div class="col-7 mb10">Vé máy bay, khách sạn</div>
+                        <div class="col-5 gray mb10">Loại KH</div>
+                        <div class="col-7 mb10">B2B - Cộng tác viên</div>
+                        <div class="col-5 gray mb10">Nhóm KH</div>
+                        <div class="col-7 mb10">Được công</div>
+                        <div class="col-5 gray mb10">Ngày hết hạn</div>
+                        <div class="col-7 mb10">12/12/2023</div>
+                        <div class="col-12 mb10">
+                            <div class="flex align-center bold txt_14">
+                                <div class="underline">Điều kiện</div>
+                                <a href="#" class="fa fa-pencil-square-o ml-2"></a>
+                                <a href="#" class="fa fa-floppy-o ml-2"></a>
+                                <a href="#" class="fa fa-ban ml-2"></a>
+                            </div>
+                        </div>
+                        <div class="col-12 mb10">
+                            <label class="check-list mb10">
+                                <input type="checkbox" checked>
+                                <span class="checkmark"></span>
+                                Chính sách riêng
+                            </label>
+                        </div>
+                        <div class="col-5 gray mb10">Loại công nợ</div>
+                        <div class="col-7 mb10">7 ngày</div>
+                        <div class="col-5 gray mb10">Loại công nợ</div>
+                        <div class="col-7 flex-no-wrap align-center mb10">
+                            <select class="form-control">
+                                <option>7 ngày</option>
+                                <option>8 ngày</option>
+                            </select>
+                        </div>
+                        <div class="col-5 gray mb10">Hạn mức công nợ VMB</div>
+                        <div class="col-7 mb10">40,000,000</div>
+                        <div class="col-5 gray mb10">Hạn mức công nợ VMB</div>
+                        <div class="col-7 flex-no-wrap align-center mb10">
+                            <input type="text" class="form-control" id="" value="40,000,000">
+                        </div>
+                        <div class="col-5 gray mb10">Hạn mức công nợ KS</div>
+                        <div class="col-7 mb10">0</div>
+                        <div class="col-5 gray mb10">Ghi chú</div>
+                        <div class="col-7 mb10">Khách hàng đặt biệt</div>
+                    </div>
+                </div>
+                <div class="col-md-6 pd10 pc-border-left">
+                    <div class="row">
+                        <div class="col-5 gray mb10">Người phụ trách</div>
+                        <div class="col-7 mb10 text-and-btn"><span>Nguyễn Thanh Bình - Phòng kinh doanh 1</span>
+                            <span class="btn-action ml-2">
+                                <a href="#" class="changer icon"><img src="images/icons/changer.png"></a>
+                            </span>
+                        </div>
+                        <div class="col-5 gray mb10">Người phụ trách</div>
+                        <div class="col-7 mb10 text-and-btn">
+                            <div class="input-search-tag" style="width: 200px;">
+                                <input type="text" class="form-control" id="" placeholder="Nhập tên">
+                            </div>
+                            <span class="btn-action ml-2">
+                                <a href="#" class="fa fa-floppy-o icon"></a>
+                                <a href="#" class="fa fa-ban icon"></a>
+                            </span>
+                        </div>
+                        <div class="col-5 gray mb10">Ngày tạo</div>
+                        <div class="col-7 mb10">13/12/2022 09:00</div>
+                        <div class="col-5 gray mb10">Người tạo</div>
+                        <div class="col-7 mb10">Nguyễn Thanh Bình - Phòng kinh doanh 1</div>
+                        <div class="col-5 gray mb10">Ngày duyệt</div>
+                        <div class="col-7 mb10">13/12/2022 09:00</div>
+                        <div class="col-5 gray mb10">Người duyệt</div>
+                        <div class="col-7 mb10">Nguyễn Thanh Hằng - Admin</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="line-bottom"></div>
+        <div class="text-right mb40">
+            <a class="blue mr-2" href="javascript:;" data-toggle="modal" data-target="#myModal1">[Lịch sử hợp đồng]</a>
+            <a class="blue mr-2" href="javascript:;" data-toggle="modal" data-target="#myModal2">[Lịch sử từ chối]</a>
+            <button type="submit" class="btn btn-default cancel mr-1">Quay lại</button>
+            <button type="submit" class="btn btn-default red mr-1">Xóa</button>
+            <button type="submit" class="btn btn-default red mr-1" data-toggle="modal" data-target="#myModal3">Hủy</button>
+            <button type="submit" class="btn btn-default red mr-1" data-toggle="modal" data-target="#myModal4">Từ chối</button>
+            <button type="submit" class="btn btn-default cancel mr-1">Sửa</button>
+            <button type="submit" class="btn btn-default">Duyệt</button>
+        </div>
+    </div>
+</section>
+
+<!-- POPUP LỊCH SỬ HỢP ĐỒNG -->
+<div class="modal fade" id="myModal1">
+    <div class="modal-dialog" style="max-width: 700px">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Lịch sử hợp đồng</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="table-responsive table-gray">
+                    <table class="table table-nowrap">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Thời gian</th>
+                                <th>Người thực hiện</th>
+                                <th>Nội dung</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>10/02/2023 10:00</td>
+                                <td>Nguyễn Hồng Diễm - Kinh doanh 1</td>
+                                <td>Duyệt</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>10/02/2023 10:00</td>
+                                <td>Nguyễn Hồng Diễm - Kinh doanh 1</td>
+                                <td>Gửi đi</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>10/02/2023 10:00</td>
+                                <td>Nguyễn Hồng Diễm - Kinh doanh 1</td>
+                                <td>
+                                    Từ chối <span class="red">[Không đúng chuẩn]</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>10/02/2023 10:00</td>
+                                <td>Nguyễn Hồng Diễm - Kinh doanh 1</td>
+                                <td>Gửi đi</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- POPUP LỊCH SỬ TỪ CHỐI -->
+<div class="modal fade" id="myModal2">
+    <div class="modal-dialog" style="max-width: 700px">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Lịch sử từ chối</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="table-responsive table-gray">
+                    <table class="table table-nowrap">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Thời gian</th>
+                                <th>Người thực hiện</th>
+                                <th>Nội dung từ chối</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>10/02/2023 10:00</td>
+                                <td>Nguyễn Hồng Diễm - Kinh doanh 1</td>
+                                <td>Không đúng chuẩn</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>10/02/2023 10:00</td>
+                                <td>Nguyễn Hồng Diễm - Kinh doanh 1</td>
+                                <td>Không đúng chuẩn</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>10/02/2023 10:00</td>
+                                <td>Nguyễn Hồng Diễm - Kinh doanh 1</td>
+                                <td>Không đúng chuẩn</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>10/02/2023 10:00</td>
+                                <td>Nguyễn Hồng Diễm - Kinh doanh 1</td>
+                                <td>Không đúng chuẩn</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- POPUP HỦY -->
+<div class="modal fade" id="myModal3">
+    <div class="modal-dialog" style="max-width: 400px">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Hủy hợp đồng</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="wrap_input">
+                        <textarea class="form-control" placeholder="Nhập lý do hủy" style="height: 150px;"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-default red">Hủy</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- POPUP TỪ CHỐI -->
+<div class="modal fade" id="myModal4">
+    <div class="modal-dialog" style="max-width: 400px">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Từ chối hợp đồng</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="wrap_input">
+                        <textarea class="form-control" placeholder="Nhập lý do từ chối" style="height: 150px;"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-default red">Từ chối</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- /build:content -->
+
+<!-- build:script2 -->
+<script type="text/javascript">
+</script>
+<!-- /build:script2 -->

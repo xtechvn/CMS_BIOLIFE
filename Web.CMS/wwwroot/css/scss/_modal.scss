@@ -1,0 +1,148 @@
+// @import "datepicker.min.scss";
+.modal-header {
+    border-bottom: 0;
+    padding: 15px 24px 0 24px;
+    .modal-title {
+        font-size: 20px;
+        font-weight: bold;
+        padding-right: 20px;
+    }
+    .close {
+        font-family: -webkit-body;
+        opacity: 1;
+        font-size: 30px;
+        outline: 0;
+        padding: 0px 10px;
+        position: absolute;
+        right: 20px;
+        top: 32px;
+        z-index: 2;
+    }
+}
+
+.modal-body {
+    padding: 24px;
+    padding-top: 15px;
+    .btn-default {
+        line-height: 34px;
+        padding: 0 36px;
+    }
+}
+
+.modal-content {
+    border: 0;
+}
+
+.modal-dialog {
+    margin: .5rem auto
+}
+
+.form-outline {
+    position: relative;
+    .form-control {
+        padding: 4px 12px;
+        height: 42px;
+        color: #000000;
+        font-weight: 500;
+        font-size: 14px;
+        &~.form-label {
+            position: absolute;
+            top: 10px;
+            max-width: 90%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            left: 12px;
+            pointer-events: none;
+            transform-origin: 0 0;
+            transition: all .2s ease-out;
+            color: #8C9FB1;
+            margin-bottom: 0;
+        }
+        &.active,
+        &:focus {
+            border-radius: 4px;
+            padding: 15px 12px 4px 12px;
+            &~.form-label {
+                transform: translateY(-10px) translateY(.10px) scale(.8)
+            }
+        }
+    }
+    &.active {
+        .form-control {
+            border-radius: 4px;
+            padding: 15px 12px 4px 12px;
+            &~.form-label {
+                transform: translateY(-10px) translateY(.10px) scale(.8)
+            }
+        }
+    }
+}
+
+.flying-stop {
+    .item {
+        display: flex;
+        margin-bottom: 0 !important;
+        padding: 0!important;
+        .time {
+            font-weight: bold;
+            font-size: 16px;
+            min-width: 80px;
+        }
+        .info {
+            padding-left: 25px;
+            position: relative;
+            padding-bottom: 10px;
+            &::before {
+                content: "";
+                border-left: 2px solid #E3EBF3;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: -2px;
+            }
+            .icon {
+                background: #fff;
+                position: absolute;
+                left: -10px;
+                width: 18px;
+                height: 22px;
+                text-align: center;
+            }
+            .name {
+                font-size: 16px;
+                margin-bottom: 4px;
+            }
+            .airline {
+                display: flex;
+                align-items: center;
+                margin-bottom: 4px;
+                img {
+                    height: 24px;
+                    margin-right: 12px;
+                }
+            }
+            .note {
+                background: #F1F5F9;
+                border-radius: 4px;
+                color: #698096;
+                padding: 4px 10px;
+            }
+        }
+        &.transit {
+            .info {
+                &::before {
+                    border-left: 2px dashed #E3EBF3;
+                }
+            }
+        }
+        &:last-child {
+            .info {
+                padding-bottom: 0;
+                &::before {
+                    bottom: 14px
+                }
+            }
+        }
+    }
+}

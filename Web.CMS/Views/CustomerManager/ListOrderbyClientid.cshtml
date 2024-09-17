@@ -1,0 +1,135 @@
+﻿@{
+    Layout = null;
+}
+@using Utilities.Contants
+@using Entities.ViewModels.Invoice;
+@using Entities.ViewModels
+@using Entities.Models
+@model GenericViewModel<OrderViewModel>
+@{
+    var data = Model.ListData;
+    var Total = (TotalValueOrder)ViewBag.TotalValueOrder;
+}
+<div class="bg-white pd-16 radius10">
+    <div class="wrap_bg wrap_bg_no-padding mb20">
+        <div class="table-responsive mb20">
+            <table class="table table-nowrap">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã đơn</th>
+                        <th> Tổng tiền </th>
+                        <th> Lợi nhuận </th>
+                        <th> Trạng thái đơn</th>
+                        <th> Trạng thái thanh toán</th>
+                        <th> Hình thức thanh toán</th>
+                        <th> Ngày tạo đơn</th>
+                        <th>Voucher </th>
+                        <th>Người phụ trách </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.ListData != null && Model.ListData.Count > 0)
+                    {
+                        var counter = (Model.CurrentPage - 1) * Model.PageSize;
+                        foreach (var item in Model.ListData)
+                        {
+                            counter++;
+                            <tr>
+                                <td class="center">@counter</td>
+                                <td>
+                                    <a class="blue" href="/Order/@item.OrderId" onclick="_ordersCMS.saveCookieFilter()">@item.OrderNo</a>
+                                </td>
+                                <td class="text-right">
+                                    <div class="green">@item.Payment.ToString("#,##0")/</div>
+                                    <div class="red">@(item.Amount == 0 ? "0" : item.Amount.ToString("#,##"))</div>
+                                </td>
+                                <td>@item.Profit.ToString("#,##")</td>
+                                <td>
+                                    @switch (item.StatusCode)
+                                    {
+                                        case (int)(OrderStatus.CREATED_ORDER):
+                                        case (int)(OrderStatus.CONFIRMED_SALE):
+                                            {
+                                                <span class="status-oranger">@item.Status</span>
+                                            }
+                                            break;
+                                        case (int)(OrderStatus.WAITING_FOR_OPERATOR):
+
+                                            {
+                                                <span class="status-green">@item.Status</span>
+
+                                            }
+                                            break;
+                                        case (int)(OrderStatus.FINISHED):
+                                            {
+                                                <span class="status-green">@item.Status</span>
+                                            }
+                                            break;
+                                        case ((int)(OrderStatus.CANCEL)):
+                                            {
+                                                <span class="status-red">@item.Status</span>
+                                            }
+                                            break;
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.PaymentStatus != "")
+                                    {
+                                        @if (Convert.ToInt32(item.PaymentStatus) == (int)PaymentStatus.UNPAID)
+                                        {
+                                            <div class="status-oranger">
+                                                @item.PaymentStatusName
+                                            </div>
+                                        }
+                                        @if (Convert.ToInt32(item.PaymentStatus) == (int)PaymentStatus.PAID)
+                                        {
+                                            <div class="status-green">
+                                                @item.PaymentStatusName
+                                            </div>
+                                        }
+                                        @if (Convert.ToInt32(item.PaymentStatus) == (int)PaymentStatus.PAID_NOT_ENOUGH)
+                                        {
+                                            <div class="status-blue">
+                                                @item.PaymentStatusName
+                                            </div>
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    @item.PaymentTypeName
+                                </td>
+                                <td>
+                                    @item.CreatedDate.ToString("dd/MM/yyyy")
+                                </td>
+                                <td>
+                                    @item.Vouchercode
+                                </td>
+                                <td>
+                                    <div>@item.SalerName </div>
+                                </td>
+                               
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+        @await Component.InvokeAsync("PagingNew", new
+            {
+                pageModel = new Paging()
+       {
+           TotalRecord = Model.TotalRecord,
+           TotalPage = Model.TotalPage,
+           CurrentPage = Model.CurrentPage,
+           PageSize = Model.PageSize,
+           RecordName = "hợp đồng",
+           PageAction = "_customer_manager_Detail.OnPaging({0})",
+           PageSelectPageSize = "_customer_manager_Detail.onSelectPageSize()"
+       }
+            })
+    </div>
+
+</div>

@@ -1,0 +1,359 @@
+﻿@using Entities.Models
+@{
+    var allCode_PAY_TYPE = (List<AllCode>)ViewBag.allCode_PAY_TYPE;
+    var allCode_CONTRACT_PAY_TYPE = (List<AllCode>)ViewBag.allCode_CONTRACT_PAY_TYPE;
+    var listBankingAccount = (List<BankingAccount>)ViewBag.listBankingAccount;
+    var clientId = 0;
+    long supplierId = 0;
+    long employeeId = 0;
+    if (Model.ClientId != null && Model.ClientId != 0)
+    {
+        clientId = Model.ClientId.Value;
+    }
+    if (Model.SupplierId != null && Model.SupplierId != 0)
+    {
+        supplierId = Model.SupplierId.Value;
+    }
+    if (Model.EmployeeId != null && Model.EmployeeId != 0)
+    {
+        employeeId = Model.EmployeeId.Value;
+    }
+}
+@using Utilities
+@using Entities.ViewModels
+@model ContractPayViewModel
+
+<style>
+    .white-popup {
+        max-width: 1300px !important;
+    }
+
+    .content_lightbox .head {
+        font-weight: 500 !important;
+        font-size: 16px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .content_lightbox {
+        padding: 20px !important;
+    }
+
+    .background-disabled {
+        background: #eee !important;
+    }
+</style>
+
+
+<div class="grid grid__2 grid-don-hang gap10 mb20">
+    <input type="text" name="name" id="payId" value="@Model.PayId" style="display: none" />
+    <input type="text" name="billNo" id="billNo" value="@Model.BillNo" style="display: none" />
+    <input type="text" name="payStatus" id="payStatus" value="@Model.PayStatus" style="display: none" />
+    <input type="text" name="attatchmentFile" id="attatchmentFile" value="@Model.AttatchmentFile" style="display: none" />
+    <input type="text" name="client_name_hide" id="client_name_hide" value="@Model.ClientName" style="display: none" />
+    <input type="text" name="supplier_name_hide" id="supplier_name_hide" value="@Model.SupplierName" style="display: none" />
+    <input type="text" name="employee_name_hide" id="employee_name_hide" value="@Model.EmployeeName" style="display: none" />
+    <input type="text" name="amount_contract_pay" id="amount_contract_pay" value="@Model.Amount" style="display: none" />
+    <div class="grid-item border">
+
+        <div class="col-md-6 mb10"><label class="lbl mt5 mb0">Loại nghiệp vụ <sup class="red">*</sup></label></div>
+        <div class="col-md-12 mb10">
+            <select class="form-control background-disabled" style="width: 100%; height: 34px ;" id="contract-type" disabled
+                    onchange="_contract_pay_create_new.OnChooseContractPayType()" asp-for="@Model.Type">
+                <option value="-1" disabled selected>Chọn</option>
+                @foreach (var item in allCode_CONTRACT_PAY_TYPE)
+                {
+                    <option value="@item.CodeValue">@item.Description</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-12 mb10"><label class="lbl mt5 mb0">Tên đối tượng <sup class="red">*</sup></label></div>
+        <div class="col-md-12 m-0 p-0 row">
+            <div class="col-md-2">
+                <select class="select2" style="width: 60px; height: 34px ;" id="partner_choose_type" onchange="_contract_pay_create_new.OnChoosePartnerType()">
+                    <option value="0" disabled>Chọn</option>
+                    <option value="1">KH</option>
+                    <option value="2">NCC</option>
+                    <option value="3">NV</option>
+                </select>
+            </div>
+            <div class="col-md-10 mb10" id="divCustomer">
+                <select class="select2 client-select" id="client-select" style="width:100% !important" multiple="multiple" disabled>
+                </select>
+            </div>
+            <div class="col-md-10 mb10" id="divSupplier">
+                <select class="select2 supplier-select" id="supplier-select" style="width:100% !important" multiple="multiple" disabled>
+                </select>
+            </div>
+            <div class="col-md-10 mb10" id="divEmployee">
+                <select class="select2 main-staff-select" id="createdBy" multiple="multiple" style="width:100% !important" disabled>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb10">
+            <label class="lbl mt5 mb0" id="lblBankAccountRequired">Tài khoản ngân hàng nhận <sup class="red">*</sup></label>
+            <label class="lbl mt5 mb0" id="lblBankAccount">Tài khoản ngân hàng nhận</label>
+        </div>
+        <div class="col-md-12 mb10">
+            <select class="form-control" style="width: 100%; height: 34px ;" id="bankingAccount" asp-for="@Model.BankingAccountId">
+                <option value="0" disabled selected>Chọn</option>
+                @foreach (var item in listBankingAccount)
+                {
+                    <option value="@item.Id">@item.BankId - @item.AccountNumber</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-6 mb10"> Ghi chú</div>
+        <div class="col-md-12 mb10">
+            <textarea class="form-control" id="description" maxlength="3000" style="height: 100px;"
+                      asp-for="@Model.Description" autocomplete="off"> </textarea>
+        </div>
+    </div>
+    <div class="grid-item border">
+
+        <div class="col-md-6 mb10"> <label class="lbl mt5 mb0"> Hình thức <sup class="red">*</sup></label></div>
+        <div class="col-md-12 mb10">
+            <select class="form-control" style="width: 100%; height: 34px ;" id="contract-pay-type" asp-for="@Model.PayType"
+                    onchange="_contract_pay_create_new.OnChoosePaymentType()">
+                <option value="-1" disabled selected>Chọn</option>
+                @foreach (var item in allCode_PAY_TYPE)
+                {
+                    <option value="@item.CodeValue">@item.Description</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-6 mb10"><label class="lbl mt5 mb0"> Số tiền <sup class="red">*</sup></label></div>
+        <div class="col-md-12 mb10">
+            <input type="text" class="form-control background-disabled" id="amount" onkeyup="_contract_pay_create_new.FormatNumber();"
+                   disabled onchange="_contract_pay_create_new.OnChangeAmount()"
+                   asp-for="@Model.Amount" value="@Model.Amount.ToString("N0")" autocomplete="off">
+
+        </div>
+
+        <div class="col-md-6 mb10"> <label class="lbl mt5 mb0"> Nội dung <sup class="red">*</sup></label></div>
+        <div class="col-md-12 mb10">
+            <input type="text" id="content" maxlength="500" name="name" placeholder="Nhập text(tối đa 500 kí tự)"
+                   asp-for="@Model.Note" autocomplete="off" />
+        </div>
+
+        <div class="col-md-6 mb10"> Ảnh đính kèm</div>
+        <div class="col-md-12 mb10">
+            <input type="file" id="imagefile" name="imagefile">
+            @if (!string.IsNullOrEmpty(Model.AttatchmentFile))
+            {
+                <div>
+                    <a href="@Model.AttatchmentFile" class="blue" style="color: #056BD3 !important; cursor:pointer;">Xem</a>
+                    <a class="blue" style="color: #056BD3 !important; cursor:pointer;">Xóa</a>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+<div class="row m-0 p-0">
+    <div class="bg-white border pd10 hidden" id="order-relate" style="display: none; width: 100% !important;">
+        <div class="bold gray mb10">Đơn hàng liên quan</div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="bold mb10">Mã đơn hàng</div>
+                <div class="w-100 mb15" style=" padding-right: 10px !important;">
+                    <select class="select2 " id="orderCodeFilter"
+                            onchange="_contract_pay_create_new.OnCheckedOrder()" multiple="multiple" style="width: 100% !important"> </select>
+                </div>
+            </div>
+            <div class="col-md-6 " style="display:none">
+                <div class="bold mb10">Ngày tạo</div>
+                <div class="wrap_input">
+                    <div class="datepicker-wrap" style="width:100%">
+                        <input class="form-control date text-left filter_date_daterangepicker" id="filter_date_create_daterangepicker" type="text"
+                               name="datetimeCreateFilter" style="        min-width: 200px !important" placeholder="Ngày tạo" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive table-default table-gray table-modal scroll-inner">
+            <table class="table" id="order-relate-table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã đơn</th>
+                        <th style="min-width: 100px;">Ngày bắt đầu-Ngày kết thúc</th>
+                        <th>Trạng thái</th>
+                        <th class="">Nhân viên chính</th>
+                        <th class="">Ngày tạo</th>
+                        <th class="text-right">Số tiền</th>
+                        <th class="text-right">Đã giải trừ</th>
+                        <th class="text-right">Chưa giải trừ</th>
+                        <th class="text-right">Cần giải trừ</th>
+                    </tr>
+                </thead>
+                <tbody id="body_order_list">
+                </tbody>
+            </table>
+        </div>
+        <div class="flex flex-end">
+        </div>
+    </div>
+    <div class="bg-white border pd10 hidden" id="deposit-relate" style="display: none; width: 100% !important;">
+        <div class="bold gray mb10">Nạp quỹ liên quan</div>
+        <div class="table-responsive table-default table-gray table-modal scroll-inner">
+            <table class="table" id="deposit-relate-table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã nạp quỹ</th>
+                        <th>Loại quỹ</th>
+                        <th>Trạng thái</th>
+                        <th>Người tạo</th>
+                        <th>Số tiền</th>
+                    </tr>
+                </thead>
+                <tbody id="body_deposit_history_list">
+                </tbody>
+            </table>
+        </div>
+        <div class="flex flex-end">
+        </div>
+    </div>
+    <div class="bg-white border pd10 hidden" id="supplier-refund-relate" style="display: none; width: 100% !important;">
+        <div class="bold gray mb10">Dịch vụ liên quan</div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="w-100 mb15" style=" padding-right: 10px !important;">
+                    <select class="select2 " id="serviceCodeFilter"
+                            onchange="_add_payment_voucher.OnCheckedRequest()" multiple="multiple" style="width: 100% !important"> </select>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive table-default table-gray table-modal scroll-inner">
+            <table class="table" id="supplier-refund-relate-table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th style="min-width: 80px;">Mã dịch vụ</th>
+                        <th>Ngày bắt đầu - Ngày kết thúc</th>
+                        <th>Mã đơn hàng</th>
+                        <th style="min-width: 130px;">Nhân viên điều hành</th>
+                        <th class="text-right" style="min-width: 130px;">Số tiền</th>
+                        <th class="text-right" style="min-width: 130px;">Đã hoàn trả</th>
+                        <th class="text-right" style="min-width: 130px;">Có thể hoàn trả</th>
+                        <th class="text-right" style="min-width: 130px;">Cần hoàn trả</th>
+                    </tr>
+                </thead>
+                <tbody id="body_supplier_refund_list">
+                </tbody>
+            </table>
+        </div>
+        <div class="flex flex-end">
+        </div>
+    </div>
+    <div class="bg-white border pd10 hidden" id="supplier-commision-relate" style="display: none; width: 100% !important;">
+        <div class="bold gray mb10">Dịch vụ liên quan</div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="w-100 mb15" style=" padding-right: 10px !important;">
+                    <select class="select2 " id="serviceCodeCommissionFilter"
+                            onchange="_add_payment_voucher.OnCheckedRequest()" multiple="multiple" style="width: 100% !important"> </select>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive table-default table-gray table-modal scroll-inner">
+            <table class="table" id="supplier-commision-relate-table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th style="min-width: 80px;">Mã dịch vụ</th>
+                        <th>Ngày bắt đầu - Ngày kết thúc</th>
+                        <th>Mã đơn hàng</th>
+                        <th style="min-width: 130px;">Nhân viên điều hành</th>
+                        <th class="text-right" style="min-width: 130px;">Số tiền</th>
+                        <th class="text-right" style="min-width: 130px;">Đã trả hoa hồng</th>
+                        <th class="text-right" style="min-width: 130px;">Có thể trả hoa hồng</th>
+                        <th class="text-right" style="min-width: 130px;">Cần trả hoa hồng</th>
+                    </tr>
+                </thead>
+                <tbody id="body_supplier_commision_list">
+                </tbody>
+            </table>
+        </div>
+        <div class="flex flex-end">
+        </div>
+    </div>
+</div>
+
+<div class="text-center" style="margin-top: 20px; margin-bottom: 20px;">
+    <button type="submit" class="btn btn-default btn btn-default cancel" onclick="$.magnificPopup.close();">Bỏ qua</button>
+    <button type="submit" class="btn btn-default" onclick="_contract_pay_create_new.EditContractPay()">Cập nhật</button>
+</div>
+
+<script type="text/javascript" src="~/modules/add_contract_pay_new.js?v=1"></script>
+<script>
+    _contract_pay_create_new.Initialization();
+    $(document).ready(function () {
+        _contract_pay_create_new.OnChooseContractPayTypeEdit(@clientId, @supplierId, @employeeId, @Model.ObjectType)
+    })
+
+</script>
+@section scripts {
+    <script>
+        $().ready(function () {
+            $('input').attr('autocomplete', 'off');
+            setTimeout(function () {
+                $('#order-relate').hide()
+                $('#deposit-relate').hide()
+                $('#supplier-refund-relate').hide()
+                $('#supplier-commision-relate').hide()
+            }, 1000)
+        })
+    </script>
+}
+<style scoped>
+    .multiple-select {
+        position: relative;
+        max-width: 200px !important;
+        width: 100%;
+    }
+
+    .select2-selection .select2-selection--single {
+        height: 34px !important;
+    }
+
+    .token-input-client-add {
+        min-width: 200px !important;
+    }
+
+        .token-input-client-add input {
+            background: #fff !important;
+            width: 100% !important;
+            font-size: 13px !important;
+            height: 30px !important;
+            line-height: 30px !important;
+            border: 1px solid #ccc !important;
+            padding: 0 5px !important;
+            outline: 0 !important;
+            box-shadow: none !important;
+            color: #000 !important;
+            border-radius: 0.25rem !important;
+        }
+
+    .row-main-head .down-up .form-down {
+        width: 345px !important;
+    }
+
+    .form-control {
+        background: #fff;
+        width: 100%;
+        font-size: 13px;
+        height: 30px;
+        line-height: 30px;
+        border: 1px solid #ccc;
+        padding: 0 5px;
+        outline: 0;
+        box-shadow: none;
+        color: #000;
+        border-radius: 0.25rem !important;
+    }
+</style>

@@ -1,0 +1,247 @@
+﻿@using Entities.ViewModels;
+@using Utilities.Contants;
+@{
+
+    ViewData["Title"] = "Chi tiết quản lý đơn hàng";
+    var client = (Entities.Models.Client)ViewBag.client;
+}
+@model OrderDetailViewModel
+@if (Model != null)
+{
+    <section class="main-container">
+        <div class="container">
+            <div class="row">
+                <input id="order_Id" value="@ViewBag.OrderId" style="display:none" />
+                <input id="ProductService" value="@ViewBag.ProductService" style="display:none" />
+                <div class="col-xl-9">
+
+                    <div id="grid_data_ClientDetai">
+                        @if (client != null)
+                        {
+                            <div class="border bg-white mb20">
+                                <div class="flex space-between pd10">
+                                    <div class="bold">Thông tin khách hàng</div>
+
+                                </div>
+                                <div class="line-bottom pb0 mb0"></div>
+                                <div class="info-basic flex align-center pd10 mb10">
+                                    <div class="ava">
+                                        <span class="thumb_img thumb_5x5">
+                                            @if (client.Avartar != null)
+                                            {
+                                                <img src="@client.Avartar">
+                                            }
+                                            else
+                                            {
+                                                <img src="/images/graphics/no-avt.png">
+                                            }
+                                        </span>
+                                    </div>
+                                    <div class="content">
+                                        <div class="name">@(client.ClientName)</div>
+                                        <div>@client.Phone - @client.Email</div>
+                                        <div>@(ViewBag.Address != ""?"Địa chỉ giao hàng: "+ ViewBag.Address:"")</div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="border bg-white mb20">
+                                <div class="flex space-between pd10">
+                                    <div class="bold">Thông tin khách hàng</div>
+
+                                </div>
+                                <div class="line-bottom pb0 mb0"></div>
+                                <div class="info-basic flex align-center pd10 mb10">
+                                    <div class="ava">
+                                        <span class="thumb_img thumb_5x5">
+                                            <img src="/images/graphics/user.jpeg">
+                                        </span>
+                                    </div>
+                                    <div class="content">
+                                        <div class="name">Khách chưa được tạo tài khoản</div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div id="grid_data_Packages">
+                        <partial name="_Skeleton" />
+                    </div>
+
+                    <div id="grid_data_ContractPay">
+                        <partial name="_Skeleton" />
+                    </div>
+
+                    <div id="grid_data_BillVAT">
+                        <partial name="_Skeleton" />
+                    </div>
+
+
+                </div>
+                <div class="col-xl-3" style="min-width:310px">
+
+                    <div id="grid_data_SingleInformation">
+                        <div class="border bg-white p-3 mb20">
+                            <div class="flex space-between">
+                                <h5 class="text-uppercase">Thông tin đơn hàng</h5>
+                                @* <a class="edit" href=""><i class="icofont-ui-edit"></i><i class="icofont-save"></i></a>*@
+                            </div>
+                            @if (Model.OrderStatus != null)
+                            {
+                                @switch ((int)Model.OrderStatus)
+                                {
+                                    case (int)(OrderStatus.CREATED_ORDER):
+                                    case (int)(OrderStatus.CONFIRMED_SALE):
+                                        {
+                                            <span class="status-oranger">@Model.OrderStatusName </span>
+                                        }
+                                        break;
+                                    case (int)(OrderStatus.WAITING_FOR_OPERATOR):
+                                        {
+
+                                            <div class="status-green">@Model.OrderStatusName</div>
+
+                                        }
+                                        break;
+
+                                    case (int)(OrderStatus.FINISHED):
+                                        {
+                                            <span class="status-green">@Model.OrderStatusName </span>
+                                        }
+                                        break;
+                                    case ((int)(OrderStatus.CANCEL)):
+
+                                        {
+                                            <span class="status-red">@Model.OrderStatusName </span>
+                                        }
+                                        break;
+                                }
+                            }
+
+                            <div class="flex justify-content-end w-100">
+                                <ul class="w-100 my-3">
+                                    <li class="flex justify-content-between mb-2">
+                                        <div class="">Mã đơn hàng</div>
+                                        <h6 class="text-right">@Model.OrderNo</h6>
+                                    </li>
+                                    <li class="flex justify-content-between mb-2">
+                                        <div class="">Ngày tạo</div>
+                                        <div class="text-right">@Model.CreatedDate.ToString("dd/MM/yyyy")</div>
+                                    </li>
+                                    <li class="flex justify-content-between mb-2">
+                                        <div class="">Hình thức thanh toán</div>
+                                        <div class="text-right"> @Model.PaymentTypeName</div>
+                                    </li>
+                                    <li class="flex justify-content-between mb-2">
+                                        <div class="">Trạng thái</div>
+                                        <div class="text-right">@Model.PaymentStatusName</div>
+                                    </li>
+
+                                    <li class="flex justify-content-between mb-2">
+                                        <div class="">Ngày thanh toán</div>
+                                        @if (Model.PaymentStatus != (int)PaymentStatus.UNPAID)
+                                        {
+                                            <div class="text-right">
+                                                @Model.PaymentDate
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="text-right">
+                                            </div>
+                                        }
+
+                                    </li>
+                                    <li class="flex justify-content-between mb-2">
+                                        <div class="">UTM source</div>
+                                        <div class="text-right"></div>
+                                    </li>
+                                    <li class="flex justify-content-between mb-2">
+                                        <div class="">Voucher</div>
+                                        <div class="text-right">@Model.code</div>
+                                    </li>
+
+                                    <li class="flex justify-content-between mb-2">
+                                        <div class="">Chi nhánh</div>
+                                        <div class="text-right">@Model.BranchCodeName</div>
+                                    </li>
+                                    <li>
+                                        <div class="form-group">
+                                            <label class="lbl">Ghi chú</label>
+                                            <div class="wrap_input">
+                                                <textarea rows="3" class="form-control">@Model.Note</textarea>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="grid_data_PersonInCharge">
+                        <partial name="_Skeleton" />
+                    </div>
+                    <div id="grid_data_File">
+                        <partial name="_Skeleton" />
+                    </div>
+                    <div id="grid_data_SystemInformation">
+                        <div class="border bg-white mb20">
+                            <div class="lb-form pd10">
+                                Thông tin hệ thống
+                            </div>
+                            @if (Model.CreatedBy != null)
+                            {
+                                <div class="pd10">
+                                    <ul class="mb0">
+                                        <li class="grid grid__2">
+                                            <div>Ngày tạo</div>
+                                            <div>: @Model.CreatedDate.ToString("dd/MM/yyyy")</div>
+                                        </li>
+                                        <li class="grid grid__2">
+                                            <div>Người tạo</div>
+                                            <div>: @Model.FullName</div>
+                                        </li>
+                                        <li class="grid grid__2">
+                                            <div>Ngày cập nhật</div>
+                                            <div>: @(Model.UpdateLast != null ? Convert.ToDateTime(Model.UpdateLast).ToString("dd/MM/yyyy") : "N/A")</div>
+                                        </li>
+                                        <li class="grid grid__2">
+                                            <div>Người cập nhật</div>
+                                            <div>: @(Model.UserUpdateFullName != null ? Model.UserUpdateFullName : "N/A")</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="pd10">
+                                    N/A
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="form-group align-right mt20 block pin-btn-bottom ">
+                        <button type="button" class="btn btn-default cancel ml-1" onclick="history.back()">Quay lại</button>
+
+                        <button type="button" class="btn btn-default ml-1" onclick="_orderDetail.ChangeOrderSaler(@ViewBag.OrderId,'@ViewBag.OrderNo')">Nhận xử lý đơn hàng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+
+
+<!--Back to top-->
+<a href="javascript:;" id="to_top"><i class="ic ic-caret-up"></i></a>
+<div class="mask-content"></div>
+
+@section scripts {
+
+    <script type="text/javascript" src="~/modules/orderCMSDetail.js" asp-append-version="true"></script>
+}

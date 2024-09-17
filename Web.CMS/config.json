@@ -1,0 +1,21 @@
+{
+  "EncryptApi": "r8AOZvfVZg",
+  "KEY_ENCODE_TOKEN_PUT_QUEUE": "AAFKCM7CoaBerVhcYCHQba1AyY13X41rT5s",
+  "STATIC_IMAGE_DOMAIN": "https://static-image.adavigo.com/images/upload",
+  "KEY_CMS_UPLOAD": "FKR4njpkPGJRLAAWizYEKIVZUxrusOV06rtzQzpigRJNYcduilouuOOh9pLhwzs9rKMjpVC2O3laLQPj0YxXFiaGqP6Y8K",
+  "KEY_TOKEN_API": "36x8m5izYEKIVZUxrusOV02O3laLQPj0YxXFiaGqP6Y8K6rtzQzpigRJNYcduilouuOOh9pLhwzsFKR4njpkPGJRLAAW9rKMjpVC",
+  "KEY_TOKEN_CMS": "1372498309AAH0fVro47y1o5mIIcwVkR3k",
+  "API_SYNC_ARTICLE": "/api/caching/sync-article.json",
+  "API_SYNC_CATEGORY": "/api/caching/sync-category.json",
+  "API_URL": "http://qc-api-hulotoy.x-tech.vn",
+  "ROLE_ADMIN": "1",
+  "LoginURL": "/Account/Login",
+  "SIZE_IMG": "16x9",
+  "LoginTokenExprire": 4000,
+  "AES_KEY": "bXny0OMniop5U1fpZ6u7zAHg7KxRdUcp7OuhU7L9Oo62k+FLShyDuwjBGuXWtRMK",
+  "AES_IV": "KFavGEDPdhddqjl9CQVC2c0jYoMJKzmqlBDS+JBbSK6QwgG79XWs9ltH0i5DaJm2",
+  "Images_Location": "images",
+  "Images_URL": "/images"
+
+
+}

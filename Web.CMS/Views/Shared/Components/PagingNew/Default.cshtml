@@ -1,0 +1,104 @@
+﻿@using Entities.ViewModels
+@model Paging
+<div class="pagination-flex wrap_bg wrap_bg_no-padding mb20">
+    <div class="select-number">
+        Hiển thị &nbsp;
+        <select class="form-control" id="selectPaggingOptions" onchange="@string.Format(Model.PageSelectPageSize)">
+            <option value="10" >10</option>
+            <option value="20"selected>20</option>
+            <option value="30">30</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="200">200</option>
+        </select>&nbsp; trong số &nbsp; <strong>@Model.TotalRecord</strong> &nbsp; kết quả lọc
+    </div>
+    @if (Model.TotalRecord > Model.PageSize)
+    {
+        <ul id="pagination" class="pagination">
+
+            
+            @if (Model.CurrentPage == 1)
+            {
+                <li class="page-item">
+                    <a class="page-link">
+                        <i class="fa fa-step-backward">
+                        </i>
+                    </a>
+                </li>
+
+                <li class="page-item">
+
+                    <a class="page-link icon">
+                        <i class="fa fa-caret-left"></i>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                <a class="page-link" onclick="@string.Format(Model.PageAction,1)">
+                    <i class="fa fa-step-backward">
+                    </i>
+                </a>
+            </li>
+
+                <li class="page-item">
+                    <a class="page-link icon" onclick="@string.Format(Model.PageAction,Model.CurrentPage-1)">
+                        <i class="fa fa-caret-left"></i>
+                    </a>
+                </li>
+            }
+
+            @{
+                int _from = 0, _to = 0;
+                if (Model.CurrentPage == 1)
+                {
+                    _from = 1;
+                    _to = Model.TotalPage > 3 ? 3 : Model.TotalPage;
+                }
+                else if (Model.CurrentPage == Model.TotalPage)
+                {
+                    _from = Model.TotalPage > 3 ? Model.CurrentPage - 2 : 1;
+                    _to = Model.TotalPage;
+                }
+                else
+                {
+                    _from = Model.CurrentPage - 1;
+                    _to = Model.CurrentPage + 1;
+                }
+            }
+
+            @for (int i = _from; i <= _to; i++)
+            {
+                <li class="page-item @(i == Model.CurrentPage ?"active":"")"><a class="page-link" onclick="@string.Format(Model.PageAction,i)">@i</a></li>
+            }
+
+            @if (Model.CurrentPage == Model.TotalPage)
+            {
+                <li class="page-item">
+                    <a class="page-link icon">
+                        <i class="fa fa-caret-right"></i>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link">
+                        <i class="fa fa-step-forward"></i>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link icon" onclick="@string.Format(Model.PageAction,Model.CurrentPage+1)">
+                        <i class="fa fa-caret-right"></i>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" onclick="@string.Format(Model.PageAction,Model.TotalPage)">
+                        <i class="fa fa-step-forward"></i>
+                    </a>
+                </li>
+            }
+        </ul>
+    }
+</div>

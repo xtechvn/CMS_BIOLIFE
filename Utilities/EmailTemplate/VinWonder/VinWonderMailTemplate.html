@@ -1,0 +1,161 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Email Order Notify</title>
+    <style>
+        * {
+            margin: 0 ;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .btn-default {
+            display: inline-block;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 40px;
+            border-radius: 10px;
+            padding: 0 24px;
+            text-align: center ;
+            background: #FF5B00 ;
+            transition: 0.2s all ;
+            border: 1px solid #FF5B00 ;
+            cursor: pointer ;
+        }
+
+            .btn-default.gray {
+                background: #E3EBF3;
+                color: #00264D ;
+                border: 1px solid #E3EBF3 ;
+            }
+
+            .btn-default.full {
+                width: 100% ;
+            }
+
+        table td {
+            padding: 6px 10px ;
+            vertical-align: top ;
+        }
+    </style>
+</head>
+
+<body class="" style="background-color: #ffffff !important; font-family: sans-serif; -webkit-font-smoothing: antialiased; font-size: 16px; line-height: 27px; margin: 0; padding: 0; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+
+    <div style="width: 700px; max-width: 100%;margin: 20px auto;color: #00264D;font-size:16px;background: #fff">
+        <table cellspacing="0" cellpadding="0" width="100%" style="background: #F1F5F9;border-top: 3px solid #070BA0;padding:5px 15px;">
+            <tr>
+                <td><img alt="" src="https://static-image.adavigo.com/uploads/images/logo.png"></td>
+                <td style="text-align: right"><img alt="" src="https://static-image.adavigo.com/uploads/images/hotline.png"></td>
+            </tr>
+        </table>
+        <div style="padding: 15px;">
+            <table cellspacing="0" cellpadding="0" width="100%">
+                <tr>
+                    <td colspan="4">
+                        Chào quý khách, <strong>{{customerName}}</strong>
+                        <br />
+                        Xin cảm ơn quý khách đã sử dụng dịch vụ của Adavigo
+                        <br />
+                        <br />
+                        Mã đơn hàng: <strong style="color: #FF5B00;font-size:24px">{{orderNo}}</strong>
+                        <strong style="background: #FFEFD7;border-radius: 6px;padding: 4px 8px;color: #D09111;margin-left:10px;">
+                           Thanh toán thành công
+                        </strong>
+                        <br />
+                        <br />
+                        <div style="border-bottom:1px solid #E3EBF3;"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="color: #698096;">Ngày đặt</td>
+                    <td style="color: #698096;">Khách hàng</td>
+                    <td style="color: #698096;">Số điện thoại</td>
+                    <td style="color: #698096;">Email</td>
+                </tr>
+                <tr>
+                    <td>{{orderDate}}</td>
+                    <td>{{customerName}}</td>
+                    <td>{{phone}}</td>
+                    <td><a href="#" style="color: #1254FF">{{email}}</a></td>
+                </tr>
+            </table>
+            <table cellspacing="0" cellpadding="0" width="100%">
+                <tr>
+                    <td colspan="4">
+                        <div style="border-bottom:1px solid #E3EBF3;margin: 0 0 15px 0"></div>
+                        <div style="font-size: 18px;"><strong>Thông tin vé</strong></div>
+                    </td>
+                </tr>
+                <tr style="background: #F1F5F9;" class="text-nowrap">
+
+                    <td style="color: #698096;white-space: nowrap;">Thông tin vé</td>
+                    <td style="color: #698096;white-space: nowrap;">Đơn vị</td>
+                    <td style="color: #698096;white-space: nowrap;">Ngày sử dụng</td>
+                </tr>
+                {{vinWonderTable}}
+            </table>
+            
+            <div style="width: 100%;margin-top: 20px;">
+            
+
+                <div style="margin-bottom: 15px">
+                    <p><strong>Ghi chú:</strong></p>
+                    <ul style="color: #698096;padding-left: 40px;margin-bottom: 20px;">
+                        <li>Quý khách vui lòng tham khảo chi tiết điều lệ vận chuyển quốc nội tại đây khi tham gia bay</li>
+                        <li>Giá đã bao gồm thuế và các loại phí dich vụ khác</li>
+                        <li>Điều kiện hoàn hủy và phí hoàn hủy sẽ được tính theo quy định của hãng hàng không và khách sạn</li>
+                        <li>Quan trọng: Trường hợp quý khách có yêu cầu xuất hoát đơn đặc biệt, vui lòng liên hệ bộ phận CSKH để được hỗ trợ trong khung thời gian quy định xuất hóa đơn cho phép của Adavigo</li>
+                    </ul>
+
+                    <p><strong><em>Lưu ý: Đây là Email tự động, quý khách vui lòng không trả lời Email này</em></strong></p>
+                </div>
+                <table cellspacing="0" cellpadding="0" width="100%">
+                    <tr>
+                        <td style="text-align: center">
+                            <div><img alt="" src="https://static-image.adavigo.com/uploads/images/email/phone.png"></div>
+                            <div style="color: #698096;">Hỗ trợ khách hàng 24/7  Hotline:0936191192</div>
+                        </td>
+                        <td style="text-align: center">
+                            <div><img alt="" src="https://static-image.adavigo.com/uploads/images/email/car.png"></div>
+                            <div style="color: #698096;">Ứng dụng tiện lợi, thanh toán dễ dàng</div>
+                        </td>
+                        <td style="text-align: center">
+                            <div><img alt="" src="https://static-image.adavigo.com/uploads/images/email/plane.png"></div>
+                            <div style="color: #698096;">Giá tốt sát ngày, Nhiều ưu đãi hấp dẫn</div>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+        <div style="padding: 30px;color:#fff;background: #070BA0;font-size:14px">
+            <strong>CÔNG TY CỔ PHẦN THƯƠNG MẠI & DỊCH VỤ QUỐC TẾ ĐẠI VIỆT</strong>
+            <br />
+            <br />
+            Trụ sở chính tại Hà Nội:<br />
+
+            Địa chỉ: Tầng 6, tòa nhà Sannam, số 78 phố Duy Tân, P. Dịch Vọng Hậu, Q. Cầu Giấy, TP. Hà Nội<br />
+
+            Văn phòng đại diện tại Hà Nội:<br />
+
+            Địa chỉ: Vinaconex 1, 289A, Khuất Duy Tiến, P. Trung Hoà, Q. Cầu Giấy, TP. Hà Nội<br />
+
+            Văn phòng đại diện tại Phú Quốc:<br />
+
+            Địa chỉ: Số 72 Trần Hưng Đạo, Phường Dương Đông, Thành Phố Phú Quốc.<br />
+
+            Văn phòng đại diện tại Hồ Chí Minh:<br />
+
+            Địa chỉ: Số 1 Hoàng Việt, Phường 4, Quận Tân Bình, TP. HCM.<br />
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,346 @@
+<!-- build:title -->CMS Template
+<!-- /build:title -->
+
+<!-- build:content -->
+<section class="main-container">
+    <div class="row-main container">
+        <h2 class="txt_18 bold mb20">Danh sách khách hàng</h2>
+        <div class="flex fillter-donhang mb10">
+            <button type="submit" class="btn btn-default bg-main mb10 mr-2"><i class="fa fa-plus-circle"></i>Tạo</button>
+            <div class="form-group mb10 mr-2">
+                <input type="text" class="form-control" id="" placeholder="Mã KH, Tên KH, Điện thoại, Email" style="width: 220px;">
+            </div>
+            <div class="form-group mb10 mr-2">
+                <select class="select2" name="" style="width: 150px;">
+                    <option value="">Tất cả đối tượng</option>
+                    <option value="">Đại lý</option>
+                    <option value="">Cộng tác viên</option>
+                    <option value="">Mice/Corp/Doanh nghiệp</option>
+                </select>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <select class="select2" name="" style="width: 150px;">
+                    <option value="">Tất cả loại KH</option>
+                    <option value="">Đại lý</option>
+                    <option value="">Cộng tác viên</option>
+                    <option value="">Mice/Corp/Doanh nghiệp</option>
+                </select>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <select class="select2" name="" style="width: 150px;">
+                    <option value="">Tất cả nhóm KH</option>
+                    <option value="">Đại lý</option>
+                    <option value="">Cộng tác viên</option>
+                    <option value="">Mice/Corp/Doanh nghiệp</option>
+                </select>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <select class="select2" name="" style="width: 150px;">
+                    <option value="">Tất cả nguồn</option>
+                    <option value="">Đại lý</option>
+                    <option value="">Cộng tác viên</option>
+                    <option value="">Mice/Corp/Doanh nghiệp</option>
+                </select>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <input type="text" class="form-control" id="" placeholder="Người tạo">
+            </div>
+            <div class="form-group mb10 mr-2">
+                <div class="datepicker-wrap" style="width:100%">
+                    <input class="form-control datepicker-input " type="text" name="birthday" placeholder="Ngày tạo">
+                </div>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <div class="datepicker-wrap" style="width:100%">
+                    <input class="form-control datepicker-input " type="text" name="birthday" placeholder="Thời gian thanh toán cuối">
+                </div>
+            </div>
+            <div class="form-group mb10 mr-2">
+                Tổng thanh toán:
+            </div>
+            <div class="form-group mb10 mr-2">
+                <input type="text" class="form-control" id="" placeholder="Từ" style="width:80px">
+            </div>
+            <div class="form-group mb10 mr-2">
+                <input type="text" class="form-control" id="" placeholder="Đến" style="width:80px">
+            </div>
+            <div class="form-group mb10 mr-2">
+                <div class="datepicker-wrap" style="width:100%">
+                    <input class="form-control datepicker-input " type="text" name="birthday" placeholder="Thời gian thanh toán">
+                </div>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <select class="select2" name="" style="width: 180px;">
+                    <option value="">Tất cả bộ phận phụ trách</option>
+                    <option value="">Đại lý</option>
+                    <option value="">Cộng tác viên</option>
+                    <option value="">Mice/Corp/Doanh nghiệp</option>
+                </select>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <input type="text" class="form-control" id="" placeholder="Nhân viên phụ">
+            </div>
+            <div class="row-main-head mb10 mr-2">
+                <div class="down-up">
+                    <a class="btn btn-default onclick" href="javascript:;">
+                        <i class="fa fa-bars"></i>
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+                    <div class="form-down" style="display: none;">
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox" checked="">
+                            <span class="checkmark"></span>
+                            Hình thức
+                        </label>
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Mã đơn
+                        </label>
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Ngày bắt đầu
+                        </label>
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Ngày kết thúc
+                        </label>
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Nhãn đơn
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="mb10 mr-2">
+                <button class="btn-search btn-default" type="submit">
+                    <svg class="icon-svg">
+                        <use xlink:href="images/icons/icon.svg#search"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="line-bottom mb20">
+            <div class="flex">
+                <div class="mb10 mr-4">Đại lý cấp 1: <strong>3</strong></div>
+                <div class="mb10 mr-4">Doanh nghiệp: <strong>3</strong></div>
+                <div class="mb10 mr-4">Cộng tác viên: <strong>5</strong></div>
+            </div>
+        </div>
+
+        <div class="wrap_bg wrap_bg_no-padding mb20">
+            <div class="table-responsive table-default table-scroll">
+                <table class="table table-nowrap">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã KH</th>
+                            <th style="width: 140px;">Tên KH</th>
+                            <th style="width: 100px;">Liên hệ</th>
+                            <th style="width: 80px;">Đối tượng</th>
+                            <th style="width: 70px;">Loại KH</th>
+                            <th style="width: 100px;">Nhóm KH</th>
+                            <th style="width: 100px;">Nguồn</th>
+                            <th class="text-right" style="width: 100px;">Tông thanh toán</th>
+                            <th class="text-right" style="width: 100px;">Công nợ</th>
+                            <th class="text-right" style="width: 100px;">Số dư quỹ VMB tối thiểu</th>
+                            <th class="text-right" style="width: 100px;">Số dư quỹ KS tối thiểu</th>
+                            <th style="width: 120px;">Thời gian thanh toán lần cuối</th>
+                            <th style="width: 100px;">Nhân viên phụ trách</th>
+                            <th style="width: 100px;">Người tạo</th>
+                            <th style="width: 100px;">Ngày tạo</th>
+                            <th style="width: 100px;">Người cập nhật</th>
+                            <th style="width: 120px;">Ngày cập nhật</th>
+                            <th style="width: 120px;">Người duyệt</th>
+                            <th style="width: 120px;">Ngày duyệt</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <a class="blue" href="#">B000004</a>
+                            </td>
+                            <td>Chị) Mrs. Tuệ An</td>
+                            <td>
+                                <div>0983632288</div>
+                                <div>tuean@vietpowertravel.com</div>
+                            </td>
+                            <td>Cá nhân</td>
+                            <td>B2C</td>
+                            <td>Không được công nợ</td>
+                            <td>Website</td>
+                            <td class="text-right">0</td>
+                            <td class="text-right">0/0</td>
+                            <td class="text-right"></td>
+                            <td class="text-right"></td>
+                            <td>07/02/2023 07:00</td>
+                            <td>Nguyễn Thái Bình - Phòng kinh doanh 1</td>
+                            <td>Nguyễn Thái Bình - Phòng kinh doanh 1</td>
+                            <td>17-05-2021 13:34</td>
+                            <td>Nguyễn Thái Bình - Phòng kinh doanh 1</td>
+                            <td>17-05-2021 13:34</td>
+                            <td>Hệ thống</td>
+                            <td>17-05-2021 13:34</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>
+                                <a class="blue" href="#">B000004</a>
+                            </td>
+                            <td>Chị) Mrs. Tuệ An</td>
+                            <td>
+                                <div>0983632288</div>
+                                <div>tuean@vietpowertravel.com</div>
+                            </td>
+                            <td>Cá nhân</td>
+                            <td>B2C</td>
+                            <td>Không được công nợ</td>
+                            <td>Website</td>
+                            <td class="text-right">1,000,000</td>
+                            <td class="text-right">
+                                <div class="blue">20,000,000/</div>
+                                <div class="green">30,000,000</div>
+                            </td>
+                            <td class="text-right"></td>
+                            <td class="text-right"></td>
+                            <td>07/02/2023 07:00</td>
+                            <td>Nguyễn Thái Bình - Phòng kinh doanh 1</td>
+                            <td>Nguyễn Thái Bình - Phòng kinh doanh 1</td>
+                            <td>17-05-2021 13:34</td>
+                            <td>Nguyễn Thái Bình - Phòng kinh doanh 1</td>
+                            <td>17-05-2021 13:34</td>
+                            <td>Hệ thống</td>
+                            <td>17-05-2021 13:34</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>
+                                <a class="blue" href="#">B000004</a>
+                            </td>
+                            <td>Chị) Mrs. Tuệ An</td>
+                            <td>
+                                <div>0983632288</div>
+                                <div>tuean@vietpowertravel.com</div>
+                            </td>
+                            <td>Cá nhân</td>
+                            <td>B2C</td>
+                            <td>Không được công nợ</td>
+                            <td>Website</td>
+                            <td class="text-right">1,000,000</td>
+                            <td class="text-right">
+                                <div class="blue">20,000,000/</div>
+                                <div class="green">30,000,000</div>
+                            </td>
+                            <td class="text-right"></td>
+                            <td class="text-right"></td>
+                            <td>07/02/2023 07:00</td>
+                            <td>Nguyễn Thái Bình - Phòng kinh doanh 1</td>
+                            <td>Nguyễn Thái Bình - Phòng kinh doanh 1</td>
+                            <td>17-05-2021 13:34</td>
+                            <td>Nguyễn Thái Bình - Phòng kinh doanh 1</td>
+                            <td>17-05-2021 13:34</td>
+                            <td>Hệ thống</td>
+                            <td>17-05-2021 13:34</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>
+                                <a class="blue" href="#">B000004</a>
+                            </td>
+                            <td>Chị) Mrs. Tuệ An</td>
+                            <td>
+                                <div>0983632288</div>
+                                <div>tuean@vietpowertravel.com</div>
+                            </td>
+                            <td>Cá nhân</td>
+                            <td>B2C</td>
+                            <td>Không được công nợ</td>
+                            <td>Website</td>
+                            <td class="text-right">1,000,000</td>
+                            <td class="text-right">
+                                <div class="blue">20,000,000/</div>
+                                <div class="green">30,000,000</div>
+                            </td>
+                            <td class="text-right"></td>
+                            <td class="text-right"></td>
+                            <td>07/02/2023 07:00</td>
+                            <td>Nguyễn Thái Bình - Phòng kinh doanh 1</td>
+                            <td>Nguyễn Thái Bình - Phòng kinh doanh 1</td>
+                            <td>17-05-2021 13:34</td>
+                            <td>Nguyễn Thái Bình - Phòng kinh doanh 1</td>
+                            <td>17-05-2021 13:34</td>
+                            <td>Hệ thống</td>
+                            <td>17-05-2021 13:34</td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <ul id="pagination" class="pagination">
+
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <i class="fa fa-step-backward"></i>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link icon" href="#">
+                        <i class="fa fa-caret-left"></i>
+                    </a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link icon" href="#">
+                        <i class="fa fa-caret-right"></i>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <i class="fa fa-step-forward"></i>
+                    </a>
+                </li>
+
+                <span>Hiển thị 1 - 7 trên tổng số 50 hóa đơn</span>
+            </ul>
+        </div>
+
+
+        <div class="white-popup" style="max-width: 400px;">
+            <div class="content_lightbox">
+                <div class="head line-bottom">
+                    Chi tiết công nợ khách hàng DL100001
+                </div>
+                <div class="row">
+                    <div class="col-6 mb10">Công nợ VMB</div>
+                    <div class="col-6 mb10">: 30,000,000 vnđ</div>
+                    <div class="col-6 mb10">Công nợ KS</div>
+                    <div class="col-6 mb10">: 0/0</div>
+                    <div class="col-6 mb10">Thời gian thu hồi công nợ</div>
+                    <div class="col-6 mb10">: 15/02/2023</div>
+                    <div class="col-6 mb10">Nhân viên phụ trách</div>
+                    <div class="col-6 mb10">: Nguyễn Thanh Bình - Kinh doanh 1</div>
+                </div>
+            </div>
+            <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+        </div>
+
+    </div>
+</section>
+
+
+
+<!-- /build:content -->
+
+<!-- build:script2 -->
+<script type="text/javascript">
+</script>
+<!-- /build:script2 -->

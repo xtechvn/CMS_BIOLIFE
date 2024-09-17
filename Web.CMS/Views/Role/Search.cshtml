@@ -1,0 +1,49 @@
+﻿@{
+    Layout = null;
+}
+@using Entities.ViewModels
+@model GenericViewModel<RoleDataModel>
+
+<table class="table table-nowrap">
+    <thead>
+        <tr class="bg-main2">
+            <th>STT</th>
+            <th>Tên nhóm</th>
+            <th>Mô tả</th>
+            <th>Trạng thái</th>
+            <th>Số thành viên</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListData.Count > 0)
+        {
+            int counter = 0;
+            foreach (var item in Model.ListData)
+            {
+                counter++;
+                <tr class="@((counter % 2 == 0)?"line-item bg-gray":"line-item")" data-id="@item.Id" data-ajaxdetail="false">
+                    <td>@((Model.CurrentPage-1) * Model.PageSize + counter)</td>
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                    <td>
+                        @(item.Status == 0 ? "Bình thường": "Khóa/tạm dừng")
+                    </td>
+                    <td class="count-user"><strong class="blue">@item.CountUser</strong></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@await Component.InvokeAsync("Paging", new
+{
+    pageModel = new Paging()
+    {
+        TotalRecord = Model.TotalRecord,
+        TotalPage = Model.TotalPage,
+        CurrentPage = Model.CurrentPage,
+        PageSize = Model.PageSize,
+        RecordName = "nhóm quyền",
+        PageAction = "_role.OnPaging({0})"
+    }
+})

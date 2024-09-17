@@ -1,0 +1,32 @@
+﻿@{
+    Layout = null;
+}
+@model Entities.ViewModels.RoleViewModel
+@*asp-controller="role"
+    asp-action="upsert"
+    data-ajax="true"
+    data-ajax-method="post"
+    data-ajax-success="_role.OnUpsertSuccess(data)"*@
+
+<form id="form-role">
+    <input type="hidden" class="form-control" asp-for="@Model.Id">
+    <div class="form-group">
+        <label class="lbl">Tên nhóm</label>
+        <input type="text" class="form-control" asp-for="@Model.Name">
+    </div>
+    <div class="form-group">
+        <label class="lbl">Mô tả</label>
+        <input type="text" class="form-control" asp-for="@Model.Description">
+    </div>
+    <div class="form-group">
+        <label class="lbl">Trạng thái</label>
+        <select class="form-control" asp-for="@Model.Status">
+            <option value="0">Bình thường</option>
+            <option value="1">Khóa/Tạm dừng</option>
+        </select>
+    </div>
+    <div class="form-group align-right mt20 block">
+        <button type="button" class="btn btn-default bg-main" onclick="_role.OnUpsert();"><i class="fa fa-floppy-o"></i>Lưu</button>
+        <button type="button" class="btn btn-default cancel" onclick="$.magnificPopup.close();"><i class="fa fa-minus-circle"></i>Bỏ qua</button>
+    </div>
+</form>

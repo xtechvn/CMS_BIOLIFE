@@ -1,0 +1,104 @@
+﻿@{
+    Layout = null;
+}
+@using Entities.Models
+@using Entities.ViewModels
+@model List<RolePermission>
+<style>
+    .mr25 {
+        margin-right: 20px;
+    }
+</style>
+@{
+    var ListMenu = (List<Menu>)ViewBag.MenuList;
+    var ListMenuPermission = (List<MenuPermission>)ViewBag.MenuPermission;
+    var ListPermission = (List<Permission>)ViewBag.PermissionList;
+    int RoleId = (int)ViewBag.RoleId;
+
+    void RecursiveGridRow(Menu parent, int level = 0)
+    {
+        var childDatas = ListMenu.Where(s => s.ParentId == parent.Id);
+        var menuPermissions = ListMenuPermission.Where(s => s.MenuId == parent.Id).Select(s => s.PermissionId);
+        <tr>
+            <td>
+                <div class="menu_name" style="padding-left:@(level*20)px;">
+                    @parent.Name
+                </div>
+            </td>
+            <td>
+                <div class="row">
+                    @foreach (var itemPermission in ListPermission)
+                    {
+                        @if (menuPermissions.Contains(itemPermission.Id))
+                        {
+                            var _MapItem = Model.Where(s => s.MenuId == parent.Id && s.PermissionId == itemPermission.Id).FirstOrDefault();
+                            <div class="col-md-6">
+                                <label class="check-list mb10 mr25">
+                                    @if (_MapItem != null)
+                                    {
+                                        <input type="checkbox" class="ckb-role-permission" checked="checked" data-menuid="@parent.Id" data-param="@RoleId-@parent.Id-@itemPermission.Id">
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" class="ckb-role-permission" data-menuid="@parent.Id" data-param="@RoleId-@parent.Id-@itemPermission.Id">
+                                    }
+                                    <span class="checkmark"></span>
+                                    @itemPermission.Name
+                                </label>
+                            </div>
+                        }
+                    }
+                </div>
+            </td>
+        </tr>
+        @if (childDatas != null && childDatas.Any())
+        {
+            level++;
+            foreach (var child in childDatas)
+            {
+                RecursiveGridRow(child, level);
+            }
+        }
+    }
+}
+
+
+<div class="col-md-12">
+    <div class="scrollbar-inner">
+        <div style="height:500px;">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Menu chức năng</th>
+                        <th>Quyền được gán</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ListMenu != null && ListMenu.Any())
+                    {
+                        var parents = ListMenu.Where(s => s.ParentId == 0);
+                        foreach (var item in parents)
+                        {
+                            RecursiveGridRow(item);
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="2" class="text-center">
+                                <div class="search-null center mt40 mb40">
+                                    <div class="mb24">
+                                        <img src="/images/graphics/icon-search.png" alt="">
+                                    </div>
+                                    <h2 class="title txt_24">Không tìm thấy kết quả</h2>
+                                    <div class="gray">Chúng tôi không tìm thấy thông tin mà bạn cần, vui lòng thử lại</div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

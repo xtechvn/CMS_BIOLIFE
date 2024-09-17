@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "Theo dõi dữ liệu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .table-responsive {
+        overflow-x: auto;
+    }
+</style>
+<div class="row-main container flex">
+    <div class="row-main_col200">
+        <h2 class="title_page">Quản lý dữ liệu</h2>
+        <div class="form-group">
+            <button class="btn form-control btn-info" onclick="_data_monitor.OnGetTemplate(1);">Select</button>
+            <button class="btn form-control btn-primary" onclick="_data_monitor.OnGetTemplate(2);">Insert</button>
+            <button class="btn form-control btn-success" onclick="_data_monitor.OnGetTemplate(3);">Update</button>
+            <button class="btn form-control btn-danger" onclick="_data_monitor.OnGetTemplate(4);">Delete</button>
+        </div>
+    </div>
+    <div class="row-main_col800">
+        <div class="form-group">
+            <div class="col-md-12">
+                <textarea placeholder="Nhập câu lệnh truy xuất" id="text-query-data" style="min-height: 300px;resize: none;"></textarea>
+                <button class="btn btn-success m-lg-0" onclick="_data_monitor.OnExcuteQuerry();">Execute</button>
+            </div>
+            <div class="col-md-12" id="grid-table-data" style="margin-top:50px;">
+               
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script src="~/modules/data_monitor.js"></script>
+}

@@ -1,0 +1,295 @@
+﻿@{
+    Layout = null;
+}
+@using Entities.Models
+@using Entities.ViewModels
+
+@model GroupProductDetailModel
+
+@{
+    var PositionList = (List<Position>)ViewBag.PositionList;
+}
+
+<style>
+    .image-preview {
+        max-width: 150px;
+        border: 1px dashed #ccc;
+        padding: 2px;
+    }
+
+    .wrap-image-preview {
+        width: 100%;
+    }
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
+
+<form id="form-group-product">
+    <div class="form-default">
+        <div class="form-group">
+            <label class="lbl">Tên nhóm</label>
+            <div class="wrap_input">
+                <input type="hidden" class="form-control" name="Id" value="@Model.Id" />
+                <input type="hidden" class="form-control" asp-for="@Model.ParentId" />
+                <input type="text" class="form-control" asp-for="@Model.Name" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="lbl">Thứ tự</label>
+            <div class="wrap_input">
+                <div class="sl_giohang">
+                    <button type="button" class="giam_sl" id="minus-btn">-</button>
+                    <input type="number" class="qty_input" asp-for="@Model.OrderNo" />
+                    <button type="button" class="tang_sl" id="plus-btn">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="lbl">Mô tả</label>
+            <div class="wrap_input">
+                <textarea class="form-control" asp-for="@Model.Description"
+                          style="resize: none; min-height: 125px;border: 1px solid #ccc;padding: 10px;"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="lbl">Hiển thị</label>
+            <div class="wrap_input">
+                <label class="check-list inline">
+                    @Html.CheckBoxFor(s => s.IsShowHeader)
+                    <span class="checkmark"></span>
+                    Header
+                </label>
+                <label class="check-list inline">
+                    @Html.CheckBoxFor(s => s.IsShowFooter)
+                    <span class="checkmark"></span>
+                    Footer
+                </label>
+
+            </div>
+        </div>
+
+        <div class="form-group male">
+            <label class="lbl">Trạng thái</label>
+            <label class="radio-inline" style="margin-top:6px;"><input type="radio" asp-for="@Model.Status" value="0">Bình thường</label>
+            <label class="radio-inline" style="margin-top:6px;"><input type="radio" asp-for="@Model.Status" value="1">Khóa/tạm dừng</label>
+        </div>
+
+        <div class="form-group">
+            <label class="lbl">
+                Ảnh đại diện
+                <span class="txt_12 gray mt5">(Chấp nhận ảnh jpg, gif, png)</span>
+            </label>
+            <div class="wrap_input">
+                <div class="row mb10">
+                    <div class="col-md-5 col-xs-12">
+                        <select class="form-control sl-image-size" asp-for="@Model.PositionId" style="width: 200px;">
+                            <option value="-1" size="150x200">Chọn kích thước</option>
+                            @if (PositionList != null)
+                            {
+                                @foreach (var item in PositionList)
+                                {
+                                    <option value="@item.Id" size="@(item.Width+"x"+item.Height)">@item.PositionName (@(item.Width+"x"+item.Height))</option>
+                                }
+                            }
+
+                        </select>
+                    </div>
+                </div>
+                <div class="wrap-croppie mb10" style="display:none;width: 300px;text-align: center;">
+                    <div id="croppie-content">
+                    </div>
+                    <button type="button" class="btn btn-danger" style="display:none;" id="btn-cropimage">Save edit</button>
+                    <button type="button" class="btn btn-default cancel" style="display:none;" id="btn-cancel-crop">Cancel</button>
+                </div>
+                <div class="wrap-image-preview" style="width: 150px;text-align: center;">
+                    <img class="image-preview mb10"
+                         src="@(!string.IsNullOrEmpty(Model.ImagePath) ? Model.ImagePath : "/images/icons/noimage.png")"
+                         onerror="_imageError(this)" />
+                    <input type="file" id="image_file" style="display:none;" />
+                    <input type="hidden" asp-for="@Model.ImagePath" />
+                    <button type="button" class="btn btn-primary" style="margin-left: 0px!important;" id="btn-upload-image" onclick="$('#image_file').trigger('click');"><i class="fa fa-image"></i>Upload</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="lbl">
+                ID Sản phẩm
+            </label>
+            <div class="wrap_input">
+                <input type="text" style="width: 200px;" class="form-control" asp-for="@Model.Code" />
+            </div>
+        </div>
+
+        <div class="form-group align-right mt20 mb0 block">
+            @if (Model.Id != 0)
+            {
+                <button type="button" class="btn btn-default btn-dynamic-enable bg-main" onclick="_groupProduct.OnSave()"><i class="fa fa-floppy-o"></i>Lưu</button>
+                <button type="button" class="btn btn-default btn-dynamic-enable red" onclick="_groupProduct.OnDelete('@Model.Id')"><i class="fa fa-trash"></i>Xóa</button>
+            }
+            else
+            {
+                <button type="button" class="btn btn-default btn-dynamic-enable bg-main" onclick="_groupProduct.OnSave()"><i class="fa fa-floppy-o"></i>Tạo</button>
+            }
+            <button type="button" class="btn btn-default btn-dynamic-enable cancel" onclick="$.magnificPopup.close();">
+                <i class="fa fa-minus-circle"></i>Bỏ qua
+            </button>
+        </div>
+    </div>
+</form>
+
+<script>
+    var uploadCrop = $('#croppie-content').croppie({
+        viewport: {
+            width: 177,
+            height: 270,
+            type: 'square'
+        },
+        boundary: {
+            width: 300,
+            height: 300
+        },
+        url: '/images/icons/noimage.png'
+    });
+
+    $('.sl-image-size').change(function () {
+        var value = $("option:selected", this).attr('size');
+        var width = parseInt(value.split("x")[0]);
+        var height = parseInt(value.split("x")[1]);
+        var filedata = $('#image_file')[0].files[0];
+        $('#croppie-content').croppie('destroy');
+        if (filedata) {
+            $('.wrap-croppie').show();
+            $('.wrap-image-preview').hide();
+            $('#btn-cropimage').show();
+            var reader = new FileReader();
+            reader.readAsDataURL(filedata);
+            reader.onload = function () {
+                $('#croppie-content').croppie({
+                    viewport: {
+                        width: width,
+                        height: height,
+                        type: 'square'
+                    },
+                    boundary: {
+                        width: 300,
+                        height: 300
+                    },
+                    url: reader.result
+                });
+            };
+        } else {
+            $('#croppie-content').croppie({
+                viewport: {
+                    width: width,
+                    height: height,
+                    type: 'square'
+                },
+                boundary: {
+                    width: 300,
+                    height: 300
+                },
+                url: '/images/icons/noimage.png'
+            });
+        }
+    });
+
+    $('#image_file').change(function (event) {
+        if (event.target.files && event.target.files[0]) {
+            $('.wrap-croppie').show();
+            $('.wrap-image-preview').hide();
+            $('#btn-upload-image').hide();
+            $('#btn-cropimage').show();
+            $('#btn-cancel-crop').show();
+            $('.btn-dynamic-enable').prop('disabled', true);
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                uploadCrop.croppie('bind', {
+                    url: e.target.result
+                });
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    });
+
+    $('#btn-cropimage').click(function () {
+        uploadCrop.croppie('result', {
+            type: 'canvas',
+            size: 'original'
+        }).then(function (base64img) {
+            $('.wrap-croppie').hide();
+
+            $('#btn-upload-image').show();
+            $('#btn-cropimage').hide();
+            $('#btn-cancel-crop').hide();
+
+            $('.image-preview').attr('src', base64img);
+            $('.wrap-image-preview').show();
+            $('#image_file').val('');
+            $('.btn-dynamic-enable').prop('disabled', false);
+        });
+    });
+
+    $('#btn-cancel-crop').click(function () {
+        $('.wrap-croppie').hide();
+        $('#btn-upload-image').show();
+        $('#btn-cropimage').hide();
+        $('#btn-cancel-crop').hide();
+        $('.wrap-image-preview').show();
+        $('#image_file').val('');
+        $('.btn-dynamic-enable').prop('disabled', false);
+    });
+
+    $('#minus-btn').click(function () {
+        var value = parseInt($('.qty_input').val()) - 1;
+        if (value < 0) {
+            value = 0;
+        }
+        $('.qty_input').val(value);
+    });
+
+    $('#plus-btn').click(function () {
+        var value = parseInt($('.qty_input').val()) + 1;
+        $('.qty_input').val(value);
+    });
+
+    $('.mapping-menu').on('click', '.detail-product-link', function () {
+        var seft = $(this);
+        var link = seft.closest('div.row.itemt').find('.link-store').val().trim();
+        if (link != "")
+            window.open(link);
+        else
+            _msgalert.error('Bạn phải nhập link sản phẩm vào text box, Hệ thống điều hướng chuyển trang');
+    });
+
+    function OnCreateLabel() {
+        var dropdownHtml = $('.select-box-data .dropdown-store')[0].outerHTML;
+        var strHtml = '<div class="row itemt">'
+            + '<div class="col-sm-4 mb10">'
+            + dropdownHtml
+            + '</div>'
+            + '<div class="col-sm-7 mb10">'
+            + '<textarea class="form-control link-store" style="resize:none;"></textarea>'
+            + '</div>'
+            + '<div class="col-sm-1 mb10 text-center blue" style="padding-top:6px;">'
+            + '<a class="cur-pointer blue detail-product-link" title="Xem Link chi tiết"><i class="fa fa-eye"></i></a>'
+            + '</div>'
+            + '<a class="cur-pointer call" data-groupid="@Model.Id" onclick="_groupProduct.OnCrawl(this);"><img src="images/icons/web-crawler.svg"></a>'
+            + '<a class="delete" onclick="$(this).closest(' + "'.itemt'" + ').remove();"><i class="fa fa-times"></i></a>'
+            + '</div>';
+        $('#grid-mapping-label').append(strHtml);
+    }
+</script>

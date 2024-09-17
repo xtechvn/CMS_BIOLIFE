@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Quản lý Comments";
+}
+<style>
+    .centered option{
+        text-align: center;
+    }
+
+    .selection span
+    {
+        height: 35px !important;
+    }
+
+     .ClientInput_Arrow{
+        display: none !important;
+    }
+</style>
+<div class="bg-serach-main" style="width:100%,margin:0px">
+    <div class="flex justify-between">
+        <select class="select2 select2-hidden-accessible" onchange="_comment.OnChangeClient()" name="" id="clientInput" style="width: 88%;" tabindex="-1" aria-hidden="true">
+        </select>
+        <select class="select2 centered" name="" id="DateInput" onchange="_comment.OnChanggeDate()" style="width: 10%;" tabindex="-1" aria-hidden="true">
+            <option class="" value="all" data-select2-id="select2-data-3-o5x9">
+                <strong>Tất cả</strong>
+            </option>
+            <option class="mt-2" value="today">Hôm nay</option>
+            <option class="mt-2" value="yesterday">Hôm qua</option>
+            <option class="mt-2" value="thisWeek">Tuần này</option>
+            <option class="mt-2" value="lastWeek">Tuần trước</option>
+            <option class="mt-2" value="thisMonth">Tháng này</option>
+            <option class="mt-2" value="lastMonth">Tháng trước</option>
+            <option class="mt-2" value="thisQuarter">Quý này</option>
+            <option class="mt-2" value="lastQuarter">Quý Trước</option>
+        </select>
+    </div>
+    <div id="Comment-content">
+
+    </div>
+</div>
+@section scripts {
+    <script type="text/javascript" src="~/modules/comment.js" asp-append-version="true"></script>
+}

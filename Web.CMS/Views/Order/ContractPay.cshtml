@@ -1,0 +1,67 @@
+﻿@{
+    Layout = null;
+    var i = 1;
+}
+@model List<Entities.ViewModels.Funding.ContractPayDetaiByOrderIdlViewModel>
+<div class="border bg-white mb20">
+    <div class="flex space-between row-main-head pd10">
+        <div class="bold">Thanh toán</div>
+        <div style="display:none">
+            <a class="btn btn-default" href="javascript:;">Thanh toán</a>
+            <a class="btn btn-default" href="javascript:;">Đơn hàng công nợ</a>
+        </div>
+    </div>
+    <div class="line-bottom pb0"></div>
+    <div class="pd10">
+        <div class="table-responsive table-gray">
+            <table class="table table-nowrap">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã phiếu thu</th>
+                        <th style="width: 350px;">Nội dung</th>
+                        <th>Ngày thanh toán</th>
+                        <th class="text-right">Số tiền</th>
+                        <th class="text-center">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Count > 0)
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@(i++)</td>
+                                <td>
+                                    <a class="blue" href="/Receipt/Detail?contractPayId=@item.PayId">
+                                        @item.BillNo
+                                    </a>
+                                </td>
+                                <td>@item.Note</td>
+                                <td>@(Convert.ToDateTime(item.ExportDate).ToString("dd/MM/yyyy HH:mm:ss"))</td>
+                                <td class="text-right">@item.AmountPay.ToString("N0")</td>
+
+                                <td class="text-center">
+                                    <a style="display:none" class="delete red" href=""><i class="fa fa-times"></i></a> &nbsp;&nbsp;
+                                </td>
+                            </tr>
+                        }
+
+
+
+                        @if (ViewBag.paymentAmount > 0)
+                        {
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="bold">Tổng cộng</td>
+                                <td class="text-right bold">@ViewBag.paymentAmount.ToString("###,###,###")</td>
+                                <td></td>
+                            </tr>
+                        }            }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,205 @@
+@media only screen and (max-width: 2400px) and (min-width: 1600px) {}
+
+// Small devices (landscape phones, 576px and up) sm
+@media (min-width: 576px) {}
+
+// Medium devices (tablets, 768px and up) md
+@media (min-width: 768px) {}
+
+// Large devices (desktops, 992px and up) lg
+@media (min-width: 992px) {}
+
+// Extra large devices (large desktops, 1200px and up) xl
+@media (max-width: 1200px) {
+    .row-main {
+        &_col200 {
+            background: #fff;
+            position: fixed;
+            top: 50px;
+            left: 0;
+            bottom: 0;
+            z-index: 22;
+            will-change: transform;
+            -webkit-transition: 0.4s;
+            transition: 0.4s;
+            transform: translate(-100%);
+        }
+        &_col800 {
+            width: 100%;
+            padding-left: 0;
+        }
+    }
+    .row-main-head {
+        .search-wrapper {
+            max-width: 400px;
+        }
+    }
+    .close-menu,
+    .btn_show {
+        display: block;
+    }
+}
+
+@media (max-width: 991px) {
+    .row-main {
+        &-left {
+            width: 100%;
+            padding-right: 0;
+        }
+        &-right {
+            width: 100%;
+        }
+    }
+    .row-main {
+        &_col200 {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        &_col800 {
+            width: 100%;
+            padding-left: 0;
+        }
+    }
+    .table-responsive {
+        overflow-x: auto;
+        th,
+        td {
+            white-space: nowrap;
+            [class*='col-'] {
+                white-space: normal;
+            }
+        }
+        .name_img {
+            .flex {
+                display: block;
+            }
+        }
+    }
+    .hidden-tablet {
+        display: none;
+    }
+    .info-detail {
+        .info {
+            width: 100px;
+        }
+        .info-form {
+            width: calc(100% - 100px);
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .thong_ke_top .col-md-3 {
+        margin: 10px 0
+    }
+    .info-detail {
+        th,
+        td {
+            white-space: inherit;
+        }
+    }
+    .grid_reset{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    // .info-detail{
+    // 	.tab-content{max-width: 400px;}
+    // }
+}
+
+@media (max-width: 768px) {
+    .full-tablet {
+        width: 100%;
+    }
+}
+
+@media (max-width: 590px) {
+    .hidden-mobile {
+        display: none !important;
+    }
+    .row-main-head {
+        .title_page {
+            width: 100%;
+        }
+        .btn-right {
+            justify-content: flex-start;
+        }
+        .search-wrapper {
+            max-width: 100%;
+            width: 100%;
+        }
+        .btn-default {
+            margin-left: 0 !important;
+            padding: 0 10px;
+        }
+        .down-up {
+            position: static;
+            .form-down {
+                left: 0;
+                right: 0;
+                width: 100%!important;
+            }
+        }
+    }
+    .form-default {
+        .form-group {
+            .lbl {
+                width: 100%;
+                margin-bottom: 5px;
+                font-weight: 500;
+            }
+            .wrap_input {
+                width: 100%;
+            }
+            &.not-full{
+                .lbl {
+                    width: 90px;
+                    font-weight: 400;
+                }
+                .wrap_input {
+                    width: calc(100% - 90px);
+                }
+            }
+        }
+    }
+    .full-mb {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 420px) {
+    .user-popup {
+        .up-file {
+            width: 100%;
+            text-align: center;
+            .ava,
+            .choose {
+                width: 100px;
+                margin: 0 auto;
+            }
+        }
+        .form-default {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            .col-md-6 {
+                padding: 0;
+            }
+        }
+    }
+}
+
+
+/*Browser Safari */
+
+_::-webkit-full-page-media,
+_:future,
+:root .featured_home_sh .side_featured {
+    width: 493px;
+}
+
+_::-webkit-full-page-media,
+_:future,
+:root .featured_home_sh .side_featured article {
+    width: 244px;
+}

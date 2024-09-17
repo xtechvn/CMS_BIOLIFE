@@ -1,0 +1,350 @@
+﻿@{
+    ViewData["Title"] = "Chi tiết bài viết";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Utilities
+@using Utilities.Contants
+@using Entities.ViewModels
+
+@model ArticleModel
+@{
+    var _StrTreeViewCate = (string)ViewBag.StringTreeViewCate;
+
+}
+
+
+<link href="~/lib/tags-input/bootstrap-tagsinput.css" rel="stylesheet" />
+
+<style>
+    .bootstrap-tagsinput .tag {
+        display: inline-block;
+        margin: 5px 2px 5px 0px;
+        color: #000;
+        background: #D9D9D9;
+        padding: 5px 5px 5px 10px;
+    }
+
+    .bootstrap-tagsinput {
+        width: 100%;
+    }
+
+    .user-hierarchy-tag ul .lever2 {
+        padding-left: 15px;
+    }
+
+    .loading {
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.479);
+    }
+
+        .loading img {
+            width: 2rem;
+        }
+
+    .check-list {
+        display:inline-block !important;
+     }
+</style>
+<div class="row-main container" style="max-width: 1180px;">
+    <input value="@Model.Status" id="News_Status" style="display:none;" />
+    <input value="@ViewBag.size_img " id="size_img" style="display:none;" />
+    <div class="flex row-main-head">
+        <h2 class="title_page">ĐĂNG BÀI VIẾT</h2>
+        <div class="btn-right text-right">
+            @if (Model.Status == ArticleStatus.PUBLISH)
+            {
+                <a href="javascripts:;" class="btn" onclick="_newsDetail.EditNewDetail('@Model.Id','@ArticleStatus.REMOVE')">
+                    Sửa bài viết
+                </a>
+            }
+        </div>
+
+    </div>
+    <div class="wrap_bg mb20">
+
+        <form id="form-news">
+            <div class="form-default2">
+                <div class="form-group none-flex">
+                    <label><strong>Tiêu đề</strong> <sup class="red">*</sup></label>
+                    <input type="hidden" asp-for="@Model.Id" />
+                    <input type="text" class="form-control" asp-for="@Model.Title" placeholder="Nhập tiêu đề bài viết giới hạn 300 ký tự...">
+                </div>
+            </div>
+            <div class="form-default2">
+                <div class="form-group none-flex">
+                    <label><strong>Mô tả</strong> <sup class="red">*</sup></label>
+                    <textarea class="form-control" asp-for="@Model.Lead" placeholder="Nhập mô tả bài viết giới hạn 400 ký tự..."
+                              style="height: 105px;"></textarea>
+                </div>
+            </div>
+
+            <div class="row form-default2" style="margin: 0 -5px">
+                <div class="col-sm-9" style="padding: 0 5px">
+                    <div class="flex">
+                        <label><strong>Nội dung</strong> <sup class="red">*</sup></label>
+                        <div class="list-radio flex mb10" style="margin-left: 20px">
+                            <label class="radio-inline">
+                                <input onclick="_newsDetail.Onchen('0')" type="radio" asp-for="@Model.ArticleType" value="0">
+                                Bài thường
+                            </label>
+                            <label class="radio-inline">
+                                <input onclick="_newsDetail.Onchen('1')" type="radio" asp-for="@Model.ArticleType" value="1">
+                                Bài video
+                            </label>
+                        </div>
+                        @if (Model.Status == ArticleStatus.PUBLISH)
+                        {
+                            <div class="mb10 text-right" style="margin-left: auto;">
+                                <a class="bold"
+                                   style="color: #236852;text-decoration:underline;"
+                                   href="@("http://qc-fe-hulotoy.x-tech.vn/tin-tuc"+CommonHelper.genLinkNewsV2(Model.Title,Model.Id.ToString()))" title="Xem trên trang chủ" target="_blank">Link bài</a>
+                            </div>
+                        }
+                    </div>
+                    <!-- Dạng bình thường -->
+                    <div id="normal_post" class="mb20">
+                        <textarea id="text-editor" asp-for="@Model.Body" style="resize:none;height: 1000px;"></textarea>
+                    </div>
+                    <!-- Dạng bài video -->
+                    <div id="video_post" class="mb20" style="display:none">
+                        <div class="border pd10">
+
+
+                            <div style="max-width: 100%;margin: 0 auto;">
+                                <div>
+                                    <div class="col-md">
+                                        <div class=" loading" id="loading">
+                                            <img src="~/images/graphics/loading.gif" alt="loading">
+                                        </div>
+                                        <label id="video-preview" class="choose choose-wrap" style="padding-bottom: 56.25%;">
+                                            <input type="file" id="video-file">
+                                            <div class="choose-content">
+                                                <img src="/images/icons/upload.png">
+                                                <span style="color: #ADB0B1;padding: 0 15px;">
+                                                    Kích cỡ tối đa: 100 MB
+                                                    Định dạng: mp4, video
+                                                </span>
+                                            </div>
+                                            <div class="choose-btn">
+                                                <div class="btn-default">Chọn tập tin</div>
+                                            </div>
+
+                                        </label>
+                                        <div id="video-content">
+
+                                        </div>
+                                        <div>
+                                            @if (Model.Body != null)
+                                            {
+                                                <video class="col-md" id="iframe-video" src="@Model.Body" controls></video>
+                                                <div class="choose-btn" onclick="_newsDetail.DeleteVideo()">
+                                                    <div class="btn-default">Chọn video khác</div>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="lightgallery" id="lightgallery">
+
+                                            <div style="display:none" id="uploadvieo" class="choose-btn">
+                                                <button type="button" class="btn-default" onclick="_newsDetail.OnseverVideo()">Upload video</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Add Tags -->
+                    <div class="add-tags">
+                        <label class="txt-add">Add Tags</label>
+                        <div class="flex">
+                            <input type="text" class="form-control" id="news-tag" value="@(Model.Tags != null && Model.Tags.Count> 0 ?string.Join(",",Model.Tags) : string.Empty)" placeholder="Nhập từ khóa cho bài viết...">
+                        </div>
+                    </div>
+                    <div class="add-tags" style="min-height:83px;">
+                        <label class="txt-add">Tin liên quan</label>
+                        <div class="flex" id="panel-related-article">
+                            @if (Model.RelatedArticleList != null && Model.RelatedArticleList.Count > 0)
+                            {
+                                foreach (var item in Model.RelatedArticleList)
+                                {
+                                    <div class="item-related-article col-md-6 col-xs-12" data-id="@item.Id">
+                                        <img class="image" src="@item.Image" />
+                                        <div class="related-title">
+                                            <span class="title">@item.Title</span>
+                                            <br>
+                                            <span class="author">@item.Author</span>
+                                        </div>
+                                        <a class="cur-pointer" title="Xóa tin liên quan" onclick="$(this).closest('.item-related-article').remove()">
+                                            <i class="fa fa-times red"></i>
+                                        </a>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="action-btn">
+                        <div class="flex">
+                            <div class="btn-left">
+                                @if (Model.Status != ArticleStatus.PUBLISH)
+                                {
+                                    if (Model.Id <= 0)
+                                    {
+                                        <button type="button" class="btn btn-default white open-popup" onclick="_newsDetail.OnSave('@ArticleStatus.SAVE')">
+                                            <i class="fa fa-floppy-o"></i>Lưu tạm
+                                        </button>
+
+                                        <button type="button" class="btn btn-default green open-popup" onclick="_newsDetail.OnSave('@ArticleStatus.PUBLISH')">
+                                            <i class="fa fa-clipboard"></i>Lưu và Đăng bài
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button type="button" class="btn btn-default blue open-popup" onclick="_newsDetail.OnSave('@ArticleStatus.SAVE')">
+                                            <i class="fa fa-edit"></i>Cập nhật
+                                        </button>
+
+                                        <button type="button" class="btn btn-default green open-popup" onclick="_newsDetail.OnSave('@ArticleStatus.PUBLISH')">
+                                            <i class="fa fa-clipboard"></i>Lưu và Đăng bài
+                                        </button>
+                                    }
+                                }
+                            </div>
+                            <div class="btn-right">
+                                <button type="button" class="btn btn-default gray" onsubmit="return false" onclick="_newsDetail.OnOpenRelationForm('@Model.Id')">
+                                    Thêm tin liên quan
+                                </button>
+                                @if (Model.Status == ArticleStatus.PUBLISH)
+                                {
+                                    <button type="button" id="ha_bai_viet" class="btn btn-default red open-popup" onclick="_newsDetail.OnChangeArticleStatus('@Model.Id','@ArticleStatus.REMOVE')">
+                                        Hạ bài viết
+                                    </button>
+                                }
+
+                                @if (Model.Status == ArticleStatus.REMOVE || Model.Status == ArticleStatus.SAVE)
+                                {
+                                    <button type="button" class="btn btn-default red open-popup" onclick="_newsDetail.OnDelete('@Model.Id')">
+                                        Xóa bài viết
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3" style="padding: 0 5px">
+                    <div class="mb20">
+                        <div style="border: 1px solid #CCCCCC;padding:15px">
+                            <div class="import-img list">
+                                <div class="row item">
+                                    <div class="col-12 wrap_input mb20">
+                                        <select class="form-control sl-image-size">
+                                            <option value="">Kích thước</option>
+                                            <option value="250x250">Tỷ lệ 1:1</option>
+                                            <option value="250x187">Tỷ lệ 4:3</option>
+                                            <option value="250x140">Tỷ lệ 16:9</option>
+                                        </select>
+                                    </div>
+                                    <div class="wrap-croppie mb10" style="display:none;width: 100%;padding:15px;text-align: center;">
+                                        <div id="croppie-content">
+                                        </div>
+                                        <button type="button" class="btn btn-danger" style="display:none;" id="btn-cropimage"> <i class="fa fa-crop"></i>Crop Image</button>
+                                        <button type="button" class="btn btn-default cancel" style="display:none;" id="btn-cancel-crop"> <i class="fa fa-minus-circle"></i> Close</button>
+                                    </div>
+                                    <div class="col-4 wrap-image-preview" style="font-size:12px;">Chọn ảnh từ thư mục máy tính</div>
+                                    <div class="col-8 wrap-image-preview">
+                                        <label class="choose choose-wrap">
+                                            <input type="file" id="image_file" />
+                                            <div class="choose-content">
+                                                <img src="/images/icons/upload.png">
+                                                <span style="color: #ADB0B1;padding: 0 15px;">
+                                                    Kích cỡ tối đa: 1 MB
+                                                    Định dạng: jpg, png, gif
+                                                </span>
+                                            </div>
+                                            <div class="choose-btn">
+                                                <div class="btn-default">Chọn tập tin</div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row item image-croped @(string.IsNullOrEmpty(Model.Image11) ? "mfp-hide" : string.Empty)">
+                                    <div class="col-4" style="font-size:12px;">Tỷ lệ 1:1</div>
+                                    <div class="col-8">
+                                        <div class="thumb_img thumb_1x1">
+                                            <img id="img_1x1" src="@Model.Image11">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row item image-croped @(string.IsNullOrEmpty(Model.Image43) ? "mfp-hide" : string.Empty)">
+                                    <div class="col-4" style="font-size:12px;">Tỷ lệ 4:3</div>
+                                    <div class="col-8">
+                                        <div class="thumb_img thumb_4x3">
+                                            <img id="img_4x3" src="@Model.Image43">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row item image-croped @(string.IsNullOrEmpty(Model.Image169) ? "mfp-hide" : string.Empty)">
+                                    <div class="col-4" style="font-size:12px;">Tỷ lệ 16:9</div>
+                                    <div class="col-8">
+                                        <div class="thumb_img thumb_16x9">
+                                            <img id="img_16x9" src="@Model.Image169">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb20 form-default2">
+                        <div class="form-group none-flex" style="border: 1px solid #CCCCCC;padding:15px">
+                            <label class="mb10"><strong>Giờ lên bài</strong></label>
+                            <div class="datepicker-wrap">
+                                <input id="PublishDate" name="single_pick_date"
+                                       class="datepicker-input form-control"
+                                       type="text"
+                                       value="@(Model.PublishDate != DateTime.MinValue ? Model.PublishDate.ToString("dd/MM/yyyy HH:mm") : DateTime.Now.ToString("dd/MM/yyyy HH:mm"))"
+                                       placeholder="Ngày đăng">
+                            </div>
+                            <label class="mb10" style="padding-top:10px; display: none !important"><strong>Giờ hạ bài</strong></label>
+                            <div class="datepicker-wrap" style="display: none !important">
+                                <input id="DowntimeDate" name="single_pick_date"
+                                       class="datepicker-input form-control"
+                                       type="text"
+                                       value="@(Model.DownTime != DateTime.MinValue ? Model.DownTime.ToString("dd/MM/yyyy HH:mm") :string.Empty)"
+                                       placeholder="Ngày hạ bài">
+                            </div>
+                            <label class="mb10" style="padding-top:10px;"><strong>Vị trí ghim bài</strong></label>
+                            <input type="number" class="form-control" asp-for="@Model.Position" min="0" max="@(Model.ArticleType==0?"3":"4")" placeholder="Vị trí">
+                        </div>
+                        <div class="mb20">
+                            <div style="border: 1px solid #CCCCCC;padding:15px">
+                                <label class="mb10"><strong>Cấu hình chuyên mục</strong></label>
+                                <div class="user-hierarchy-tag" style="border: 1px solid #CCCCCC;border-radius: 3px;padding:15px;margin:0">
+                                    <div class="scrollbar-inner">
+                                        <ul class="user-hierarchy-ul mb0" id="detail-cate-panel">
+                                            @Html.Raw(_StrTreeViewCate)
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+@section scripts {
+    <script src="~/lib/tags-input/bootstrap-tagsinput.js"></script>
+    <script src="~/lib/tags-input/typeahead.js"></script>
+    <script src="~/modules/news_detail.js?v=8"></script>
+
+}

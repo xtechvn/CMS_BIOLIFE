@@ -1,0 +1,43 @@
+﻿@using Entities.ViewModels
+@model List<NoteViewModel>
+@{
+    var ManageUser = (int)ViewBag.UserId;
+}
+<div class="mb15 italic medium">
+    Ghi chú đơn hàng
+    <div class="gray txt_12">
+        Lưu ý : Thời gian hiệu lực để xóa bình luận là 24 giờ kể từ lần cập nhật cuối cùng
+    </div>
+</div>
+<ul class="list-note scrollbar-inner" id="grid-comment-data">
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var item in Model.OrderByDescending(s => s.UpdateTime))
+        {
+            <li>
+                <div><strong class="note-comment" data-id="@item.Id">@item.Comment</strong></div>
+                <div class="txt_12">@(item.UpdateTime != null ? item.UpdateTime.Value.ToString("dd/MM/yyyy HH:mm") : "N/A") by <strong>@item.UserName</strong></div>
+                @if (item.UserId == ManageUser &&
+                 (DateTime.Now - (item.UpdateTime == null ? item.CreateDate.Value : item.UpdateTime.Value)).TotalHours <= 24)
+                {
+                    <div class="option">
+                        <a class="delete blue" onclick="_note.OnEditComment('@item.Id')"><i class="fa fa-pencil"></i></a>
+                        &nbsp;&nbsp;
+                        <a class="delete red" onclick="_note.DeleteComment('@item.Id')"><i class="fa fa-times"></i></a>
+                    </div>
+                }
+            </li>
+        }
+    }
+</ul>
+<div class="form-group mt20">
+    <input type="hidden" id="ip-note-id" value="0" />
+    <input type="hidden" id="ip-note-data-id" value="@ViewBag.DataId" />
+    <input type="hidden" id="ip-note-type" value="@ViewBag.Type" />
+    <textarea type="text" id="ip-note-comment" class="form-control" placeholder="Nhập nội dung ghi chú ..."></textarea>
+</div>
+<div class="text-right">
+    <button type="button" class="btn btn-default cancel mfp-hide" id="btn-reset-comment" onclick="_note.ResetComment();"><i class="fa fa-minus-circle"></i> Hủy</button>
+    <button type="button" class="btn btn-default" onclick="_note.SendComment()"><i class="fa fa-paper-plane-o"></i> Gửi</button>
+</div>
+<script defer src="~/modules/note_component.js"></script>

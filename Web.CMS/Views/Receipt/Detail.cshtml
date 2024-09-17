@@ -1,0 +1,380 @@
+﻿@{
+    ViewData["Title"] = "Chi tiết phiếu thu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Utilities
+@using Entities.ViewModels
+@using System.Linq
+@model ContractPayViewModel
+@{
+    var counter = 0;
+    int CHINH_SUA_PHIEU_THU = (int)ViewBag.CHINH_SUA_PHIEU_THU;
+    bool isAdmin = (bool)ViewBag.isAdmin;
+}
+<section class="main-container">
+    <input type="text" name="name" value="@Model.PayId" id="contractPayId" hidden style="display: none" />
+    <input type="text" name="TransNo" value="@Model.BillNo" id="transNo" hidden style="display: none" />
+    <div class="row-main container">
+        <h2 class="txt_18 bold mb20" style="color: #FF9966 !important;">
+            <a href="/Receipt/Index" style="color: #FF9966 !important;">Danh sách phiếu thu</a> / Chi tiết phiếu thu @Model.BillNo
+        </h2>
+        <div class="table-responsive table-white">
+            <table class="table table-nowrap">
+                <tbody>
+                    <tr>
+                        <td colspan="3">
+                            <strong style="color:black;">Mã  phiếu thu: @Model.BillNo</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 45%;">
+                            <div class="row">
+                                <div class="col-5 mb10">Loại nghiệp vụ</div>
+                                <div class="col-7 mb10">: @Model.TypeStr</div>
+                                <div class="col-5 mb10">Hình thức</div>
+                                <div class="col-7 mb10">: @Model.PayTypeStr</div>
+                                @if (Model.Type == (int)DepositHistoryConstant.CONTRACT_PAY_TYPE.THU_TIEN_DON_HANG)
+                                {
+                                    <div class="col-5 mb10">Khách hàng</div>
+                                    <div class="col-7 mb10">
+                                        : <a href="/CustomerManager/Detail?id=@Model.ClientId">
+                                            <span class="blue">
+                                                @Model.ClientName - @Model.Email - @Model.Phone
+                                            </span>
+                                        </a>
+                                    </div>
+                                }
+                               
+                                <div class="col-5 mb10">Số tiền</div>
+                                @if (Model.Type == (int)DepositHistoryConstant.CONTRACT_PAY_TYPE.THU_TIEN_DON_HANG)
+                                {
+                                    <div class="col-7 mb10">
+                                        @if (Model.AmountPayDetail >= Model.ContractPayDetail.Sum(n => n.AmountOrder))
+                                        {
+                                            <div>
+                                                : <span class=" green">  @Model.AmountPayDetail.ToString("N0")</span>
+                                                /@Model.ContractPayDetail.Sum(n => n.AmountOrder).ToString("N0")
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class=" ">
+                                                :  <span class=" red">  @Model.AmountPayDetail.ToString("N0")</span>
+                                                / @Model.ContractPayDetail.Sum(n => n.AmountOrder).ToString("N0")
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                              
+                                <div class="col-5 mb10">Tài khoản ngân hàng nhận</div>
+                                @if (!string.IsNullOrEmpty(Model.BankName))
+                                {
+                                    <div class="col-7 mb10">: @Model.BankName (@Model.BankAccount)</div>
+                                }
+                                else
+                                {
+                                    <div class="col-7 mb10">:</div>
+                                }
+                                <div class="col-5 mb10">Nội dung</div>
+                                <div class="col-7 mb10">: @Model.Note</div>
+                                <div class="col-5 mb10">Ghi chú</div>
+                                <div class="col-7 mb10">: @Model.Description</div>
+                                <div class="col-5 mb10">Ảnh đính kèm</div>
+                                <div class="col-7 mb10">
+                                    @if (!string.IsNullOrEmpty(Model.AttatchmentFile))
+                                    {
+                                        <a href="@Model.AttatchmentFile" class="blue" style="color: #056BD3 !important; cursor:pointer;" target="_blank">Xem</a>
+                                    }
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col-5 mb10">Ngày tạo</div>
+                                <div class="col-7 mb10">
+                                    :
+                                    @if (Model.CreatedDate != null)
+                                    {
+                                        @Model.CreatedDate.Value.ToString("dd-MM-yyyy HH:mm")
+                                    }
+                                </div>
+                                <div class="col-5 mb10">Người tạo</div>
+                                <div class="col-7 mb10">:  @Model.CreatedByName</div>
+                                <div class="col-12">
+                                    @if (Model.Type == (int)DepositHistoryConstant.CONTRACT_PAY_TYPE.THU_TIEN_DON_HANG)
+                                    {
+                                        <div class="mb10">Đơn hàng liên quan</div>
+                                        <div class="table-responsive table-gray">
+                                            <table class="table table-nowrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th>STT</th>
+                                                        <th>Mã đơn hàng</th>
+                                             
+                                                        <th>Trạng thái</th>
+                                                        <th>Nhân viên chính</th>
+                                                        <th>Số tiền</th>
+                                                        <th>Số tiền giải trừ</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="body_order_list">
+                                                    @foreach (var item in Model.ContractPayDetail)
+                                                    {
+                                                        counter++;
+                                                        <tr>
+                                                            <td>@counter</td>
+                                                            <td>
+                                                                <a class="blue" href="/Order/@item.OrderId">
+                                                                    @item.OrderNo
+                                                                </a>
+                                                            </td>
+                                                          
+                                                            <td>@item.StatusName</td>
+                                                            <td>@item.SalerName</td>
+                                                            <td>@item.AmountOrder.ToString("N0")</td>
+                                                            <td>@item.AmountPayDetail.ToString("N0")</td>
+                                                        </tr>
+                                                    }
+                                                    <tr>
+                                                        <td class="text-right" colspan="5">
+                                                            Tổng
+                                                        </td>
+                                                        <td>@Model.ContractPayDetail.Sum(n => n.AmountPayDetail).ToString("N0")</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    }
+                                    @if (Model.Type == (int)DepositHistoryConstant.CONTRACT_PAY_TYPE.THU_TIEN_KY_QUY)
+                                    {
+                                        <div class="mb10">Nạp quỹ liên quan</div>
+                                        <div class="table-responsive table-gray">
+                                            <table class="table table-nowrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Mã nạp quỹ</th>
+                                                        <th>Loại quỹ</th>
+                                                        <th>Trạng thái</th>
+                                                        <th>Người tạo</th>
+                                                        <th>Số tiền</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model.ContractPayDetail)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                <a class="blue" href="/Funding/Detail?depositHistotyId=@item.DepositHistoryId">
+                                                                    @item.TransNo
+                                                                </a>
+                                                            </td>
+                                                            <td>@item.ServiceName</td>
+                                                            <td>@item.StatusTrans</td>
+                                                            <td>
+                                                                @Model.ClientName
+                                                                <br />
+                                                                @Model.Email
+                                                            </td>
+                                                            <td>
+                                                                @item.Amount.ToString("N0")
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Type == (int)DepositHistoryConstant.CONTRACT_PAY_TYPE.THU_TIEN_HOA_HONG_NCC)
+                                    {
+                                        <div class="mb10">Dịch vụ liên quan</div>
+                                        <div class="table-responsive table-gray">
+                                            <table class="table table-nowrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Mã dịch vụ</th>
+                                                        <th>Ngày bắt đầu - Ngày kết thúc</th>
+                                                        <th>Mã đơn hàng</th>
+                                                        <th>Nhân viên điều hành</th>
+                                                        <th>Số tiền</th>
+                                                        <th>Số tiền hoa hồng</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model.ContractPayDetail)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @if (item.ServiceType == (int)ServiceType.BOOK_HOTEL_ROOM_VIN)
+                                                                {
+                                                                    <a class="blue" href="/SetService/VerifyHotelServiceDetai/@item.ServiceId">
+                                                                        @item.ServiceCode
+                                                                    </a>
+                                                                }
+                                                                @if (item.ServiceType == (int)ServiceType.PRODUCT_FLY_TICKET)
+                                                                {
+                                                                    <a class="blue" href="/SetService/fly/detail/@item.GroupBookingId">
+                                                                        @item.ServiceCode
+                                                                    </a>
+                                                                }
+                                                                @if (item.ServiceType == (int)ServiceType.Tour)
+                                                                {
+                                                                    <a class="blue" href="/SetService/Tour/Detail/@item.ServiceId">
+                                                                        @item.ServiceCode
+                                                                    </a>
+                                                                }
+                                                                @if (item.ServiceType == (int)ServiceType.Other)
+                                                                {
+                                                                    <a class="blue" href="/SetService/Others/Detail/@item.ServiceId">
+                                                                        @item.ServiceCode
+                                                                    </a>
+                                                                }
+                                                            </td>
+                                                            <td>@item.StartDate.ToString("dd/MM/yyyy") - @item.EndDate.ToString("dd/MM/yyyy")</td>
+                                                            <td>
+                                                                <a class="blue" href="/Order/@item.OrderId">
+                                                                    @item.OrderNo
+                                                                </a>
+                                                            </td>
+                                                            <td>@item.SalerName</td>
+                                                            <td>@item.Amount.ToString("N0")</td>
+                                                            <td>@item.AmountPayDetail.ToString("N0")</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-right" colspan="5">
+                                                                Tổng
+                                                            </td>
+                                                            <td>@Model.ContractPayDetail.Sum(n => n.AmountPayDetail).ToString("N0")</td>
+                                                        </tr>
+                                                    }
+                                            </table>
+                                        </div>
+                                    }
+                                    @if (Model.Type == (int)DepositHistoryConstant.CONTRACT_PAY_TYPE.THU_TIEN_NCC_HOAN_TRA)
+                                    {
+                                        <div class="mb10">Dịch vụ liên quan</div>
+                                        <div class="table-responsive table-gray">
+                                            <table class="table table-nowrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Mã dịch vụ</th>
+                                                        <th>Ngày bắt đầu - Ngày kết thúc</th>
+                                                        <th>Mã đơn hàng</th>
+                                                        <th>Nhân viên điều hành</th>
+                                                        <th>Số tiền</th>
+                                                        <th>Số tiền hoàn trả</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model.ContractPayDetail)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @if (item.ServiceType == (int)ServiceType.BOOK_HOTEL_ROOM_VIN)
+                                                                {
+                                                                    <a class="blue" href="/SetService/VerifyHotelServiceDetai/@item.ServiceIdParent">
+                                                                        @item.ServiceCode
+                                                                    </a>
+                                                                }
+                                                                @if (item.ServiceType == (int)ServiceType.PRODUCT_FLY_TICKET)
+                                                                {
+                                                                    <a class="blue" href="/SetService/fly/detail/@item.GroupBookingId">
+                                                                        @item.ServiceCode
+                                                                    </a>
+                                                                }
+                                                                @if (item.ServiceType == (int)ServiceType.Tour)
+                                                                {
+                                                                    <a class="blue" href="/SetService/Tour/Detail/@item.ServiceIdParent">
+                                                                        @item.ServiceCode
+                                                                    </a>
+                                                                }
+                                                                @if (item.ServiceType == (int)ServiceType.Other)
+                                                                {
+                                                                    <a class="blue" href="/SetService/Others/Detail/@item.ServiceIdParent">
+                                                                        @item.ServiceCode
+                                                                    </a>
+                                                                }
+                                                            </td>
+                                                            <td>@item.StartDate.ToString("dd/MM/yyyy") - @item.EndDate.ToString("dd/MM/yyyy")</td>
+                                                            <td>
+                                                                <a class="blue" href="/Order/@item.OrderId">
+                                                                    @item.OrderNo
+                                                                </a>
+                                                            </td>
+                                                            <td>@item.SalerName</td>
+                                                            <td>@item.Amount.ToString("N0")</td>
+                                                            <td>@item.AmountPayDetail.ToString("N0")</td>
+                                                        </tr>
+                                                    }
+                                                    <tr>
+                                                        <td class="text-right" colspan="5">
+                                                            Tổng
+                                                        </td>
+                                                        <td>@Model.ContractPayDetail.Sum(n => n.AmountPayDetail).ToString("N0")</td>
+                                                    </tr>
+                                            </table>
+                                        </div>
+                                    }
+                                </div>
+
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="flex flex-end">
+            <button type="submit" class="btn btn-default cancel ml-1" onclick="_receipt_service.BackToList()">Quay lại</button>
+            <button type="button" class="btn btn-default ml-1" style="background:#0066ff !important;">In phiếu</button>
+            @if (Model.Type == (int)DepositHistoryConstant.CONTRACT_PAY_TYPE.THU_TIEN_KY_QUY)
+            {
+                @foreach (var item in Model.ContractPayDetail)
+                {
+                    if (item.Status != (int)DepositHistoryConstant.DEPOSIT_STATUS.DA_DUYET && CHINH_SUA_PHIEU_THU == 1)
+                    {
+                        <button type="button" class="btn btn-default bg-main ml-1" onclick="_receipt_service.EditContractPay(@Model.PayId)">
+                            Chỉnh sửa
+                        </button>
+                        @if (isAdmin)
+                        {
+                            <button type="button" class="btn btn-default bg-main ml-1" onclick="_receipt_service.EditContractPayAdmin(@Model.PayId)">
+                                Chỉnh sửa Admin
+                            </button>
+                        }
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                if (CHINH_SUA_PHIEU_THU == 1)
+                {
+                    <button type="button" class="btn btn-default bg-main ml-1" onclick="_receipt_service.EditContractPay(@Model.PayId)">Chỉnh sửa</button>
+                    @if (isAdmin)
+                    {
+                        <button type="button" class="btn btn-default bg-main ml-1" onclick="_receipt_service.EditContractPayAdmin(@Model.PayId)">
+                            Chỉnh sửa Admin
+                        </button>
+                    }
+                }
+            }
+        </div>
+    </div>
+</section>
+<style>
+    /*    .white-popup {
+            max-width: 900px !important;
+        }*/
+
+    .content_lightbox .head {
+        font-weight: 500 !important;
+        font-size: 16px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .content_lightbox {
+        padding: 20px !important;
+    }
+</style>
+@section scripts {
+    <script type="text/javascript" src="~/modules/receipt.js?v=2"></script>
+}

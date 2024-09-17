@@ -1,0 +1,273 @@
+﻿@{
+    ViewData["Title"] = "Quản lý sản phẩm v2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="main-container main-products">
+    <div class="row-main container bg-white">
+        <div class="line-bottom" style="padding-bottom: 0;">
+            <div class="tab-default mb0" data-tab-container="tab-container-1">
+                <a href="#" class="active text-uppercase" data-lbl="danh-sach-phong">
+                    Quản lý sản
+                    phẩm
+                </a>
+                @*<a href="#" class="text-uppercase" data-lbl="chuong-trinh">Quản lý danh mục</a>*@
+            </div>
+        </div>
+
+        <div class="flex gap10 mb-3">
+            <button class="btn btn-active">
+                Tất cả
+            </button>
+            @*<button class="btn">
+                Đang hoạt động (2)
+            </button>
+            <button class="btn">
+                Vi phạm (1)
+            </button>
+            <button class="btn">
+                Chờ duyệt
+            </button>
+            <button class="btn">
+                Chưa được đăng
+            </button>*@
+        </div>
+        <div class="flex gap10 flex-lg-nowrap">
+            <div class="form-group w-100 ">
+                <div class="search-wrapper">
+                    <input id="input-search-product-name" type="text" class="input_search  onclick-togle border" name="" value=""
+                           placeholder="Từ khoá, mã sản phẩm,...">
+                    <span class="search-btn">
+                        <button class="btn-search-product" type="submit">
+                            <svg class="icon-svg">
+                                <use xlink:href="images/icons/icon.svg#search"></use>
+                            </svg>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group w-100 ">
+                <div class="search-wrapper">
+                    <input type="text" class="input_search onclick-togle border" name="" value=""
+                           placeholder="Tìm kiếm theo ngành hàng">
+                    <span class="search-btn">
+                        <button class="btn-search-product" type="submit">
+                            <svg class="icon-svg">
+                                <use xlink:href="images/icons/icon.svg#search"></use>
+                            </svg>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn select-icon btn-round btn-outline-secondary btn-search-product">
+                    <i class="icofont-search"></i>
+                    Tìm kiếm
+                </button>
+            </div>
+        </div>
+        <div class="flex gap10 flex-lg-nowrap justify-content-between mb-3 align-items-center">
+            <div class="flex gap10">
+                <h5 class="m-0"><nw class="count">0</nw> sản phẩm</h5>
+                @*<span class="hanmuc">
+                    Hạn mức đăng bán
+                    <i class="icofont-info-circle"></i>
+                </span>*@
+            </div>
+            <div class="flex gap10">
+                <button class="btn btn-round btn-export-excel">
+                    <i class="icofont-file-excel"></i>Xuất Excel
+                </button>
+                <button class="btn btn-base btn-round btn-add-product">
+                    <i class="icofont-plus "></i>Thêm sản phẩm mới
+                </button>
+            </div>
+        </div>
+        <div class="wrap_bg wrap_bg_no-padding mb20">
+            <div class="table-responsive table-default">
+                <table class="table table-nowrap  w-100">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="width: 0;">
+                                <div class="flex flex-nowrap">
+                                    <label class="check-list mb-3">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </th>
+                            <th style="width: 60%">Tên sản phẩm</th>
+                            <th style="width: 10%" class="text-center">Doanh số</th>
+                            <th style="width: 10%" class="text-center">Giá</th>
+                            <th style="width: 10%" class="text-center">Kho hàng</th>
+                            <th style="width: 10%" class="text-center">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product_list">
+                        <tr>
+                            <td style="width: 0;">
+                                <label class="check-list mb-3">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </td>
+                            <td style="width: 100px;">
+                                <div class="item-order">
+                                    <div class="img">
+                                        <img src="images/graphics/product.jpg" alt="">
+                                    </div>
+                                    <div class="info">
+                                        <h3 class="name-product">
+                                            Gấu Bông Mèo Hoàng Thượng Cosplay, Thú Nhồi
+                                            Bông An Toàn
+                                            Cho Bé
+                                        </h3>
+                                        <div class="cat">Phân loại hàng: Gấu Trúc, 40cm</div>
+
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">169.000 đ</td>
+                            <td class="text-center">169.000 đ</td>
+                            <td class="text-center">20</td>
+                            <td class="text-center">
+                                <a href="">Cập nhật</a><br />
+                                <a href="">Xem thêm</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 0;">
+                                <label class="check-list mb-3">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </td>
+                            <td style="width: 100px;">
+                                <div class="item-order">
+                                    <div class="img">
+                                        <img src="images/graphics/product.jpg" alt="">
+                                    </div>
+                                    <div class="info">
+                                        <h3 class="name-product">
+                                            Gấu Bông Mèo Hoàng Thượng Cosplay, Thú Nhồi
+                                            Bông An Toàn
+                                            Cho Bé
+                                        </h3>
+                                        <div class="cat">Phân loại hàng: Gấu Trúc, 40cm</div>
+
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">169.000 đ</td>
+                            <td class="text-center">169.000 đ - 269.000 đ</td>
+                            <td class="text-center">20</td>
+                            <td class="text-center">
+                                <a href="">Cập nhật</a><br />
+                                <a href="">Xem thêm</a>
+                            </td>
+                        </tr>
+                        <tr class="sub-product">
+                            <td style="width: 0;">
+                            </td>
+                            <td style="width: 100px;">
+                                <div class="item-order">
+                                    <div class="img">
+                                        <img src="images/graphics/product.jpg" alt="">
+                                    </div>
+                                    <div class="info">
+                                        <h3 class="name-product">Gấu trúc, 60cm</h3>
+                                        <div class="cat">SKU phân loại</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">169.000 đ</td>
+                            <td class="text-center">169.000 đ</td>
+                            <td class="text-center">20</td>
+                            <td class="text-center"></td>
+                        </tr>
+                        <tr class="sub-product">
+                            <td style="width: 0;">
+                            </td>
+                            <td style="width: 100px;">
+                                <div class="item-order">
+                                    <div class="img">
+                                        <img src="images/graphics/product.jpg" alt="">
+                                    </div>
+                                    <div class="info">
+                                        <h3 class="name-product">Gấu trúc, 60cm</h3>
+                                        <div class="cat">SKU phân loại</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">169.000 đ</td>
+                            <td class="text-center">169.000 đ</td>
+                            <td class="text-center">20</td>
+                            <td class="text-center"></td>
+                        </tr>
+                        <tr class="sub-product">
+                            <td colspan="6" class="text-center">
+                                <a href="" class="xemthem">
+                                    <span>
+                                        Xem thêm (còn 6 phân loại)
+                                        <i class="icofont-simple-down"></i>
+                                    </span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 0;">
+                                <label class="check-list mb-3">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </td>
+                            <td style="width: 100px;">
+                                <div class="item-order">
+                                    <div class="img">
+                                        <img src="images/graphics/product.jpg" alt="">
+                                    </div>
+                                    <div class="info">
+                                        <h3 class="name-product">
+                                            Gấu Bông Mèo Hoàng Thượng Cosplay, Thú Nhồi
+                                            Bông An Toàn
+                                            Cho Bé
+                                        </h3>
+                                        <div class="cat">Phân loại hàng: Gấu Trúc, 40cm</div>
+
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">169.000 đ</td>
+                            <td class="text-center">169.000 đ</td>
+                            <td class="text-center">20</td>
+                            <td class="text-center">
+                                <a href="">Cập nhật</a><br />
+                                <a href="">Xem thêm</a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="bottom-action flex flex-nowrap gap10 justify-content-end mt-3">
+                <button class="btn btn-default white" style="padding: 0 10px;">
+                    <i class="icofont-gear"></i>
+                    <span>Tùy chỉnh</span>
+                </button>
+                <div class="form-group select-icon">
+                    <select id="item-per-page" class="select2" name="">
+                        <option value="50">Hiển thị 50 kết quả/trang</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+@section Scripts {
+    <script src="/modules/product/common.js"></script>
+    <script src="/modules/product/index.js"></script>
+}

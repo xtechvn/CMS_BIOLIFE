@@ -1,0 +1,79 @@
+<!-- build:title -->CMS Template
+<!-- /build:title -->
+
+<!-- build:content -->
+
+<!--SECTION CONTAINER -->
+<div class="login-popup">
+    <div class="content_lightbox">
+        <div class="head center">
+            <div>Đăng nhập hệ thống</div>
+            <a class="logo" href="#"><img src="images/graphics/logo.svg"></a>
+        </div>
+        <div class="form-default">
+            <div class="form-group">
+                <input type="text" class="form-control" id="" placeholder="Tên đăng nhập">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="" placeholder="Nhập mật khẩu">
+            </div>
+            <div class="form-group mt25 txt_12 mb0">
+                <label class="check-list mb10 mr25">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    Duy trì đăng nhập
+                </label>
+                <div>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</div>
+                <a class="quen-mk gray" href="#">Quên mật khẩu</a>
+            </div>
+            <div class="bottom-btn flex">
+                <a href="#"><i class="fa fa-sign-in"></i>Đăng nhập</a>
+                <a href="#" style="background: #FFAA00;"><i class="fa fa-user-plus"></i>Đăng ký</a>
+            </div>
+        </div>
+    </div>
+    <div class="content_lightbox">
+        <h3 class="center txt_18">Quên mật khẩu</h3>
+        <div class="form-default">
+            <div class="form-group mb30">
+                <input type="text" class="form-control" id="" value="cuongle">
+            </div>
+            <div class="bottom-btn flex">
+                <a href="#"><i class="fa fa-sign-in"></i>Lấy lại mật khẩu</a>
+                <a href="#" style="background: #A6A4A4;"><i class="fa fa-mail-reply"></i>Quay lại</a>
+            </div>
+        </div>
+    </div>
+    <div class="content_lightbox">
+        <div class="head center">
+            <div class="mb5">Xác minh bảo mật</div>
+            <div class="txt_12" style="color: #707A8A;">Để bảo mật cho tài khoản của bạn, hãy hoàn thành </br>
+                yêu cầu xác minh sau.</div>
+            <a class="logo" href="#"><img src="images/graphics/logo.svg"></a>
+        </div>
+        <div class="form-default">
+            <div class="form-group mb30">
+                <input type="text" class="form-control" id="" value="895012" style="font-size:20px">
+                <div class="txt_12 mt10" style="color: #707A8A;">Hãy nhập mã xác minh 6 chữ số từ ứng dụng Google
+                    Authenticator.
+                </div>
+            </div>
+            <div class="form-group mb30 relative">
+                <input type="text" class="form-control" id="" placeholder="Mã xác minh email">
+                <button type="submit" class="btn btn-default oranger">Gửi mã</button>
+            </div>
+            <div class="txt_12 mb40" style="color: #E99F0D;">Chuyển qua xác minh email</div>
+            <div class="bottom-btn flex">
+                <a class="send full" href="#">Gửi</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /build:content -->
+<!-- build:script2 -->
+<script>
+    $('.top_bar,.head-top').hide();
+    $('body').addClass('bg-login');
+</script>
+<!-- /build:script2 -->

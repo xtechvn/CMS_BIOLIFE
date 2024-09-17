@@ -1,0 +1,429 @@
+<!-- build:title -->CMS Template
+<!-- /build:title -->
+
+<!-- build:content -->
+<section class="main-container">
+    <div class="row-main container">
+        <h2 class="title_page mb20">Danh sách dịch vụ khách sạn</h2>
+        <div class="flex fillter-donhang">
+            <div class="form-group mb10 mr-2">
+                <input type="text" class="form-control" id="" placeholder="Mã dịch vụ" style="width: 167px;">
+            </div>
+            <div class="form-group mb10 mr-2">
+                <input type="text" class="form-control" id="" placeholder="Mã đơn hàng" style="width: 167px;">
+            </div>
+            <div class="multiple-select form-group mb10 mr-2">
+                <div class="select-btn">
+                    <span class="btn-text">Tất cả trạng thái</span>
+                    <span class="arrow-dwn">
+                        <i class="fa fa-angle-down"></i>
+                    </span>
+                </div>
+
+                <ul class="list-items">
+                    <li class="item">
+                        <span class="checkbox">
+                            <i class="fa fa-check"></i>
+                        </span>
+                        <span class="item-text">Đại lý</span>
+                    </li>
+                    <li class="item">
+                        <span class="checkbox">
+                            <i class="fa fa-check"></i>
+                        </span>
+                        <span class="item-text">Cộng tác viên</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <div class="datepicker-wrap" style="width:100%">
+                    <input class="form-control datepicker-input " type="text" name="birthday" placeholder="Ngày check in">
+                </div>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <div class="datepicker-wrap" style="width:100%">
+                    <input class="form-control datepicker-input " type="text" name="birthday" placeholder="Ngày check out">
+                </div>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <input type="text" class="form-control" id="" placeholder="Người tạo" style="width: 150px;">
+            </div>
+            <div class="form-group mb10 mr-2">
+                <div class="datepicker-wrap" style="width:100%">
+                    <input class="form-control datepicker-input " type="text" name="birthday" placeholder="Ngày tạo">
+                </div>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <input type="text" class="form-control" id="" placeholder="Nhân viên bán">
+            </div>
+            <div class="form-group mb10 mr-2">
+                <input type="text" class="form-control" id="" placeholder="Điều hành">
+            </div>
+            <div class="row-main-head mb10 mr-2">
+                <div class="down-up">
+                    <a class="btn btn-default onclick" href="javascript:;">
+                        <i class="fa fa-bars"></i>
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+                    <div class="form-down" style="display: none;">
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox" checked="">
+                            <span class="checkmark"></span>
+                            Hình thức
+                        </label>
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Mã đơn
+                        </label>
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Ngày bắt đầu
+                        </label>
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Ngày kết thúc
+                        </label>
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Nhãn đơn
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="mb10 mr-2">
+                <button class="btn-search btn-default" type="submit">
+                    <svg class="icon-svg">
+                        <use xlink:href="images/icons/icon.svg#search"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="line-bottom" style="padding-bottom: 0;">
+            <div class="row">
+                <div class="tab-default col-md-9 mb0 mt10">
+                    <a href="#" class="active">Tất cả (55)</a>
+                    <a href="#">Chờ xử lý (15)</a>
+                    <a href="#">Đang xử lý (30)</a>
+                    <a href="#">Trả code (10)</a>
+                    <a href="#">Quyết toán (10)</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrap_bg wrap_bg_no-padding mb20">
+            <div class="table-responsive table-default table-gray">
+                <table class="table table-nowrap">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã dịch vụ</th>
+                            <th>Chi tiết dịch vụ</th>
+                            <th>Mã đơn hàng</th>
+                            <th>
+                                Ngày check in - </br>
+                                Ngày check out
+                            </th>
+                            <th>Ngày tạo</th>
+                            <th>Nhân viên bán</th>
+                            <th style="min-width: 140px;">Điều hành</th>
+                            <th style="min-width: 100px;">Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><a class="blue" href="#">HOTEL10001</a></td>
+                            <td>
+                                <div class="blue">Pullman Phu Quoc Beach Resort</div>
+                                <div>Suite Ocean View: 3 phòng, 2 đêm</div>
+                                <div>Family Cabana Pool Access: 10 phòng, 2 đêm</div>
+                            </td>
+                            <td>
+                                <div class="blue">DH23020001</div>
+                                <small class="blue">[Không công nợ - Thanh toán đủ]</small>
+                            </td>
+                            <td>
+                                28/11/2022 - 28/11/2022
+                            </td>
+                            <td>01/02/2023 09:00</td>
+                            <td>Nguyễn Thanh Bình (Kinh doanh 1)</td>
+                            <td>Nguyễn Thanh Vân</td>
+                            <td><span class="status-oranger">Chờ xử lý</span></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><a class="blue" href="#">HOTEL10001</a></td>
+                            <td>
+                                <div class="blue">Pullman Phu Quoc Beach Resort</div>
+                                <div>Suite Ocean View: 3 phòng, 2 đêm</div>
+                                <div>Family Cabana Pool Access: 10 phòng, 2 đêm</div>
+                            </td>
+                            <td>
+                                <div class="blue">DH23020001</div>
+                                <small class="green">[Không công nợ - Thanh toán đủ]</small>
+                            </td>
+                            <td>
+                                28/11/2022 - 28/11/2022
+                            </td>
+                            <td>01/02/2023 09:00</td>
+                            <td>Nguyễn Thanh Bình (Kinh doanh 1)</td>
+                            <td>Nguyễn Thanh Vân</td>
+                            <td><span class="status-green">Trả code</span></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><a class="blue" href="#">HOTEL10001</a></td>
+                            <td>
+                                <div class="blue">Pullman Phu Quoc Beach Resort</div>
+                                <div>Suite Ocean View: 3 phòng, 2 đêm</div>
+                                <div>Family Cabana Pool Access: 10 phòng, 2 đêm</div>
+                            </td>
+                            <td>
+                                <div class="blue">DH23020001</div>
+                                <small class="green">[Không công nợ - Thanh toán đủ]</small>
+                            </td>
+                            <td>
+                                28/11/2022 - 28/11/2022
+                            </td>
+                            <td>01/02/2023 09:00</td>
+                            <td>Nguyễn Thanh Bình (Kinh doanh 1)</td>
+                            <td>Nguyễn Thanh Vân</td>
+                            <td><span class="status-blue">Đang xử lý</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination-flex">
+                <div class="select-number">
+                    Hiển thị &nbsp;
+                    <select class="form-control">
+                    <option>30</option>
+                    <option>30</option>
+                    <option>30</option>
+                    <option>30</option>
+                </select>&nbsp; trong số &nbsp; <strong>55</strong> &nbsp; kết quả lọc
+                </div>
+                <ul id="pagination" class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fa fa-step-backward"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link icon" href="#">
+                            <i class="fa fa-caret-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link icon" href="#">
+                            <i class="fa fa-caret-right"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fa fa-step-forward"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="wrap_bg wrap_bg_no-padding mb20" style="max-width: 500px;">
+            <div class="table-responsive table-default table-gray">
+                <table class="table table-nowrap text-center">
+                    <thead>
+                        <tr>
+                            <th>Tổng thanh toán</th>
+                            <th>Đã thanh toán</th>
+                            <th>Chi tiết dịch vụ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>8,800,000</td>
+                            <td class="green">7,800,000</td>
+                            <td class="red">7,800,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="mb15 bold txt_18">Danh sách yêu cầu chi
+            <a class="fa fa-plus-circle green txt_18 ml-1" href="#"></a>
+        </div>
+        <div class="wrap_bg wrap_bg_no-padding mb20">
+            <div class="table-responsive table-default table-gray">
+                <table class="table table-nowrap">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã</th>
+                            <th>Ngày tạo</th>
+                            <th>Nội dung</th>
+                            <th class="text-right">Số tiền</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <div class="blue">YCC2300003</div>
+                            </td>
+                            <td>19/01/2023 09:00</td>
+                            <td>Yêu cầu chuyển khoản thanh toán lần 3</td>
+                            <td class="text-right">500,000</td>
+                            <td><span class="status-oranger">Chờ chi</span></td>
+                            <td>
+                                <a class="fa fa-print txt_14" href="#"></a>
+                                <a class="fa fa-pencil txt_14 ml-1" href="#"></a>
+                                <a class="fa fa-trash-o txt_14 ml-1" href="#"></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <div class="blue">YCC2300003</div>
+                            </td>
+                            <td>19/01/2023 09:00</td>
+                            <td>Yêu cầu chuyển khoản thanh toán lần 3</td>
+                            <td class="text-right">500,000</td>
+                            <td><span class="status-oranger">Chờ chi</span></td>
+                            <td>
+                                <a class="fa fa-print txt_14" href="#"></a>
+                                <a class="fa fa-pencil txt_14 ml-1" href="#"></a>
+                                <a class="fa fa-trash-o txt_14 ml-1" href="#"></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>
+                                <div class="blue">YCC2300003</div>
+                                <small>[PC2300004]</small>
+                            </td>
+                            <td>19/01/2023 09:00</td>
+                            <td>Yêu cầu chuyển khoản thanh toán lần 3</td>
+                            <td class="text-right">500,000</td>
+                            <td><span class="status-green">Đã chi</span></td>
+                            <td>
+                                <a class="fa fa-print txt_14" href="#"></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="mb15 bold txt_18">Danh sách code
+            <a href="#" class="btn btn-default min ml-2">Thêm code</a>
+            <a href="#" class="btn btn-default min blue ml-1">Gửi email</a>
+        </div>
+        <div class="wrap_bg wrap_bg_no-padding mb20">
+            <div class="table-responsive table-default table-gray">
+                <table class="table table-nowrap">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã</th>
+                            <th>Ngày tạo</th>
+                            <th>Nội dung</th>
+                            <th>Ghi chú</th>
+                            <th>Tệp đính kèm</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <div class="blue">YCC2300003</div>
+                            </td>
+                            <td>19/01/2023 09:00</td>
+                            <td>Khách sạn Vin</td>
+                            <td></td>
+                            <td><a href="#" class="blue underline">Xem</a></td>
+                            <td>
+                                <a class="fa fa-pencil txt_14" href="#"></a>
+                                <a class="fa fa-trash-o txt_14 ml-1" href="#"></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>
+                                <div class="blue">YCC2300003</div>
+                            </td>
+                            <td>19/01/2023 09:00</td>
+                            <td>Khách sạn Vin</td>
+                            <td></td>
+                            <td><a href="#" class="blue underline">Xem</a></td>
+                            <td>
+                                <a class="fa fa-pencil txt_14" href="#"></a>
+                                <a class="fa fa-trash-o txt_14 ml-1" href="#"></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>
+                                <div class="blue">YCC2300003</div>
+                            </td>
+                            <td>19/01/2023 09:00</td>
+                            <td>Khách sạn Vin</td>
+                            <td></td>
+                            <td><a href="#" class="blue underline">Xem</a></td>
+                            <td>
+                                <a class="fa fa-pencil txt_14" href="#"></a>
+                                <a class="fa fa-trash-o txt_14 ml-1" href="#"></a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="form-group align-right mt20 block pin-btn-bottom">
+    <button type="submit" class="btn btn-default crawl mb10"><i class="iconfont-crawl"></i>Crawler</button>
+    <button type="submit" class="btn btn-default bg-main mb10"><i class="fa fa-plus"></i>Tạo mới</button>
+    <button type="submit" class="btn btn-default bg-main mb10"><i class="fa fa-floppy-o"></i>Lưu</button>
+    <button type="submit" class="btn btn-default cancel mb10"><i class="fa fa-minus-circle"></i>Bỏ
+        qua</button>
+</div>
+
+<!-- /build:content -->
+
+<!-- build:script2 -->
+<script type="text/javascript">
+    const selectBtn = document.querySelector(".select-btn"),
+        items = document.querySelectorAll(".item");
+
+    selectBtn.addEventListener("click", () => {
+        selectBtn.classList.toggle("open");
+    });
+
+    items.forEach(item => {
+        item.addEventListener("click", () => {
+            item.classList.toggle("checked");
+
+            let checked = document.querySelectorAll(".checked"),
+                btnText = document.querySelector(".btn-text");
+
+            if (checked && checked.length > 0) {
+                btnText.innerText = `${checked.length} Selected`;
+            } else {
+                btnText.innerText = "Tất cả nguồn";
+            }
+        });
+    })
+</script>
+<!-- /build:script2 -->

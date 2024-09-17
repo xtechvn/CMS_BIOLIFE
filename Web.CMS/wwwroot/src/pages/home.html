@@ -1,0 +1,332 @@
+<!-- build:title -->CMS Template
+<!-- /build:title -->
+
+<!-- build:content -->
+<section class="main-container">
+    <div class="row-main container flex">
+        <div class="row-main-left">
+            <div class="wrap_bg mb20 thong_ke_top">
+                <h2 class="title_cate">Kết quả bán hàng hôm nay</h2>
+                <div class="row">
+                    <div class="col-md-3 col-6">
+                        <div class="icon"><img width="25" src="images/icons/dollar.png"></div>
+                        <div class="content">
+                            <div class="txt_12 gray">120 đơn hàng</div>
+                            <div class="color-main txt_22">60,000,000</div>
+                            <div class="txt_12 gray">Doanh thu thuần</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="icon"><img width="25" src="images/icons/dollar.png"></div>
+                        <div class="content" onclick="menu.ViewOrderTemp()" style="cursor:pointer">
+                            <div class="txt_12 gray">
+                                <span id="totalOrderTemp">1 đơn chưa thanh toán</span>
+                            </div>
+                            <div class="color-main txt_22 red" id="totalMoneyTemp">3,004,159</div>
+                            <div class="txt_12 gray">Tổng tiền đơn</div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-6">
+                        <div class=" icon"><img width="30" src="images/icons/user-new.png"></div>
+                        <div class="content">
+                            <div class="txt_15 color-main2">12 khách hàng mới</div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-6">
+                        <div class=" icon"><img width="25" src="images/icons/up.png"></div>
+                        <div class="content">
+                            <div class="txt_12 gray">
+                                Doanh thu thuần
+                            </div>
+                            <div class="txt_22 color-main flex align-center" id="revenuday_increase"
+                                style="display: flex;">
+                                10%
+                            </div>
+                            <div class="txt_12 gray">So với hôm qua</div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-6">
+                        <div class=" content">
+                            <div class="txt_12 gray">
+                                <span id="totalOrder">900 sản phẩm không tìm thấy</span>
+                            </div>
+                            <div class="txt_22 red flex align-center">
+                                <div>-31.21% &nbsp;</div>
+                                <div class="animate-flicker txt_14">
+                                    <strong>Warning !!!</strong>
+                                </div>
+                            </div>
+                            <div class="txt_12 gray">So với hôm qua</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrap_bg mb20">
+                <div class="flex-head">
+                    <h2 class="title_cate">Doanh thu thuần hôm nay</h2>
+                    <div class="td2 color-main"><i class="fa fa-arrow-circle-o-right"></i>78,000,000</div>
+                    <div class="btn-right text-right">
+                        <a class="export btn" href="">
+                            <i class="fa fa-file-excel-o"></i>Xuất excel
+                        </a>
+                    </div>
+                </div>
+                <div class="tab-default">
+                    <a href="#" class="active">Hôm nay</a>
+                    <a href="#">Hôm qua</a>
+                    <a href="#">7 ngày qua</a>
+                    <a href="#">1 tháng qua</a>
+                </div>
+                <img src="images/graphics/chart.png">
+            </div>
+            <div class="wrap_bg mb20">
+                <div class="flex-head">
+                    <h2 class="title_cate">Top 5 nhãn hàng bán chạy tháng này</h2>
+                    <div class="td2">
+                        <div class="select-default dropdown">
+                            <div class="dropbtn">
+                                THEO DOANH THU
+                            </div>
+                            <div class="dropdown-content">
+                                <ul>
+                                    <li>Theo doanh thu</li>
+                                    <li>Theo số lượng</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-right text-right">
+                        <a class="export btn" href="">
+                            <i class="fa fa-file-excel-o"></i>Xuất excel
+                        </a>
+                    </div>
+                </div>
+                <div class="tab-default">
+                    <a href="#" class="active">Hôm nay</a>
+                    <a href="#">Hôm qua</a>
+                    <a href="#">7 ngày qua</a>
+                    <a href="#">1 tháng qua</a>
+                </div>
+                <img src="images/graphics/chart.png">
+            </div>
+        </div>
+        <div class="row-main-right">
+            <div class="wrap_bg hoat_dong mb20">
+                <h3 class="txt_14 uppercase line-bottom">CÁC HOẠT ĐỘNG GẦN ĐÂY</h3>
+                <ul class="list-notifi scrollbar-inner">
+                    <li>
+                        <i class="fa fa-file-o"></i>
+                        <a href=""><span class="blue">halan</span> thanh toán đơn UAM-0B29293 qua Payoo</a>
+                        <div class="date">1 ngày trước - ngày thanh toán: 30/03/2020 10h 56 phút</div>
+                    </li>
+                    <li>
+                        <i class="fa fa-check"></i>
+                        <a href=""><span class="blue">halan</span> thanh toán đơn UAM-0B29293 qua Payoo</a>
+                        <div class="date">1 ngày trước - ngày thanh toán: 30/03/2020 10h 56 phút</div>
+                    </li>
+                    <li>
+                        <i class="fa fa-check"></i>
+                        <a href=""><span class="blue">halan</span> thanh toán đơn UAM-0B29293 qua Payoo</a>
+                        <div class="date">1 ngày trước - ngày thanh toán: 30/03/2020 10h 56 phút</div>
+                    </li>
+                    <li>
+                        <i class="fa fa-check"></i>
+                        <a href=""><span class="blue">halan</span> thanh toán đơn UAM-0B29293 qua Payoo</a>
+                        <div class="date">1 ngày trước - ngày thanh toán: 30/03/2020 10h 56 phút</div>
+                    </li>
+                    <li>
+                        <i class="fa fa-check"></i>
+                        <a href=""><span class="blue">halan</span> thanh toán đơn UAM-0B29293 qua Payoo</a>
+                        <div class="date">1 ngày trước - ngày thanh toán: 30/03/2020 10h 56 phút</div>
+                    </li>
+                </ul>
+                <div class="center">
+                    <a class="load-more" href="">
+                        <i class="fa fa-arrow-circle-o-down"></i>&nbsp;Xem thêm
+                    </a>
+                </div>
+            </div>
+
+            <div class="wrap_bg mb20">
+                <h3 class="txt_14 line-bottom">Đơn mua hàng thành công</h3>
+                <ul class="list-notifi scrollbar-inner">
+                    <li>
+                        <img class="icon" src="images/icons/amazon.svg">
+                        <a href="">Đơn <strong class="color-main">UAM-0B29293</strong> đã được mua thành công</a>
+                        <div class="date">1 ngày trước - ngày thanh toán: 30/03/2020 10h 56 phút</div>
+                    </li>
+                    <li>
+                        <img class="icon" src="images/icons/amazon.svg">
+                        <a href="">Đơn <strong class="color-main">UAM-0B29293</strong> đã được mua thành công</a>
+                        <div class="date">1 ngày trước - ngày thanh toán: 30/03/2020 10h 56 phút</div>
+                    </li>
+                    <li>
+                        <img class="icon" src="images/icons/amazon.svg">
+                        <a href="">Đơn <strong class="color-main">UAM-0B29293</strong> đã được mua thành công</a>
+                        <div class="date">1 ngày trước - ngày thanh toán: 30/03/2020 10h 56 phút</div>
+                    </li>
+                    <li>
+                        <img class="icon" src="images/icons/amazon.svg">
+                        <a href="">Đơn <strong class="color-main">UAM-0B29293</strong> đã được mua thành công</a>
+                        <div class="date">1 ngày trước - ngày thanh toán: 30/03/2020 10h 56 phút</div>
+                    </li>
+                    <li>
+                        <img class="icon" src="images/icons/amazon.svg">
+                        <a href="">Đơn <strong class="color-main">UAM-0B29293</strong> đã được mua thành công</a>
+                        <div class="date">1 ngày trước - ngày thanh toán: 30/03/2020 10h 56 phút</div>
+                    </li>
+                    <li>
+                        <img class="icon" src="images/icons/amazon.svg">
+                        <a href="">Đơn <strong class="color-main">UAM-0B29293</strong> đã được mua thành công</a>
+                        <div class="date">1 ngày trước - ngày thanh toán: 30/03/2020 10h 56 phút</div>
+                    </li>
+                    <li>
+                        <img class="icon" src="images/icons/amazon.svg">
+                        <a href="">Đơn <strong class="color-main">UAM-0B29293</strong> đã được mua thành công</a>
+                        <div class="date">1 ngày trước - ngày thanh toán: 30/03/2020 10h 56 phút</div>
+                    </li>
+                    <li>
+                        <img class="icon" src="images/icons/amazon.svg">
+                        <a href="">Đơn <strong class="color-main">UAM-0B29293</strong> đã được mua thành công</a>
+                        <div class="date">1 ngày trước - ngày thanh toán: 30/03/2020 10h 56 phút</div>
+                    </li>
+                    <li>
+                        <img class="icon" src="images/icons/amazon.svg">
+                        <a href="">Đơn <strong class="color-main">UAM-0B29293</strong> đã được mua thành công</a>
+                        <div class="date">1 ngày trước - ngày thanh toán: 30/03/2020 10h 56 phút</div>
+                    </li>
+                    <li>
+                        <img class="icon" src="images/icons/amazon.svg">
+                        <a href="">Đơn <strong class="color-main">UAM-0B29293</strong> đã được mua thành công</a>
+                        <div class="date">1 ngày trước - ngày thanh toán: 30/03/2020 10h 56 phút</div>
+                    </li>
+                    <li>
+                        <img class="icon" src="images/icons/amazon.svg">
+                        <a href="">Đơn <strong class="color-main">UAM-0B29293</strong> đã được mua thành công</a>
+                        <div class="date">1 ngày trước - ngày thanh toán: 30/03/2020 10h 56 phút</div>
+                    </li>
+
+                </ul>
+                <div class="center mt10">
+                    <a class="load-more" href="">
+                        <i class="fa fa-arrow-circle-o-down"></i>&nbsp;Xem thêm
+                    </a>
+                </div>
+            </div>
+
+            <div class="wrap_bg">
+                <div class="line-bottom">
+                    <div class="row align-center mb10">
+                        <h3 class="txt_14 mb0 col-7">Lịch sử đơn hàng</h3>
+                        <div class="col-5">
+                            <select class="form-control">
+                                <option>Sắp xếp theo</option>
+                                <option>Bình thường</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-notifi scrollbar-inner">
+                    <li>
+                        <div class="icon icon--v2">
+                            <img src="images/icons/payment.svg">
+                        </div>
+                        <a class="blue" href="#"><b>UAM-0B29293:</b></a>
+                        Đơn hàng đang giao cho khách
+                        <div class="note">
+                            <p>Số ngày xử lý đơn: <a class="red open-popup" href="#popup-order-history">15 ngày</a></p>
+                            <p>Trễ hạn: <a class="red open-popup" href="#popup-order-history">3 ngày</a></p>
+                            <img class="feeling" src="images/icons/smile1.png">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon icon--v2">
+                            <img src="images/icons/plane.svg">
+                        </div>
+                        <a class="blue" href="#"><b>UAM-0B29293:</b></a>
+                        Đơn hàng đang giao cho khách
+                        <div class="note">
+                            <p>Số ngày xử lý đơn: <a class="color-main" href="#">15 ngày</a></p>
+                            <p>Trễ hạn: <a class="color-main" href="#">3 ngày</a></p>
+                            <img class="feeling" src="images/icons/smile2.png">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon icon--v2">
+                            <img src="images/icons/shipped.svg">
+                        </div>
+                        <a class="blue" href="#"><b>UAM-0B29293:</b></a>
+                        Đơn hàng đang giao cho khách
+                        <div class="note">
+                            <p>Số ngày xử lý đơn: <span class="color-main">15 ngày</span></p>
+                            <p>Trễ hạn: <span class="color-main">3 ngày</span></p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon icon--v2">
+                            <img src="images/icons/box.svg">
+                        </div>
+                        <a class="blue" href="#"><b>UAM-0B29293:</b></a>
+                        Đơn hàng đang giao cho khách
+                        <div class="note">
+                            <p>Số ngày xử lý đơn: <span class="red">15 ngày</span></p>
+                            <p>Trễ hạn: <span class="red">3 ngày</span></p>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!--POPUP lịch sử đơn hàng -->
+<div id="popup-order-history" class="white-popup" style="max-width:400px">
+    <div class="content_lightbox">
+        <div class="head">Lịch sử đơn hàng</div>
+        <ul class="list-notifi">
+            <li>
+                <div class="icon icon--v2">
+                    <img src="images/icons/payment.svg">
+                </div>
+                <a href="" class="color-main2">Đơn hàng hoàn thành (Giao hàng thành công)</a>
+                <div class="date">Ngày: 03/11/2019 04:30</div>
+            </li>
+            <li>
+                <div class="icon icon--v2">
+                    <img src="images/icons/plane.svg">
+                </div>
+                <div>Thông quan</div>
+                <div class="date">Ngày: 01/11/2019 06:30</div>
+            </li>
+            <li>
+                <div class="icon icon--v2">
+                    <img src="images/icons/shipped.svg">
+                </div>
+                <div>Hàng về kho VN</div>
+                <div class="date">Ngày: 03/10/2019 08:30</div>
+            </li>
+            <li>
+                <div class="icon icon--v2">
+                    <img src="images/icons/box.svg">
+                </div>
+                <div>Hàng đang chuyển về VN</div>
+                <div class="date">Ngày truy cập: 01/09/2019 17:30</div>
+            </li>
+        </ul>
+        <!-- <div class="form-default">
+            <div class="form-group align-right mt20 block">
+                <button type="submit" class="btn btn-default cancel"><i class="fa fa-minus-circle"></i>Đóng</button>
+            </div>
+        </div> -->
+    </div>
+    <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+</div>
+<!-- /build:content -->
+
+<!-- build:script2 -->
+<script type="text/javascript">
+
+</script>
+<!-- /build:script2 -->

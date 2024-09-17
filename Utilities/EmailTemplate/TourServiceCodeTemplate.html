@@ -1,0 +1,265 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Email Order Notify</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        th {
+            color: black
+        }
+
+        td {
+            color: black
+        }
+    </style>
+</head>
+
+<body class="" style="background-color: #ffffff !important; font-family: sans-serif; -webkit-font-smoothing: antialiased; font-size: 16px; line-height: 27px; margin: 0; padding: 0; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+
+    <div style="width: 800px; max-width: 100%;margin: 20px auto;color: #00264D;font-size:16px;background: #fff">
+        <table cellspacing="0" cellpadding="0" width="100%" style="background: #F1F5F9;border-top: 3px solid #070BA0;padding:5px 15px;">
+            <tr>
+                <td><img alt="" src="https://static-image.adavigo.com/uploads/images/logo.png"></td>
+                <td style="text-align: right"><img alt="" src="https://static-image.adavigo.com/uploads/images/hotline.png"></td>
+            </tr>
+        </table>
+        <div >
+            <body style="background-color: #f6f6f6; font-family:Arial; -webkit-font-smoothing: antialiased; font-size: 14px;color: #00264D; line-height: 1.4;max-width: 800px; margin: 0 auto; padding: 0; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+                <span class="preheader" style="color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; visibility: hidden; width: 0;">
+                    This
+                    is preheader text. Some clients will show this text as a preview.
+                </span>
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; width: 100%;">
+                    <tr>
+                        <td class="container" style="padding: 0;background: #fff url(images/email/Mask.png) no-repeat right 0 top 0;">
+                            <div >
+                                <table role="presentation" border="0" width="100%">
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <div style="margin-bottom: 10px;">Kính gửi Anh/chị <b>{{userName}}</b>,</div>
+                                                <div style="margin-bottom: 10px;">Adavigo gửi tới Anh/chị {{userName}} thông tin xác nhận đặt dịch vụ như sau:</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table style="border: 0; border-spacing: 0; text-indent: 0; border-collapse: collapse; font-size: 13px; width: 100%; margin-bottom: 15px;;" data-mce-style="border: 0; border-spacing: 0; text-indent: 0; border-collapse: collapse; font-size: 13px; width: 100%; margin-bottom: 15px;"
+                                       class="mce-item-table" data-mce-selected="1">
+                                    <tbody>
+                                        <tr style="font-weight: 600;" data-mce-style="font-weight: 600;">
+                                            <td style="border: 1px solid #999; padding: 5px;">
+                                                <img width="120" src="https://static-image.adavigo.com/uploads/images/logo.png">
+                                            </td>
+                                            <td colspan="3" style="border: 1px solid #999; padding: 5px;font-weight: 400;">
+                                                <div style="font-size: 15px;margin-bottom: 15px;font-weight: bold;">CÔNG TY CỔ PHẦN THƯƠNG MẠI VÀ DỊCH VỤ QUỐC TẾ ĐẠI VIỆT</div>
+                                                <div>VPGD Hà Nội : 289A, Khuất Duy Tiến, Thanh Xuân, Hà Nội</div>
+                                                <div>VPGD Hồ Chí Minh : Số 138 Lê Văn Sỹ, P. 10, Q. Phú Nhuận, Tp. Hồ Chí Minh</div>
+                                                <div>VPGD Phú Quốc : 72 Trần Hưng Đạo, P. Dương Đông, Phú Quốc</div>
+                                                </br>
+                                                <div>Website: Adavigo.com </div>
+                                                <div>Hotline : 0936 191 192</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+                                            <td colspan="5" style="text-align:center;border: 1px solid #999; padding: 5px;font-weight: bold;">{{HotelName}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: 1px solid #999; padding: 5px;font-weight: bold;">Tên khác hàng</td>
+                                            <td colspan="3" style="border: 1px solid #999; padding: 5px;">{{userName}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: 1px solid #999; padding: 5px;font-weight: bold;">Số điện thoại </td>
+                                            <td colspan="3" style="border: 1px solid #999; padding: 5px;">{{userPhone}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td style="border: 1px solid #999; padding: 5px;font-weight: bold;">Email </td>
+
+                                            <td colspan="3" style="border: 1px solid #999; padding: 5px;">{{userEmail}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="border: 1px solid #999; padding: 5px;text-align: center;font-weight: bold;">Mã đơn hàng:</td>
+                                            <td colspan="2" style="border: 1px solid #999; padding: 5px;text-align: center;font-weight: bold;">{{orderNo}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: 1px solid #999; padding: 5px; font-weight: bold;">Ngày khởi hành:</td>
+                                            <td style="border: 1px solid #999; padding: 5px;">{{go_startdate}}</td>
+                                            <td style="border: 1px solid #999; padding: 5px; font-weight: bold;">Ngày đến</td>
+                                            <td style="border: 1px solid #999; padding: 5px;">{{go_enddate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: 1px solid #999; padding: 5px; font-weight: bold;">Điểm đi:</td>
+                                            <td style="border: 1px solid #999; padding: 5px;">{{go_startpoint}}</td>
+                                            <td style="border: 1px solid #999; padding: 5px; font-weight: bold;">Điểm đến:</td>
+                                            <td style="border: 1px solid #999; padding: 5px;">{{go_endpoint}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: 1px solid #999; padding: 5px; font-weight: bold;">Loại tour:</td>
+                                            <td style="border: 1px solid #999; padding: 5px;">{{go_airline}}</td>
+                                            <td style="border: 1px solid #999; padding: 5px; font-weight: bold;">Số lượng khách (NL/TE/EB):</td>
+                                            <td style="border: 1px solid #999; padding: 5px;"> {{go_numberOfAdult}}/{{go_numberOfChild}}/{{go_numberOfInfant}}</td>
+                                        </tr>
+
+
+                                        <tr style="display:none;">
+                                            <td style="border: 1px solid #999; padding: 5px; font-weight: bold;">Ngày khởi hành:</td>
+                                            <td style="border: 1px solid #999; padding: 5px;">{{back_startdate}}</td>
+                                            <td style="border: 1px solid #999; padding: 5px; font-weight: bold;">Ngày Kết thúc</td>
+                                            <td style="border: 1px solid #999; padding: 5px;">{{back_enddate}}</td>
+                                        </tr>
+                                        <tr style="display:none;">
+                                            <td style="border: 1px solid #999; padding: 5px; font-weight: bold;">Điểm đi:</td>
+                                            <td style="border: 1px solid #999; padding: 5px;">{{back_startpoint}}</td>
+                                            <td style="border: 1px solid #999; padding: 5px; font-weight: bold;">Điểm đến:</td>
+                                            <td style="border: 1px solid #999; padding: 5px;">{{back_endpoint}}</td>
+                                        </tr>
+                                        <tr style="display:none;">
+                                            <td style="border: 1px solid #999; padding: 5px; font-weight: bold;">Loại hình tổ chức:</td>
+                                            <td style="border: 1px solid #999; padding: 5px;">{{back_airline}}</td>
+                                            <td style="border: 1px solid #999; padding: 5px; font-weight: bold;">Số lượng khách (NL/TE/EB):</td>
+                                            <td style="border: 1px solid #999; padding: 5px;"> {{back_numberOfAdult}}/{{back_numberOfChild}}/{{back_numberOfInfant}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style="border: 1px solid #999; padding: 5px; font-weight: bold;">Tổng tiền :</td>
+                                            <td colspan="3" style="border: 1px solid #999; padding: 5px;">{{totalamount}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: 1px solid #999; padding: 5px; font-weight: bold;">Dịch vụ bao gồm:</td>
+                                            <td colspan="3" style="border: 1px solid #999; padding: 5px;">
+                                                {{datatable}}
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td style="border: 1px solid #999; padding: 5px;">Danh sách Code dịch vụ:</td>
+                                            <td colspan="3" style="border: 1px solid #999; padding: 5px;">
+                                                {{datatableCode}}
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td style="border: 1px solid #999; padding: 5px; font-weight: bold;">Ghi chú:</td>
+                                            <td colspan="3" style="border: 1px solid #999; padding: 5px;"> {{Note}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: 1px solid #999; padding: 5px; font-weight: bold;">Điều kiện thay đổi/hủy hoãn:</td>
+                                            <td colspan="3" style="border: 1px solid #999; padding: 5px;">{{DKHuy}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: 1px solid #999; padding: 5px;font-weight: bold;">Nhân viên tư vấn:</td>
+                                            <td colspan="3" style="border: 1px solid #999; padding: 5px;">{{SalerName}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: 1px solid #999; padding: 5px;font-weight: bold;">SĐT Liên hệ:</td>
+                                            <td colspan="3" style="border: 1px solid #999; padding: 5px;">{{SalerPhone}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: 1px solid #999; padding: 5px;font-weight: bold;">Email:</td>
+                                            <td colspan="3" style="border: 1px solid #999; padding: 5px;"><a href="#">{{SalerEmail}}</a></td>
+                                        </tr>
+                                        <!--<tr>
+                                            <td style="border: 1px solid #999; padding: 5px;font-weight: bold;">Nội dung chuyển khoản:</td>
+                                            <td colspan="3" style="border: 1px solid #999; padding: 5px;">{{NDChuyenKhoan}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: 1px solid #999; padding: 5px;font-weight: bold;">Thông tin chuyển khoản:</td>
+                                            <td colspan="3" style="border: 1px solid #999; padding: 5px;">
+                                                {{TTChuyenKhoan}}-->
+                                              <!--  <div>1. VIB (Không xuất hoá đơn)</div>
+                                                <div>STK: 262698888</div>
+                                                <div>CTK: Công ty Cổ phần Thương mại và Dịch vụ Quốc tế Đại Việt</div>
+                                                <div>Chi nhánh: Lý Thường Kiệt</div>
+                                                </br>
+                                                <div>2. Techcombank (Xuất hoá đơn)</div>
+                                                <div>STK: 19131835226016</div>
+                                                <div>CTK: Công ty Cổ phần Thương mại và Dịch vụ Quốc tế Đại Việt</div>
+                                                <div>Chi nhánh: Đông Đô </div>-->
+                                            <!--</td>
+                                        </tr>-->
+                                        <tr>
+                                            <td style="border: 1px solid #999; padding: 5px;font-weight: bold;">Thông báo thanh toán:</td>
+                                            <td colspan="3" style="border: 1px solid #999; padding: 5px;">{{payment_notification}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table role="presentation" border="0" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div style="margin-bottom: 10px;">Anh/chị kiểm tra lại thông tin và thanh toán để Adavigo tiến hành đặt dịch vụ</div>
+                                                <div style="margin-bottom: 10px;">Anh/chị cần hỗ trợ thêm thông tin vui lòng liên hệ với nhân viên tư vấn.</div>
+                                                <div style="margin-bottom: 10px;">Adavigo cảm ơn Quý Khách hàng</div>
+                                                <div style="margin-bottom: 10px;">Trân trọng!</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </body>
+
+            <div style="width: 100%;margin-top: 20px;">
+
+
+                <table cellspacing="0" cellpadding="0" width="100%">
+                    <tr>
+                        <td style="text-align: center">
+                            <div><img alt="" src="https://static-image.adavigo.com/uploads/images/email/phone.png"></div>
+                            <div style="color: #698096;">Hỗ trợ khách hàng 24/7  Hotline:0936.191.192</div>
+                        </td>
+                        <td style="text-align: center">
+                            <div><img alt="" src="https://static-image.adavigo.com/uploads/images/email/car.png"></div>
+                            <div style="color: #698096;">Ứng dụng tiện lợi, thanh toán dễ dàng</div>
+                        </td>
+                        <td style="text-align: center">
+                            <div><img alt="" src="https://static-image.adavigo.com/uploads/images/email/plane.png"></div>
+                            <div style="color: #698096;">Giá tốt sát ngày, Nhiều ưu đãi hấp dẫn</div>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+        <table role="presentation" border="0" width="100%" style="background: #0159a1;color: #fff;">
+                        <tbody>
+                            <tr>
+                                <td style="padding: 15px;color: white;">
+                                    <div style="float: lefft;margin-bottom: 20px;">
+                                        <img width="80" src="https://static-image.adavigo.com/uploads/images/logo.png" alt="" style="background: #fff;border-radius: 5px;float: left;">
+                                        <span style="font-weight: bold;
+                                        margin: 10px 0 0 10px;
+                                        display: inline-block;">CÔNG TY CỔ PHẦN THƯƠNG MẠI &amp; DỊCH VỤ QUỐC TẾ ĐẠI VIỆT</span>
+                                    </div>
+                                    <div style="float: lefft;">
+                                        <div><b>Trụ sở chính:</b> Tầng 6, tòa nhà Sannam, số 78 phố Duy Tân, P. Dịch Vọng Hậu, Q. Cầu Giấy, TP. Hà Nội</div>
+                                        <div><b>Tổng đài kinh doanh</b>: 0936.191.192</div>
+                                        <div><b>Tổng đài chăm sóc khách hàng</b>: 0326.333.333</div>
+                                        <div><b>Tổng đài văn phòng Phú Quốc</b>: 0902.161.162</div>
+                                        <br>
+                                        <div><b>VĂN PHÒNG GIAO DỊCH:</b></div>
+                                        <div><img width="12" src="https://static-image.adavigo.com/uploads/images/email/email-location.png" style="margin: 0 4px 0 10px;"><b>Hà Nội:</b> Số 289A Khuất Duy Tiến, Cầu Giấy, Hà Nội</div>
+                                        <div><img width="12" src="https://static-image.adavigo.com/uploads/images/email/email-location.png" style="margin: 0 4px 0 10px;"><b>Phú Quốc CS1:</b> ShopHouse số 89 đường An Phúc, Grandworld Phú Quốc</div>
+                                        <div><img width="12" src="https://static-image.adavigo.com/uploads/images/email/email-location.png" style="margin: 0 4px 0 10px;"><b>Phú Quốc CS2:</b> Số 72 Trần Hưng Đạo, Phường Dương Đông, Thành Phố Phú Quốc</div>
+                                        <div><img width="12" src="https://static-image.adavigo.com/uploads/images/email/email-location.png" style="margin: 0 4px 0 10px;"><b>Hồ Chí Minh:</b> Số 1 Hoàng Việt, Phường 4, Quận Tân Bình, TP. HCM</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+    </div>
+
+</body>
+
+</html>

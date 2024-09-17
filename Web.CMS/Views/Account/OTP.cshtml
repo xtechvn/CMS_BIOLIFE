@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewData["Title"] = "Xác thực qua ứng dụng Authenticator - US Express CMS";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+    string token = (string)ViewBag.Token;
+}
+<style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
+<div class="login-popup">
+    <div class="content_lightbox">
+        <div class="head center">
+            <div class="mb5">Xác minh bảo mật</div>
+            <div class="txt_12" style="color: #707A8A;">
+                Để bảo mật cho tài khoản của bạn, hãy hoàn thành <br>
+                yêu cầu xác minh sau.
+            </div>
+            <a class="logo" href="javascripts:;"><img src="~/images/graphics/logo_adavigo.jpg"></a>
+        </div>
+        <span id="validate-general" class="field-validation-valid text-danger"></span>
+        <div class="form-default">
+            <form>
+                <div class="form-group mb30">
+                    <input id="otp" name="otp" data-token="@token" type="text" class="form-control" placeholder="Mã xác minh từ Google Authenticator" style="font-size:20px" />
+                    <div class="txt_12 mt10" style="color: #707A8A;"> Hãy nhập mã xác minh 6 chữ số từ ứng dụng Google Authenticator. </div>
+                </div>
+                <div class="bottom-btn flex">
+                    <button  id="send-otp" class="btn btn-default send full" style="height: 43px; background-color: var(--color-main); width:100%;">Gửi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script src="/modules/account_2fa_otp.js" asp-append-version="true"></script>
+    <script>
+        _account_2fa_otp.Initialization()
+    </script>
+}
+
+

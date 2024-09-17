@@ -1,0 +1,2339 @@
+<!-- build:title -->CMS Template
+<!-- /build:title -->
+
+<!-- build:content -->
+<section class="main-container">
+    <div class="row-main container">
+        <h2 class="txt_18 bold mb10">Danh sách nhà cung cấp</h2>
+        <div class="flex fillter-donhang">
+            <button type="submit" class="btn btn-default mb10 mr-2" data-toggle="modal" data-target="#myModal0"><i class="fa fa-plus"></i>Tạo nhà cung cấp</button>
+            <div class="form-group mb10 mr-2">
+                <input type="text" class="form-control" id="" placeholder="Tên nhà cung cấp" style="width: 150px;">
+            </div>
+            <div class="multiple-select form-group mb10 mr-2">
+                <div class="select-btn">
+                    <span class="btn-text">Tất dịch vụ</span>
+                    <span class="arrow-dwn">
+                        <i class="fa fa-angle-down"></i>
+                    </span>
+                </div>
+
+                <ul class="list-items scroll-inner">
+                    <li class="item">
+                        <span class="checkbox">
+                            <i class="fa fa-check"></i>
+                        </span>
+                        <span class="item-text">Land tour</span>
+                    </li>
+                    <li class="item">
+                        <span class="checkbox">
+                            <i class="fa fa-check"></i>
+                        </span>
+                        <span class="item-text">Khách sạn</span>
+                    </li>
+                    <li class="item">
+                        <span class="checkbox">
+                            <i class="fa fa-check"></i>
+                        </span>
+                        <span class="item-text">Nhà hàng</span>
+                    </li>
+                    <li class="item">
+                        <span class="checkbox">
+                            <i class="fa fa-check"></i>
+                        </span>
+                        <span class="item-text">Phương tiện</span>
+                    </li>
+                    <li class="item">
+                        <span class="checkbox">
+                            <i class="fa fa-check"></i>
+                        </span>
+                        <span class="item-text">Hướng dẫn viên</span>
+                    </li>
+                    <li class="item">
+                        <span class="checkbox">
+                            <i class="fa fa-check"></i>
+                        </span>
+                        <span class="item-text">Vé tham quan</span>
+                    </li>
+                    <li class="item">
+                        <span class="checkbox">
+                            <i class="fa fa-check"></i>
+                        </span>
+                        <span class="item-text">Vé máy bay</span>
+                    </li>
+                    <li class="item">
+                        <span class="checkbox">
+                            <i class="fa fa-check"></i>
+                        </span>
+                        <span class="item-text">Tour du lịch</span>
+                    </li>
+                    <li class="item">
+                        <span class="checkbox">
+                            <i class="fa fa-check"></i>
+                        </span>
+                        <span class="item-text">eambuilding</span>
+                    </li>
+                    <li class="item">
+                        <span class="checkbox">
+                            <i class="fa fa-check"></i>
+                        </span>
+                        <span class="item-text">Khác</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <select class="select2" name="" style="width: 150px;">
+                    <option value="">Tất địa điểm</option>
+                    <option value="">Đại lý</option>
+                    <option value="">Cộng tác viên</option>
+                    <option value="">Mice/Corp/Doanh nghiệp</option>
+                </select>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <select class="select2" name="" style="width: 150px;">
+                    <option value="">Tất hạng sao</option>
+                    <option value="">Đại lý</option>
+                    <option value="">Cộng tác viên</option>
+                    <option value="">Mice/Corp/Doanh nghiệp</option>
+                </select>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <select class="select2" name="" style="width: 200px;">
+                    <option value="">Tất chuỗi thương hiệu</option>
+                    <option value="">Đại lý</option>
+                    <option value="">Cộng tác viên</option>
+                    <option value="">Mice/Corp/Doanh nghiệp</option>
+                </select>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <select class="select2" name="" style="width: 200px;">
+                    <option value="">Tất chuỗi bộ phận phụ trách</option>
+                    <option value="">Đại lý</option>
+                    <option value="">Cộng tác viên</option>
+                    <option value="">Mice/Corp/Doanh nghiệp</option>
+                </select>
+            </div>
+            <div class="form-group mb10 mr-2">
+                <input type="text" class="form-control" id="" placeholder="Nhân viên phụ trách" style="width: 150px;">
+            </div>
+            <div class="row-main-head mb10 mr-2">
+                <div class="down-up">
+                    <a class="btn btn-default onclick" href="javascript:;">
+                        <i class="fa fa-bars"></i>
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+                    <div class="form-down" style="display: none;">
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox" checked="">
+                            <span class="checkmark"></span>
+                            Hình thức
+                        </label>
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Mã đơn
+                        </label>
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Ngày bắt đầu
+                        </label>
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Ngày kết thúc
+                        </label>
+                        <label class="check-list mb10 mr25">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Nhãn đơn
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="mb10 mr-2">
+                <button class="btn-search btn-default" type="submit">
+                    <svg class="icon-svg">
+                        <use xlink:href="images/icons/icon.svg#search"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="wrap_bg wrap_bg_no-padding mb20">
+            <div class="table-responsive table-default table-scroll">
+                <table class="table table-nowrap">
+                    <thead>
+                        <tr>
+                            <th style="min-width: 30px;">STT</th>
+                            <th>ID</th>
+                            <th style="min-width: 250px;">Tên nhà cung cấp</th>
+                            <th>Năm thành lập</th>
+                            <th>Địa điểm</th>
+                            <th>Liên hệ</th>
+                            <th style="width: 250px;">Dịch vụ</th>
+                            <th>Nhân viên phụ trách</th>
+                            <th>Người tạo</th>
+                            <th>Ngày tạo</th>
+                            <th>Người cập nhật</th>
+                            <th>Ngày cập nhật</th>
+                            <th style="min-width: 100px;">Tác vụ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>0001</td>
+                            <td>
+                                <div><a href="#" class="blue txt_14">Vinpearl Condotel Phủ Lý <i class="fa fa-check-square-o"></i></a></div>
+                                <div class="star oranger">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div>
+                                    <i class="fa fa-map-marker"></i>
+                                    <span>60 Biên Hòa, Minh Khai, Phủ Lý, Hà Nam</span>
+                                </div>
+                            </td>
+                            <td>2017</td>
+                            <td>Hà Nam</td>
+                            <td>
+                                0983632288
+                                <div>tuean@vietpowertravel.com</div>
+                            </td>
+                            <td>
+                                Khách sạn <small>[<a href="#" class="red">Loại hình lưu trú</a>: Khách sạn, căn hộ, khu nghỉ dưỡng]</small> , Nhà hàng
+                            </td>
+                            <td>Nguyễn Thái Bình</td>
+                            <td>Nguyễn Thái Bình</td>
+                            <td>17-05-2021 13:34</td>
+                            <td>Nguyễn Thái Bình</td>
+                            <td>17-05-2021 13:34</td>
+                            <td>
+                                <a class="delete blue" href=""><i class="fa fa-edit"></i></a> &nbsp;&nbsp;
+                                <a class="red" href=""><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0001</td>
+                            <td>
+                                <div><a href="#" class="blue txt_14">Vinpearl Condotel Phủ Lý <i class="fa fa-check-square-o"></i></a></div>
+                                <div class="star oranger">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div>
+                                    <i class="fa fa-map-marker"></i>
+                                    <span>60 Biên Hòa, Minh Khai, Phủ Lý, Hà Nam</span>
+                                </div>
+                            </td>
+                            <td>2017</td>
+                            <td>Hà Nam</td>
+                            <td>
+                                0983632288
+                                <div>tuean@vietpowertravel.com</div>
+                            </td>
+                            <td>
+                                Khách sạn <small>[<a href="#" class="red">Loại hình lưu trú</a>: Khách sạn, căn hộ, khu nghỉ dưỡng]</small> , Nhà hàng
+                            </td>
+                            <td>Nguyễn Thái Bình</td>
+                            <td>Nguyễn Thái Bình</td>
+                            <td>17-05-2021 13:34</td>
+                            <td>Nguyễn Thái Bình</td>
+                            <td>17-05-2021 13:34</td>
+                            <td>
+                                <a class="delete blue" href=""><i class="fa fa-edit"></i></a> &nbsp;&nbsp;
+                                <a class="red" href=""><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0001</td>
+                            <td>
+                                <div><a href="#" class="blue txt_14">Vinpearl Condotel Phủ Lý <i class="fa fa-check-square-o"></i></a></div>
+                                <div class="star oranger">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div>
+                                    <i class="fa fa-map-marker"></i>
+                                    <span>60 Biên Hòa, Minh Khai, Phủ Lý, Hà Nam</span>
+                                </div>
+                            </td>
+                            <td>2017</td>
+                            <td>Hà Nam</td>
+                            <td>
+                                0983632288
+                                <div>tuean@vietpowertravel.com</div>
+                            </td>
+                            <td>
+                                Khách sạn <small>[<a href="#" class="red">Loại hình lưu trú</a>: Khách sạn, căn hộ, khu nghỉ dưỡng]</small> , Nhà hàng
+                            </td>
+                            <td>Nguyễn Thái Bình</td>
+                            <td>Nguyễn Thái Bình</td>
+                            <td>17-05-2021 13:34</td>
+                            <td>Nguyễn Thái Bình</td>
+                            <td>17-05-2021 13:34</td>
+                            <td>
+                                <a class="delete blue" href=""><i class="fa fa-edit"></i></a> &nbsp;&nbsp;
+                                <a class="red" href=""><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0001</td>
+                            <td>
+                                <div><a href="#" class="blue txt_14">Vinpearl Condotel Phủ Lý <i class="fa fa-check-square-o"></i></a></div>
+                                <div class="star oranger">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div>
+                                    <i class="fa fa-map-marker"></i>
+                                    <span>60 Biên Hòa, Minh Khai, Phủ Lý, Hà Nam</span>
+                                </div>
+                            </td>
+                            <td>2017</td>
+                            <td>Hà Nam</td>
+                            <td>
+                                0983632288
+                                <div>tuean@vietpowertravel.com</div>
+                            </td>
+                            <td>
+                                Khách sạn <small>[<a href="#" class="red">Loại hình lưu trú</a>: Khách sạn, căn hộ, khu nghỉ dưỡng]</small> , Nhà hàng
+                            </td>
+                            <td>Nguyễn Thái Bình</td>
+                            <td>Nguyễn Thái Bình</td>
+                            <td>17-05-2021 13:34</td>
+                            <td>Nguyễn Thái Bình</td>
+                            <td>17-05-2021 13:34</td>
+                            <td>
+                                <a class="delete blue" href=""><i class="fa fa-edit"></i></a> &nbsp;&nbsp;
+                                <a class="red" href=""><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination-flex">
+                <div class="select-number">
+                    Hiển thị &nbsp;
+                    <select class="form-control">
+                    <option>30</option>
+                    <option>30</option>
+                    <option>30</option>
+                    <option>30</option>
+                </select>&nbsp; trong số &nbsp; <strong>55</strong> &nbsp; kết quả lọc
+                </div>
+                <ul id="pagination" class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fa fa-step-backward"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link icon" href="#">
+                            <i class="fa fa-caret-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link icon" href="#">
+                            <i class="fa fa-caret-right"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fa fa-step-forward"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Chi tiết nhà cung cấp -->
+        <h2 class="txt_18 bold mb10">Chi tiết nhà cung cấp</h2>
+        <div class="table-responsive table-white">
+            <table class="table table-nowrap">
+                <tbody>
+                    <tr>
+                        <td colspan="3">
+                            <strong>Vinpearl Condotel Phủ Lý -  60 Biên Hòa, Minh Khai, Phủ Lý, Hà Nam</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><strong>Thông tin cơ bản</strong></td>
+                        <td style="width: 440px;"><strong>Thông tin tài chính</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="min-width: 400px;">
+                            <div class="row">
+                                <div class="col-4 mb10 gray">ID</div>
+                                <div class="col-8 mb10">: DL100001</div>
+                                <div class="col-4 mb10 gray">Tên rút gọn</div>
+                                <div class="col-8 mb10">: Vinpreal Phủ Lỳ</div>
+                                <div class="col-4 mb10 gray">Năm thành lập</div>
+                                <div class="col-8 mb10">: 0989897687</div>
+                                <div class="col-4 mb10 gray">Loại hình dịch vụ</div>
+                                <div class="col-8 mb10">Khách sạn</div>
+                            </div>
+                        </td>
+                        <td style="min-width: 400px;">
+                            <div class="row">
+                                <div class="col-4 mb10 gray">Địa điểm</div>
+                                <div class="col-8 mb10">: Hà Tĩnh</div>
+                                <div class="col-4 mb10 gray">Email</div>
+                                <div class="col-8 mb10">: VP@vinpearl.com</div>
+                                <div class="col-4 mb10 gray">Điện thoại</div>
+                                <div class="col-8 mb10">: 090989098</div>
+                                <div class="col-4 mb10 gray">Loại hình lưu trú</div>
+                                <div class="col-8 mb10">: Khách sạn, căn hộ</div>
+                            </div>
+                        </td>
+                        <td style="min-width: 400px;">
+                            <div class="row">
+                                <div class="col-5 mb10 gray">Mã số thuế</div>
+                                <div class="col-7 mb10">: 090996069867</div>
+                                <div class="col-5 mb10 gray">Chuỗi thương hiệu</div>
+                                <div class="col-7 mb10 blue">: Vinperal</div>
+                                <div class="col-5 mb10 gray">Thời gian xác nhận</div>
+                                <div class="col-7 mb10">: 19/02/2023 00:09</div>
+                                <div class="col-5 mb10 gray">Người phụ trách</div>
+                                <div class="col-7 mb10">: Nguyễn Thanh Bình - </br>Phòng kinh doanh 1</div>
+                                <div class="col-5 mb10 gray">Thông tin hệ thống</div>
+                                <div class="col-7 mb10">: <a href="#" class="blue underline">Xem thêm</a></div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="line-bottom" style="padding-bottom: 0;">
+            <div class="tab-default mb0" data-tab-container="tab-container-1">
+                <a href="#" class="active" data-lbl="danh-sach-phong">Danh sách phòng</a>
+                <a href="#" data-lbl="chuong-trinh">Chương trình</a>
+                <a href="#" data-lbl="bang-gia">Bảng giá</a>
+                <a href="#" data-lbl="gia-phu-thu">Giá phụ thu</a>
+                <div class="select-default dropdown">
+                    <div class="dropbtn">
+                        Xem thêm
+                    </div>
+                    <div class="dropdown-content">
+                        <ul>
+                            <li>Ảnh NCC</li>
+                            <li>Tiện ích</li>
+                            <li>Thông tin thanh toán</li>
+                            <li>Liên hệ</li>
+                            <li>Công nợ</li>
+                        </ul>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-default min ml-2" data-toggle="modal" data-target="#myModal3">Thêm phụ thu</button>
+                <button type="submit" class="btn btn-default min ml-2" data-toggle="modal" data-target="#myModal1">Thêm phòng</button>
+                <button type="submit" class="btn btn-default min ml-2" data-toggle="modal" data-target="#myModal5">Thêm thông tin thanh toán</button>
+            </div>
+        </div>
+        <div class="tab-container" id="tab-container-1" style="max-width: 1200px;">
+            <!-- DANH SÁCH PHÒNG -->
+            <div class="mb20 tab-content" data-lbl="danh-sach-phong">
+                <div class="table-responsive table-default table-gray bg-white">
+                    <table class="table table-nowrap">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>ID</th>
+                                <th style="min-width: 200px;">Hạng phòng</th>
+                                <th style="min-width: 200px;">Loại giường</th>
+                                <th class="text-right">Số lượng</th>
+                                <th>Tác vụ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>1001</td>
+                                <td>
+                                    <div class="blue txt_14">Deluxe City Viewgon 28/11</div>
+                                    <small>Diện tích: (m²)</small>
+                                    <small>Số khách tối đa: 2(NL) - 1(TE)</small>
+                                </td>
+                                <td>01 Giường Đôi hoặc 02 Giường Đơn</td>
+                                <td class="text-right">2</td>
+                                <td>
+                                    <a class="delete blue" href=""><i class="fa fa-edit"></i></a> &nbsp;&nbsp;
+                                    <a class="red" href=""><i class="fa fa-times"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>1001</td>
+                                <td>
+                                    <div class="blue txt_14">Deluxe City Viewgon 28/11</div>
+                                    <small>Diện tích: (m²)</small>
+                                    <small>Số khách tối đa: 2(NL) - 1(TE)</small>
+                                </td>
+                                <td>01 Giường Đôi hoặc 02 Giường Đơn</td>
+                                <td class="text-right">2</td>
+                                <td>
+                                    <a class="delete blue" href=""><i class="fa fa-edit"></i></a> &nbsp;&nbsp;
+                                    <a class="red" href=""><i class="fa fa-times"></i></a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination-flex bg-white">
+                    <div class="select-number">
+                        Hiển thị &nbsp;
+                        <select class="form-control">
+                    <option>30</option>
+                    <option>30</option>
+                    <option>30</option>
+                    <option>30</option>
+                </select>&nbsp; trong số &nbsp; <strong>55</strong> &nbsp; kết quả lọc
+                    </div>
+                    <ul id="pagination" class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#">
+                                <i class="fa fa-step-backward"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link icon" href="#">
+                                <i class="fa fa-caret-left"></i>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link icon" href="#">
+                                <i class="fa fa-caret-right"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">
+                                <i class="fa fa-step-forward"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- CHƯƠNG TRÌNH -->
+            <div class="mb20 tab-content" data-lbl="chuong-trinh">
+                <div class="table-responsive table-default table-gray bg-white">
+                    <table class="table table-nowrap">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã</th>
+                                <th>Tên</th>
+                                <th>ID gốc</th>
+                                <th>ID điều chỉnh</th>
+                                <th>Dịch vụ</th>
+                                <th>Thời gian áp dụng</th>
+                                <th style="min-width: 200px;">Mô tả</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>VP0001</td>
+                                <td class="blue">Giá mùa hè</td>
+                                <td class="blue">1001</td>
+                                <td>N/A</td>
+                                <td>Khách sạn</td>
+                                <td>01/04/2023 - 30/08/2023</td>
+                                <td>
+                                    <div>+ Bữa sáng tự chọn mỗi ngày</div>
+                                    <div>+ Đồ uống chào mừng</div>
+                                    <div>+ Trà, cà phê và 02 chai nước khoáng trong phòng mỗi ngày ... <a href="#" class="blue">xem thêm</a></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>VP0001</td>
+                                <td class="blue">Giá mùa hè</td>
+                                <td class="blue">1001</td>
+                                <td>N/A</td>
+                                <td>Khách sạn</td>
+                                <td>01/04/2023 - 30/08/2023</td>
+                                <td>
+                                    <div>+ Bữa sáng tự chọn mỗi ngày</div>
+                                    <div>+ Đồ uống chào mừng</div>
+                                    <div>+ Trà, cà phê và 02 chai nước khoáng trong phòng mỗi ngày ... <a href="#" class="blue">xem thêm</a></div>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination-flex bg-white">
+                    <div class="select-number">
+                        Hiển thị &nbsp;
+                        <select class="form-control">
+                    <option>30</option>
+                    <option>30</option>
+                    <option>30</option>
+                    <option>30</option>
+                </select>&nbsp; trong số &nbsp; <strong>55</strong> &nbsp; kết quả lọc
+                    </div>
+                    <ul id="pagination" class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#">
+                                <i class="fa fa-step-backward"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link icon" href="#">
+                                <i class="fa fa-caret-left"></i>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link icon" href="#">
+                                <i class="fa fa-caret-right"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">
+                                <i class="fa fa-step-forward"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- BẢNG GIÁ -->
+            <div class="mb20 tab-content" data-lbl="bang-gia">
+                <div class="flex align-center mb10">
+                    <div class="datepicker-wrap mb10 mr-3">
+                        <input class="form-control datepicker-input " type="text" name="birthday">
+                    </div>
+                    <label class="radio mr-3">
+                        <input type="radio" name="optradio" checked="">
+                        <span class="checkmark"></span>
+                        Khách sạn
+                    </label>
+                    <label class="radio mr-3">
+                        <input type="radio" name="optradio">
+                        <span class="checkmark"></span>
+                        Nhà hàng
+                    </label>
+                    <label class="radio mr-3">
+                        <input type="radio" name="optradio">
+                        <span class="checkmark"></span>
+                        Phương tiện
+                    </label>
+                </div>
+                <div class="table-responsive table-default table-gray bg-white">
+                    <table class="table table-nowrap">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Chương trình</th>
+                                <th>Gói</th>
+                                <th>Hạng phòng</th>
+                                <th>
+                                    T2
+                                    <div>02/01/2023</div>
+                                </th>
+                                <th>
+                                    T3
+                                    <div>02/01/2023</div>
+                                </th>
+                                <th>
+                                    T4
+                                    <div>02/01/2023</div>
+                                </th>
+                                <th>
+                                    T5
+                                    <div>02/01/2023</div>
+                                </th>
+                                <th>
+                                    T6
+                                    <div>02/01/2023</div>
+                                </th>
+                                <th>
+                                    T7
+                                    <div>02/01/2023</div>
+                                </th>
+                                <th>
+                                    CN
+                                    <div>02/01/2023</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="4">1</td>
+                                <td rowspan="4" class="blue">VP1001 - Mùa hè sôi động 1</td>
+                                <td rowspan="2">VP1001202301001</td>
+                                <td>Family Suite</td>
+                                <td>2,000,000</td>
+                                <td>2,000,000</td>
+                                <td class="oranger">4,000,000</td>
+                                <td>2,000,000</td>
+                                <td>2,000,000</td>
+                                <td>3,000,000</td>
+                                <td class="oranger">5,000,000</td>
+                            </tr>
+                            <tr>
+                                <td>Family Suite</td>
+                                <td>2,000,000</td>
+                                <td>2,000,000</td>
+                                <td class="oranger">4,000,000</td>
+                                <td>2,000,000</td>
+                                <td>2,000,000</td>
+                                <td>3,000,000</td>
+                                <td class="oranger">5,000,000</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">VP1001202301001</td>
+                                <td>Family Suite</td>
+                                <td>2,000,000</td>
+                                <td>2,000,000</td>
+                                <td class="oranger">4,000,000</td>
+                                <td>2,000,000</td>
+                                <td>2,000,000</td>
+                                <td>3,000,000</td>
+                                <td class="oranger">5,000,000</td>
+                            </tr>
+                            <tr>
+                                <td>Family Suite</td>
+                                <td>2,000,000</td>
+                                <td>2,000,000</td>
+                                <td class="oranger">4,000,000</td>
+                                <td>2,000,000</td>
+                                <td>2,000,000</td>
+                                <td>3,000,000</td>
+                                <td class="oranger">5,000,000</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="4">2</td>
+                                <td rowspan="4" class="blue">VP1001 - Mùa hè sôi động 2</td>
+                                <td rowspan="2">VP1001202301001</td>
+                                <td>Family Suite</td>
+                                <td>2,000,000</td>
+                                <td>2,000,000</td>
+                                <td class="oranger">4,000,000</td>
+                                <td>2,000,000</td>
+                                <td>2,000,000</td>
+                                <td>3,000,000</td>
+                                <td class="oranger">5,000,000</td>
+                            </tr>
+                            <tr>
+                                <td>Family Suite</td>
+                                <td>2,000,000</td>
+                                <td>2,000,000</td>
+                                <td class="oranger">4,000,000</td>
+                                <td>2,000,000</td>
+                                <td>2,000,000</td>
+                                <td>3,000,000</td>
+                                <td class="oranger">5,000,000</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">VP1001202301001</td>
+                                <td>Family Suite</td>
+                                <td>2,000,000</td>
+                                <td>2,000,000</td>
+                                <td class="oranger">4,000,000</td>
+                                <td>2,000,000</td>
+                                <td>2,000,000</td>
+                                <td>3,000,000</td>
+                                <td class="oranger">5,000,000</td>
+                            </tr>
+                            <tr>
+                                <td>Family Suite</td>
+                                <td>2,000,000</td>
+                                <td>2,000,000</td>
+                                <td class="oranger">4,000,000</td>
+                                <td>2,000,000</td>
+                                <td>2,000,000</td>
+                                <td>3,000,000</td>
+                                <td class="oranger">5,000,000</td>
+                            </tr>
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- GIÁ PHỤ THU -->
+            <div class="mb20 tab-content" data-lbl="gia-phu-thu">
+                <div class="table-responsive table-default table-gray bg-white">
+                    <table class="table table-nowrap">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã</th>
+                                <th>Tên</th>
+                                <th>Mô tả</th>
+                                <th class="text-right">Giá bán</th>
+                                <th>Trạng thái</th>
+                                <th>Người tạo</th>
+                                <th>Tác vụ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>SHC345</td>
+                                <td>Trẻ em dưới 6 tuổi</td>
+                                <td>Miển phí</td>
+                                <td class="text-right">0</td>
+                                <td><span class="status-green">Mở bán</span></td>
+                                <td>Nguyễn Thành Huy</td>
+                                <td>
+                                    <a class="blue" href="" data-toggle="modal" data-target="#myModal2"><i class="fa fa-edit"></i></a> &nbsp;&nbsp;
+                                    <a class="delete" href=""><i class="fa fa-trash-o"></i></a> &nbsp;&nbsp;
+                                    <a href=""><i class="fa fa-clone"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>SHC345</td>
+                                <td>Trẻ em dưới 6 tuổi</td>
+                                <td>Đã bao gồm ăn sáng</td>
+                                <td class="text-right">450,000</td>
+                                <td><span class="status-gray">Đã đóng</span></td>
+                                <td>Nguyễn Thành Huy</td>
+                                <td>
+                                    <a class="blue" href="" data-toggle="modal" data-target="#myModal2"><i class="fa fa-edit"></i></a> &nbsp;&nbsp;
+                                    <a class="delete" href=""><i class="fa fa-trash-o"></i></a> &nbsp;&nbsp;
+                                    <a href=""><i class="fa fa-clone"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination-flex bg-white">
+                    <div class="select-number">
+                        Hiển thị &nbsp;
+                        <select class="form-control">
+                    <option>30</option>
+                    <option>30</option>
+                    <option>30</option>
+                    <option>30</option>
+                </select>&nbsp; trong số &nbsp; <strong>55</strong> &nbsp; kết quả lọc
+                    </div>
+                    <ul id="pagination" class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#">
+                                <i class="fa fa-step-backward"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link icon" href="#">
+                                <i class="fa fa-caret-left"></i>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link icon" href="#">
+                                <i class="fa fa-caret-right"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">
+                                <i class="fa fa-step-forward"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- ẢNH NHÀ CC -->
+            <div class="mb20 tab-content bg-white border pd10" data-lbl="anh-nhacc">
+                <label class="choose choose-wrap" style="padding-bottom: 0%;height: 150px;">
+                    <input type="file" name="myFile">
+                    <div class="choose-content">
+                        <img src="images/icons/upload.png">
+                        <span style="color: #ADB0B1;padding: 0 15px;">Kích cỡ tối đa: 20 MB
+                            Định dạng: mp4, video</span>
+                    </div>
+                </label>
+
+                <div class="grid grid__8 list-choose">
+                    <div class="choose-ava">
+                        <img src="images/graphics/img_4.jpg">
+                        <button type="button" class="delete">×</button>
+                        <div class="info">
+                            <div class="capacity">54.5 KB</div>
+                            <div class="name"><span>Ảnh hotgirl xinh đẹp đến từ Trần Duy Hưng</span></div>
+                        </div>
+                    </div>
+                    <div class="choose-ava">
+                        <img src="images/graphics/img_4.jpg">
+                        <button type="button" class="delete">×</button>
+                        <div class="info">
+                            <div class="capacity">54.5 KB</div>
+                            <div class="name"><span>Ảnh hotgirl xinh đẹp đến từ Trần Duy Hưng</span></div>
+                        </div>
+                    </div>
+                    <div class="choose-ava">
+                        <img src="images/graphics/img_4.jpg">
+                        <button type="button" class="delete">×</button>
+                        <div class="info">
+                            <div class="capacity">54.5 KB</div>
+                            <div class="name"><span>Ảnh hotgirl xinh đẹp đến từ Trần Duy Hưng</span></div>
+                        </div>
+                    </div>
+                    <div class="choose-ava">
+                        <img src="images/graphics/img_4.jpg">
+                        <button type="button" class="delete">×</button>
+                        <div class="info">
+                            <div class="capacity">54.5 KB</div>
+                            <div class="name"><span>Ảnh hotgirl xinh đẹp đến từ Trần Duy Hưng</span></div>
+                        </div>
+                    </div>
+                    <div class="choose-ava">
+                        <img src="images/graphics/img_4.jpg">
+                        <button type="button" class="delete">×</button>
+                        <div class="info">
+                            <div class="capacity">54.5 KB</div>
+                            <div class="name"><span>Ảnh hotgirl xinh đẹp đến từ Trần Duy Hưng</span></div>
+                        </div>
+                    </div>
+                    <div class="choose-ava">
+                        <img src="images/graphics/img_4.jpg">
+                        <button type="button" class="delete">×</button>
+                        <div class="info">
+                            <div class="capacity">54.5 KB</div>
+                            <div class="name"><span>Ảnh hotgirl xinh đẹp đến từ Trần Duy Hưng</span></div>
+                        </div>
+                    </div>
+                    <div class="choose-ava">
+                        <img src="images/graphics/img_4.jpg">
+                        <button type="button" class="delete">×</button>
+                        <div class="info">
+                            <div class="capacity">54.5 KB</div>
+                            <div class="name"><span>Ảnh hotgirl xinh đẹp đến từ Trần Duy Hưng</span></div>
+                        </div>
+                    </div>
+                    <div class="choose-ava">
+                        <img src="images/graphics/img_4.jpg">
+                        <button type="button" class="delete">×</button>
+                        <div class="info">
+                            <div class="capacity">54.5 KB</div>
+                            <div class="name"><span>Ảnh hotgirl xinh đẹp đến từ Trần Duy Hưng</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- DANH SÁCH TIỆN ÍCH -->
+            <div class="mb20 bg-white border pd10">
+                <div class="line-bottom">
+                    <label class="check-list">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                        Chọn tất cả
+                    </label>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 mb15">
+                        <div class="bold txt_14 mb10">Dịch vụ bổ sung</div>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Land tour
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Khách sạn
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Nhà hàng
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Phương tiện
+                        </label>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb15">
+                        <div class="bold txt_14 mb10">Dịch vụ chăm sóc sức khỏe</div>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Hướng dẫn viên
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Vé tham quan
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Vé máy bay
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Tour du lịch
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Teambuilding
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Khác
+                        </label>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb15">
+                        <div class="bold txt_14 mb10">Vận chuyển</div>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Land tour
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Khách sạn
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Nhà hàng
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Phương tiện
+                        </label>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb15">
+                        <div class="bold txt_14 mb10">Nhà hàng</div>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Hướng dẫn viên
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Vé tham quan
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Vé máy bay
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Tour du lịch
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Teambuilding
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Khác
+                        </label>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb15">
+                        <div class="bold txt_14 mb10">Internet</div>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Hướng dẫn viên
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Vé tham quan
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Vé máy bay
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Tour du lịch
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Teambuilding
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Khác
+                        </label>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb15">
+                        <div class="bold txt_14 mb10">Lễ tân</div>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Hướng dẫn viên
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Vé tham quan
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Vé máy bay
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Tour du lịch
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Teambuilding
+                        </label>
+                        <label class="check-list">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Khác
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- THÔNG TIN THANH TOÁN -->
+            <div class="mb20 tab-content">
+                <div class="table-responsive table-default table-gray bg-white">
+                    <table class="table table-nowrap">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Số tài khoản</th>
+                                <th>Chủ tài khoản</th>
+                                <th>Tên ngân hàng</th>
+                                <th>Chi nhánh</th>
+                                <th>Tác vụ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>10265767654</td>
+                                <td>Nguyễn Thanh Cần</td>
+                                <td>Tienphongbank</td>
+                                <td>Sài Gòn</td>
+                                <td>
+                                    <a class="blue" href="" data-toggle="modal" data-target="#myModal4"><i class="fa fa-edit"></i></a> &nbsp;&nbsp;
+                                    <a class="delete" href=""><i class="fa fa-trash-o"></i></a> &nbsp;&nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>10265767654</td>
+                                <td>Nguyễn Thanh Cần</td>
+                                <td>Tienphongbank</td>
+                                <td>Sài Gòn</td>
+                                <td>
+                                    <a class="blue" href="" data-toggle="modal" data-target="#myModal4"><i class="fa fa-edit"></i></a> &nbsp;&nbsp;
+                                    <a class="delete" href=""><i class="fa fa-trash-o"></i></a> &nbsp;&nbsp;
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <!-- CÔNG NỌ -->
+            <div class="mb20 tab-content">
+                <div class="mb10 bold txt_14">Tổng quan</div>
+                <div class="table-responsive table-default table-gray bg-white mb20">
+                    <table class="table table-nowrap">
+                        <thead>
+                            <tr>
+                                <th>Dư nợ đầu kỳ</th>
+                                <th>Phát sinh trong kỳ</th>
+                                <th>Đã thanh toán trong kỳ</th>
+                                <th>Dư nợ cuối kỳ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>40,000,000</td>
+                                <td>40,000,000</td>
+                                <td>40,000,000</td>
+                                <td>40,000,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mb10 bold txt_14">Chi tiết phát sinh trong kỳ</div>
+                <div class="table-responsive table-default table-gray bg-white mb20">
+                    <table class="table table-nowrap">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Ngày tạo</th>
+                                <th>Tên dịch vụ</th>
+                                <th style="min-width: 200px;">Chi tiết dịch vụ</th>
+                                <th class="text-right">Tiền trước VAT</th>
+                                <th class="text-right">VAT</th>
+                                <th class="text-right">Thành tiền</th>
+                                <th>Mã tour</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>02/02/2023</td>
+                                <td>Khách sạn</td>
+                                <td>
+                                    <div>Suite Ocean View: 3 phòng, 2 đêm</div>
+                                    <div>Family Cabana Pool Access: 2 phòng, 2 đêm</div>
+                                </td>
+                                <td class="text-align">20,000,000</td>
+                                <td class="text-align">20,000,000</td>
+                                <td class="text-align">20,000,000</td>
+                                <td>QSHDT001</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>02/02/2023</td>
+                                <td>Khách sạn</td>
+                                <td>
+                                    <div>Suite Ocean View: 3 phòng, 2 đêm</div>
+                                    <div>Family Cabana Pool Access: 2 phòng, 2 đêm</div>
+                                </td>
+                                <td class="text-align">20,000,000</td>
+                                <td class="text-align">20,000,000</td>
+                                <td class="text-align">20,000,000</td>
+                                <td>QSHDT001</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mb10 bold txt_14">Chi tiết thanh toán trong kỳ</div>
+                <div class="table-responsive table-default table-gray bg-white mb20">
+                    <table class="table table-nowrap">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Ngày tạo</th>
+                                <th style="min-width: 300px;">Nội dung</th>
+                                <th class="text-right">Số tiền</th>
+                                <th>Mã PC</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>09/02/2023</td>
+                                <td>Thanh toán tiền khách sạn</td>
+                                <td class="text-right">22,000,000</td>
+                                <td>22,000,000</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>09/02/2023</td>
+                                <td>Thanh toán tiền khách sạn</td>
+                                <td class="text-right">22,000,000</td>
+                                <td>22,000,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!-- CHi tiết chương trình -->
+        <div class="oranger mb10">Danh sách nhà cung cấp/ Chi tiết nhà cung cấp 1001/ Chương trình/ Chi tiết chương trình VP0001</div>
+
+        <div class="bg-white" style="max-width: 1200px;">
+            <div class="border mb15">
+                <div class="lb-form">Chương trình: Mùa hè sôi động</div>
+                <div class="row pd10">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-4 mb10 gray">Nhà cung cấp</div>
+                            <div class="col-8 mb10 blue">: Vinpreal Phú Quốc</div>
+                            <div class="col-4 mb10 gray">Dịch vụ</div>
+                            <div class="col-8 mb10">: Khách sạn</div>
+                            <div class="col-4 mb10 gray">Tháng áp dụng</div>
+                            <div class="col-8 mb10">: 01/04/2023 - 30/07/2023</div>
+                            <div class="col-4 mb10 gray">Mô tả</div>
+                            <div class="col-8 mb10">
+                                <div>+ Bữa sáng tự chọn mỗi ngày</div>
+                                <div>+ Đồ uống chào mừng</div>
+                                <div>+ Trà, cà phê và 02 chai nước khoáng trong phòng mỗi ngày</div>
+                                <div>+ Miễn phí vé vào cổng khu nghỉ dưỡng</div>
+                                <div>+ Miễn phí Bánh truyền thống hoặc hoa quả tươi tại phòng</div>
+                                <div>+ Miễn phí sử dụng Bể bơi vô cực</div>
+                                <div>+ Miễn phí sử dụng bể nước khoáng nóng Onsen “có giờ tắm và xe đón đưa cụ thể”</div>
+                                <div>+ Miễn phí tham quan động tiên nữ</div>
+                                <div>+ Miễn phí tham quan khu vui chơi Aeris Hill</div>
+                                <div>+ 01 bữa ăn tối cho 02 người vào Cuối tuần "thứ sáu và thứ bẩy".</div>
+                                <div>+ Sử dụng Internet wifi</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 line-left-pc">
+                        <div class="row">
+                            <div class="col-4 mb10 gray">Người tạo</div>
+                            <div class="col-8 mb10">: Nguyễn Thanh Bình</div>
+                            <div class="col-4 mb10 gray">Ngày tạo</div>
+                            <div class="col-8 mb10">: 01/02/2023 09:00</div>
+                            <div class="col-4 mb10 gray">Người duyệt</div>
+                            <div class="col-8 mb10">: N/A</div>
+                            <div class="col-4 mb10 gray">Ngày duyệt</div>
+                            <div class="col-8 mb10">: N/A</div>
+                            <div class="col-4 mb10 gray">Người cập nhật</div>
+                            <div class="col-8 mb10">: Nguyễn Thanh Bình</div>
+                            <div class="col-4 mb10 gray">Ngày cập nhật</div>
+                            <div class="col-8 mb10">: 01/02/2023 09:00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="line-bottom" style="padding-bottom: 0;">
+                <div class="tab-default mb0" data-tab-container="tab-container-2">
+                    <a href="#" class="active" data-lbl="danh-sach-goi">Danh sách gói</a>
+                    <a href="#" class="" data-lbl="bang-gia">Bảng giá</a>
+                </div>
+            </div>
+            <div class="tab-container" id="tab-container-2">
+                <!-- DANH SÁCH GÓI -->
+                <div class="mb20 tab-content" data-lbl="danh-sach-goi">
+                    <div class="table-responsive table-default table-gray">
+                        <table class="table table-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Mã gói</th>
+                                    <th>Hạng phòng</th>
+                                    <th class="text-right">Giá thu nhập</th>
+                                    <th>Theo thứ</th>
+                                    <th>Thời gian áp dụng</th>
+                                    <th>Trạng thái</th>
+                                    <th style="min-width: 200px;">Mô tả</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="3">1</td>
+                                    <td rowspan="3">
+                                        VP202301001
+                                        <div><span class="status-green">Mở bán</span></div>
+                                    </td>
+                                    <td>Family Suite</td>
+                                    <td class="text-right">2,000,000</td>
+                                    <td>
+                                        T2, T3, T4, T5, T6
+                                        <div class="red"><small>[Có giá riêng theo ngày]</small></div>
+                                    </td>
+                                    <td>02/01/2023 - 08/01/2023</td>
+                                    <td><span class="status-green">Mở bán</span></td>
+                                    <td rowspan="3">
+                                        <div>+ Bữa sáng tự chọn mỗi ngày</div>
+                                        <div>+ Đồ uống chào mừng</div>
+                                        <div>+ Trà, cà phê và 02 chai nước khoáng trong phòng mỗi ngày</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Family Suite</td>
+                                    <td class="text-right">2,000,000</td>
+                                    <td>
+                                        T7, CN
+                                    </td>
+                                    <td>02/01/2023 - 08/01/2023</td>
+                                    <td><span class="status-green">Mở bán</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Family Suite</td>
+                                    <td class="text-right">2,000,000</td>
+                                    <td>
+                                        T2, T3, T4, T5, T6
+                                    </td>
+                                    <td>02/01/2023 - 08/01/2023</td>
+                                    <td><span class="status-green">Mở bán</span></td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3">2</td>
+                                    <td rowspan="3">
+                                        VP202301001
+                                        <div><span class="status-gray">Đã đóng</span></div>
+                                    </td>
+                                    <td>Family Suite</td>
+                                    <td class="text-right">2,000,000</td>
+                                    <td>
+                                        T2, T3, T4, T5, T6
+                                        <div class="red"><small>[Có giá riêng theo ngày]</small></div>
+                                    </td>
+                                    <td>02/01/2023 - 08/01/2023</td>
+                                    <td><span class="status-green">Mở bán</span></td>
+                                    <td rowspan="3">
+                                        <div>+ Bữa sáng tự chọn mỗi ngày</div>
+                                        <div>+ Đồ uống chào mừng</div>
+                                        <div>+ Trà, cà phê và 02 chai nước khoáng trong phòng mỗi ngày</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Family Suite</td>
+                                    <td class="text-right">2,000,000</td>
+                                    <td>
+                                        T7, CN
+                                    </td>
+                                    <td>02/01/2023 - 08/01/2023</td>
+                                    <td><span class="status-green">Mở bán</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Family Suite</td>
+                                    <td class="text-right">2,000,000</td>
+                                    <td>
+                                        T2, T3, T4, T5, T6
+                                    </td>
+                                    <td>02/01/2023 - 08/01/2023</td>
+                                    <td><span class="status-green">Mở bán</span></td>
+                                </tr>
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination-flex">
+                        <div class="select-number">
+                            Hiển thị &nbsp;
+                            <select class="form-control">
+                        <option>30</option>
+                        <option>30</option>
+                        <option>30</option>
+                        <option>30</option>
+                    </select>&nbsp; trong số &nbsp; <strong>55</strong> &nbsp; kết quả lọc
+                        </div>
+                        <ul id="pagination" class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#">
+                                    <i class="fa fa-step-backward"></i>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link icon" href="#">
+                                    <i class="fa fa-caret-left"></i>
+                                </a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link icon" href="#">
+                                    <i class="fa fa-caret-right"></i>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">
+                                    <i class="fa fa-step-forward"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- BẢNG GIÁ -->
+                <div class="mb20 tab-content" data-lbl="bang-gia" style="display: none;">
+                    <div class="flex align-center mb10">
+                        <div class="datepicker-wrap mb10 mr-3">
+                            <input class="form-control datepicker-input " type="text" name="birthday">
+                        </div>
+                        <label class="radio mr-3">
+                        <input type="radio" name="optradio" checked="">
+                        <span class="checkmark"></span>
+                        Khách sạn
+                    </label>
+                        <label class="radio mr-3">
+                        <input type="radio" name="optradio">
+                        <span class="checkmark"></span>
+                        Nhà hàng
+                    </label>
+                        <label class="radio mr-3">
+                        <input type="radio" name="optradio">
+                        <span class="checkmark"></span>
+                        Phương tiện
+                    </label>
+                    </div>
+                    <div class="table-responsive table-default table-gray bg-white">
+                        <table class="table table-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Chương trình</th>
+                                    <th>Gói</th>
+                                    <th>Hạng phòng</th>
+                                    <th>
+                                        T2
+                                        <div>02/01/2023</div>
+                                    </th>
+                                    <th>
+                                        T3
+                                        <div>02/01/2023</div>
+                                    </th>
+                                    <th>
+                                        T4
+                                        <div>02/01/2023</div>
+                                    </th>
+                                    <th>
+                                        T5
+                                        <div>02/01/2023</div>
+                                    </th>
+                                    <th>
+                                        T6
+                                        <div>02/01/2023</div>
+                                    </th>
+                                    <th>
+                                        T7
+                                        <div>02/01/2023</div>
+                                    </th>
+                                    <th>
+                                        CN
+                                        <div>02/01/2023</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="4">1</td>
+                                    <td rowspan="4" class="blue">VP1001 - Mùa hè sôi động 1</td>
+                                    <td rowspan="2">VP1001202301001</td>
+                                    <td>Family Suite</td>
+                                    <td>2,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td class="oranger">4,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td>3,000,000</td>
+                                    <td class="oranger">5,000,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Family Suite</td>
+                                    <td>2,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td class="oranger">4,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td>3,000,000</td>
+                                    <td class="oranger">5,000,000</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">VP1001202301001</td>
+                                    <td>Family Suite</td>
+                                    <td>2,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td class="oranger">4,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td>3,000,000</td>
+                                    <td class="oranger">5,000,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Family Suite</td>
+                                    <td>2,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td class="oranger">4,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td>3,000,000</td>
+                                    <td class="oranger">5,000,000</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="4">2</td>
+                                    <td rowspan="4" class="blue">VP1001 - Mùa hè sôi động 2</td>
+                                    <td rowspan="2">VP1001202301001</td>
+                                    <td>Family Suite</td>
+                                    <td>2,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td class="oranger">4,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td>3,000,000</td>
+                                    <td class="oranger">5,000,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Family Suite</td>
+                                    <td>2,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td class="oranger">4,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td>3,000,000</td>
+                                    <td class="oranger">5,000,000</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">VP1001202301001</td>
+                                    <td>Family Suite</td>
+                                    <td>2,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td class="oranger">4,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td>3,000,000</td>
+                                    <td class="oranger">5,000,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Family Suite</td>
+                                    <td>2,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td class="oranger">4,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td>2,000,000</td>
+                                    <td>3,000,000</td>
+                                    <td class="oranger">5,000,000</td>
+                                </tr>
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+    <!-- POPUP TẠO NHÀ CUNG CẤP -->
+    <div class="modal fade" id="myModal0">
+        <div class="modal-dialog" style="max-width: 1200px">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Thêm mới nhà cung cấp</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row row_min">
+                        <div class="grid-item col-md-7">
+                            <div class="border">
+                                <div class="form-default3 pd10">
+                                    <div class="row row_min">
+                                        <div class="form-group col-6">
+                                            <label class="lbl">Tên nhà cung cấp <sup class="red">*</sup></label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control" id="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label class="lbl">Tên tắt</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control" id="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label class="lbl">Email</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control" id="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label class="lbl">Điện thoại</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control" id="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label class="lbl">Địa điểm <sup class="red">*</sup></label>
+                                            <div class="wrap_input">
+                                                <select class="form-control select2" name="" id="" style="width:100%">
+                                                    <option value="">Chọn</option>
+                                                    <option value="">Nguyễn Văn B</option>
+                                                    <option value="">Nguyễn Văn C</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label class="lbl">Mã số thuế</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control" id="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label class="lbl">Năm thành lập</label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control" id="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label class="lbl">Hạng sao</label>
+                                            <div class="wrap_input">
+                                                <select class="form-control select2" name="" id="" style="width:100%">
+                                                    <option value="">Chọn</option>
+                                                    <option value="">Nguyễn Văn B</option>
+                                                    <option value="">Nguyễn Văn C</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label class="lbl">Địa chỉ <sup class="red">*</sup></label>
+                                            <div class="wrap_input">
+                                                <input type="text" class="form-control" id="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label class="lbl">Chuỗi thương hiệu</label>
+                                            <div class="wrap_input">
+                                                <select class="form-control select2" name="" id="" style="width:100%">
+                                                    <option value="">Chọn</option>
+                                                    <option value="">Nguyễn Văn B</option>
+                                                    <option value="">Nguyễn Văn C</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label class="lbl">Thời gian xác nhận</label>
+                                            <div class="datepicker-wrap" style="width:100%">
+                                                <input class="form-control datepicker-input " type="text" name="birthday">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <label class="lbl">Mô tả</label>
+                                            <div class="wrap_input">
+                                                <textarea class="form-control" style="height: 90px;"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-item col-md-5">
+                            <div class="border mb20">
+                                <div class="lb-form">Thông tin khác</div>
+                                <div class="pd10">
+                                    <label class="lbl gray">Loại hình dịch vụ <sup class="red">*</sup></label>
+                                    <div class="grid grid__2 gap10 mb20">
+                                        <label class="check-list">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            Land tour
+                                        </label>
+                                        <label class="check-list">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            Khách sạn
+                                        </label>
+                                        <label class="check-list">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            Nhà hàng
+                                        </label>
+                                        <label class="check-list">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            Phương tiện
+                                        </label>
+                                        <label class="check-list">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            Hướng dẫn viên
+                                        </label>
+                                        <label class="check-list">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            Vé tham quan
+                                        </label>
+                                        <label class="check-list">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            Vé máy bay
+                                        </label>
+                                        <label class="check-list">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            Tour du lịch
+                                        </label>
+                                        <label class="check-list">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            Teambuilding
+                                        </label>
+                                        <label class="check-list">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            Khác
+                                        </label>
+                                    </div>
+                                    <label class="lbl gray">Loại hình lưu trú <sup class="red">*</sup></label>
+                                    <div class="grid grid__2 gap10">
+                                        <label class="check-list">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            Land tour
+                                        </label>
+                                        <label class="check-list">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            Khách sạn
+                                        </label>
+                                        <label class="check-list">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            Nhà hàng
+                                        </label>
+                                        <label class="check-list">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            Phương tiện
+                                        </label>
+                                        <label class="check-list">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            Hướng dẫn viên
+                                        </label>
+                                        <label class="check-list">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            Vé tham quan
+                                        </label>
+                                        <label class="check-list">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            Vé máy bay
+                                        </label>
+                                        <label class="check-list">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            Tour du lịch
+                                        </label>
+                                        <label class="check-list">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            Teambuilding
+                                        </label>
+                                        <label class="check-list">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            Khác
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border mb20">
+                                <div class="lb-form">Hiển thị website</div>
+                                <div class="pd10">
+                                    <div class="row pd10">
+                                        <div class="col-md-6">
+                                            <label class="radio">
+                                                <input type="radio" name="optradio" checked="">
+                                                <span class="checkmark"></span>
+                                                Hiển thị website
+                                            </label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="radio">
+                                                <input type="radio" name="optradio">
+                                                <span class="checkmark"></span>
+                                                Không hiển thị website
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-default btn btn-default cancel">Bỏ qua</button>
+                        <button type="submit" class="btn btn-default">Thêm</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- POPUP THÊM PHÒNG -->
+    <div class="modal fade" id="myModal1">
+        <div class="modal-dialog" style="max-width: 600px">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header line-bottom mb0">
+                    <h4 class="modal-title">Thêm mới phòng</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="line-bottom" style="padding-bottom: 0;">
+                        <div class="tab-default mb0">
+                            <a href="#tab-thongtin" class="active">Thông tin phòng</a>
+                            <a href="#tab-tienich" class="">Tiện ích</a>
+                            <a href="#tab-anh">Ảnh phòng</a>
+                        </div>
+                    </div>
+                    <div class="tab-content">
+                        <div id="tab-thongtin">
+                            <div class="form-default3">
+                                <div class="row row_min">
+                                    <div class="col-12 mb10">Ảnh đại diện</div>
+                                    <div class="form-group col-md-6">
+                                        <input type="file" name="myFile">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <div style="max-width: 150px;">
+                                            <div class="thumb_img thumb_4x3"><img src="images/graphics/img_4.jpg"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label class="lbl">Hạng phòng <sup class="red">*</sup></label>
+                                        <div class="wrap_input">
+                                            <input type="text" class="form-control" id="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label class="lbl">Loại giường <sup class="red">*</sup></label>
+                                        <div class="wrap_input">
+                                            <select class="form-control select2" name="" id="" style="width:100%">
+                                            <option value="">Chọn</option>
+                                            <option value="">Nguyễn Văn B</option>
+                                            <option value="">Nguyễn Văn C</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label class="lbl">Số người lớn/ phòng <sup class="red">*</sup></label>
+                                        <div class="wrap_input">
+                                            <input type="text" class="form-control" id="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label class="lbl">Số trẻ em/ phòng</label>
+                                        <div class="wrap_input">
+                                            <input type="text" class="form-control" id="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label class="lbl">Số lượng phòng</label>
+                                        <div class="wrap_input">
+                                            <input type="text" class="form-control" id="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label class="lbl">Diện tích (m2)</label>
+                                        <div class="wrap_input">
+                                            <input type="text" class="form-control" id="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-12">
+                                        <label class="lbl">Mô tả</label>
+                                        <div class="wrap_input">
+                                            <textarea class="form-control" style="height: 90px;"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div id="tab-tienich" style="display: none;">
+                            <label class="check-list mb10">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Chọn tất cả
+                        </label>
+                            <p><strong>Tiện ích phòng</strong></p>
+                            <div class="grid grid__2 gap10 mb20">
+                                <label class="check-list">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Land tour
+                            </label>
+                                <label class="check-list">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Khách sạn
+                            </label>
+                                <label class="check-list">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Nhà hàng
+                            </label>
+                                <label class="check-list">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Phương tiện
+                            </label>
+                                <label class="check-list">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Hướng dẫn viên
+                            </label>
+                                <label class="check-list">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Vé tham quan
+                            </label>
+                                <label class="check-list">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Vé máy bay
+                            </label>
+                                <label class="check-list">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Tour du lịch
+                            </label>
+                                <label class="check-list">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Teambuilding
+                            </label>
+                                <label class="check-list">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Khác
+                            </label>
+                            </div>
+                        </div>
+                        <div id="tab-anh" style="display: none;">
+                            <div class="form-default3">
+                                <div class="row row_min">
+                                    <div class="form-group col-md-6">
+                                        <div class="mb15">
+                                            <div class="col-12 mb10">Ảnh đại diện</div>
+                                            <input type="file" name="myFile">
+                                        </div>
+                                        <div>
+                                            <div class="col-12 mb10">Các ảnh khác</div>
+                                            <input type="file" name="myFile">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <div style="max-width: 150px;">
+                                            <div class="thumb_img thumb_4x3"><img src="images/graphics/img_4.jpg"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-12">
+                                        <div class="border flex align-center justify-center pd10 mb15" style="min-height: 100px;">Kéo tệp vào đây hoặc nhấp để tải lên</div>
+                                        <div class="border pd10">
+                                            <div class="row list-choose">
+                                                <div class="col-md-3 col-6 mb10">
+                                                    <div class="choose-ava">
+                                                        <img src="images/graphics/img_4.jpg">
+                                                        <button type="button" class="delete">×</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-6 mb10">
+                                                    <div class="choose-ava">
+                                                        <img src="images/graphics/img_4.jpg">
+                                                        <button type="button" class="delete">×</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-6 mb10">
+                                                    <div class="choose-ava">
+                                                        <img src="images/graphics/img_4.jpg">
+                                                        <button type="button" class="delete">×</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-6 mb10">
+                                                    <div class="choose-ava">
+                                                        <img src="images/graphics/img_4.jpg">
+                                                        <button type="button" class="delete">×</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-6 mb10">
+                                                    <div class="choose-ava">
+                                                        <img src="images/graphics/img_4.jpg">
+                                                        <button type="button" class="delete">×</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-6 mb10">
+                                                    <div class="choose-ava">
+                                                        <img src="images/graphics/img_4.jpg">
+                                                        <button type="button" class="delete">×</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-6 mb10">
+                                                    <div class="choose-ava">
+                                                        <img src="images/graphics/img_4.jpg">
+                                                        <button type="button" class="delete">×</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-6 mb10">
+                                                    <div class="choose-ava">
+                                                        <img src="images/graphics/img_4.jpg">
+                                                        <button type="button" class="delete">×</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-default btn btn-default cancel">Bỏ qua</button>
+                        <button type="submit" class="btn btn-default">Thêm</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- POPUP SỬA PHỤ THU -->
+    <div class="modal fade" id="myModal2">
+        <div class="modal-dialog" style="max-width: 600px">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header line-bottom mb0">
+                    <h4 class="modal-title">Chỉnh sửa phụ thu</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="form-default3">
+                        <div class="row row_min">
+                            <div class="form-group col-6">
+                                <label class="lbl">Mã phụ thu</label>
+                                <div class="wrap_input">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="form-group col-6">
+                                <label class="lbl">Giá bán</label>
+                                <div class="wrap_input">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="form-group col-12">
+                                <label class="lbl">Tên phụ thu <sup class="red">*</sup></label>
+                                <div class="wrap_input">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="form-group col-12">
+                                <label class="lbl">Mô tả</label>
+                                <div class="wrap_input">
+                                    <textarea class="form-control" style="height: 90px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group col-12">
+                                <label class="lbl">Trạng thái</label>
+                                <div class="wrap_input">
+                                    <label class="radio mr-2">
+                                        <input type="radio" name="optradio" checked="">
+                                        <span class="checkmark"></span>Mở
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="optradio" >
+                                        <span class="checkmark"></span>Đóng
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-default btn btn-default cancel">Bỏ qua</button>
+                        <button type="submit" class="btn btn-default">Lưu</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- POPUP THÊM PHỤ THU -->
+    <div class="modal fade" id="myModal3">
+        <div class="modal-dialog" style="max-width: 600px">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header line-bottom mb0">
+                    <h4 class="modal-title">Thêm mới phụ thu</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="form-default3">
+                        <div class="row row_min">
+                            <div class="form-group col-6">
+                                <label class="lbl">Mã phụ thu</label>
+                                <div class="wrap_input">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="form-group col-6">
+                                <label class="lbl">Giá bán</label>
+                                <div class="wrap_input">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="form-group col-12">
+                                <label class="lbl">Tên phụ thu <sup class="red">*</sup></label>
+                                <div class="wrap_input">
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="form-group col-12">
+                                <label class="lbl">Mô tả</label>
+                                <div class="wrap_input">
+                                    <textarea class="form-control" style="height: 90px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group col-12">
+                                <label class="lbl">Trạng thái</label>
+                                <div class="wrap_input">
+                                    <label class="radio mr-2">
+                                        <input type="radio" name="optradio" checked="">
+                                        <span class="checkmark"></span>Mở
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="optradio" >
+                                        <span class="checkmark"></span>Đóng
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-default btn btn-default cancel">Bỏ qua</button>
+                        <button type="submit" class="btn btn-default">Thêm</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- POPUP Chỉnh sửa tài khoản thanh toán -->
+    <div class="modal fade" id="myModal4">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header line-bottom mb0">
+                    <h4 class="modal-title">Chỉnh sửa tài khoản thanh toán</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="form-default3">
+                        <div class="row row_min">
+                            <label class="lbl col-md-3 mb10">Số tài khoản <sup class="red">*</sup></label>
+                            <div class="wrap_input col-md-9 mb10">
+                                <input type="text" class="form-control" id="">
+                            </div>
+                            <label class="lbl col-md-3 mb10">Chủ tài khoản <sup class="red">*</sup></label>
+                            <div class="wrap_input col-md-9 mb10">
+                                <input type="text" class="form-control" id="">
+                            </div>
+                            <label class="lbl col-md-3 mb10">Tên ngân hàng <sup class="red">*</sup></label>
+                            <div class="wrap_input col-md-9 mb10">
+                                <input type="text" class="form-control" id="">
+                            </div>
+                            <label class="lbl col-md-3 mb10">Chi nhánh <sup class="red">*</sup></label>
+                            <div class="wrap_input col-md-9 mb10">
+                                <input type="text" class="form-control" id="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-default btn btn-default cancel">Bỏ qua</button>
+                        <button type="submit" class="btn btn-default">Lưu</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- POPUP Thêm tài khoản thanh toán -->
+    <div class="modal fade" id="myModal5">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header line-bottom mb0">
+                    <h4 class="modal-title">Thêm tài khoản thanh toán</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="form-default3">
+                        <div class="row row_min">
+                            <label class="lbl col-md-3 mb10">Số tài khoản <sup class="red">*</sup></label>
+                            <div class="wrap_input col-md-9 mb10">
+                                <input type="text" class="form-control" id="">
+                            </div>
+                            <label class="lbl col-md-3 mb10">Chủ tài khoản <sup class="red">*</sup></label>
+                            <div class="wrap_input col-md-9 mb10">
+                                <input type="text" class="form-control" id="">
+                            </div>
+                            <label class="lbl col-md-3 mb10">Tên ngân hàng <sup class="red">*</sup></label>
+                            <div class="wrap_input col-md-9 mb10">
+                                <input type="text" class="form-control" id="">
+                            </div>
+                            <label class="lbl col-md-3 mb10">Chi nhánh <sup class="red">*</sup></label>
+                            <div class="wrap_input col-md-9 mb10">
+                                <input type="text" class="form-control" id="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-default btn btn-default cancel">Bỏ qua</button>
+                        <button type="submit" class="btn btn-default">Thêm</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</section>
+
+
+
+<!-- /build:content -->
+
+<!-- build:script2 -->
+<script type="text/javascript">
+</script>
+<!-- /build:script2 -->

@@ -1,0 +1,214 @@
+﻿@{
+    Layout = null;
+}
+@using Utilities.Contants
+@using Entities.ViewModels.Invoice;
+@using Entities.ViewModels
+@using Entities.Models
+@model GenericViewModel<OrderViewModel>
+@{
+    var data = Model.ListData;
+    var Total = (TotalValueOrder)ViewBag.TotalValueOrder;
+
+
+}
+<div class="bg-white pd-16 radius10">
+    <div id="List-Order-Status" class="line-bottom mb15" style="padding-bottom: 0;">
+        <div class="row" style=" width: 100%; ">
+            <input id="countOrder" value="@Model.TotalRecord" style="display:none" />
+            <div class="tab-default col-md-9 mb0 mt10">
+                <a href="javascript:;" onclick="_ordersCMS.OnSearchStatus(99)" id="countSttAll" class="active">Tất cả đơn hàng (@Model.TotalRecord) </a>
+                <a href="javascript:;" onclick="_ordersCMS.OnSearchStatus(1)" id="countSttCheck">Đang tư vấn </a>
+                <a href="javascript:;" onclick="_ordersCMS.OnSearchStatus(2)" id="countSttNotDone">Chưa khởi hành </a>
+                <a href="javascript:;" onclick="_ordersCMS.OnSearchStatus(3)" id="countSttDone">Đã khởi hành </a>
+                <a href="javascript:;" onclick="_ordersCMS.OnSearchStatus(4)" id="countSttErr">Đơn hàng lỗi </a>
+                <a href="javascript:;" onclick="_ordersCMS.OnSearchStatus(0)" id="countSttNews">Đơn chờ nhận triển khai</a>
+            </div>
+            <div class="col-md-3 text-right mt10">
+                <button type="submit" class="btn btn-default" style="" onclick="_order_manual.CreateOrderManual()">Tạo đơn hàng</button>
+                @*<button type="submit" class="btn btn-default" style="" onclick="_order_ws_excel.ImportWSExcel()">Import đơn hàng TTB</button>*@
+            </div>
+        </div>
+    </div>
+    <div id="List-Order-Amount" class="flex mb15">
+        <div class="mb10 mr-4">Tổng giá trị: <strong>@Total.TotalAmmount</strong></div>
+        <div class="mb10 mr-4">Đã thanh toán: <strong>@Total.TotalProductService</strong></div>
+        <div class="mb10 mr-4">Chưa thanh toán: <strong>@((Convert.ToDouble(Total.TotalAmmount) - Convert.ToDouble(Total.TotalProductService)).ToString("N0"))</strong></div>
+        <div class="mb10 mr-4">Lợi nhuận: <strong>@Total.TotalProfit</strong></div>
+    </div>
+
+    <div class="wrap_bg wrap_bg_no-padding mb20">
+        <div class="table-responsive mb20">
+            <table class="table table-nowrap">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã đơn</th>
+                        <th style="max-width:150px;">
+                           Tên sản phẩm
+                        </th>
+                        <th> Tổng tiền </th>
+                        <th> Lợi nhuận </th>
+                        <th> Trạng thái đơn</th>
+                        <th> Trạng thái thanh toán</th>
+                        <th> Hình thức thanh toán</th>
+                        <th> Ngày tạo đơn</th>
+                        <th> khách hàng</th>
+                        <th>Voucher </th>
+                        <th>Người phụ trách </th>
+                        <th>Nguồn đơn </th>                      
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.ListData != null && Model.ListData.Count > 0)
+                    {
+                        var counter = (Model.CurrentPage - 1) * Model.PageSize;
+                        foreach (var item in Model.ListData)
+                        {
+                            counter++;
+                            <tr>
+                                <td class="center">@counter</td>
+                                <td>
+                                    <a class="blue" href="/Order/@item.OrderId" onclick="_ordersCMS.saveCookieFilter()">@item.OrderNo</a>
+                                </td>
+                                <td>
+                                    @if(item.ListProduct != null && item.ListProduct.Count > 0)
+                                    {
+                                        foreach (var item2 in item.ListProduct)
+                                        {
+                                            <div class="item-order mb-3" style="display: flex; flex-direction: row; flex-wrap: nowrap;">
+                                                <div class="img mr-2" style="min-width:80px;max-width:80px;">
+                                                    <img src="@(item2.avatar.Contains("https") ? item2.avatar:ViewBag.domainImg +item2.avatar)" style="min-width: 80px; max-width: 80px;" alt="">
+                                                </div>
+                                                <div class="info">
+                                                    <h6 class="bold" style="white-space: break-spaces;">@item2.name</h6>
+                                                    <div class="cat"> Phân loại: @(item2.variation_detail != null ? string.Join(",", item2.variation_detail.Select(s => s.name).ToList()):"")</div>
+                                                </div>
+                                            </div>
+                                        }
+                                      
+                                    }
+                                    
+                                </td>
+                                <td class="text-right">
+                                    <div class="green">@item.Payment.ToString("#,##0")/</div>
+                                    <div class="red">@(item.Amount == 0 ? "0" : item.Amount.ToString("#,##"))</div>
+                                </td>
+                                <td>@item.Profit.ToString("#,##")</td>
+                                <td>
+                                    @switch (item.StatusCode)
+                                    {
+                                        case (int)(OrderStatus.CREATED_ORDER):
+                                        case (int)(OrderStatus.CONFIRMED_SALE):
+                                            {
+                                                <span class="status-oranger">@item.Status</span>
+                                            }
+                                            break;
+                                        case (int)(OrderStatus.WAITING_FOR_OPERATOR):
+
+                                            {
+                                                <span class="status-green">@item.Status</span>
+
+                                            }
+                                            break;
+                         
+                                        case (int)(OrderStatus.FINISHED):
+                                            {
+                                                <span class="status-green">@item.Status</span>
+                                            }
+                                            break;
+                                        case ((int)(OrderStatus.CANCEL)):
+
+                                            {
+                                                <span class="status-red">@item.Status</span>
+                                            }
+                                            break;
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.PaymentStatus != "")
+                                    {
+                                        @if (Convert.ToInt32(item.PaymentStatus) == (int)PaymentStatus.UNPAID)
+                                        {
+                                            <div class="status-oranger">
+                                                @item.PaymentStatusName
+                                            </div>
+                                        }
+                                        @if (Convert.ToInt32(item.PaymentStatus) == (int)PaymentStatus.PAID)
+                                        {
+                                            <div class="status-green">
+                                                @item.PaymentStatusName
+                                            </div>
+                                        }
+                                        @if (Convert.ToInt32(item.PaymentStatus) == (int)PaymentStatus.PAID_NOT_ENOUGH)
+                                        {
+                                            <div class="status-blue">
+                                                @item.PaymentStatusName
+                                            </div>
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    @item.PaymentTypeName
+                                </td>
+                                <td>
+                                    @item.CreatedDate.ToString("dd/MM/yyyy")
+                                </td>
+                                <td>
+                                    <a class="blue" href="/CustomerManager/Detail/@item.ClientId">@item.ClientName</a>
+                                   
+                                    <div>@item.ClientNumber</div>
+                                    <div>@item.ClientEmail</div>
+                                </td>
+                                <td>
+                                    @item.Vouchercode
+                                </td>
+                                <td>
+                                    <div>@item.SalerName </div>
+                                </td>
+                                <td>@item.UtmSource</td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+        @*@if (Model.ListData != null && Model.ListData.Count > 0)
+        {
+            <div class="bottom-action flex flex-nowrap gap10 justify-content-end mt-3">
+                <button class="btn btn-default white" style="padding: 0 10px;">
+                    <i class="icofont-gear"></i>
+                    <span>Tùy chỉnh</span>
+                </button>
+                <div class="form-group select-icon">
+                    <select class="select2" id="selectPaggingOptions" onchange="_ordersCMS.onSelectPageSize()">
+                        <option value="10">10 kết quả/trang</option>
+                        <option value="20">20 kết quả/trang</option>
+                        <option value="50">50 kết quả/trang</option>
+                        <option value="100">100 kết quả/trang</option>
+                        <option value="200">200 kết quả/trang</option>
+                        <option value="300">300 kết quả/trang</option>
+                    </select>
+                </div>
+            </div>
+        }*@
+        @await Component.InvokeAsync("PagingNew", new
+{
+    pageModel = new Paging()
+    {
+        TotalRecord = Model.TotalRecord,
+        TotalPage = Model.TotalPage,
+        CurrentPage = Model.CurrentPage,
+        PageSize = Model.PageSize,
+        RecordName = "hợp đồng",
+        PageAction = "_ordersCMS.OnPaging({0})",
+        PageSelectPageSize = "_ordersCMS.onSelectPageSize()"
+    }
+})
+    </div>
+
+</div>
+@*<script>
+    $('#selectPaggingOptions').select2();
+</script>*@

@@ -1,0 +1,70 @@
+﻿@{
+    string qrcode_uri = (string)ViewBag.key;
+}
+<style>
+    .placeholderqr {
+        height: 25px !important;
+    }
+</style>
+<div class="modal-content">
+    <div class="modal-body">
+        <table style="width: 100%;border-spacing: 0;">
+            <tbody>
+                <tr>
+                    <td colspan="2" style="padding:10pt;line-height: 150%;color: #222222;background:#fff;text-align: center;font-size: 18px;">
+                        <p style="margin-bottom: 15px;">Quét mã Qr Code</p>
+                        <p style="margin-bottom: 15px;">
+                            @*<img src="@ViewBag.qr" alt="" style="display:none;">*@
+                            <div id="QrCode" style="text-align: -webkit-center;"> </div>
+                        </p>
+                        <p style="margin-bottom:15px; margin-bottom: 15px; width: 518px; word-wrap: break-word; white-space: pre-wrap;"> <strong> Nhập mã:<br /> @ViewBag.manual_entry_key</strong></p>
+                        <p style="margin-bottom:15px">
+                            <a id="download_qr" style="display: inline-block;background: purple;color: #fff;width: 49%;text-decoration: none;border-radius: 6px;padding: 10px;" href="javascript:;">Tải mã Qr</a>
+                        </p>
+                        <p style="margin-bottom:15px">Download Google Authenticator</p>
+                        <p style="margin-bottom:15px">
+                            <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=vi&gl=US" style="display: inline-block;width: 49%;"><img style="width: 100%;" src="~/images/graphics/google-play.png" alt=""></a>
+                            <a href="https://apps.apple.com/vn/app/google-authenticator/id388497605?l=vi" style="display: inline-block;width: 49%;"><img style="width: 100%;" src="~/images/graphics/app-store.png" alt=""></a>
+                        </p>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+        if (document.getElementById("QrCode") != null) {
+            var qrcode = new QRCode(document.getElementById("QrCode"), {
+                text: "@qrcode_uri",
+                width: 350,
+                height: 350,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.Q
+            });
+        };
+    document.getElementById('download_qr').addEventListener('click', function () {
+      
+            // Lấy URL của ảnh
+            var imageUrl = $('#QrCode').find('img')[0].src;
+
+            // Tạo một thẻ <a> ẩn để tải xuống ảnh
+            var downloadTag = document.createElement('a');
+            downloadTag.href = imageUrl;
+
+            // Thiết lập thuộc tính download để cho phép tải xuống
+            downloadTag.download = 'image.jpg'; // Tên mặc định khi tải xuống, bạn có thể thay đổi tên tùy ý
+
+            // Tự động nhấp vào liên kết để tải xuống ảnh
+            document.body.appendChild(downloadTag);
+            downloadTag.click();
+            document.body.removeChild(downloadTag);
+        
+    });
+</script>
+@section scripts{
+  
+
+
+}

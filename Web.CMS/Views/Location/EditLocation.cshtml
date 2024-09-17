@@ -1,0 +1,75 @@
+﻿@using Entities.Models
+@using Entities.ViewModels
+@{
+    Layout = null;
+    var locationTypeList = (List<string>)ViewBag.LocationTypeList;
+    var l_name = (string)ViewBag.LocationName;
+    var l_type = (string)ViewBag.LocationType;
+    var l_status = (Int16?)ViewBag.Status;
+
+}
+<div class="form-default2">
+    <div class="form-group">
+        <label class="lbl">Loại</label>
+        <div class="wrap_input">
+            <select class="form-control" id="selectLocationType" onchange="_location.EditPopupChangeLocationType()">
+                @if (locationTypeList != null)
+                {
+                    foreach (var item in locationTypeList)
+                    {
+                        if (l_type == item)
+                        {
+                            <option selected value="@locationTypeList.IndexOf(@item)">@item</option>
+                        }
+                        else
+                        {
+                            <option value="@locationTypeList.IndexOf(@item)">@item</option>
+                        }
+                    }
+                }
+
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="lbl">@l_type</label>
+        <div class="wrap_input">
+            <input type="text" class="form-control " placeholder="Nhập tên @l_type mới." id="i_e_name" value="@l_name">
+            <span id="e_fe" class="mfp-hide error">Bạn chưa nhập tên @l_type</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="lbl">Trạng thái</label>
+        <div class="wrap_input ">
+            <div class="form-check form-check-inline" style="width:40%">
+                <input class="form-check-input" style="padding-right:5%" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="0">
+                <label class="form-check-label" style="padding-right:3%" for="inlineRadio1">Bình thường</label>
+            </div>
+            <div class="form-check form-check-inline" style="width:40%">
+                <input class="form-check-input" style="padding-right:5%" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="1">
+                <label class="form-check-label" style="padding-right:3%" for="inlineRadio2">Khóa / Tạm dừng</label>
+            </div>
+        </div>
+    </div>
+    <div class="align-right mt20 block">
+        <img id="onapply_location" src="~/images/icons/loading.gif" style=" width: 20px; height: 20px; display:none;" />
+        <button onclick="_location.OnEditLocation()" class="btn btn-default bg-main" id="btnEditLocation">
+            <i class="fa fa-edit"></i>Sửa
+        </button>
+        &nbsp;
+        <button type="button" class="btn btn-default cancel" onclick="$.magnificPopup.close();">
+            <i class="fa fa-minus-circle"></i>Bỏ qua
+        </button>
+    </div>
+</div>
+<script>
+    var stt=@l_status;
+    if (stt == null) stt = 0;
+    if (stt == 0) {
+        document.getElementById("inlineRadio1").checked = true;
+    }
+    else {
+        document.getElementById("inlineRadio2").checked = true;
+
+    }
+</script>

@@ -1,0 +1,39 @@
+﻿@using Entities.Models
+@model List<BankingAccount>
+<div style="max-width: 600px;">
+
+    <div class="table-responsive table-gray">
+        <table class="table table-nowrap">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Số tài khoản</th>
+                    <th>Chủ tài khoản</th>
+                    <th>Tên ngân hàng</th>
+                    <th>Chi nhánh</th>
+                    <th>Tác vụ</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0)
+                {
+                    var counter = 0;
+                    foreach (var item in Model)
+                    {
+                        counter++;
+                        <tr>
+                            <td>@counter</td>
+                            <td>@item.AccountNumber</td>
+                            <td>@item.AccountName</td>
+                            <td>@item.BankId</td>
+                            <td>@item.Branch</td>
+                            <td>
+                                <a class="blue" onclick="_customer_manager_Detail.OpenPopupPaymentAccount(@item.Id)"><i class="fa fa-edit blue"></i></a> &nbsp;&nbsp;
+                                <a class="red" onclick="_customer_manager_Detail.DeletePaymentAccount(@item.Id)"><i class="fa fa-times red"></i></a>
+                            </td>
+                        </tr>}
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

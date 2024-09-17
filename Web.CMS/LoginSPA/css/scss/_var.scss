@@ -1,0 +1,83 @@
+/* Scss Document */
+
+@function px_to_rem($target, $context: $base-size) {
+    @if $target==0 {
+        @return 0
+    }
+    @return $target / $context+0rem;
+}
+
+:root {
+    --color-main: #0059A1;
+    --color-main2: rgba(5, 69, 121, 0.83);
+    // --color-green: #4BAC4D;
+    // --color-green2: #236852;
+    --color-green: #0059A1;
+    --color-green2: rgba(5, 69, 121, 1);
+    --red: #ED5C6A;
+    --gray500: #E1E1E1;
+    --gray200: #F3F3F3;
+    --gray100: #AEAEAE;
+    --gray50: #F3F5F8;
+    --gray10: #FBFBFB;
+}
+
+$base-size: 16px;
+$lh: 1.313;
+$lhbody: 1.45;
+$font1:Arial;
+$font: Arial;
+$url: "images" !default;
+$main_width: 1000px;
+$max_width_1000: 750px;
+$max_width_750: 600px;
+$max_width_600: 100%;
+@mixin placeholder {
+    &::-webkit-input-placeholder {
+        @content
+    }
+    &:-moz-placeholder {
+        @content
+    }
+    &::-moz-placeholder {
+        @content
+    }
+    &:-ms-input-placeholder {
+        @content
+    }
+}
+
+%social_btn {
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    margin-left: 5px;
+    display: inline-block;
+    i {
+        font-size: 11px;
+        color: #fff;
+        vertical-align: middle;
+        display: inline-block;
+        margin-top: 1px;
+    }
+}
+
+@mixin cubic-transition($delay, $duration, $property) {
+    transition: {
+        duration: $duration;
+        property: $property;
+        timing-function: cubic-bezier(.7, 1, .7, 1);
+    }
+}
+
+
+/* @include cubic-transition($delay: 0, $duration: 200ms, $property: (all)); */
+
+$zindex-dropdown: 1000;
+$zindex-sticky: 1020;
+$zindex-fixed: 1030;
+$zindex-modal-backdrop: 1040;
+$zindex-offcanvas: 1050;
+$zindex-modal: 1060;
+$zindex-popover: 1070;
+$zindex-tooltip: 1080;

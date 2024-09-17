@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="vi" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="" />
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title> @ViewData["Title"] </title>
+    <link type="image/x-icon" href="~/images/graphics/logo_adavigo.jpg" rel="shortcut icon" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <link href="~/lib/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet" />
+    <link href="~/lib/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="~/lib/magnific-popup/magnific-popup.css" rel="stylesheet" />
+    <link href="~/lib/token-input/token-input.css" rel="stylesheet" />
+    <link href="~/lib/croppie/croppie.css" rel="stylesheet" />
+    <link href="~/lib/sweetalert2/sweetalert2.css" rel="stylesheet" />
+    @*<link href="~/lib/select2/css/select2.css" rel="stylesheet" />*@
+    <link href="~/css/select2-bootstrap.css" rel="stylesheet" />
+    <link href="~/css/style.css?v=2" media="all" rel="stylesheet" />
+    <link href="~/css/cms-style.css?v=1" rel="stylesheet" />
+    <!-- build:head -->
+</head>
+
+<body class="homepage">
+    <section id="topbar" class="section top_bar">
+        <div class="flex container align-center">
+            <a href="javascript:;" class="all-menu all-menu-tablet"><span class="hamburger"></span></a>
+            <a class="logo" href="/"><img src="/images/graphics/logo_adavigo.jpg"></a>
+            <div class="header-right">
+                <ul>
+                    <li class="user-name menu-bar onclick-togle">
+                        <a class="lk-user-name">
+                            <strong>Chào: @ViewBag.UserName</strong>
+                            <i class="fa fa-user"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="/" style="cursor:pointer"><i class="fa fa-external-link"></i>Đăng xuất</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="section head-top">
+        <div class="flex container justify-content-end" style="width:100%;">
+            <div class="header-tab tab-default ">
+                <ul class="flex">
+                    <li>
+                        <a href="/" style="cursor:pointer"><i class="fa fa-home" aria-hidden="true"></i>Trang chủ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="main-container">
+        @RenderBody()
+    </section>
+
+
+    <!--end popup-->
+    <!--Jquery lib-->
+    <script type="text/javascript" src="~/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery-ui-1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.validate.js"></script>
+    <script type="text/javascript" src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+    <script type="text/javascript" src="~/lib/toastr/toastr.min.js"></script>
+    <script type="text/javascript" src="~/lib/token-input/jquery.tokeninput.js"></script>
+    <script type="text/javascript" src="~/lib/magnific-popup/jquery.magnific-popup.js"></script>
+    <script type="text/javascript" src="~/lib/croppie/croppie.js"></script>
+    <script type="text/javascript" src="~/lib/sweetalert2/sweetalert2.js"></script>
+    <script type="text/javascript" src="~/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery.scrollbar.min.js"></script>
+    <script type="text/javascript" src="~/js/svgxuse.js"></script>
+    <script type="text/javascript" src="~/js/zebra_datepicker.min.js"></script>
+    <script type="text/javascript" src="~/js/swiper.min.js"></script>
+    <script type="text/javascript" src="~/lib/select2/js/select2.js"></script>
+    <script type="text/javascript" src="~/modules/notify.js"></script>
+    <script type="text/javascript" src="~/js/common.js?v=1"></script>
+    <script type="text/javascript" src="~/lib/cms-common.js"></script>
+
+    <!-- build:script -->
+
+    @RenderSection("Scripts", required: false)
+
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
+</body>
+</html>
