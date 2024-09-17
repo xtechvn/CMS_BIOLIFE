@@ -1,0 +1,10 @@
+
+/Caching/obj
+/.vs
+DAL/obj/DAL.csproj.nuget.dgspec.json
+/DAL/obj
+/Entities/obj
+/Repositories/obj
+/Utilities/obj
+/Web.CMS/obj
+Web.CMS/Properties/launchSettings.json

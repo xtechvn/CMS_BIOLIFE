@@ -7,7 +7,7 @@
   "KEY_TOKEN_CMS": "1372498309AAH0fVro47y1o5mIIcwVkR3k",
   "API_SYNC_ARTICLE": "/api/caching/sync-article.json",
   "API_SYNC_CATEGORY": "/api/caching/sync-category.json",
-  "API_URL": "http://qc-api-hulotoy.x-tech.vn",
+  "API_URL": "http://qc-api-biolife.x-tech.vn",
   "ROLE_ADMIN": "1",
   "LoginURL": "/Account/Login",
   "SIZE_IMG": "16x9",
