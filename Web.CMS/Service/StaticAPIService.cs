@@ -1,5 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using Entities.Models;
+using Newtonsoft.Json;
 using Repositories.IRepositories;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats;
+using SixLabors.ImageSharp.Formats.Jpeg;
+using SixLabors.ImageSharp.Processing;
 using System.Text;
 using Utilities;
 using Utilities.ViewModels.Article;
@@ -86,9 +91,26 @@ namespace WEB.Adavigo.CMS.Service
             {
                 if (!string.IsNullOrEmpty(imgSrc) && imgSrc.StartsWith("data:image"))
                 {
+                    string img_edited = imgSrc;
+                   
+                    var jpegEncoder = new JpegEncoder { Quality = 100 };
+                    using (var image = SixLabors.ImageSharp.Image.Load(imgSrc))
+                    {
+                        var proportion = (double)imgSrc.Length / 1024;
+                        var maxWidth = (int)(image.Width / proportion);
+                        var maxHeight = (int)(image.Height / proportion);
+                        image.Mutate(x => x
+                            .Resize(new ResizeOptions
+                            {
+                                Mode = ResizeMode.Max,
+                                Size = new Size(maxWidth, maxHeight)
+                            }));
+                        // Save the Image
+                        img_edited = image.ToBase64String(image.Metadata.DecodedImageFormat);
+                    }
                     var ImageBase64 = new ImageBase64();
-                    var base64Data = imgSrc.Split(',')[0];
-                    ImageBase64.ImageData = imgSrc.Split(',')[1];
+                    var base64Data = img_edited.Split(',')[0];
+                    ImageBase64.ImageData = img_edited.Split(',')[1];
                     ImageBase64.ImageExtension = base64Data.Split(';')[0].Split('/')[1];
                     return ImageBase64;
                 }

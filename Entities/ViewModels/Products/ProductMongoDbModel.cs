@@ -23,6 +23,7 @@ namespace Entities.ViewModels.Products
         public double amount { get; set; }
         public double? amount_min { get; set; }
         public double? amount_max { get; set; }
+        public string label_price { get; set; }
         public int quanity_of_stock { get; set; }
 
         public double discount { get; set; }

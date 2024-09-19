@@ -25,7 +25,7 @@ namespace WEB.CMS.Controllers
     [CustomAuthorize]
     public class NewsController : Controller
     {
-        private const int NEWS_CATEGORY_ID = 10;
+        private const int NEWS_CATEGORY_ID = 39;
         private const int VIDEO_NEWS_CATEGORY_ID = 1;
         private readonly IGroupProductRepository _GroupProductRepository;
         private readonly IArticleRepository _ArticleRepository;

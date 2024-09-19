@@ -28,6 +28,24 @@
         });
         return data
     },
+    POSTBodySynchorus: function (url, model) {
+        var data = undefined
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: JSON.stringify(data),
+            method: 'POST',
+            contentType: 'application/json',
+            success: function (result) {
+                data = result;
+            },
+            error: function (err) {
+                console.log(err)
+            },
+            async: false
+        });
+        return data
+    },
     POSTPromise: function (url, data) {
         return new Promise(function (resolve, reject) {
             $.ajax({

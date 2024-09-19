@@ -637,7 +637,7 @@ var product_detail = {
         $('#group-product-selection').html('')
         $('#group-id input').attr('placeholder', 'Chọn ngành hàng')
         $('#group-id input').attr('data-id', '-1')
-        _product_function.POST('/Product/GroupProduct', { group_id: 1 }, function (result) {
+        _product_function.POST('/Product/GroupProduct', { group_id: 31 }, function (result) {
             if (result.is_success && result.data) {
                 $('#them-nganhhang .bg-box .row').html('')
                 var html = _product_constants.HTML.ProductDetail_GroupProduct_colmd4
@@ -646,7 +646,7 @@ var product_detail = {
                     html_item += _product_constants.HTML.ProductDetail_GroupProduct_colmd4_Li
                         .replaceAll('{id}', item.id).replaceAll('{name}', item.name)
                 })
-                html = html.replace('{li}', html_item).replaceAll('{name}', 'HuloToy').replaceAll('{level}', '0')
+                html = html.replace('{li}', html_item).replaceAll('{name}', 'BioLife').replaceAll('{level}', '0')
                 $('#them-nganhhang .bg-box .row').html(html)
             }
         });
@@ -692,7 +692,7 @@ var product_detail = {
         //-- Group Product
         $('#group-id input').attr('data-id', product.group_product_id)
         $('#group-id input').val(group_string)
-        _product_function.POST('/Product/GroupProduct', { group_id: 1 }, function (result) {
+        _product_function.POST('/Product/GroupProduct', { group_id: 31 }, function (result) {
             if (result.is_success && result.data) {
                 $('#them-nganhhang .bg-box .row').html('')
                 var html = _product_constants.HTML.ProductDetail_GroupProduct_colmd4
@@ -701,7 +701,7 @@ var product_detail = {
                     html_item += _product_constants.HTML.ProductDetail_GroupProduct_colmd4_Li
                         .replaceAll('{id}', item.id).replaceAll('{name}', item.name)
                 })
-                html = html.replace('{li}', html_item).replaceAll('{name}', 'HuloToy').replaceAll('{level}', '0')
+                html = html.replace('{li}', html_item).replaceAll('{name}', 'BioLife').replaceAll('{level}', '0')
                 $('#them-nganhhang .bg-box .row').html(html)
                 //$('.select-group-product').trigger('click')
                 //$('#them-nganhhang .col-md-4').first().find('li[data-id="' + product.group_product_id.split(',')[0] + '"]').trigger('click')
@@ -1082,6 +1082,27 @@ var product_detail = {
                     }
                     $(element[0].files).each(function (index, item) {
 
+                       
+                        //var formdata = new FormData();
+                        //formdata.append("files", item);
+
+                        //var result = _product_function.POSTBodySynchorus('/Product/SummitImageDirect', formdata)
+                        //if (result != undefined && result.data != undefined && result.data.trim() != '') {
+                        //    element.closest('.list').prepend(_product_constants.HTML.ProductDetail_Images_Item.replaceAll('{src}', result.data).replaceAll('{id}', '-1'))
+                        //    element.closest('.items').find('.count').html(element.closest('.list').find('.magnific_popup').length)
+                        //} else {
+                        //    var reader = new FileReader();
+                        //    reader.onload = function (e) {
+                        //        element.closest('.list').prepend(_product_constants.HTML.ProductDetail_Images_Item.replaceAll('{src}', e.target.result).replaceAll('{id}', '-1'))
+                        //        element.closest('.items').find('.count').html(element.closest('.list').find('.magnific_popup').length)
+
+                        //    }
+                        //    reader.readAsDataURL(item);
+                        //}
+                        if (item.size > (1024 * 1024)) {
+                            _msgalert.error("Vui lòng chỉ upload ảnh có dung lượng tối đa 1MB")
+                            return false
+                        }
                         var reader = new FileReader();
                         reader.onload = function (e) {
                             element.closest('.list').prepend(_product_constants.HTML.ProductDetail_Images_Item.replaceAll('{src}', e.target.result).replaceAll('{id}', '-1'))
@@ -1158,7 +1179,11 @@ var product_detail = {
                 var data_src = element_image.find('img').attr('src')
                 if (data_src == null || data_src == undefined || data_src.trim() == '') return true
                 if (_product_function.CheckIfImageVideoIsLocal(data_src)) {
-                    var result = _product_function.POSTSynchorus('/Product/SummitImages', { data_image: data_src })
+                    var formdata = {
+                        data_image: data_src
+                    };
+
+                    var result = _product_function.POSTBodySynchorus('/Product/SummitImages', formdata)
                     if (result != undefined && result.data != undefined && result.data.trim() != '') {
                         model.images.push(result.data)
                     } else {

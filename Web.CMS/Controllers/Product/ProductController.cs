@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Nest;
 using Newtonsoft.Json;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
 using System.Collections.Generic;
+using System.IO;
 using Utilities;
 using Utilities.Contants;
 using Utilities.Contants.ProductV2;
@@ -26,8 +28,8 @@ namespace WEB.CMS.Controllers
         private readonly GroupProductESService _groupProductESService;
         private readonly RedisConn _redisConn;
         private  StaticAPIService _staticAPIService;
-        private readonly int group_product_root = 1;
-        private readonly int db_index = 9;
+        private readonly int group_product_root = 31;
+        private readonly int db_index = 7;
         public ProductController(IConfiguration configuration, RedisConn redisConn)
         {
             _productV2DetailMongoAccess = new ProductDetailMongoAccess(configuration);
@@ -49,7 +51,7 @@ namespace WEB.CMS.Controllers
             ViewBag.ProductId = id;
             return View();
         }
-        public async Task<IActionResult> GroupProduct(int group_id = 1, int position = 0)
+        public async Task<IActionResult> GroupProduct(int group_id = 31, int position = 0)
         {
             try
             {
@@ -234,17 +236,34 @@ namespace WEB.CMS.Controllers
                     product_main.amount_max = amount_variations.OrderByDescending(x => x).First();
                     product_main.amount_min = amount_variations.OrderBy(x => x).First();
                     product_main.quanity_of_stock = request.variations.Sum(x => x.quanity_of_stock);
+                    if (product_main.amount_min >= product_main.amount_max)
+                    {
+                        product_main.label_price = ((double)product_main.amount_min).ToString("N0") + " đ";
+                    }
+                    else
+                    {
+                        product_main.label_price = ((double)product_main.amount_min).ToString("N0") + " đ"+ " - "+((double)product_main.amount_max).ToString("N0") + " đ";
+
+                    }
+
+                }
+                else
+                {
+                    product_main.label_price = ((double)product_main.amount).ToString("N0") + " đ";
                 }
                 product_main.parent_product_id = "";
                 if (product_main._id==null || product_main._id.Trim() == "")
                 {
                     product_main.status = (int)ProductStatus.ACTIVE;
+                    product_main.created_date = DateTime.Now;
+                    product_main.updated_last = DateTime.Now;
                     rs = await _productV2DetailMongoAccess.AddNewAsync(product_main);
                    
                 }
                 else
                 {
                     var old_product= await _productV2DetailMongoAccess.GetByID(product_main._id);
+                    product_main.updated_last = DateTime.Now;
                     rs = await _productV2DetailMongoAccess.UpdateAsync(product_main);
                     await _productV2DetailMongoAccess.DeactiveByParentId(product_main._id);
                     //await _productV2DetailMongoAccess.DeleteInactiveByParentId(product_main._id);
@@ -278,6 +297,8 @@ namespace WEB.CMS.Controllers
                 }
                 await _redisConn.DeleteCacheByKeyword(CacheName.PRODUCT_LISTING, db_index);
                 await _redisConn.DeleteCacheByKeyword(CacheName.PRODUCT_DETAIL + product_main._id, db_index);
+                await _redisConn.DeleteCacheByKeyword(CacheName.PRODUCT_BRAND, db_index);
+                await _redisConn.DeleteCacheByKeyword(CacheName.PRODUCT_BY_BRAND, db_index);
                 if (rs != null)
                 {
                     return Ok(new
@@ -299,7 +320,8 @@ namespace WEB.CMS.Controllers
                 msg = "Thêm mới / Cập nhật sản phẩm thất bại, vui lòng liên hệ bộ phận IT",
             });
         }
-        public async Task<IActionResult> SummitImages(string data_image)
+        [HttpPost]
+        public async Task<IActionResult> SummitImages([FromBody] string data_image)
         {
             try
             {
@@ -333,7 +355,48 @@ namespace WEB.CMS.Controllers
             {
                 is_success = false,
             });
-        } 
+        }
+        [HttpPost]
+        public async Task<IActionResult> SummitImageDirect(IFormFile files)
+        {
+            try
+            {
+                if (
+                    files == null || files.Length<=0
+                    )
+                {
+                    return Ok(new
+                    {
+                        is_success = false,
+
+                    });
+                }
+                using (var ms = new MemoryStream())
+                {
+                    files.CopyTo(ms);
+                    var fileBytes = ms.ToArray();
+                    string s = Convert.ToBase64String(fileBytes);
+                    var data_img = _staticAPIService.GetImageSrcBase64Object(s);
+                    if (data_img != null)
+                    {
+                        var url = await _staticAPIService.UploadImageBase64(data_img);
+                        return Ok(new
+                        {
+                            is_success = true,
+                            data = url
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return Ok(new
+            {
+                is_success = false,
+            });
+        }
         public async Task<IActionResult> SummitVideo(string data_video)
         {
             try
