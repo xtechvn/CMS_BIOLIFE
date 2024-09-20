@@ -299,6 +299,7 @@ namespace WEB.CMS.Controllers
                 await _redisConn.DeleteCacheByKeyword(CacheName.PRODUCT_DETAIL + product_main._id, db_index);
                 await _redisConn.DeleteCacheByKeyword(CacheName.PRODUCT_BRAND, db_index);
                 await _redisConn.DeleteCacheByKeyword(CacheName.PRODUCT_BY_BRAND, db_index);
+                await _redisConn.DeleteCacheByKeyword(CacheName.PRODUCT_BY_PRICERANGE, db_index);
                 if (rs != null)
                 {
                     return Ok(new
