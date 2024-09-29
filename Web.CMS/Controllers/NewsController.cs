@@ -191,9 +191,7 @@ namespace WEB.CMS.Controllers
                             {
                                 { "store_name", "Sp_GetAllArticle" },
                                 { "index_es", "es_biolife_sp_get_article" },
-                                 //{ "article_id", articleId },
-                                 //{ "action", "Upsert" },
-                                 //{ "article_data", JsonConvert.SerializeObject(model) }
+                                {"project_type", "Biolife" }
                             };
                     var _data_push = JsonConvert.SerializeObject(j_param);
                     // Push message vào queue
@@ -256,10 +254,9 @@ namespace WEB.CMS.Controllers
                     var j_param = new Dictionary<string, object>
                             {
                                 { "store_name", "Sp_GetAllArticle" },
-                                { "index_es", "es_biolife_sp_get_article" }
-                                 //{ "article_id", articleId },
-                                 //{ "action", "Upsert" }
-                            };
+                                { "index_es", "es_biolife_sp_get_article" },
+                                {"project_type", "Biolife" }
+                    };
                     var _data_push = JsonConvert.SerializeObject(j_param);
                     // Push message vào queue
                     var response_queue = work_queue.InsertQueueSimple(_data_push, "ARTICLE_DATA_QUEUE");
@@ -307,9 +304,8 @@ namespace WEB.CMS.Controllers
                     var j_param = new Dictionary<string, object>
                             {
                                 { "store_name", "Sp_GetAllArticle" },
-                                { "index_es", "es_biolife_sp_get_article" }
-                                 //{ "article_id", articleId },
-                                 //{ "action", "Upsert" }
+                                { "index_es", "es_biolife_sp_get_article" },
+                                {"project_type", "Biolife" }
                             };
                     var _data_push = JsonConvert.SerializeObject(j_param);
                     // Push message vào queue
