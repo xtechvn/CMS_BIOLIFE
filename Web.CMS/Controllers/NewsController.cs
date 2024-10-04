@@ -97,6 +97,7 @@ namespace WEB.CMS.Controllers
             }
             var NEWS_CATEGORY_ID = Convert.ToInt32(_configuration["Config:default_news_root_group"]);
             ViewBag.StringTreeViewCate = await _GroupProductRepository.GetListTreeViewCheckBox(NEWS_CATEGORY_ID, -1, model.Categories);
+            ViewBag.StringTreeViewMainCate = await _GroupProductRepository. GetListTreeViewSelect(NEWS_CATEGORY_ID, -1, model.MainCategoryId);
             return View(model);
         }
 
@@ -151,7 +152,7 @@ namespace WEB.CMS.Controllers
                 var model = JsonConvert.DeserializeObject<ArticleModel>(data.ToString(), settings);
 
                 var NEWS_CATEGORY_ID = Convert.ToInt32(_configuration["Config:default_news_root_group"]);
-                if (await _GroupProductRepository.IsGroupHeader(model.Categories)) model.Categories.Add(NEWS_CATEGORY_ID);
+                //if (await _GroupProductRepository.IsGroupHeader(model.Categories)) model.Categories.Add(NEWS_CATEGORY_ID);
 
                 if (model != null && HttpContext.User.FindFirst(ClaimTypes.NameIdentifier) != null)
                 {

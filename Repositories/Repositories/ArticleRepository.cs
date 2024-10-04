@@ -198,7 +198,7 @@ namespace Repositories.Repositories
                         #endregion
 
                         #region upsert Categories
-                        await _ArticleDAL.MultipleInsertArticleCategory(ArticleId, model.Categories);
+                        await _ArticleDAL.MultipleInsertArticleCategory(ArticleId, model.Categories, model.MainCategoryId);
                         #endregion
 
                         #region upsert Relation Article

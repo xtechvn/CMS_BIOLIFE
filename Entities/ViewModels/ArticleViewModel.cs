@@ -16,6 +16,8 @@ namespace Entities.ViewModels
     public class ArticleModel
     {
         public long Id { get; set; }
+        //sadd
+        public int? MainCategoryId { get; set; }
         public string Title { get; set; }
         public string Lead { get; set; }
         public string Body { get; set; }

@@ -14,6 +14,7 @@ namespace Repositories.IRepositories
         Task<int> Delete(int id);
         Task<string> GetListTreeView(string name, int status);
         Task<string> GetListTreeViewCheckBox(int ParentId, int status, List<int> CheckedList = null, bool IsHasIconEdit = false);
+        Task<string> GetListTreeViewSelect(int ParentId, int status = -1, int? SelectedId = null);
         Task<List<GroupProduct>> getCategoryByParentId(int parent_id);
         Task<List<GroupProduct>> getCategoryDetailByCategoryId(int[] category_id);
         Task<List<GroupProduct>> getAllGroupProduct();
@@ -23,5 +24,6 @@ namespace Repositories.IRepositories
         Task<string> GetGroupProductNameAsync(int cateID);
         Task<bool> IsGroupHeader(List<int> groups);
         Task<List<ProductGroupViewModel>> GetProductGroupByParentID(long parent_id, string url_static);
+        //Task<dynamic> GetListTreeViewSelect(int nEWS_CATEGORY_ID, int v, List<int> categories);
     }
 }

@@ -163,7 +163,16 @@ namespace DAL
 
                             var TagIds = await _DbContext.ArticleTags.Where(s => s.ArticleId == article.Id).Select(s => s.TagId).ToListAsync();
                             model.Tags = await _DbContext.Tags.Where(s => TagIds.Contains(s.Id)).Select(s => s.TagName).ToListAsync();
-                            model.Categories = await _DbContext.ArticleCategories.Where(s => s.ArticleId == article.Id).Select(s => (int)s.CategoryId).ToListAsync();
+                            // ét Cate
+                            var categoryIds = await _DbContext.ArticleCategories.Where(s => s.ArticleId == article.Id && s.IsMain == false).Select(s => (int)s.CategoryId).ToListAsync();
+                            model.Categories = categoryIds.Any() ? categoryIds : null;
+
+                            // Lấy thông tin chuyên mục chính
+                            var mainCategory = await _DbContext.ArticleCategories
+                                .Where(s => s.ArticleId == article.Id && s.IsMain == true) // Chỉ lấy chuyên mục chính
+                                .Select(s => (int)s.CategoryId)
+                                .FirstOrDefaultAsync();
+                            model.MainCategoryId = mainCategory;
                             model.RelatedArticleIds = await _DbContext.ArticleRelateds.Where(s => s.ArticleId == article.Id).Select(s => (long)s.ArticleRelatedId).ToListAsync();
 
                             if (model.RelatedArticleIds != null && model.RelatedArticleIds.Count > 0)
@@ -229,7 +238,7 @@ namespace DAL
                                     {
                                         TagId = item,
                                         ArticleId = ArticleId,
-                                        UpdateLast=DateTime.Now
+                                        UpdateLast = DateTime.Now
                                     };
                                     await _DbContext.ArticleTags.AddAsync(model);
                                     await _DbContext.SaveChangesAsync();
@@ -255,7 +264,7 @@ namespace DAL
             }
         }
 
-        public async Task<int> MultipleInsertArticleCategory(long ArticleId, List<int> ListCateId)
+        public async Task<int> MultipleInsertArticleCategory(long ArticleId, List<int> ListCateId, int? MainCategoryId)
         {
             try
             {
@@ -287,6 +296,7 @@ namespace DAL
                                     {
                                         CategoryId = item,
                                         ArticleId = ArticleId,
+                                        IsMain = MainCategoryId.HasValue && item == MainCategoryId.Value,
                                         UpdateLast = DateTime.Now
                                     };
                                     await _DbContext.ArticleCategories.AddAsync(model);
@@ -720,7 +730,7 @@ namespace DAL
                             transaction.Commit();
                             return article;
                         }
-                        catch(Exception ex)
+                        catch (Exception ex)
                         {
                             LogHelper.InsertLogTelegram("getPinnedArticleByPostition - Transaction Rollback - ArticleDAL: " + ex);
                             transaction.Rollback();
