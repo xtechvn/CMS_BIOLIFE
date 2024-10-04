@@ -190,9 +190,10 @@ namespace WEB.CMS.Controllers
                     // Tạo message để push vào queue
                     var j_param = new Dictionary<string, object>
                             {
-                                { "store_name", "Sp_GetAllArticle" },
+                                { "store_name", "SP_GetAllArticle" },
                                 { "index_es", "es_biolife_sp_get_article" },
-                                {"project_type", "Biolife" }
+                                {"project_type", Convert.ToInt16(ProjectType.BIOLIFE) },
+                                  {"id" , "-1" }
                             };
                     var _data_push = JsonConvert.SerializeObject(j_param);
                     // Push message vào queue
@@ -254,13 +255,14 @@ namespace WEB.CMS.Controllers
                     // Tạo message để push vào queue
                     var j_param = new Dictionary<string, object>
                             {
-                                { "store_name", "Sp_GetAllArticle" },
+                                { "store_name", "SP_GetAllArticle" },
                                 { "index_es", "es_biolife_sp_get_article" },
-                                {"project_type", "Biolife" }
-                    };
+                                {"project_type", Convert.ToInt16(ProjectType.BIOLIFE) },
+                                  {"id" , "-1" }
+                            };
                     var _data_push = JsonConvert.SerializeObject(j_param);
                     // Push message vào queue
-                    var response_queue = work_queue.InsertQueueSimple(_data_push, "ARTICLE_DATA_QUEUE");
+                    var response_queue = work_queue.InsertQueueSimple(_data_push, QueueName.queue_app_push);
 
                     return new JsonResult(new
                     {
@@ -304,13 +306,14 @@ namespace WEB.CMS.Controllers
                     // Tạo message để push vào queue
                     var j_param = new Dictionary<string, object>
                             {
-                                { "store_name", "Sp_GetAllArticle" },
+                                { "store_name", "SP_GetAllArticle" },
                                 { "index_es", "es_biolife_sp_get_article" },
-                                {"project_type", "Biolife" }
+                                {"project_type", Convert.ToInt16(ProjectType.BIOLIFE) },
+                                  {"id" , "-1" }
                             };
                     var _data_push = JsonConvert.SerializeObject(j_param);
                     // Push message vào queue
-                    var response_queue = work_queue.InsertQueueSimple(_data_push, "ARTICLE_DATA_QUEUE");
+                    var response_queue = work_queue.InsertQueueSimple(_data_push, QueueName.queue_app_push);
 
                     return new JsonResult(new
                     {
