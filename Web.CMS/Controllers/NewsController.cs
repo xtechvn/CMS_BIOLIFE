@@ -18,6 +18,7 @@ using Utilities.Common;
 using Utilities.Contants;
 using WEB.CMS.Customize;
 using WEB.CMS.Models;
+using WEB.CMS.RabitMQ;
 using WEB.CMS.Service.News;
 
 namespace WEB.CMS.Controllers
@@ -33,6 +34,7 @@ namespace WEB.CMS.Controllers
         private readonly ICommonRepository _CommonRepository;
         private readonly IWebHostEnvironment _WebHostEnvironment;
         private readonly IConfiguration _configuration;
+        private readonly WorkQueueClient work_queue;
 
         public NewsController(IConfiguration configuration, IArticleRepository articleRepository, IUserRepository userRepository, ICommonRepository commonRepository, IWebHostEnvironment hostEnvironment,
             IGroupProductRepository groupProductRepository)
@@ -43,6 +45,7 @@ namespace WEB.CMS.Controllers
             _WebHostEnvironment = hostEnvironment;
             _configuration = configuration;
             _GroupProductRepository = groupProductRepository;
+            work_queue = new WorkQueueClient(configuration);
 
 
         }
@@ -94,6 +97,7 @@ namespace WEB.CMS.Controllers
             }
             var NEWS_CATEGORY_ID = Convert.ToInt32(_configuration["Config:default_news_root_group"]);
             ViewBag.StringTreeViewCate = await _GroupProductRepository.GetListTreeViewCheckBox(NEWS_CATEGORY_ID, -1, model.Categories);
+            ViewBag.StringTreeViewMainCate = await _GroupProductRepository. GetListTreeViewSelect(NEWS_CATEGORY_ID, -1, model.MainCategoryId);
             return View(model);
         }
 
@@ -148,7 +152,7 @@ namespace WEB.CMS.Controllers
                 var model = JsonConvert.DeserializeObject<ArticleModel>(data.ToString(), settings);
 
                 var NEWS_CATEGORY_ID = Convert.ToInt32(_configuration["Config:default_news_root_group"]);
-                if (await _GroupProductRepository.IsGroupHeader(model.Categories)) model.Categories.Add(NEWS_CATEGORY_ID);
+                //if (await _GroupProductRepository.IsGroupHeader(model.Categories)) model.Categories.Add(NEWS_CATEGORY_ID);
 
                 if (model != null && HttpContext.User.FindFirst(ClaimTypes.NameIdentifier) != null)
                 {
@@ -181,13 +185,25 @@ namespace WEB.CMS.Controllers
                     if (model.Categories != null && model.Categories.Count > 0)
                         strCategories = string.Join(",", model.Categories);
 
-                     ClearCacheArticle(articleId, strCategories);
+                    ClearCacheArticle(articleId, strCategories);
+
+                    // Tạo message để push vào queue
+                    var j_param = new Dictionary<string, object>
+                            {
+                                { "store_name", "Sp_GetAllArticle" },
+                                { "index_es", "es_biolife_sp_get_article" },
+                                {"project_type", "Biolife" }
+                            };
+                    var _data_push = JsonConvert.SerializeObject(j_param);
+                    // Push message vào queue
+                    var response_queue = work_queue.InsertQueueSimple(_data_push, QueueName.queue_app_push);
 
                     return new JsonResult(new
                     {
                         isSuccess = true,
                         message = "Cập nhật thành công",
-                        dataId = articleId
+                        dataId = articleId,
+                        //queueResponse = response_queue
                     });
                 }
                 else
@@ -235,11 +251,23 @@ namespace WEB.CMS.Controllers
                     var Categories = await _ArticleRepository.GetArticleCategoryIdList(Id);
                     ClearCacheArticle(Id, string.Join(",", Categories));
 
+                    // Tạo message để push vào queue
+                    var j_param = new Dictionary<string, object>
+                            {
+                                { "store_name", "Sp_GetAllArticle" },
+                                { "index_es", "es_biolife_sp_get_article" },
+                                {"project_type", "Biolife" }
+                    };
+                    var _data_push = JsonConvert.SerializeObject(j_param);
+                    // Push message vào queue
+                    var response_queue = work_queue.InsertQueueSimple(_data_push, "ARTICLE_DATA_QUEUE");
+
                     return new JsonResult(new
                     {
                         isSuccess = true,
                         message = _ActionName + " thành công",
-                        dataId = Id
+                        dataId = Id,
+                        //queueResponse = response_queue
                     });
                 }
                 else
@@ -273,6 +301,16 @@ namespace WEB.CMS.Controllers
                 {
                     //  clear cache article
                     ClearCacheArticle(Id, string.Join(",", Categories));
+                    // Tạo message để push vào queue
+                    var j_param = new Dictionary<string, object>
+                            {
+                                { "store_name", "Sp_GetAllArticle" },
+                                { "index_es", "es_biolife_sp_get_article" },
+                                {"project_type", "Biolife" }
+                            };
+                    var _data_push = JsonConvert.SerializeObject(j_param);
+                    // Push message vào queue
+                    var response_queue = work_queue.InsertQueueSimple(_data_push, "ARTICLE_DATA_QUEUE");
 
                     return new JsonResult(new
                     {

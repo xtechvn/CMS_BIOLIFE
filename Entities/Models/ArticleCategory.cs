@@ -7,6 +7,8 @@ public partial class ArticleCategory
 {
     public long Id { get; set; }
 
+    public bool? IsMain { get; set; }
+
     public int? CategoryId { get; set; }
 
     public long? ArticleId { get; set; }

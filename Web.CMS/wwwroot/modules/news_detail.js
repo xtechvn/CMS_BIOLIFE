@@ -305,6 +305,7 @@ var _newsDetail = {
         });
 
         if (formvalid.valid()) {
+          
             var _body = tinymce.activeEditor.getContent();
             var _tags = $('#news-tag').tagsinput('items');
             var _categories = [];
@@ -322,8 +323,8 @@ var _newsDetail = {
                 });
             }
 
-            if (_categories.length <= 0) {
-                _msgalert.error('Bạn phải chọn chuyên mục cho bài viết');
+            if ($('#mainCategoryId').val() < 0) {
+                _msgalert.error('Bạn phải chọn chuyên mục chính cho bài viết');
                 return false;
             }
             if ($('#Lead').val().length >= 400) {
@@ -345,7 +346,8 @@ var _newsDetail = {
                 RelatedArticleIds: _articleIdList,
                 PublishDate: ConvertToJSONDateTime($('#PublishDate').val()),
                 DownTime: ConvertToJSONDateTime($('#DowntimeDate').val()),
-                Position: $('#Position').val()
+                Position: $('#Position').val(),
+                MainCategoryId: $('#mainCategoryId').val()
             }
             if (_model.ArticleType == 1) {
                 _model.Body = $('#link-video').attr('src') == undefined ? "" : $('#link-video').attr('src');

@@ -9,6 +9,7 @@
 @model ArticleModel
 @{
     var _StrTreeViewCate = (string)ViewBag.StringTreeViewCate;
+    var _StrTreeViewMainCate = (string)ViewBag.StringTreeViewMainCate;
 
 }
 
@@ -323,12 +324,39 @@
                             <input type="number" class="form-control" asp-for="@Model.Position" min="0" max="@(Model.ArticleType==0?"3":"4")" placeholder="Vị trí">
                         </div>
                         <div class="mb20">
+                          
+                                <label class="mb10"><strong>Chuyên mục chính</strong></label>
+                            <select id="mainCategoryId" class="select2 form-control" style="width: 100%;">
+                                <option value="-1">Tất cả loại khách hàng</option>
+                                @Html.Raw(_StrTreeViewMainCate)
+                               @*  @if (ClientType != null)
+                                {
+
+                                    foreach (var item in ClientType)
+                                    {
+                                        if (item.CodeValue == dataModel.ClientType)
+                                        {
+
+                                            <option value="@item.CodeValue" selected="selected"> @item.Description</option>
+
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.CodeValue"> @item.Description</option>
+
+                                        }
+                                    }
+                                } *@
+                            </select>
+                            
+                        </div>
+                        <div class="mb20">
                             <div style="border: 1px solid #CCCCCC;padding:15px">
-                                <label class="mb10"><strong>Cấu hình chuyên mục</strong></label>
+                                <label class="mb10"><strong>Chuyên mục set cùng</strong></label>
                                 <div class="user-hierarchy-tag" style="border: 1px solid #CCCCCC;border-radius: 3px;padding:15px;margin:0">
                                     <div class="scrollbar-inner">
                                         <ul class="user-hierarchy-ul mb0" id="detail-cate-panel">
-                                            @Html.Raw(_StrTreeViewCate)
+                                             @Html.Raw(_StrTreeViewCate)
                                         </ul>
                                     </div>
                                 </div>

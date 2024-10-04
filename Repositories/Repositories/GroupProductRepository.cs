@@ -56,7 +56,7 @@ namespace Repositories.Repositories
                     entity.OrderNo = model.OrderNo;
                     entity.ImagePath = model.ImagePath;
                     entity.Status = model.Status;
-                    entity.Path = model.Path ;
+                    entity.Path = model.Path;
                     entity.Description = model.Description;
                     entity.PositionId = model.PositionId;
                     entity.ModifiedOn = DateTime.Now;
@@ -105,7 +105,7 @@ namespace Repositories.Repositories
             }
         }
 
-      
+
 
         public async Task<int> Delete(int id)
         {
@@ -136,7 +136,7 @@ namespace Repositories.Repositories
                     _parentList.Add(GetParentModel(item, _groupList));
                 }
 
-                _parentList = _parentList.Where(x=>x!=null).Distinct().OrderBy(s => s.OrderNo).ToList();
+                _parentList = _parentList.Where(x => x != null).Distinct().OrderBy(s => s.OrderNo).ToList();
 
                 foreach (var item in _parentList)
                 {
@@ -189,7 +189,7 @@ namespace Repositories.Repositories
             _strHtml.Append(@"<div class=""control"">");
             _strHtml.Append(@"<a class=""btn-add-group-product"" data-id=" + _parentModel.Id + "><img src=/images/icons/sql.png /></a>");
             _strHtml.Append(@"<a class=""btn-edit-group-product"" data-id=" + _parentModel.Id + "><img src=/images/icons/edit.png /></a>");
-            _strHtml.Append("<a class=\"btn-clearcache-group-product\"data-name=\""+ _parentModel.Name + "\" data-id=\"" + _parentModel.Id + "\"><img src=/images/icons/edit.png /></a>");
+            _strHtml.Append("<a class=\"btn-clearcache-group-product\"data-name=\"" + _parentModel.Name + "\" data-id=\"" + _parentModel.Id + "\"><img src=/images/icons/edit.png /></a>");
             _strHtml.Append(@"</div>");
 
             if (_parentModel.Status == 1)
@@ -218,7 +218,7 @@ namespace Repositories.Repositories
         {
             try
             {
-                if (item!=null && item.ParentId != -1)
+                if (item != null && item.ParentId != -1)
                 {
                     var _model = groupList.Where(s => s.Id == item.ParentId).FirstOrDefault();
                     return GetParentModel(_model, groupList);
@@ -260,6 +260,22 @@ namespace Repositories.Repositories
             return _strHtml.ToString();
         }
 
+        public async Task<string> GetListTreeViewSelect(int ParentId, int status = -1, int? SelectedId = null)
+        {
+            var _strHtml = new StringBuilder();
+            try
+            {
+                var _groupList = await _GroupProductDAL.GetAllAsync();
+                _groupList = _groupList.Where(s => s.Status == (int)StatusType.BINH_THUONG).ToList();
+
+                _strHtml.Append(RenderHtmlTreeViewSelect(ParentId, _groupList, SelectedId));
+            }
+            catch (Exception ex)
+            {
+                LogHelper.InsertLogTelegram("GetListTreeViewSelect - GroupProductRepository: " + ex);
+            }
+            return _strHtml.ToString();
+        }
         public static string RenderHtmlTreeViewCheckBox(int parentId, List<GroupProduct> listData, List<int> CheckedList = null, List<int> ParentCheckedList = null, bool IsHasIconEdit = false)
         {
             try
@@ -291,7 +307,7 @@ namespace Repositories.Repositories
                         _strHtml.Append(@"<input type=""checkbox"" class=""ckb-news-cate"" value='" + _parentModel.Id + "' " + strChecked + "/>");
                         _strHtml.Append(@"<span class=""checkmark""></span>" + _parentModel.Name);
                     }
-                   
+
                     _strHtml.Append(@"</label>");
                 }
                 else
@@ -336,6 +352,44 @@ namespace Repositories.Repositories
             }
         }
 
+
+
+
+
+
+        public static string RenderHtmlTreeViewSelect(int parentId, List<GroupProduct> listData, int? SelectedId = null)
+        {
+            try
+            {
+                var _strHtml = new StringBuilder();
+                var _parentModel = listData.Where(s => s.Id == parentId).FirstOrDefault();
+                var _childList = listData.Where(s => s.ParentId == parentId).OrderBy(s => s.OrderNo);
+
+                if (_parentModel != null)
+                {
+                    var isSelected = (SelectedId.HasValue && SelectedId.Value == parentId) ? "selected" : string.Empty;
+                    _strHtml.Append($"<option class=\"ckb-news-cate\"  value='{_parentModel.Id}' {isSelected}>{_parentModel.Name}</option>");
+                }
+
+                if (_childList.Any())
+                {
+                    foreach (var item in _childList)
+                    {
+                        _strHtml.Append(RenderHtmlTreeViewSelect(item.Id, listData, SelectedId));
+                    }
+                }
+
+                return _strHtml.ToString();
+            }
+            catch (Exception ex)
+            {
+                LogHelper.InsertLogTelegram("RenderHtmlTreeViewSelect - GroupProductRepository: " + ex);
+                return string.Empty;
+            }
+        }
+
+
+
         /// <summary>
         /// Cuonglv
         /// Lấy ra chuyên mục theo id của thư mục cha
@@ -356,7 +410,7 @@ namespace Repositories.Repositories
                 return null;
             }
         }
-   
+
 
         /// <summary>
         /// Cuonglv
@@ -380,7 +434,7 @@ namespace Repositories.Repositories
             }
         }
 
-      
+
         public void GetFullParentIdFromListChecked(int checkListId, List<GroupProduct> GroupList, ref List<int> Result)
         {
             var dataModel = GroupList.Where(s => s.Id == checkListId).FirstOrDefault();
@@ -391,7 +445,7 @@ namespace Repositories.Repositories
             }
         }
 
-      
+
 
         public async Task<List<GroupProduct>> getAllGroupProduct()
         {
