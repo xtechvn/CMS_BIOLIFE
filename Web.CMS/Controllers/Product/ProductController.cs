@@ -232,7 +232,7 @@ namespace WEB.CMS.Controllers
                 if (request.variations != null && request.variations.Count > 0)
                 {
                     product_main.status = (int)ProductStatus.ACTIVE;
-                    var amount_variations = request.variations.Select(x => x.amount);
+                    var amount_variations = request.variations.Where(x=>x.amount>0).Select(x => x.amount);
                     product_main.amount_max = amount_variations.OrderByDescending(x => x).First();
                     product_main.amount_min = amount_variations.OrderBy(x => x).First();
                     product_main.quanity_of_stock = request.variations.Sum(x => x.quanity_of_stock);

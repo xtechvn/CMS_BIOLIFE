@@ -28,24 +28,6 @@
         });
         return data
     },
-    POSTBodySynchorus: function (url, model) {
-        var data = undefined
-        $.ajax({
-            url: url,
-            type: "POST",
-            data: JSON.stringify(data),
-            method: 'POST',
-            contentType: 'application/json',
-            success: function (result) {
-                data = result;
-            },
-            error: function (err) {
-                console.log(err)
-            },
-            async: false
-        });
-        return data
-    },
     POSTPromise: function (url, data) {
         return new Promise(function (resolve, reject) {
             $.ajax({
@@ -60,6 +42,24 @@
                 }
             });
         });
+    },
+    POSTFileSynchorus: function (url, model) {
+        var data = undefined
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: model,
+            processData: false,  // Prevent jQuery from processing the data
+            contentType: false,  // Prevent jQuery from setting contentType
+            success: function (result) {
+                data = result;
+            },
+            error: function (err) {
+                console.log(err)
+            },
+            async: false
+        });
+        return data
     },
     Comma: function (number) { //function to add commas to textboxes
         number = ('' + number).replace(/[^0-9.,]+/g, '');
@@ -80,16 +80,22 @@
             && !img_src.includes("http")
             && !img_src.includes("base64,"))
             img_src = _product_constants.VALUES.StaticDomain + image
+        else if  (!img_src.includes(_product_constants.VALUES.StaticDomain)
+            && !img_src.includes("data:video")
+            && !img_src.includes("http")
+            && !img_src.includes("base64,"))
+            img_src = _product_constants.VALUES.StaticDomain + image
         return img_src
     },
     CheckIfImageVideoIsLocal: function (data) {
-        if (data.includes("data:image") || data.includes("data:video") || data.includes("base64,")) {
+        if (data != undefined && (data.includes("data:image") || data.includes("data:video") || data.includes("base64,"))) {
             return true
         }
         else {
             return false
         }
-    },
+    }
+    
 }
 var _product_constants = {
     VALUES: {
@@ -137,7 +143,16 @@ var _product_constants = {
                             <td class="text-center">{stock}</td>
                             <td class="text-center">
                                 <a href="javascript:;" class="product-edit">Cập nhật</a><br />
-                                <a href="javascript:;" class="product-viewmore" style="display: none;" >Xem thêm</a>
+                                <a href="javascript:;" class="product-viewmore onclick"  >Xem thêm</a><br />
+                               
+                                <div class="form-down grid-slide-{id}" style="display: none;" >
+                                    <div >
+                                        <a href="javascript:;" class="product-copy-sp">Sao chép</a><br />
+                                        <a href="javascript:;" class="product-remove-sp">Ẩn</a><br />
+                                        <a href="javascript:;" class="product-remove-sp2">Xóa</a><br />
+                                    </div>
+
+                                </div>
                             </td>
                         </tr>
         `,
@@ -172,7 +187,7 @@ var _product_constants = {
                                 </tr>`,
         ProductDetail_Images_AddImagesButton: `<div class="items import">
                                 <label class="choose choose-wrap">
-                                    <input class="image_input" type="file" name="myFile">
+                                    <input class="image_input" type="file" name="myFile" multiple>
                                     <div class="choose-content choose-product-images">
                                         <i class="icofont-image"></i>
                                         <span>Thêm hình ảnh (<nw class="count">{0}</nw>/{max})</span>
@@ -197,12 +212,22 @@ var _product_constants = {
         ProductDetail_Attribute_Row_Item: ` <div class="col-md-6 lastest-attribute-value item">
                             <div class="box-list">
                                 <div class="form-group namesp flex-input-choose">
-                                    <label class="choose choose-wrap">
-                                        <input type="file" name="myFile">
-                                        <div class="choose-content">
-                                            <i class="icofont-image"></i>
+                                    <div id="image_row_item" class="item flex flex-lg-nowrap gap10 mb-2 "style="flex-wrap: nowrap !important;position: relative !important;" >
+                                        <div class="wrap_input" style="padding: 0 0 0 10px !important;" >
+                                            <div class="manage-color  " >
+                                                <div class="flex list align-items-center " style="flex-wrap: nowrap !important;position: relative !important; width: 90px !important;" > <div class="items import">
+                                                        <label class="choose choose-wrap">
+                                                            <input class="image_input" type="file" name="myFile">
+                                                            <div class="choose-content choose-product-images" >
+                                                                <i class="icofont-image"></i>
+                                                            </div>
+                                                        </label>
+                                                    </div></div>
+
+                                            </div>
                                         </div>
-                                    </label>
+                                    </div>
+                             
                                     <div class="relative w-100">
                                         <input type="text" class="form-control attributes-name attributes-name-{index}" data-id="{index}" placeholder="Tên thuộc tính" maxlength="50" value="">
                                         <p class="error" style="display:none;"> </p>
@@ -277,7 +302,7 @@ var _product_constants = {
             </div>`,
         ProductDetail_Specification_Row_Item_SelectOptions_NewOptions: `<li style=" list-style: none; "><input class="checkbox-option" type="checkbox" name="{option-name}" value="{value}" {checked}> <span>{name}</span></li>`,
         ProductDetail_Specification_Row_Item_SelectOptions: ` <div class="form-group namesp"data-type="1" data-attr-id="{id}">
-                <input type="text" class="form-control input-select-option" placeholder="{placeholder}" readonly value="{value}">
+                <input type="text" class="form-control input-select-option" data-value="{dataid}" placeholder="{placeholder}" readonly value="{value}">
                 <a href="" class="edit"><i class="icofont-thin-down"></i></a>
             </div>
             <div class="select-option p-2" style="width:90%;display:none;">
@@ -413,7 +438,7 @@ var _product_constants = {
 
                                             </label>
                                             <div class="form-group mb-0 price discount-percent">
-                                                <input type="text" class="form-control input-price" placeholder="Nhập số">
+                                                <input type="text" class="form-control input-price" placeholder="Nhập số" maxlength="3">
                                                 <span class="note">%</span>
                                             </div>
                                         </div>

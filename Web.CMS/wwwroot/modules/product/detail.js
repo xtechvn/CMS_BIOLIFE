@@ -376,23 +376,27 @@ var product_detail = {
                     $('.' + _global_function.RemoveSpecialCharacter_ky_tu_DB(name.trim()).replaceAll(' ', '-')).addClass(_global_function.RemoveSpecialCharacter_ky_tu_DB(text.trim()).replaceAll(' ', '-'));
                     $('.' + _global_function.RemoveSpecialCharacter_ky_tu_DB(name.trim()).replaceAll(' ', '-')).removeClass(_global_function.RemoveSpecialCharacter_ky_tu_DB(name.trim()).replaceAll(' ', '-'));
                     element.attr('data-name', text)
-                } else {
-                    var id = -1;
-                    $('.product-attributes').each(function (index, item) {
-                        var element_parent = $(this)
+                }
+                else {
+                    if (type != 1) {
+                        var id = -1;
+                        $('.product-attributes').each(function (index, item) {
+                            var element_parent = $(this)
 
-                   
-                        element_parent.find('.attributes-name').each(function (index2, item2) {
-                            var element_input = $(this)
-                            if (element_input.attr('data-name') != "" && element_input.attr('data-name') != undefined && element_input.attr('data-name').trim() == name.trim()) {
-                                id = index
 
-                            }
+                            element_parent.find('.attributes-name').each(function (index2, item2) {
+                                var element_input = $(this)
+                                if (element_input.attr('data-name') != "" && element_input.attr('data-name') != undefined && element_input.attr('data-name').trim() == name.trim()) {
+                                    id = index
 
+                                }
+
+                            })
                         })
-                    })
-                    if (id!= -1)
-                    product_detail.DeleteRowAttributeTablePrice(name, id)
+                        if (id != -1)
+                            product_detail.DeleteRowAttributeTablePrice(name, id)
+                    }
+                  
                 }
              
             } else {
@@ -604,7 +608,6 @@ var product_detail = {
                     var html_item = _product_constants.HTML.ProductDetail_Specification_Row_Item_SelectOptions
                         .replaceAll('{placeholder}', ('Nhập ' + item.name))
                         .replaceAll('{id}', item.id)
-
                         .replaceAll('{value}', '')
 
                     html += _product_constants.HTML.ProductDetail_Specification_Row_Item
@@ -637,7 +640,7 @@ var product_detail = {
         $('#group-product-selection').html('')
         $('#group-id input').attr('placeholder', 'Chọn ngành hàng')
         $('#group-id input').attr('data-id', '-1')
-        _product_function.POST('/Product/GroupProduct', { group_id: 31 }, function (result) {
+        _product_function.POST('/Product/GroupProduct', { group_id: 1 }, function (result) {
             if (result.is_success && result.data) {
                 $('#them-nganhhang .bg-box .row').html('')
                 var html = _product_constants.HTML.ProductDetail_GroupProduct_colmd4
@@ -646,7 +649,7 @@ var product_detail = {
                     html_item += _product_constants.HTML.ProductDetail_GroupProduct_colmd4_Li
                         .replaceAll('{id}', item.id).replaceAll('{name}', item.name)
                 })
-                html = html.replace('{li}', html_item).replaceAll('{name}', 'BioLife').replaceAll('{level}', '0')
+                html = html.replace('{li}', html_item).replaceAll('{name}', 'HuloToy').replaceAll('{level}', '0')
                 $('#them-nganhhang .bg-box .row').html(html)
             }
         });
@@ -682,7 +685,9 @@ var product_detail = {
         $('#avatar .items .count').html($('#avatar .items .count').closest('.list').find('.magnific_popup').length)
 
         $(product.videos).each(function (index, item) {
-            $('#videos .list').prepend(_product_constants.HTML.ProductDetail_Video_Item.replaceAll('{src}', item).replaceAll('{id}', '-1'))
+            if (item == null || item.trim() == '') return true
+            var img_src = _product_function.CorrectImage(item)
+            $('#videos .list').prepend(_product_constants.HTML.ProductDetail_Video_Item.replaceAll('{src}', img_src).replaceAll('{id}', '-1'))
             $('#videos .items .count').html($('#videos .items .count').closest('.list').find('.magnific_popup').length)
 
         })
@@ -692,7 +697,7 @@ var product_detail = {
         //-- Group Product
         $('#group-id input').attr('data-id', product.group_product_id)
         $('#group-id input').val(group_string)
-        _product_function.POST('/Product/GroupProduct', { group_id: 31 }, function (result) {
+        _product_function.POST('/Product/GroupProduct', { group_id: 1 }, function (result) {
             if (result.is_success && result.data) {
                 $('#them-nganhhang .bg-box .row').html('')
                 var html = _product_constants.HTML.ProductDetail_GroupProduct_colmd4
@@ -701,7 +706,7 @@ var product_detail = {
                     html_item += _product_constants.HTML.ProductDetail_GroupProduct_colmd4_Li
                         .replaceAll('{id}', item.id).replaceAll('{name}', item.name)
                 })
-                html = html.replace('{li}', html_item).replaceAll('{name}', 'BioLife').replaceAll('{level}', '0')
+                html = html.replace('{li}', html_item).replaceAll('{name}', 'HuloToy').replaceAll('{level}', '0')
                 $('#them-nganhhang .bg-box .row').html(html)
                 //$('.select-group-product').trigger('click')
                 //$('#them-nganhhang .col-md-4').first().find('li[data-id="' + product.group_product_id.split(',')[0] + '"]').trigger('click')
@@ -773,7 +778,7 @@ var product_detail = {
                     var html_item = _product_constants.HTML.ProductDetail_Specification_Row_Item_Input
                         .replaceAll('{placeholder}', ('Nhập ' + item.name))
                         .replaceAll('{id}', item.id)
-                        .replaceAll('{value}', specification.length > 0 ? specification[0].value : '')
+                        .replaceAll('{value}', specification.length > 0 ? specification[0].value != "null" ? specification[0].value:'' : '')
 
                     html += _product_constants.HTML.ProductDetail_Specification_Row_Item
                         .replaceAll('{type}', item.type)
@@ -786,7 +791,7 @@ var product_detail = {
                     var html_item = _product_constants.HTML.ProductDetail_Specification_Row_Item_DateTime
                         .replaceAll('{placeholder}', ('Nhập ' + item.name))
                         .replaceAll('{id}', item.id)
-                        .replaceAll('{value}', specification.length > 0 ? specification[0].value : '')
+                        .replaceAll('{value}', specification.length > 0 ? specification[0].value != "null" ? specification[0].value : '' : '')
 
                     html += _product_constants.HTML.ProductDetail_Specification_Row_Item
                         .replaceAll('{type}', item.type).replaceAll('{name}', item.name).replaceAll('{wrap_input}', html_item)
@@ -796,8 +801,9 @@ var product_detail = {
                 default: {
                     var html_item = _product_constants.HTML.ProductDetail_Specification_Row_Item_SelectOptions
                         .replaceAll('{placeholder}', ('Nhập ' + item.name))
+                        .replaceAll('{dataid}', (specification.length > 0 ? specification[0].type_ids : ''))
                         .replaceAll('{id}', item.id)
-                        .replaceAll('{value}', specification.length > 0 ? specification[0].value : '')
+                        .replaceAll('{value}', specification.length > 0 ? specification[0].value != "null" ? specification[0].value : '' : '')
 
                     html += _product_constants.HTML.ProductDetail_Specification_Row_Item
                         .replaceAll('{type}', item.type).replaceAll('{name}', item.name).replaceAll('{wrap_input}', html_item)
@@ -864,6 +870,20 @@ var product_detail = {
                     $(element.find('.row-attributes-value').find('.col-md-6').find('.attributes-name')).each(function (index_element, item_element) {
                         if (index_element == index_detail) {
                             var element_attr_detail = $(this)
+                            if (item_detail.img != null) {
+
+                                var img_src = _product_function.CorrectImage(item_detail.img)
+
+                              
+                                var html =`<div class="items magnific_popup" data-id="-1" bis_skin_checked="1">
+                                <button type="button" class="delete"><i class="icofont-close-line"></i></button>
+                                <a class="thumb_img thumb_1x1 magnific_thumb">
+                                    <img src="{img_src}">
+                                </a>
+                            </div>`
+                                element_attr_detail.closest('.col-md-6').find('#image_row_item').find('.list').prepend(html.replaceAll('{img_src}', img_src))
+
+                            }
                             element_attr_detail.val(item_detail.name)
                             element_attr_detail.attr('data-name',item_detail.name)
                             element_attr_detail.trigger('keyup')
@@ -949,13 +969,13 @@ var product_detail = {
 
         _product_function.POST('/Product/GetSpecificationByName', { type: type, name: name }, function (result) {
             if (result.is_success && result.data && result.data.length > 0) {
-                var current_value = element.closest('.col-md-6').find('.namesp').find('.input-select-option').val()
+                var current_value = element.closest('.col-md-6').find('.namesp').find('.input-select-option').attr('data-value')
                 if (current_value == undefined) current_value = ''
                 $(result.data).each(function (index, item) {
                     html += _product_constants.HTML.ProductDetail_Specification_Row_Item_SelectOptions_NewOptions
                         .replaceAll('{option-name}', 'specification-' + type)
                         .replaceAll('{value}', item._id)
-                        .replaceAll('{checked}', current_value.includes(item.attribute_name) ? 'checked' : '')
+                        .replaceAll('{checked}', current_value.includes(item._id) ? 'checked' : '')
                         .replaceAll('{name}', item.attribute_name)
                 })
             }
@@ -1082,27 +1102,6 @@ var product_detail = {
                     }
                     $(element[0].files).each(function (index, item) {
 
-                       
-                        //var formdata = new FormData();
-                        //formdata.append("files", item);
-
-                        //var result = _product_function.POSTBodySynchorus('/Product/SummitImageDirect', formdata)
-                        //if (result != undefined && result.data != undefined && result.data.trim() != '') {
-                        //    element.closest('.list').prepend(_product_constants.HTML.ProductDetail_Images_Item.replaceAll('{src}', result.data).replaceAll('{id}', '-1'))
-                        //    element.closest('.items').find('.count').html(element.closest('.list').find('.magnific_popup').length)
-                        //} else {
-                        //    var reader = new FileReader();
-                        //    reader.onload = function (e) {
-                        //        element.closest('.list').prepend(_product_constants.HTML.ProductDetail_Images_Item.replaceAll('{src}', e.target.result).replaceAll('{id}', '-1'))
-                        //        element.closest('.items').find('.count').html(element.closest('.list').find('.magnific_popup').length)
-
-                        //    }
-                        //    reader.readAsDataURL(item);
-                        //}
-                        if (item.size > (1024 * 1024)) {
-                            _msgalert.error("Vui lòng chỉ upload ảnh có dung lượng tối đa 1MB")
-                            return false
-                        }
                         var reader = new FileReader();
                         reader.onload = function (e) {
                             element.closest('.list').prepend(_product_constants.HTML.ProductDetail_Images_Item.replaceAll('{src}', e.target.result).replaceAll('{id}', '-1'))
@@ -1139,6 +1138,30 @@ var product_detail = {
 
                 }
 
+            } break
+            case 'image_row_item': {
+     
+                if (element.closest('.flex-lg-nowrap').find('.magnific_popup').length >= 1) {
+                    _msgalert.error('Số lượng ảnh vượt quá giới hạn')
+                    element.val(null)
+                }
+                else {
+                    if ($.inArray(element.val().split('.').pop().toLowerCase(), _product_constants.VALUES.ImageExtension) == -1) {
+                        _msgalert.error("Vui lòng chỉ upload các định dạng sau: " + _product_constants.VALUES.ImageExtension.join(', '));
+                        return
+                    }
+                    $(element[0].files).each(function (index, item) {
+
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            element.closest('.list').prepend(_product_constants.HTML.ProductDetail_Images_Item.replaceAll('{src}', e.target.result).replaceAll('{id}', '-1'))
+            
+                        }
+                        reader.readAsDataURL(item);
+                    });
+                    element.val(null)
+
+                }
             } break
         }
 
@@ -1179,11 +1202,7 @@ var product_detail = {
                 var data_src = element_image.find('img').attr('src')
                 if (data_src == null || data_src == undefined || data_src.trim() == '') return true
                 if (_product_function.CheckIfImageVideoIsLocal(data_src)) {
-                    var formdata = {
-                        data_image: data_src
-                    };
-
-                    var result = _product_function.POSTBodySynchorus('/Product/SummitImages', formdata)
+                    var result = _product_function.POSTSynchorus('/Product/SummitImages', { data_image: data_src })
                     if (result != undefined && result.data != undefined && result.data.trim() != '') {
                         model.images.push(result.data)
                     } else {
@@ -1202,27 +1221,37 @@ var product_detail = {
                 model.avatar = result.data
             }
         }
-        var result = _product_function.POSTSynchorus('/Product/SummitImages', { data_image: $('#avatar .list .items').first().find('img').attr('src') })
+        var result = _product_function.POSTSynchorus('/Files/SummitImages', { data_image: $('#avatar .list .items').first().find('img').attr('src') })
         if (result != undefined && result.data != undefined && result.data.trim() != '') {
             model.avatar = result.data
         } else {
             model.avatar = $('#avatar .list .items').first().find('img').attr('src')
         }
+      
         model.videos = []
-        $('#videos .list .items').each(function (index, item) {
+        $('#videos .items .magnific_thumb').each(function (index, item) {
             var element_image = $(this)
             //model.videos.push(element_image.find('video').find('source').attr('src'))
             var data_src = element_image.find('video').find('source').attr('src')
             if (data_src == null || data_src == undefined || data_src.trim() == '') return true
             if (_product_function.CheckIfImageVideoIsLocal(data_src)) {
-                var result = _product_function.POSTSynchorus('/Product/SummitVideo', { data_video: data_src })
+                const byteCharacters = atob(data_src.split('base64,')[1]);
+                const byteNumbers = new Array(byteCharacters.length);
+                for (let i = 0; i < byteCharacters.length; i++) {
+                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+                const byteArray = new Uint8Array(byteNumbers);
+                const blob = new Blob([byteArray], { type: "video/mp4" });
+
+                //// Create a FormData object to send via AJAX
+                var formData = new FormData();
+                formData.append('request', blob, 'video.mp4'); // Append the Blob as a file
+
+                var result = _product_function.POSTFileSynchorus('/Files/SummitVideo', formData)
+
                 if (result != undefined && result.data != undefined && result.data.trim() != '') {
                     model.videos.push(result.data)
-                } else {
-                    model.videos.push(data_src)
                 }
-            } else {
-                model.images.push(data_src)
             }
 
         })
@@ -1232,12 +1261,13 @@ var product_detail = {
         model.specification = []
         $('#specifications .namesp').each(function (index, item) {
             var element = $(this)
-
+            
             model.specification.push({
                 _id: '-1',
                 attribute_id: element.attr('data-attr-id'),
                 value_type: element.attr('data-type'),
-                value: element.find('input').val()
+                value: element.find('input').val(),
+                type_ids: element.find('input').attr('data-value'),
             })
 
         })
@@ -1316,7 +1346,7 @@ var product_detail = {
         _product_function.POST('/Product/Summit', { request: model }, function (result) {
             if (result.is_success) {
                 _global_function.RemoveLoading()
-                _msgalert.success('Thêm mới sản phẩm thành công')
+                _msgalert.success(result.msg)
                 setTimeout(function () {
                     window.location.href = '/product';
                 }, 2000);
@@ -1385,12 +1415,19 @@ var product_detail = {
         if ($('#images .flex-lg-nowrap .magnific_popup').length >= max_item) {
             _msgalert.error('Số lượng ảnh vượt quá giới hạn')
             success = false
+        } else if ($('#images .magnific_popup').length ==0) {
+            _msgalert.error('Chưa có ảnh sản phẩm')
+            success = false
         }
         if (!success) return success
         //-- avt
         max_item = _product_constants.VALUES.ProductDetail_Max_Avt
         if ($('#avatar .flex-lg-nowrap .magnific_popup').length >= max_item) {
             _msgalert.error('Số lượng ảnh đại diện vượt quá giới hạn')
+            success = false
+        }
+        else if ($('#avatar .magnific_popup').length == 0) {
+            _msgalert.error('Chưa có ảnh đại diện sản phẩm')
             success = false
         }
         if (!success) return success
@@ -1597,6 +1634,7 @@ var product_detail = {
         model.attributes = []
         $('.product-attributes').each(function (index, item) {
             var element = $(this)
+         
             model.attributes.push({
                 _id: index,
                 name: element.find('h6').find('b').html(),
@@ -1606,11 +1644,18 @@ var product_detail = {
         model.attributes_detail = []
         $('#product-attributes-box .attributes-name').each(function (index_2, item_2) {
             var element = $(this)
+            var img_src = element.closest('.col-md-6 ').find('#image_row_item').find('img').attr('src')
+            if (img_src != undefined && _product_function.CheckIfImageVideoIsLocal(img_src)) {
+                var result = _product_function.POSTSynchorus('/Product/SummitImages', { data_image: img_src })
+                if (result != undefined && result.data != undefined && result.data.trim() != '') {
+                    img_src = result.data
+                }
+            }
             var value = element.val()
             if (value != undefined && value.trim() != '') {
                 model.attributes_detail.push({
                     attribute_id: product_detail.GetLevelOfAttributesBox(element.closest('.product-attributes')),
-                    img: '',
+                    img: img_src == undefined ? '' : img_src,
                     name: element.val()
                 })
             }
