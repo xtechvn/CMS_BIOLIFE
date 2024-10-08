@@ -163,8 +163,8 @@ namespace DAL
 
                             var TagIds = await _DbContext.ArticleTags.Where(s => s.ArticleId == article.Id).Select(s => s.TagId).ToListAsync();
                             model.Tags = await _DbContext.Tags.Where(s => TagIds.Contains(s.Id)).Select(s => s.TagName).ToListAsync();
-                            // ét Cate
-                            var categoryIds = await _DbContext.ArticleCategories.Where(s => s.ArticleId == article.Id && s.IsMain == false).Select(s => (int)s.CategoryId).ToListAsync();
+                            // get Cate
+                            var categoryIds = await _DbContext.ArticleCategories.Where(s => s.ArticleId == article.Id && (s.IsMain == false || s.IsMain == null)).Select(s => (int)s.CategoryId).ToListAsync();
                             model.Categories = categoryIds.Any() ? categoryIds : null;
 
                             // Lấy thông tin chuyên mục chính
@@ -274,6 +274,7 @@ namespace DAL
                     {
                         try
                         {
+                            // Lấy danh sách các chuyên mục hiện tại
                             var ExistList = await _DbContext.ArticleCategories.Where(s => s.ArticleId == ArticleId).ToListAsync();
                             if (ExistList != null && ExistList.Count > 0)
                             {
@@ -288,6 +289,21 @@ namespace DAL
                                 }
                             }
 
+                            // Thêm chuyên mục chính nếu có
+                            if (MainCategoryId.HasValue)
+                            {
+                                var mainCategoryModel = new ArticleCategory
+                                {
+                                    CategoryId = MainCategoryId.Value,
+                                    ArticleId = ArticleId,
+                                    IsMain = true,
+                                    UpdateLast = DateTime.Now
+                                };
+                                await _DbContext.ArticleCategories.AddAsync(mainCategoryModel);
+                                await _DbContext.SaveChangesAsync();
+                            }
+
+                            // Thêm các chuyên mục phụ còn lại
                             if (ListCateId != null && ListCateId.Count > 0)
                             {
                                 foreach (var item in ListCateId)
@@ -296,10 +312,24 @@ namespace DAL
                                     {
                                         CategoryId = item,
                                         ArticleId = ArticleId,
-                                        IsMain = MainCategoryId.HasValue && item == MainCategoryId.Value,
+                                        IsMain = false,
                                         UpdateLast = DateTime.Now
                                     };
                                     await _DbContext.ArticleCategories.AddAsync(model);
+                                    await _DbContext.SaveChangesAsync();
+                                }
+                            }
+
+                            // Xóa chuyên mục phụ nếu trùng với chuyên mục chính
+                            if (MainCategoryId.HasValue)
+                            {
+                                var duplicateCategories = await _DbContext.ArticleCategories
+                                    .Where(s => s.ArticleId == ArticleId && s.CategoryId == MainCategoryId.Value && s.IsMain == false)
+                                    .ToListAsync();
+
+                                if (duplicateCategories != null && duplicateCategories.Count > 0)
+                                {
+                                    _DbContext.ArticleCategories.RemoveRange(duplicateCategories);
                                     await _DbContext.SaveChangesAsync();
                                 }
                             }
@@ -322,6 +352,8 @@ namespace DAL
                 return 0;
             }
         }
+
+
 
         public async Task<int> MultipleInsertArticleRelation(long ArticleId, List<long> ListArticleId)
         {
