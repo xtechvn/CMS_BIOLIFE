@@ -8228,15 +8228,16 @@ label.switch {
     bottom: 0;
     right: 0;
     z-index: 2; }
-  .bg-login::after {
-    content: "";
-    background: url(images/graphics/drop_intro.jpg) center;
-    background-size: contain;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0; }
+    .bg-login::after {
+        content: "";
+        background: url(images/graphics/bannerhome.jpg) center;
+        background-size: contain;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
   .bg-login .login-popup {
     position: absolute;
     top: 50%;
