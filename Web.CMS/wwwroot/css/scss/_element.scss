@@ -3200,6 +3200,7 @@ label.switch {
     position: relative;
     height: 100vh;
     overflow: hidden;
+
     &::before {
         content: "";
         background: rgba(0, 0, 0, 0.6);
@@ -3210,9 +3211,10 @@ label.switch {
         right: 0;
         z-index: 2;
     }
+
     &::after {
         content: "";
-        background: url(images/graphics/drop_intro.jpg) center;
+        background: url(images/graphics/bannerhome.jpg) center;
         background-size: contain;
         position: absolute;
         top: 0;
@@ -3220,6 +3222,7 @@ label.switch {
         bottom: 0;
         right: 0;
     }
+
     .login-popup {
         position: absolute;
         top: 50%;
@@ -3228,6 +3231,7 @@ label.switch {
         border-radius: 0;
         left: 0;
         right: 0;
+
         .content_lightbox {
             border-radius: 20px;
             background: #fff;
@@ -3237,6 +3241,7 @@ label.switch {
             padding-bottom: 0;
         }
     }
+
     @media (max-width: 767px) {
         .login-popup {
             .content_lightbox {
