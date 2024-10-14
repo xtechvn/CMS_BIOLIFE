@@ -244,6 +244,9 @@ namespace WEB.CMS.Controllers
                     {
                         product_main.label_price = ((double)product_main.amount_min).ToString("N0") + " đ"+ " - "+((double)product_main.amount_max).ToString("N0") + " đ";
 
+
+
+
                     }
 
                 }
