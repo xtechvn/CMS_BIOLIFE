@@ -235,10 +235,13 @@ var _user = {
                 $(this).change();
             });
             _user.modal_element.modal('show');
+            $('.modal-backdrop').css('z-index','6')
         });
 
         //let param = { Id: 0 };
         //_magnific.OpenLargerPopup(title, url, param);
+        
+      
     },
 
     OnOpenEditForm: function (id) {
@@ -275,11 +278,15 @@ var _user = {
                 $(this).change();
             });
             _user.modal_element.modal('show');
+            $('.modal-backdrop').css('z-index', '6')
+
         });
 
 
         //let param = { Id: id };
         //_magnific.OpenLargerPopup(title, url, param);
+
+        
     },
     OnOpenGenQrFrom: function (id) {
         let url = '/User/ViewConfirm';
@@ -354,6 +361,8 @@ var _user = {
                 $(this).change();
             });
             _user.modal_element.modal('show');
+            $('.modal-backdrop').css('z-index', '6')
+
         });
     },
 

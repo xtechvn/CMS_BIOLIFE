@@ -168,7 +168,6 @@ namespace WEB.CMS.Controllers
                     model.Avata = "/" + _UploadFolder + "/" + _FileName;
                 }
 
-                int rs = 0;
                 if(model.UserPositionId!=null && model.UserPositionId > 0)
                 {
                     var active_position = await _UserRepository.GetUserPositionsByID((int)model.UserPositionId);
@@ -189,36 +188,20 @@ namespace WEB.CMS.Controllers
                 if (model.Avata == null) model.Avata = "";
                 if (model.Address == null) model.Address = "";
                 //-- Update dbUser:
-                var success = await _aPIService.UpdateUser(model);
-                if (success > 0 )
+                var exists = await _UserRepository.GetById(model.Id);
+                int user_id = 0;
+                if (exists == null || exists.Id <= 0)
                 {
-                    var exists = await _UserRepository.GetById(model.Id);
-                    if(exists==null || exists.Id <= 0)
-                    {
-                        rs = await _UserRepository.Create(model);
+                    user_id = await _UserRepository.Create(model);
 
-                    }
-                    else
-                    {
-                        rs = await _UserRepository.Update(model);
-
-                    }
                 }
                 else
                 {
-                    rs = -2;
+                    user_id = await _UserRepository.Update(model);
+
                 }
-                  /*
-                if (model.Id != 0)
-                {
-                    rs = await _UserRepository.Update(model);
-                }
-                else
-                {
-                    rs = await _UserRepository.Create(model);
-                }
-               */
-                if (rs > 0)
+               
+                if (user_id > 0)
                 {
 
 
@@ -228,7 +211,7 @@ namespace WEB.CMS.Controllers
                         message = "Cập nhật thành công"
                     });
                 }
-                else if (rs == -1)
+                else if (user_id == -1)
                 {
                     return new JsonResult(new
                     {
