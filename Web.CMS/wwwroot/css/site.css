@@ -3,3 +3,6 @@
     font-weight:bold;
 
 }
+.modal-backdrop{
+    z-index:6 !important;
+}
