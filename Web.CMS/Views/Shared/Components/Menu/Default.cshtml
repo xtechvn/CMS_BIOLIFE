@@ -8,7 +8,7 @@
 
     void GenChildMenu(int parentId)
     {
-        var childDatas = _ListMenu.Where(s => s.ParentId == parentId && s.Status==0);
+        var childDatas = _ListMenu.Where(s => s.ParentId == parentId);
         @if (childDatas != null && childDatas.Any())
         {
             @foreach (var subMenu in childDatas)

@@ -38,6 +38,7 @@ namespace WEB.CMS.ViewComponents
             }
 
             var menus = await _MenuRepository.GetMenuPermissionOfUser(menu_ids);
+            menus = menus.Where(x => x.Status == 0).ToList();
             var path = (string)HttpContext.Request.Path;
             var actived = menus.FirstOrDefault(s => path.ToLower() == (s.Link ?? string.Empty).ToLower());
             var menu_id = actived != null ? actived.Id : -1;
