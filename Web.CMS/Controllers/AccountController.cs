@@ -34,7 +34,6 @@ namespace WEB.CMS.Controllers
         private readonly IUserRepository _UserRepository;
         private readonly IMFARepository _mFARepository;
         private readonly IConfiguration _configuration;
-        private readonly APIService _aPIService;
         private readonly IWebHostEnvironment _WebHostEnvironment;
         private RedisConn _redisConn;
 
@@ -43,7 +42,6 @@ namespace WEB.CMS.Controllers
             _UserRepository = userRepository;
             _mFARepository = mFARepository;
             _configuration = configuration;
-            _aPIService = new APIService(configuration, userRepository);
             _WebHostEnvironment = hostEnvironment;
             _redisConn = new RedisConn(configuration);
             _redisConn.Connect();

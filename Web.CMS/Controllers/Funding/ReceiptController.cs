@@ -29,7 +29,6 @@ namespace WEB.CMS.Controllers.Funding
         private readonly IUserRepository _userRepository;
         private ManagementUser _ManagementUser;
         private readonly IOrderRepository _orderRepository;
-        private APIService apiService;
         private readonly IDepositHistoryRepository _depositHistoryRepository;
         private readonly WEB.CMS.Models.AppSettings config;
         private readonly IConfiguration _configuration;
@@ -50,7 +49,6 @@ namespace WEB.CMS.Controllers.Funding
             _ManagementUser = ManagementUser;
             _userRepository = userRepository;
             identifierServiceRepository = _identifierServiceRepository;
-            apiService = new APIService(configuration, userRepository);
             _depositHistoryRepository = depositHistoryRepository;
             _paymentRequestRepository = paymentRequestRepository;
 
@@ -255,9 +253,9 @@ namespace WEB.CMS.Controllers.Funding
                 var current_user = _ManagementUser.GetCurrentUser();
                 foreach (var item in model.ContractPayDetails)
                 {
-                    string link = "/Receipt/Detail?contractPayId=" + contractPayId;
-                    apiService.SendMessage(_UserId.ToString(), ((int)ModuleType.PHIEU_THU).ToString(),
-                       ((int)ActionType.TAO_MOI_PHIEU_THU).ToString(), item.OrderCode, link, current_user == null ? "0" : current_user.Role);
+                    //string link = "/Receipt/Detail?contractPayId=" + contractPayId;
+                    //apiService.SendMessage(_UserId.ToString(), ((int)ModuleType.PHIEU_THU).ToString(),
+                    //   ((int)ActionType.TAO_MOI_PHIEU_THU).ToString(), item.OrderCode, link, current_user == null ? "0" : current_user.Role);
 
                     //var data = await _orderRepository.GetAllServiceByOrderId(item.OrderId);
                     //if (data != null)

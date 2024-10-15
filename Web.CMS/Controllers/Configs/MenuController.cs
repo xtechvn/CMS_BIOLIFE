@@ -25,12 +25,10 @@ namespace WEB.Adavigo.CMS.Controllers.Configs
         private readonly IMenuRepository _MenuRepository;
         private readonly IConfiguration _configuration;
         private readonly RedisConn _redisService;
-        private APIService apiService;
         public MenuController(IConfiguration configuration, IUserRepository userRepository, IMenuRepository menuRepository, RedisConn redisService)
         {
             _configuration = configuration;
             _MenuRepository = menuRepository;
-            apiService = new APIService(configuration, userRepository);
             _redisService = redisService;
             _redisService.Connect();
 
@@ -222,8 +220,7 @@ namespace WEB.Adavigo.CMS.Controllers.Configs
                 var lst_Notify = new NotifySummeryViewModel();
                               
                     //lấy từ api
-                    var ListNotify = await apiService.GetListNotify(_UserId.ToString());
-                    lst_Notify = ListNotify;
+                    lst_Notify = new NotifySummeryViewModel();
                     return Ok(new
                     {
                         status = (int)ResponseType.SUCCESS,
@@ -253,7 +250,7 @@ namespace WEB.Adavigo.CMS.Controllers.Configs
                     _UserId = Convert.ToInt64(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
                 }
 
-                var UpdateNotify = await apiService.UpdateNotify(id, _UserId.ToString(), seen_status);
+                var UpdateNotify = 0;
                 if (UpdateNotify == 0)
                     return Ok(new
                     {

@@ -783,5 +783,19 @@ namespace Repositories.Repositories
                 return null;
             }
         }
+        public async Task<int> CountUser()
+        {
+            try
+            {
+
+                return await _UserDAL.CountUser();
+
+            }
+            catch (Exception ex)
+            {
+                LogHelper.InsertLogTelegram("CountUser - ClientDAL: " + ex);
+                return -1;
+            }
+        }
     }
 }

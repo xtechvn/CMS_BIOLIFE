@@ -46,5 +46,7 @@ namespace Repositories.IRepositories
         List<User> GetHeadOfAccountantUser2();
         Task<List<User>> GetByIds(List<long> userIds);
         Task<List<UserDepart>> GetListUserDepartById(List<int?> ids);
+        public Task<int> CountUser();
+
     }
 }

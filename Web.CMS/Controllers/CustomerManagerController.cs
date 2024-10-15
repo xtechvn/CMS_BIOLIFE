@@ -577,12 +577,12 @@ namespace WEB.Adavigo.CMS.Controllers
                 var model = await _clientRepository.GetClientDetailByClientId(id);
                 var Ac = _accountClientRepository.AccountClientByClientId(id);
 
-                APIService apiService = new APIService(_configuration, _userRepository);
+                //APIService apiService = new APIService(_configuration, _userRepository);
 
-                if (Ac != null && model != null && model.ClientType != ClientType.KL)
-                {
-                    apiService.SendMailResetPassword(Ac.UserName);
-                }
+                //if (Ac != null && model != null && model.ClientType != ClientType.KL)
+                //{
+                //    apiService.SendMailResetPassword(Ac.UserName);
+                //}
             }
             catch (Exception ex)
             {

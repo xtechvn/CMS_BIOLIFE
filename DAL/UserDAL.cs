@@ -522,5 +522,21 @@ namespace DAL
                 return null;
             }
         }
+        public async Task<int> CountUser()
+        {
+            try
+            {
+                using (var _DbContext = new EntityDataContext(_connection))
+                {
+                    return await _DbContext.Users.CountAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.InsertLogTelegram("CountUser - UserDAL: " + ex);
+                return -1;
+            }
+        }
+
     }
 }
