@@ -189,6 +189,7 @@ namespace WEB.CMS.Controllers
                 if (exists == null || exists.Id <= 0)
                 {
                     user_id = await _UserRepository.CountUser();
+                    user_id++;
                     model.Id=user_id;
                     user_id = await _UserRepository.Create(model);
 
