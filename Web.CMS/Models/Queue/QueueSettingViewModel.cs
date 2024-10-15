@@ -7,5 +7,6 @@
         public string v_host { get; set; }
         public string username { get; set; }
         public string password { get; set; }
+        public string queue_Name { get; set; }
     }
 }
