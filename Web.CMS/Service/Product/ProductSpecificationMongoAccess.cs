@@ -16,7 +16,7 @@ namespace WEB.CMS.Models.Product
             _configuration = configuration;
             //mongodb://adavigolog_writer:adavigolog_2022@103.163.216.42:27017/?authSource=HoanBds
             string url = "mongodb://" + configuration["DataBaseConfig:MongoServer:user"] +
-                ":" + configuration["DataBaseConfig:MongoServer:user"] +
+                ":" + configuration["DataBaseConfig:MongoServer:pwd"] +
                 "@" + configuration["DataBaseConfig:MongoServer:Host"] +
                 ":" + configuration["DataBaseConfig:MongoServer:Port"] +
                 "/?authSource=" + configuration["DataBaseConfig:MongoServer:catalog"] + "";

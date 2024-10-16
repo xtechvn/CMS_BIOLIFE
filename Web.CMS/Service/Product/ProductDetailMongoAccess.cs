@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System.Collections.Concurrent;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using Utilities;
 using Utilities.Contants;
 using Utilities.Contants.ProductV2;
 
@@ -21,7 +22,7 @@ namespace WEB.CMS.Models.Product
             _configuration = configuration;
             //mongodb://adavigolog_writer:adavigolog_2022@103.163.216.42:27017/?authSource=HoanBds
             string url = "mongodb://"+ configuration["DataBaseConfig:MongoServer:user"] + 
-                ":" + configuration["DataBaseConfig:MongoServer:user"] +
+                ":" + configuration["DataBaseConfig:MongoServer:pwd"] +
                 "@" + configuration["DataBaseConfig:MongoServer:Host"] +
                 ":" + configuration["DataBaseConfig:MongoServer:Port"] + 
                 "/?authSource=" + configuration["DataBaseConfig:MongoServer:catalog"] + "";
@@ -40,7 +41,7 @@ namespace WEB.CMS.Models.Product
             }
             catch (Exception ex)
             {
-                Utilities.LogHelper.InsertLogTelegram("ProductDetailMongoAccess - AddNewAsync: \nData: aff_model: " + JsonConvert.SerializeObject(model) + ".\n Error: " + ex);
+                LogHelper.InsertLogTelegram("AddNewAsync - ProductDetailMongoAccess: " + ex.ToString());
                 return null;
             }
         }
@@ -56,7 +57,7 @@ namespace WEB.CMS.Models.Product
             }
             catch (Exception ex)
             {
-                Utilities.LogHelper.InsertLogTelegram("ProductDetailMongoAccess - UpdateAsync: \nData: aff_model: " + JsonConvert.SerializeObject(model) + ".\n Error: " + ex);
+                LogHelper.InsertLogTelegram("UpdateAsync - ProductDetailMongoAccess: " + ex.ToString());
                 return null;
             }
         }
