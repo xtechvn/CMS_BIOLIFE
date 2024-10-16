@@ -138,7 +138,7 @@
             @if (Model.Id != 0)
             {
                 <button type="button" class="btn btn-default btn-dynamic-enable bg-main" onclick="_groupProduct.OnSave()"><i class="fa fa-floppy-o"></i>Lưu</button>
-                <button type="button" class="btn btn-default btn-dynamic-enable red" onclick="_groupProduct.OnDelete('@Model.Id')"><i class="fa fa-trash"></i>Xóa</button>
+                <button type="button" style="display:none" class="btn btn-default btn-dynamic-enable red" onclick="_groupProduct.OnDelete('@Model.Id')"><i class="fa fa-trash"></i>Xóa</button>
             }
             else
             {
