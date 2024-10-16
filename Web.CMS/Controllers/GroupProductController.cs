@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using Nest;
+using Newtonsoft.Json;
 using Repositories.IRepositories;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,7 @@ using System.Threading.Tasks;
 using Utilities;
 using Utilities.Contants;
 using WEB.CMS.Customize;
+using WEB.CMS.RabitMQ;
 
 namespace WEB.CMS.Controllers
 {
@@ -29,6 +32,7 @@ namespace WEB.CMS.Controllers
         private readonly string _UrlStaticImage;
         private readonly IConfiguration _configuration;
         private readonly RedisConn _redisService;
+        private readonly WorkQueueClient work_queue;
 
         public GroupProductController(IGroupProductRepository groupProductRepository,
                IWebHostEnvironment hostEnvironment, IPositionRepository positionRepository,
@@ -37,6 +41,7 @@ namespace WEB.CMS.Controllers
             _GroupProductRepository = groupProductRepository;
             _WebHostEnvironment = hostEnvironment;
             _PositionRepository = positionRepository;
+            work_queue = new WorkQueueClient(configuration);
 
             _AllCodeRepository = allCodeRepository;
             _UrlStaticImage = domainConfig.Value.ImageStatic;
@@ -99,6 +104,17 @@ namespace WEB.CMS.Controllers
                     };
                 }
                 _redisService.clear(CacheName.ARTICLE_B2C_CATEGORY_MENU, Convert.ToInt32(_configuration["Redis:Database:db_common"]));
+                // Tạo message để push vào queue
+                var j_param = new Dictionary<string, object>
+                            {
+                                { "store_name", "sp_getGroupProduct" },
+                                { "index_es", "es_biolife_sp_get_groupproduct" },
+                                {"project_type", Convert.ToInt16(ProjectType.BIOLIFE) },
+                                  {"id" , id }
+                            };
+                var _data_push = JsonConvert.SerializeObject(j_param);
+                // Push message vào queue
+                var response_queue = work_queue.InsertQueueSimple(_data_push, QueueName.queue_app_push);
             }
             catch
             {
@@ -141,6 +157,18 @@ namespace WEB.CMS.Controllers
                 {
                     _redisService.clear(CacheName.ARTICLE_B2C_CATEGORY_MENU + rs, Convert.ToInt32(_configuration["Redis:Database:db_common"]));
                     _redisService.clear(CacheName.ARTICLE_B2C_CATEGORY_MENU + upsertModel.ParentId, Convert.ToInt32(_configuration["Redis:Database:db_common"]));
+
+                    // Tạo message để push vào queue
+                    var j_param = new Dictionary<string, object>
+                            {
+                                { "store_name", "sp_getGroupProduct" },
+                                { "index_es", "es_biolife_sp_get_groupproduct" },
+                                {"project_type", Convert.ToInt16(ProjectType.BIOLIFE) },
+                                  {"id" ,  model.Id }
+                            };
+                    var _data_push = JsonConvert.SerializeObject(j_param);
+                    // Push message vào queue
+                    var response_queue = work_queue.InsertQueueSimple(_data_push, QueueName.queue_app_push);
 
                     return new JsonResult(new
                     {
@@ -187,7 +215,19 @@ namespace WEB.CMS.Controllers
 
                 if (rs > 0)
                 {
-                    _redisService.clear(CacheName.ARTICLE_B2C_CATEGORY_MENU+id, Convert.ToInt32(_configuration["Redis:Database:db_common"]));
+                    _redisService.clear(CacheName.ARTICLE_B2C_CATEGORY_MENU + id, Convert.ToInt32(_configuration["Redis:Database:db_common"]));
+
+                    //// Tạo message để push vào queue
+                    //var j_param = new Dictionary<string, object>
+                    //        {
+                    //            { "store_name", "sp_getGroupProduct" },
+                    //            { "index_es", "es_biolife_sp_get_groupproduct" },
+                    //            {"project_type", Convert.ToInt16(ProjectType.BIOLIFE) },
+                    //              {"id" ,  id }
+                    //        };
+                    //var _data_push = JsonConvert.SerializeObject(j_param);
+                    //// Push message vào queue
+                    //var response_queue = work_queue.InsertQueueSimple(_data_push, QueueName.queue_app_push);
 
 
                     return new JsonResult(new
@@ -429,16 +469,17 @@ namespace WEB.CMS.Controllers
         }
 
 
-        public async Task<IActionResult> Clearcache(int id,string name)
+        public async Task<IActionResult> Clearcache(int id, string name)
         {
             try
             {
 
                 _redisService.clear(CacheName.ARTICLE_B2C_CATEGORY_MENU + id, Convert.ToInt32(_configuration["Redis:Database:db_common"]));
+
                 return new JsonResult(new
                 {
                     isSuccess = true,
-                    message = "Clear cache thành công cho chuyên mục "+ name + " có id là "+id+"."
+                    message = "Clear cache thành công cho chuyên mục " + name + " có id là " + id + "."
                 });
 
             }
