@@ -1,0 +1,827 @@
+﻿@{
+    ViewData["Title"] = "Chi tiết sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string product_id = (string)ViewBag.ProductId;
+}
+<style>
+    .list-toys .active a {
+        color: black !important;
+    }
+</style>
+<section class="add-product">
+
+    <div class="row-main container">
+        <div class="line-bottom bg-white px-3 mb-3" style="padding-bottom: 0;">
+            <div class="tab-default mb0">
+                <a href="javascript:;" class="change-tab active" data-id="1">Thông tin cơ bản</a>
+                <a href="javascript:;" class="change-tab" data-id="2">Thông tin bán hàng</a>
+                <a href="javascript:;" class="change-tab" data-id="3">Vận chuyển</a>
+                <a href="javascript:;" class="change-tab" data-id="4">Thông tin khác</a>
+            </div>
+        </div>
+    </div>
+    <div class="row-main container">
+        <div class="box-info bg-white p-3 mb-3">
+            <h5 class="title-box mb-2 text-uppercase">Thông tin cơ bản</h5>
+            <div id="images" class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                <label class="label">Hình ảnh sản phẩm <sup class="red">*</sup></label>
+                <div class="wrap_input">
+                    <div class="manage-color w-100">
+                        <div class="flex list w-100">
+                            <div class="items magnific_popup">
+                                <button type="button" class="delete"><i class="icofont-close-line"></i></button>
+                                <a class="thumb_img thumb_1x1 magnific_thumb">
+                                    <img src="/images/graphics/product.jpg">
+                                </a>
+                            </div>
+                            <div class="items magnific_popup">
+                                <a class="thumb_img thumb_1x1 magnific_thumb">
+                                    <img src="/images/graphics/product.jpg">
+                                </a>
+                            </div>
+                            <div class="items magnific_popup">
+                                <a class="thumb_img thumb_1x1 magnific_thumb">
+                                    <img src="/images/graphics/product.jpg">
+                                </a>
+                            </div>
+                            <div class="items magnific_popup">
+                                <a class="thumb_img thumb_1x1 magnific_thumb">
+                                    <img src="/images/graphics/product.jpg">
+                                </a>
+                            </div>
+                            <div class="items import">
+                                <label class="choose choose-wrap">
+                                    <input id="product_images_input" type="file" name="myFile" multiple>
+                                    <div class="choose-content">
+                                        <i class="icofont-image"></i>
+                                        <span>Thêm hình ảnh (0/9)</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <p>
+                            Tải lên hình ảnh với tỷ lệ 1:1. Việc sử dụng hình ảnh đẹp sẽ thu hút thêm lượt truy
+                            cập vào sản phẩm của bạn
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="avatar" class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                <label class="label">Ảnh bìa <sup class="red">*</sup></label>
+                <div class="wrap_input">
+                    <div class="manage-color  w-100">
+                        <div class="flex list align-items-center w-100">
+                            <div class="items magnific_popup">
+                                <button type="button" class="delete"><i class="icofont-close-line"></i></button>
+                                <a class="thumb_img thumb_1x1 magnific_thumb">
+                                    <img src="/images/graphics/product.jpg">
+                                </a>
+                            </div>
+                            <div class="items import">
+                                <label class="choose choose-wrap">
+                                    <input type="file" name="myFile">
+                                    <div class="choose-content">
+                                        <i class="icofont-image"></i>
+                                        <span>Thêm hình ảnh (0/1)</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <ul>
+                                <li>Tải lên hình ảnh 1:1</li>
+                                <li>
+                                    Ảnh bìa sẽ được hiện thị tại các trang Kết qả tìm kiếm, gợi ý hôm nay...
+                                    Việc sử dụng ảnh bìa đẹp sẽ thu hút thêm lượt truy cập vào sản phẩm của bạn
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="videos" class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                <label class="label">Video sản phẩm</label>
+                <div class="wrap_input">
+                    <div class="manage-color  w-100">
+                        <div class="flex list align-items-center w-100">
+                            <div class="items magnific_popup">
+                                <button type="button" class="delete"><i class="icofont-close-line"></i></button>
+                                <a class="thumb_img thumb_1x1 magnific_thumb">
+                                    <img src="/images/graphics/product.jpg">
+                                </a>
+                            </div>
+                            <div class="items import">
+                                <label class="choose choose-wrap">
+                                    <input type="file" name="myFile">
+                                    <div class="choose-content">
+                                        <i class="icofont-video-alt"></i>
+                                        <span>Thêm hình ảnh (0/1)</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <ul>
+                                <li>Kích thước tối đa 30Mb, độ phân giải không vượt quá 1280x1280px</li>
+                                <li>Độ dài: 10s-60s</li>
+                                <li>Định dạng: MP4</li>
+                                <li>
+                                    Lưu ý: sản phẩm có thể hiển thị trong khi video dang được xử lý. Video sẽ tự
+                                    động hiển thị sau khi xử lý thành công
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="product-name" class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                <label class="label">Tên sản phẩm <sup class="red">*</sup></label>
+                <div class="wrap_input">
+                    <div class="form-group namesp">
+                        <input type="text" class="form-control" maxlength="120"
+                               placeholder="Tên sản phẩm + Thương hiệu + Model + Thông số kỹ thuật">
+                        <span class="note"><nw class="count">0</nw>/120</span>
+                    </div>
+                </div>
+            </div>
+            <div id="group-id" class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                <label class="label">Chọn ngành hàng <sup class="red">*</sup></label>
+                <div class="wrap_input">
+                    <div class="form-group namesp">
+                        <input type="text" class="form-control"
+                               placeholder="Tên sản phẩm + Thương hiệu + Model + Thông số kỹ thuật" disabled>
+                        <a href="#them-nganhhang" class="edit select-group-product"><i class="icofont-ui-edit"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div id="description" class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                <label class="label">Mô tả sản phẩm <sup class="red">*</sup></label>
+                <div class="wrap_input">
+                    <div class="form-group">
+                        <textarea rows="5" class="form-control" maxlength="3000"></textarea>
+                        <p class="text-right mt-1"><nw class="count">0</nw>/3000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="specification-disabled" class="box-info bg-white p-3 mb-3  disabled">
+            <h5 class="title-box mb-2 text-uppercase">Thông tin chi tiết</h5>
+            <p class="mb-0">Có thể điều chỉnh sau khi chọn ngành hàng</p>
+        </div>
+        <div id="selling-information-disabled" class="box-info bg-white p-3 mb-3   disabled">
+            <h5 class="title-box mb-2 text-uppercase">Thông tin bán hàng</h5>
+            <p class="mb-0">Có thể điều chỉnh sau khi chọn ngành hàng</p>
+        </div>
+        <div id="other-information-disabled" class="box-info bg-white p-3 mb-3 disabled">
+            <h5 class="title-box mb-2 text-uppercase">Thông tin khác</h5>
+            <p class="mb-0">Có thể điều chỉnh sau khi chọn ngành hàng</p>
+        </div>
+
+        <div id="specifications" class="box-info bg-white p-3 mb-3">
+            <h5 class="title-box mb-2 text-uppercase">Thông tin chi tiết</h5>
+            <p>
+                Hoàn thành: <nw class="specification-finish">0</nw>/<nw class="specification-max">1</nw>
+                <span style="color: #919191" class="mx-2">
+                    Điền thông tin thuộc tính để tăng mức độ hiển thị cho
+                    sản
+                    phẩm
+                </span>
+                <a href="javascript:;" class="text-primary" style="display:none;">Xem hướng dẫn bổ sung thuộc tính</a>
+            </p>
+            <div class="row specifications-box">
+                <div class="col-md-6">
+                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                        <label class="label">Thương hiệu <sup class="red">*</sup></label>
+                        <div class="wrap_input">
+                            <div class="form-group">
+                                <select class="select2 w-100">
+                                    <option>Vui lòng chọn</option>
+                                    <option value="">Thương hiệu</option>
+                                    <option value="">Thương hiệu</option>
+                                    <option value="">Thương hiệu </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                        <label class="label">Chất liệu<span>0/5</span></label>
+                        <div class="wrap_input">
+                            <div class="form-group">
+                                <select class="select2 w-100">
+                                    <option>Vui lòng chọn</option>
+                                    <option value="">Chất liệu</option>
+                                    <option value="">Chất liệu</option>
+                                    <option value="">Chất liệu </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                        <label class="label">Độ tuổi khuyến nghị</label>
+                        <div class="wrap_input">
+                            <div class="form-group">
+                                <select class="select2 w-100">
+                                    <option>Vui lòng chọn</option>
+                                    <option value="">18</option>
+                                    <option value="">18</option>
+                                    <option value="">18 </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                        <label class="label">Ngày sản xuất</label>
+                        <div class="wrap_input">
+                            <div class="datepicker-wrap">
+                                <input id="datepicker" placeholder="Vui lòng chọn"
+                                       class="datepicker-input form-control" type="text" value="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                        <label class="label">Tên tổ chức chịu trách nghiệm sản xuất</label>
+                        <div class="wrap_input">
+                            <div class="form-group">
+                                <select class="select2 w-100">
+                                    <option>Vui lòng chọn</option>
+                                    <option value="">Tên abc</option>
+                                    <option value="">Tên abc</option>
+                                    <option value="">Tên abc </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                        <label class="label">Địa chỉ tổ chức chịu trách nghiệm sản xuất</label>
+                        <div class="wrap_input">
+                            <div class="form-group">
+                                <select class="select2 w-100">
+                                    <option>Vui lòng chọn</option>
+                                    <option value="">Abc</option>
+                                    <option value="">Abc</option>
+                                    <option value="">Abc </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                        <label class="label">
+                            Sản phẩm
+                            đặt theo yêu cầu
+                        </label>
+                        <div class="wrap_input">
+                            <div class="form-group">
+                                <select class="select2 w-100">
+                                    <option>Vui lòng chọn</option>
+                                    <option value="">Abc</option>
+                                    <option value="">Abc</option>
+                                    <option value="">Abc </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" style="display:none;">
+                <div class="col-12">
+                    <a href="javascript:;" class="block text-center">
+                        <span>
+                            Hiển thị đầy đủ danh sách
+                            <i class="icofont-simple-down"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="selling-information" class="box-info bg-white p-3 mb-3">
+            <h5 class="title-box mb-2 text-uppercase">Thông tin bán hàng</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                        <label class="label">Phân loại</label>
+                        <div class="wrap_input">
+                            <button id="btn-add-product-attributes" class="btn btn-add btn-add-attributes"><i class="icofont-plus"></i>Thêm nhóm phân loại</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nw id="product-attributes-box">
+
+
+                <div id="product-attributes-2" class="item-edit item flex flex-lg-nowrap gap10 mb-2 w-100">
+                    <label class="label">Phân loại hàng 2</label>
+                    <div class="wrap_input pb-4">
+                        <span class="delete">
+                            <i class="icofont-close"></i>
+                        </span>
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <div class="box-list">
+
+                                    <div class="form-group namesp mb-0">
+                                        <input type="text" class="form-control" placeholder="" value="Màu sắc">
+                                        <span class="note">12/14</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line-bottom"></div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="box-list">
+                                    <div class="form-group namesp flex-input-choose">
+                                        <label class="choose choose-wrap">
+                                            <input type="file" name="myFile">
+                                            <div class="choose-content">
+                                                <i class="icofont-image"></i>
+                                            </div>
+                                        </label>
+                                        <div class="relative w-100">
+                                            <input type="text" class="form-control" placeholder="" value="Màu sắc">
+                                            <span class="note">12/14</span>
+                                        </div>
+                                        <div class="right-action">
+                                            <a class="icon-action" href="javascript:;"><i class="icofont-trash"></i></a>
+                                            <a class="icon-action" href="javascript:;"><i class="icofont-drag"></i></a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="box-list">
+                                    <div class="form-group namesp flex-input-choose">
+                                        <label class="choose choose-wrap">
+                                            <input type="file" name="myFile">
+                                            <div class="choose-content">
+                                                <i class="icofont-image"></i>
+                                            </div>
+                                        </label>
+                                        <div class="relative w-100">
+                                            <input type="text" class="form-control" placeholder="" value="Màu sắc">
+                                            <span class="note">12/14</span>
+                                        </div>
+                                        <div class="right-action">
+                                            <a class="icon-action" href="javascript:;"><i class="icofont-trash"></i></a>
+                                            <a class="icon-action" href="javascript:;"><i class="icofont-drag"></i></a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="box-list">
+                                    <div class="form-group namesp flex-input-choose">
+                                        <label class="choose choose-wrap">
+                                            <input type="file" name="myFile">
+                                            <div class="choose-content">
+                                                <i class="icofont-image"></i>
+                                            </div>
+                                        </label>
+                                        <div class="relative w-100">
+                                            <input type="text" class="form-control" placeholder="" value="Màu sắc">
+                                            <span class="note">12/14</span>
+                                        </div>
+                                        <div class="right-action">
+                                            <a class="icon-action" href="javascript:;"><i class="icofont-trash"></i></a>
+                                            <a class="icon-action" href="javascript:;"><i class="icofont-drag"></i></a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="box-list">
+                                    <div class="form-group namesp flex-input-choose">
+                                        <label class="choose choose-wrap">
+                                            <input type="file" name="myFile">
+                                            <div class="choose-content">
+                                                <i class="icofont-image"></i>
+                                            </div>
+                                        </label>
+                                        <div class="relative w-100">
+                                            <input type="text" class="form-control" placeholder="" value="Màu sắc">
+                                            <span class="note">12/14</span>
+                                        </div>
+                                        <div class="right-action">
+                                            <a class="icon-action" href="javascript:;"><i class="icofont-trash"></i></a>
+                                            <a class="icon-action" href="javascript:;"><i class="icofont-drag"></i></a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </nw>
+
+
+            <div class="item-edit item flex flex-lg-nowrap gap10 mb-2 w-100">
+                <label class="label">
+                    Danh sách
+                    phân loại hàng
+                </label>
+                <div class="wrap_input pb-4">
+                    <div class="flex flex-lg-nowrap gap10 mb-2">
+                        <div class="w-100">
+                            <table id="product-attributes-all-price" class="w-100">
+                                <tbody>
+                                    <tr>
+                                        <td class="td-price">
+                                            <div class="form-group mb-0 price">
+                                                <input type="text" class="form-control input-price" placeholder="Giá nhập">
+                                                <span class="note">đ</span>
+                                            </div>
+                                        </td>
+                                        <td class="td-profit">
+                                            <div class="form-group mb-0 price">
+                                                <input type="text" class="form-control input-price" placeholder="Lợi nhuận">
+                                                <span class="note">đ</span>
+                                            </div>
+                                        </td>
+                                        <td class="td-stock">
+                                            <div class="form-group mb-0">
+                                                <input type="text" class="form-control input-price" placeholder="Kho hàng">
+                                            </div>
+                                        </td>
+                                        <td class="td-sku">
+                                            <div class="form-group mb-0">
+                                                <input type="text" class="form-control"
+                                                       placeholder="SKU phân loại">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <button class="btn btn-round btn-base  btn-all">Áp dụng cho tất cả phân loại</button>
+                    </div>
+                    <div id="product-attributes-price" class="table-responsive table-scroll">
+                        <table class="table w-100">
+                            <thead>
+                                <tr class="text-uppercase tr-head">
+                                    <th class="th-attributes th-attribute-0" style="min-width: 150px;display:none">Phân loại 1</th>
+                                    <th class="th-attributes th-attribute-1" style="min-width: 150px; display: none">Phân loại 2</th>
+                                    <th class="th-price">Giá</th>
+                                    <th class="th-profit">Lợi nhuận</th>
+                                    <th class="th-amount">Giá bán</th>
+                                    <th class="th-stock">Kho hàng</th>
+                                    <th class="th-sku">SKU phân loại</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @*<tr class="tr-main" data-attribute-1="Phân loại 1" data-attribute-2="Phân loại 2-1">
+                                        <td class="td-attributes td-attribute-1" rowspan="2"> Phân loại 1</td>
+                                        <td class="td-attributes td-attribute-2">Phân loại 2-1</td>
+                                        <td class="td-price">
+                                            <div class="form-group mb-0 price">
+                                                <input type="text" class="form-control" placeholder="Giá nhập">
+                                                <span class="note">đ</span>
+                                            </div>
+                                        </td>
+                                        <td class="td-profit">
+                                            <div class="form-group mb-0 price">
+                                                <input type="text" class="form-control" placeholder="Lợi nhuận">
+                                                <span class="note">đ</span>
+                                            </div>
+                                        </td>
+                                        <td class="td-amount">
+                                            <div class="form-group mb-0 price">
+                                                <input type="text" class="form-control" placeholder="Giá bán">
+                                                <span class="note">đ</span>
+                                            </div>
+                                        </td>
+                                        <td class="td-stock">
+                                            <div class="form-group mb-0">
+                                                <input type="text" class="form-control" placeholder="Kho hàng">
+                                            </div>
+                                        </td>
+                                        <td class="td-sku">
+                                            <div class="form-group mb-0">
+                                                <input type="text" class="form-control" placeholder="SKU phân loại">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="tr-sub" data-attribute-1="Phân loại 1" data-attribute-2="Phân loại 2-2">
+                                        <td class="td-attribute-2">Phân loại 2-2</td>
+                                        <td class="td-price">
+                                            <div class="form-group mb-0 price">
+                                                <input type="text" class="form-control" placeholder="Giá nhập">
+                                                <span class="note">đ</span>
+                                            </div>
+                                        </td>
+                                        <td class="td-profit">
+                                            <div class="form-group mb-0 price">
+                                                <input type="text" class="form-control" placeholder="Lợi nhuận">
+                                                <span class="note">đ</span>
+                                            </div>
+                                        </td>
+                                        <td class="td-amount">
+                                            <div class="form-group mb-0 price">
+                                                <input type="text" class="form-control" placeholder="Giá bán">
+                                                <span class="note">đ</span>
+                                            </div>
+                                        </td>
+                                        <td class="td-stock">
+                                            <div class="form-group mb-0">
+                                                <input type="text" class="form-control" placeholder="Kho hàng">
+                                            </div>
+                                        </td>
+                                        <td class="td-sku">
+                                            <div class="form-group mb-0">
+                                                <input type="text" class="form-control" placeholder="SKU phân loại">
+                                            </div>
+                                        </td>
+                                    </tr>*@
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <nw id="single-product-amount" style="" class="box-info bg-white p-3 mb-3 col-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="item flex flex-lg-nowrap gap10 mb-2 w-100 ">
+                            <label class="label">Giá nhập</label>
+                            <div class="wrap_input">
+                                <div id="main-price" class="form-group price">
+                                    <input type="text" class="form-control" placeholder="Nhập giá">
+                                    <span class="note">đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="item flex flex-lg-nowrap gap10 mb-2 w-100 product-single-profit">
+                            <label class="label">Lợi nhuận</label>
+                            <div class="wrap_input">
+                                <div id="main-profit" class="form-group price">
+                                    <input type="text" class="form-control" placeholder="Nhập giá">
+                                    <span class="note">đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                            <label class="label">Giá bán</label>
+                            <div class="wrap_input">
+                                <div id="main-amount" class="form-group price product-single-amount">
+                                    <input type="text" class="form-control" placeholder="Giá bán" disabled="">
+                                    <span class="note">đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                            <label class="label">Kho</label>
+                            <div id="main-stock" class="wrap_input">
+                                <div class="form-group price">
+                                    <input type="text" class="form-control" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nw>
+            @*<div class="row">
+                    <div class="col-md-6">
+                        <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                            <label class="label">Mua nhiều giảm giá</label>
+                            <div class="wrap_input">
+                                <button class="btn btn-add btn-add-discount-groupbuy"><i class="icofont-plus"></i>Thêm khoảng giá</button>
+                                <p class="mt-1">
+                                    Mua nhiều giảm giá sẽ bị ẩn khi sản phẩm đang tham gia Mua Kèm Deal
+                                    Sốc hay Combo
+                                    Khuyễn Mãi
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+
+            <div id="discount-groupbuy" class="item-edit item flex flex-lg-nowrap gap10 mb-2 w-100">
+                <label class="label">Mua nhiều giảm giá</label>
+                <div class="wrap_input pb-4">
+                    <div class="table-responsive  table-scroll">
+                        <table class="table w-100 text-center">
+                            <thead>
+                                <tr class="text-uppercase">
+                                    <th>Khoảng giá</th>
+                                    <th>Số lượng sản phẩm</th>
+                                    <th>Chiết khấu</th>
+                                    <th class="">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr class="summary">
+                                    <td></td>
+                                    <td class="text-left">
+                                        <button class="btn btn-add">
+                                            <i class="icofont-plus"></i>Thêm khoảng
+                                            giá
+                                        </button>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="other-information" class="box-info bg-white p-3 mb-3">
+            <h5 class="title-box mb-2 text-uppercase">Thông tin khác</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                        <label class="label">Đặt hàng trước</label>
+                        <div class="wrap_input">
+                            <div class="flex gap10 mb-1">
+                                <label class="radio mb0 ml5">
+                                    <input type="radio" name="preorder_status" value="0">
+                                    <span class="checkmark"></span>
+                                    Không
+                                </label>
+                                <label class="radio mb0 ml5">
+                                    <input type="radio" name="preorder_status" value="1">
+                                    <span class="checkmark"></span>
+                                    Có
+                                </label>
+                            </div>
+                            <p>
+                                Tôi sẽ gửi hàng trong vòng 2 ngày (không bao gồm các ngày nghỉ lễ, Tết và những
+                                ngày đơn vị vận chuyển không làm việc)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="condition_of_product" class="row">
+                <div class="col-md-6">
+                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                        <label class="label">Tình trạng</label>
+                        <div class="wrap_input">
+                            <div class="form-group">
+                                <select class="select2 w-100">
+                                    <option value="0">Mới</option>
+                                    <option value="1">Cũ</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="sku" class="row">
+                <div class="col-md-6">
+                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                        <label class="label">SKU sản phẩm</label>
+                        <div class="wrap_input">
+                            <div class="form-group price">
+                                <input type="text" class="form-control" placeholder="Vui lòng nhập">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="action-form">
+            <a id="product-detail-cancel" href="javascript:;" class="btn btn-round btn-outline-base btn-cancel">Hủy</a>
+            @*<a id="product-detail-hide" href="javascript:;" class="btn btn-round btn-outline-base btn-hide">Ẩn</a>*@
+            <a id="product-detail-delete" href="javascript:;" style="border-color:red; display:none; color:red" onclick="product_detail.Delete()" class="btn btn-round btn-outline-base btn-update">Ẩn</a>
+            <a id="product-detail-confirm" href="javascript:;" class="btn btn-round btn-base btn-update">Cập nhật</a>
+        </div>
+    </div>
+</section>
+
+<div style="display:none;">
+    <input id="product_detail" value="@product_id" />
+    <div id="them-nganhhang" class="white-popup them-nganhhang" style="max-width: 1000px; ">
+        <div class="content_lightbox">
+            <div class="head line-bottom">
+                Chỉnh sửa ngành hàng
+            </div>
+            <div class="flex gap10 flex-lg-nowrap" style="display:none;">
+                <div class="form-group w-100 ">
+                    <div class="search-wrapper">
+                        <input type="text" class="input_search onclick-togle border" name="" value=""
+                               placeholder="Tìm kiếm theo ngành hàng">
+                        <span class="search-btn">
+                            <button type="submit">
+                                <svg class="icon-svg">
+                                    <use xlink:href="images/icons/icon.svg#search"></use>
+                                </svg>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn select-icon btn-outline-secondary">
+                        <i class="icofont-search"></i>
+                        Tìm kiếm
+                    </button>
+                </div>
+            </div>
+            <div class="bg-box">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="list-toys">
+                            <h6><a href="">Đồ chơi<i class="icofont-thin-right"></i></a></h6>
+                            <ul>
+                                <li><a href="">Đồ chơi vận động<i class="icofont-thin-right"></i></a></li>
+                                <li><a href="">Đồ chơi vận động<i class="icofont-thin-right"></i></a></li>
+                                <li><a href="">Đồ chơi vận động<i class="icofont-thin-right"></i></a></li>
+                                <li><a href="">Đồ chơi vận động<i class="icofont-thin-right"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="list-toys">
+                            <h6><a href="">Đồ chơi<i class="icofont-thin-right"></i></a></h6>
+                            <ul>
+                                <li><a href="">Đồ chơi vận động<i class="icofont-thin-right"></i></a></li>
+                                <li><a href="">Đồ chơi vận động<i class="icofont-thin-right"></i></a></li>
+                                <li><a href="">Đồ chơi vận động<i class="icofont-thin-right"></i></a></li>
+                                <li><a href="">Đồ chơi vận động<i class="icofont-thin-right"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="list-toys">
+                            <h6><a href="">Đồ chơi<i class="icofont-thin-right"></i></a></h6>
+                            <ul>
+                                <li><a href="">Đồ chơi vận động<i class="icofont-thin-right"></i></a></li>
+                                <li><a href="">Đồ chơi vận động<i class="icofont-thin-right"></i></a></li>
+                                <li><a href="">Đồ chơi vận động<i class="icofont-thin-right"></i></a></li>
+                                <li><a href="">Đồ chơi vận động<i class="icofont-thin-right"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex align-items-center gap10 justify-content-between mt-3">
+                <p id="group-product-selection" class="m-0">
+                    Đã chọn: <b>Đồ chơi<i class="icofont-thin-right"></i></b>
+                    <b>Thú nhồi bông<i class="icofont-thin-right"></i></b>
+                    <b>Gấu nhồi bông</b>
+                </p>
+                <div class="action flex align-items-center gap10">
+                    <a href="javascript:;" class="btn btn-round btn-outline-base">Trở lại</a>
+                    <a href="javascript:;" class="btn btn-base btn-round">OK</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js" integrity="sha512-zYXldzJsDrNKV+odAwFYiDXV2Cy37cwizT+NkuiPGsa9X1dOz04eHvUWVuxaJ299GvcJT31ug2zO4itXBjFx4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@*<script>
+    const column = document.querySelector('.row-attributes-value');
+
+    new Sortable(column, {
+        animation: 150,
+        ghostClass: 'blue-background-class'
+    });
+    const columns = document.querySelectorAll(".row-attributes-value");
+
+    columns.forEach((column) => {
+        new Sortable(column, {
+            group: "shared",
+            animation: 150,
+            ghostClass: "blue-background-class",
+            ondrop: product_detail.RenderRowAttributeTablePrice(),
+        });
+     
+    });*@
+
+</script>
+
+@section Scripts {
+    <script src="/modules/product/common.js"></script>
+    <script src="/modules/product/detail.js"></script>
+}

@@ -59,6 +59,31 @@ var product_index = {
             });
            
         });
+        $('body').on('click', '.product-open-sp', function () {
+            var element = $(this)
+            var product_id = element.closest('tr').attr('data-id')
+
+            var title = 'Xác nhận hiển thị sản phẩm';
+            var description = 'Bạn có chắc chắn muốn hiển thị sản phẩm này?';
+
+            _msgconfirm.openDialog(title, description, function () {
+                if (product_id != null && product_id != undefined && product_id.trim() != '') {
+                    _product_function.POST('/Product/UpdateProductStatus', { product_id: product_id, status: 1 }, function (result) {
+                        if (result.is_success) {
+                            _msgalert.success(result.msg)
+                            setTimeout(function () {
+                                window.location.href = '/product'
+                            }, 1000);
+                        }
+                        else {
+                            _msgalert.error(result.msg)
+                        }
+                    });
+                }
+
+            });
+           
+        });
         $('body').on('click', '.product-remove-sp2', function () {
             var element = $(this)
             var product_id = element.closest('tr').attr('data-id')
@@ -134,6 +159,7 @@ var product_index = {
         });
 
     },
+
     Listing: function () {
         var request = {
             keyword: $('#input-search-product-name').val(),

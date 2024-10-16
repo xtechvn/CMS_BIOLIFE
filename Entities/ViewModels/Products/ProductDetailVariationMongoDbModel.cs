@@ -14,6 +14,10 @@ namespace Entities.ViewModels.Products
         public double amount { get; set; }
         public int quanity_of_stock { get; set; }
         public string sku { get; set; }
+        public float? weight { get; set; }
+        public float? package_width { get; set; }
+        public float? package_height { get; set; }
+        public float? package_depth { get; set; }
     }
     public class ProductDetailVariationAttributesMongoDbModel
     {

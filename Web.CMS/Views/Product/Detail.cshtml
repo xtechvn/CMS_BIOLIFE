@@ -1,15 +1,37 @@
-﻿@{
+﻿@using Entities.ViewModels.Products
+@{
     ViewData["Title"] = "Chi tiết sản phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";
     string product_id = (string)ViewBag.ProductId;
+    string static_url = (string)ViewBag.Static;
+    string group_product = (string)ViewBag.GroupProduct;
+    ProductMongoDbModel product = (ProductMongoDbModel)ViewBag.Product;
+
+
+    ProductSpecificationDetailMongoDbModel brand = null;
+    ProductSpecificationDetailMongoDbModel material = null;
+    ProductSpecificationDetailMongoDbModel age_restriction = null;
+    ProductSpecificationDetailMongoDbModel date_manuafacter = null;
+    ProductSpecificationDetailMongoDbModel manuafacter = null;
+    ProductSpecificationDetailMongoDbModel manuafacter_location = null;
+    ProductSpecificationDetailMongoDbModel specific_requirement = null;
+    if (product != null && product.specification != null && product.specification.Count > 0)
+    {
+        brand = product.specification.FirstOrDefault(x => x.attribute_id == 1);
+        material = product.specification.FirstOrDefault(x => x.attribute_id == 5);
+        age_restriction = product.specification.FirstOrDefault(x => x.attribute_id == 2);
+        date_manuafacter = product.specification.FirstOrDefault(x => x.attribute_id == 6);
+        manuafacter = product.specification.FirstOrDefault(x => x.attribute_id == 3);
+        manuafacter_location = product.specification.FirstOrDefault(x => x.attribute_id == 7);
+        specific_requirement = product.specification.FirstOrDefault(x => x.attribute_id == 4);
+    }
 }
 <style>
     .list-toys .active a {
         color: black !important;
     }
 </style>
-<section class="add-product">
-   
+<section id="product_detail" class="add-product" data-id="@product_id">
     <div class="row-main container">
         <div class="line-bottom bg-white px-3 mb-3" style="padding-bottom: 0;">
             <div class="tab-default mb0">
@@ -24,37 +46,37 @@
         <div class="box-info bg-white p-3 mb-3">
             <h5 class="title-box mb-2 text-uppercase">Thông tin cơ bản</h5>
             <div id="images" class="item flex flex-lg-nowrap gap10 mb-2 w-100">
-                <label class="label">Hình ảnh sản phẩm</label>
+                <label class="label">Hình ảnh sản phẩm <sup class="red">*</sup></label>
                 <div class="wrap_input">
                     <div class="manage-color w-100">
                         <div class="flex list w-100">
-                            <div class="items magnific_popup">
-                                <button type="button" class="delete"><i class="icofont-close-line"></i></button>
-                                <a class="thumb_img thumb_1x1 magnific_thumb">
-                                    <img src="/images/graphics/product.jpg">
-                                </a>
-                            </div>
-                            <div class="items magnific_popup">
-                                <a class="thumb_img thumb_1x1 magnific_thumb">
-                                    <img src="/images/graphics/product.jpg">
-                                </a>
-                            </div>
-                            <div class="items magnific_popup">
-                                <a class="thumb_img thumb_1x1 magnific_thumb">
-                                    <img src="/images/graphics/product.jpg">
-                                </a>
-                            </div>
-                            <div class="items magnific_popup">
-                                <a class="thumb_img thumb_1x1 magnific_thumb">
-                                    <img src="/images/graphics/product.jpg">
-                                </a>
-                            </div>
+                            @if(product!=null && product.images!=null && product.images.Count > 0)
+                            {
+                                foreach (var url in product.images)
+                                {
+                                    string url_fixed = url;
+                                    if (!url_fixed.Contains(static_url) 
+                                    && !url_fixed.Contains("base64")
+                                    && !url_fixed.Contains("data:image"))
+                                    {
+                                        url_fixed = static_url + url;
+                                    }
+                                    <div class="items magnific_popup">
+                                        <button type="button" class="delete"><i class="icofont-close-line"></i></button>
+                                        <a class="thumb_img thumb_1x1 magnific_thumb">
+                                            <img src="@url_fixed">
+                                        </a>
+                                    </div>
+                                }
+                              
+                            }
+                          
                             <div class="items import">
                                 <label class="choose choose-wrap">
-                                    <input id="product_images_input" type="file" name="myFile">
+                                    <input  type="file" name="myFile" multiple>
                                     <div class="choose-content">
                                         <i class="icofont-image"></i>
-                                        <span>Thêm hình ảnh (0/9)</span>
+                                        <span>Thêm hình ảnh <nw class="count">(@(product != null && product.images != null && product.images.Count > 0 ? product.images.Count : "0")</nw>/9)</span>
                                     </div>
                                 </label>
                             </div>
@@ -67,22 +89,33 @@
                 </div>
             </div>
             <div id="avatar" class="item flex flex-lg-nowrap gap10 mb-2 w-100">
-                <label class="label">Ảnh bìa</label>
+                <label class="label">Ảnh bìa <sup class="red">*</sup></label>
                 <div class="wrap_input">
                     <div class="manage-color  w-100">
                         <div class="flex list align-items-center w-100">
-                            <div class="items magnific_popup">
-                                <button type="button" class="delete"><i class="icofont-close-line"></i></button>
-                                <a class="thumb_img thumb_1x1 magnific_thumb">
-                                    <img src="/images/graphics/product.jpg">
-                                </a>
-                            </div>
+                            @if (product != null && product.avatar != null && product.avatar.Trim() !="")
+                            {
+                                string url_fixed = product.avatar;
+                                if (!url_fixed.Contains(static_url)
+                                && !url_fixed.Contains("base64")
+                                && !url_fixed.Contains("data:image"))
+                                {
+                                    url_fixed = static_url + product.avatar;
+                                }
+                                <div class="items magnific_popup">
+                                    <button type="button" class="delete"><i class="icofont-close-line"></i></button>
+                                    <a class="thumb_img thumb_1x1 magnific_thumb">
+                                        <img src="@url_fixed">
+                                    </a>
+                                </div>
+
+                            }
                             <div class="items import">
                                 <label class="choose choose-wrap">
                                     <input type="file" name="myFile">
                                     <div class="choose-content">
                                         <i class="icofont-image"></i>
-                                        <span>Thêm hình ảnh (0/1)</span>
+                                        <span>Thêm hình ảnh <nw class="count"> (@(product != null && product.avatar != null && product.avatar.Trim() != "" ? "1" : "0")</nw>/1)</span>
                                     </div>
                                 </label>
                             </div>
@@ -98,23 +131,41 @@
                     </div>
                 </div>
             </div>
-            <div id="videos" class="item flex flex-lg-nowrap gap10 mb-2 w-100" style="display:none;">
+            <div id="videos" class="item flex flex-lg-nowrap gap10 mb-2 w-100">
                 <label class="label">Video sản phẩm</label>
                 <div class="wrap_input">
                     <div class="manage-color  w-100">
                         <div class="flex list align-items-center w-100">
-                            <div class="items magnific_popup">
-                                <button type="button" class="delete"><i class="icofont-close-line"></i></button>
-                                <a class="thumb_img thumb_1x1 magnific_thumb">
-                                    <img src="/images/graphics/product.jpg">
-                                </a>
-                            </div>
+                            @if (product != null && product.videos != null && product.videos.Count > 0)
+                            {
+                                foreach (var url in product.videos)
+                                {
+                                    string url_fixed = url;
+                                    if (!url_fixed.Contains(static_url)
+                                    && !url_fixed.Contains("base64")
+                                    && !url_fixed.Contains("data:video"))
+                                    {
+                                        url_fixed = static_url + url;
+                                    }
+                                    <div class="items magnific_popup">
+                                        <button type="button" class="delete"><i class="icofont-close-line"></i></button>
+                                        <a class="thumb_img thumb_1x1 magnific_thumb">
+                                            <video>
+                                                <source src="@url_fixed" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        </a>
+                                    </div>
+                                }
+
+                            }
+
                             <div class="items import">
                                 <label class="choose choose-wrap">
                                     <input type="file" name="myFile">
                                     <div class="choose-content">
                                         <i class="icofont-video-alt"></i>
-                                        <span>Thêm hình ảnh (0/1)</span>
+                                        <span>Thêm hình ảnh <nw class="count">(@(product != null && product.videos != null && product.videos.Count > 0 ? product.videos.Count : "0")</nw>/1)</span>
                                     </div>
                                 </label>
                             </div>
@@ -133,31 +184,34 @@
                 </div>
             </div>
             <div id="product-name" class="item flex flex-lg-nowrap gap10 mb-2 w-100">
-                <label class="label">Tên sản phẩm</label>
+                <label class="label">Tên sản phẩm <sup class="red">*</sup></label>
                 <div class="wrap_input">
                     <div class="form-group namesp">
                         <input type="text" class="form-control" maxlength="120"
-                               placeholder="Tên sản phẩm + Thương hiệu + Model + Thông số kỹ thuật">
-                        <span class="note"><nw class="count">0</nw>/120</span>
+                               placeholder="Tên sản phẩm + Thương hiệu + Model + Thông số kỹ thuật"  value="@(product != null && product.name != null && product.name.Trim() !="" ? product.name : "")">
+                        <span class="note"><nw class="count">@(product != null && product.name != null && product.name.Trim() != "" ? product.name.Length : "0")</nw>/120</span>
                     </div>
                 </div>
             </div>
             <div id="group-id" class="item flex flex-lg-nowrap gap10 mb-2 w-100">
-                <label class="label">Chọn ngành hàng</label>
+                <label class="label">Chọn ngành hàng <sup class="red">*</sup></label>
                 <div class="wrap_input">
                     <div class="form-group namesp">
                         <input type="text" class="form-control"
-                               placeholder="Tên sản phẩm + Thương hiệu + Model + Thông số kỹ thuật" disabled>
+                               placeholder="Tên sản phẩm + Thương hiệu + Model + Thông số kỹ thuật" data-id="@(product != null && product.group_product_id != null && product.group_product_id.Trim() != "" ? product.group_product_id : "")" value="@group_product" disabled>
                         <a href="#them-nganhhang" class="edit select-group-product"><i class="icofont-ui-edit"></i></a>
                     </div>
                 </div>
             </div>
             <div id="description" class="item flex flex-lg-nowrap gap10 mb-2 w-100">
-                <label class="label">Mô tả sản phẩm</label>
+                <label class="label">Mô tả sản phẩm <sup class="red">*</sup></label>
                 <div class="wrap_input">
                     <div class="form-group">
-                        <textarea rows="5" class="form-control" maxlength="3000"></textarea>
-                        <p class="text-right mt-1"><nw class="count">0</nw>/3000</p>
+                        <textarea rows="5" class="form-control" maxlength="3000">
+                            @(product != null && product.description != null && product.description.Trim() != "" ? product.description : "")
+
+                        </textarea>
+                        <p class="text-right mt-1"><nw class="count">@(product != null && product.description != null && product.description.Trim() != "" ? product.description.Length : "0")</nw>/3000</p>
                     </div>
                 </div>
             </div>
@@ -179,120 +233,352 @@
         <div id="specifications" class="box-info bg-white p-3 mb-3">
             <h5 class="title-box mb-2 text-uppercase">Thông tin chi tiết</h5>
             <p>
-                Hoàn thành: <nw class="specification-finish">0</nw>/<nw class="specification-max">1</nw>
-                <span style="color: #919191" class="mx-2">
+@*                 Hoàn thành: <nw class="specification-finish">0</nw>/<nw class="specification-max">1</nw>
+ *@                <span style="color: #919191" class="mx-2">
                     Điền thông tin thuộc tính để tăng mức độ hiển thị cho
                     sản
                     phẩm
                 </span>
                 <a href="javascript:;" class="text-primary" style="display:none;">Xem hướng dẫn bổ sung thuộc tính</a>
             </p>
-            <div class="row specifications-box">
+            <div id="specifications-list" class="row specifications-list">
+               
                 <div class="col-md-6">
-                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100" data-id="1" data-type="3">
                         <label class="label">Thương hiệu</label>
                         <div class="wrap_input">
-                            <div class="form-group">
-                                <select class="select2 w-100">
-                                    <option>Vui lòng chọn</option>
-                                    <option value="">Thương hiệu</option>
-                                    <option value="">Thương hiệu</option>
-                                    <option value="">Thương hiệu </option>
-                                </select>
+                            <div class="form-group namesp">
+                                <input type="text" class="form-control spec-value" placeholder="Chọn Thương hiệu" data-value="@(brand!=null && brand._id!=null && brand.type_ids!="null"?brand.type_ids:"")" value="@(brand!=null && brand._id!=null && brand.value!="null"?brand.value:"")">
+                                <a href="javascript:;" class="edit"><i class="icofont-thin-down"></i></a>
+                            </div>
+                            <div class="select-option p-2" style="width:90%;display:none;">
+
+                                <div class="them-chatlieu">
+                                    <div class="content_lightbox">
+                                        <div class="form-group w-100 ">
+                                            <div class="search-wrapper">
+                                                <input type="text" class="input_search onclick-togle border" name="" value="" placeholder="Tìm kiếm ...">
+                                                <span class="search-btn">
+                                                    <button type="submit">
+                                                        <svg class="icon-svg">
+                                                            <use xlink:href="#search"></use>
+                                                        </svg>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            @if(brand!=null && brand.value!=null && brand.value.Trim() != "")
+                                            {
+                                                foreach(var item in brand.value.Split(","))
+                                                {
+                                                    <li class="active">@item</li>
+
+                                                }
+                                            }
+                                        </ul>
+                                        <div class="border-top text-center pt-2">
+                                            <a href="javascript:;" class="text-primary add-specificaion-value">
+                                                <i class="icofont-plus mr-2"></i>Thêm thuộc
+                                                tính mới
+                                            </a>
+                                            <div class="flex flex-nowrap gap10 align-items-center add-specificaion-value-box" style="display:none;">
+                                                <input type="text" class="form-control" placeholder="Nhập vào">
+                                                <a href="javascript:;" class="text-base add-specificaion-value-add" style="font-size: 18px">
+                                                    <i class="icofont-checked"></i>
+                                                </a>
+                                                <a href="javascript:;" class="add-specificaion-value-cancel" style="font-size: 18px;">
+                                                    <i class="icofont-close-squared-alt "></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
-                        <label class="label">Chất liệu<span>0/5</span></label>
+                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100" data-id="5" data-type="3">
+                        <label class="label">Chất liệu</label>
                         <div class="wrap_input">
-                            <div class="form-group">
-                                <select class="select2 w-100">
-                                    <option>Vui lòng chọn</option>
-                                    <option value="">Chất liệu</option>
-                                    <option value="">Chất liệu</option>
-                                    <option value="">Chất liệu </option>
-                                </select>
+                            <div class="form-group namesp">
+                                <input type="text" class="form-control spec-value" placeholder="Chọn Chất liệu" data-value="@(material!=null && material._id!=null && material.type_ids!="null"?material.type_ids:"")" value="@(material!=null && material._id!=null&& material.value!="null"?material.value:"")">
+                                <a href="javascript:;" class="edit"><i class="icofont-thin-down"></i></a>
+                            </div>
+                            <div class="select-option p-2" style="width:90%;display:none;">
+                                <div class="them-chatlieu">
+                                    <div class="content_lightbox">
+                                        <div class="form-group w-100 ">
+                                            <div class="search-wrapper">
+                                                <input type="text" class="input_search onclick-togle border" name="" value="" placeholder="Tìm kiếm ...">
+                                                <span class="search-btn">
+                                                    <button type="submit">
+                                                        <svg class="icon-svg">
+                                                            <use xlink:href="#search"></use>
+                                                        </svg>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            @if (material != null && material.value != null && material.value.Trim() != "")
+                                            {
+                                                foreach (var item in material.value.Split(","))
+                                                {
+                                                    <li class="active">@item</li>
+
+                                                }
+                                            }
+                                        </ul>
+                                        <div class="border-top text-center pt-2">
+                                            <a href="javascript:;" class="text-primary add-specificaion-value">
+                                                <i class="icofont-plus mr-2"></i>Thêm thuộc
+                                                tính mới
+                                            </a>
+                                            <div class="flex flex-nowrap gap10 align-items-center add-specificaion-value-box" style="display:none;">
+                                                <input type="text" class="form-control" placeholder="Nhập vào">
+                                                <a href="javascript:;" class="text-base add-specificaion-value-add" style="font-size: 18px">
+                                                    <i class="icofont-checked"></i>
+                                                </a>
+                                                <a href="javascript:;" class="add-specificaion-value-cancel" style="font-size: 18px;">
+                                                    <i class="icofont-close-squared-alt "></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100" data-id="2" data-type="3">
                         <label class="label">Độ tuổi khuyến nghị</label>
                         <div class="wrap_input">
-                            <div class="form-group">
-                                <select class="select2 w-100">
-                                    <option>Vui lòng chọn</option>
-                                    <option value="">18</option>
-                                    <option value="">18</option>
-                                    <option value="">18 </option>
-                                </select>
+                            <div class="form-group namesp">
+                                <input type="text" class="form-control spec-value" placeholder="Độ tuổi khuyến nghị"  data-value="@(age_restriction!=null && age_restriction._id!=null && age_restriction.type_ids!="null"?age_restriction.type_ids:"")" value="@(age_restriction!=null && age_restriction._id!=null && age_restriction.value!="null"?age_restriction.value:"")">
+                                <a href="javascript:;" class="edit"><i class="icofont-thin-down"></i></a>
+                            </div>
+                            <div class="select-option p-2" style="width:90%;display:none;">
+                                <div class="them-chatlieu">
+                                    <div class="content_lightbox">
+                                        <div class="form-group w-100 ">
+                                            <div class="search-wrapper">
+                                                <input type="text" class="input_search onclick-togle border" name="" value="" placeholder="Tìm kiếm ...">
+                                                <span class="search-btn">
+                                                    <button type="submit">
+                                                        <svg class="icon-svg">
+                                                            <use xlink:href="#search"></use>
+                                                        </svg>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            @if (age_restriction != null && age_restriction.value != null && age_restriction.value.Trim() != "")
+                                            {
+                                                foreach (var item in age_restriction.value.Split(","))
+                                                {
+                                                    <li class="active">@item</li>
+
+                                                }
+                                            }
+                                        </ul>
+                                        <div class="border-top text-center pt-2">
+                                            <a href="javascript:;" class="text-primary add-specificaion-value">
+                                                <i class="icofont-plus mr-2"></i>Thêm thuộc
+                                                tính mới
+                                            </a>
+                                            <div class="flex flex-nowrap gap10 align-items-center add-specificaion-value-box" style="display:none;">
+                                                <input type="text" class="form-control" placeholder="Nhập vào">
+                                                <a href="javascript:;" class="text-base add-specificaion-value-add" style="font-size: 18px">
+                                                    <i class="icofont-checked"></i>
+                                                </a>
+                                                <a href="javascript:;" class="add-specificaion-value-cancel" style="font-size: 18px;">
+                                                    <i class="icofont-close-squared-alt "></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100" data-id="6" data-type="2">
                         <label class="label">Ngày sản xuất</label>
                         <div class="wrap_input">
                             <div class="datepicker-wrap">
                                 <input id="datepicker" placeholder="Vui lòng chọn"
-                                       class="datepicker-input form-control" type="text" value="">
+                                       class="datepicker-input form-control" type="text" data-value="@(date_manuafacter!=null && date_manuafacter._id!=null && date_manuafacter.type_ids!="null"?date_manuafacter.type_ids:"")" value="@(date_manuafacter!=null && date_manuafacter._id!=null?date_manuafacter.value:"")">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
-                        <label class="label">Tên tổ chức chịu trách nghiệm sản xuất</label>
+                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100" data-id="3" data-type="3">
+                        <label class="label">Tên tổ chức chịu trách nhiệm sản xuất</label>
                         <div class="wrap_input">
-                            <div class="form-group">
-                                <select class="select2 w-100">
-                                    <option>Vui lòng chọn</option>
-                                    <option value="">Tên abc</option>
-                                    <option value="">Tên abc</option>
-                                    <option value="">Tên abc </option>
-                                </select>
+                            <div class="form-group namesp">
+                                <input type="text" class="form-control spec-value" placeholder="Tên tổ chức chịu trách nhiệm sản xuất" value="@(manuafacter!=null && manuafacter._id!=null&& manuafacter.value!="null"?manuafacter.value:"")">
+                                <a href="javascript:;" class="edit"><i class="icofont-thin-down"></i></a>
+                            </div>
+                            <div class="select-option p-2" style="width:90%;display:none;">
+                                <div class="them-chatlieu">
+                                    <div class="content_lightbox">
+                                        <div class="form-group w-100 ">
+                                            <div class="search-wrapper">
+                                                <input type="text" class="input_search onclick-togle border" name="" value="" placeholder="Tìm kiếm ...">
+                                                <span class="search-btn">
+                                                    <button type="submit">
+                                                        <svg class="icon-svg">
+                                                            <use xlink:href="#search"></use>
+                                                        </svg>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            @if (manuafacter != null && manuafacter.value != null && manuafacter.value.Trim() != "")
+                                            {
+                                                foreach (var item in manuafacter.value.Split(","))
+                                                {
+                                                    <li class="active">@item</li>
+
+                                                }
+                                            }
+                                        </ul>
+                                        <div class="border-top text-center pt-2">
+                                            <a href="javascript:;" class="text-primary add-specificaion-value">
+                                                <i class="icofont-plus mr-2"></i>Thêm thuộc
+                                                tính mới
+                                            </a>
+                                            <div class="flex flex-nowrap gap10 align-items-center add-specificaion-value-box" style="display:none;">
+                                                <input type="text" class="form-control" placeholder="Nhập vào">
+                                                <a href="javascript:;" class="text-base add-specificaion-value-add" style="font-size: 18px">
+                                                    <i class="icofont-checked"></i>
+                                                </a>
+                                                <a href="javascript:;" class="add-specificaion-value-cancel" style="font-size: 18px;">
+                                                    <i class="icofont-close-squared-alt "></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100" data-id="7" data-type="3">
                         <label class="label">Địa chỉ tổ chức chịu trách nghiệm sản xuất</label>
                         <div class="wrap_input">
-                            <div class="form-group">
-                                <select class="select2 w-100">
-                                    <option>Vui lòng chọn</option>
-                                    <option value="">Abc</option>
-                                    <option value="">Abc</option>
-                                    <option value="">Abc </option>
-                                </select>
+                            <div class="form-group namesp">
+                                <input type="text" class="form-control spec-value" placeholder="Địa chỉ tổ chức chịu trách nghiệm sản xuất" data-value="@(manuafacter_location!=null && manuafacter_location._id!=null && manuafacter_location.type_ids!="null"?manuafacter_location.type_ids:"")" value="@(manuafacter_location!=null && manuafacter_location._id!=null&& manuafacter_location.value!="null"?manuafacter_location.value:"")">
+                                <a href="javascript:;" class="edit"><i class="icofont-thin-down"></i></a>
+                            </div>
+                            <div class="select-option p-2" style="width:90%;display:none;">
+                                <div class="them-chatlieu">
+                                    <div class="content_lightbox">
+                                        <div class="form-group w-100 ">
+                                            <div class="search-wrapper">
+                                                <input type="text" class="input_search onclick-togle border" name="" value="" placeholder="Tìm kiếm ...">
+                                                <span class="search-btn">
+                                                    <button type="submit">
+                                                        <svg class="icon-svg">
+                                                            <use xlink:href="#search"></use>
+                                                        </svg>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            @if (manuafacter_location != null && manuafacter_location.value != null && manuafacter_location.value.Trim() != "")
+                                            {
+                                                foreach (var item in manuafacter_location.value.Split(","))
+                                                {
+                                                    <li class="active">@item</li>
+
+                                                }
+                                            }
+                                        </ul>
+                                        <div class="border-top text-center pt-2">
+                                            <a href="javascript:;" class="text-primary add-specificaion-value">
+                                                <i class="icofont-plus mr-2"></i>Thêm thuộc
+                                                tính mới
+                                            </a>
+                                            <div class="flex flex-nowrap gap10 align-items-center add-specificaion-value-box" style="display:none;">
+                                                <input type="text" class="form-control" placeholder="Nhập vào">
+                                                <a href="javascript:;" class="text-base add-specificaion-value-add" style="font-size: 18px">
+                                                    <i class="icofont-checked"></i>
+                                                </a>
+                                                <a href="javascript:;" class="add-specificaion-value-cancel" style="font-size: 18px;">
+                                                    <i class="icofont-close-squared-alt "></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
-                        <label class="label">
-                            Sản phẩm
-                            đặt theo yêu cầu
-                        </label>
+                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100" data-id="4" data-type="3">
+                        <label class="label">Sản phẩm đặt theo yêu cầu</label>
                         <div class="wrap_input">
-                            <div class="form-group">
-                                <select class="select2 w-100">
-                                    <option>Vui lòng chọn</option>
-                                    <option value="">Abc</option>
-                                    <option value="">Abc</option>
-                                    <option value="">Abc </option>
-                                </select>
+                            <div class="form-group namesp">
+                                <input type="text" class="form-control spec-value" placeholder="Sản phẩm đặt theo yêu cầu" data-value="@(specific_requirement != null && specific_requirement._id != null && specific_requirement.type_ids != "null" ? specific_requirement.type_ids : "")" value="@(specific_requirement!=null && specific_requirement._id!=null&& specific_requirement.value!="null"?specific_requirement.value:"")">
+                                <a href="javascript:;" class="edit"><i class="icofont-thin-down"></i></a>
+                            </div>
+                            <div class="select-option p-2" style="width:90%;display:none;">
+                                <div class="them-chatlieu">
+                                    <div class="content_lightbox">
+                                        <div class="form-group w-100 ">
+                                            <div class="search-wrapper">
+                                                <input type="text" class="input_search onclick-togle border" name="" value="" placeholder="Tìm kiếm ...">
+                                                <span class="search-btn">
+                                                    <button type="submit">
+                                                        <svg class="icon-svg">
+                                                            <use xlink:href="#search"></use>
+                                                        </svg>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            @if (manuafacter_location != null && manuafacter_location.value != null && manuafacter_location.value.Trim() != "")
+                                            {
+                                                foreach (var item in manuafacter_location.value.Split(","))
+                                                {
+                                                    <li class="active">@item</li>
+
+                                                }
+                                            }
+                                        </ul>
+                                        <div class="border-top text-center pt-2">
+                                            <a href="javascript:;" class="text-primary add-specificaion-value">
+                                                <i class="icofont-plus mr-2"></i>Thêm thuộc
+                                                tính mới
+                                            </a>
+                                            <div class="flex flex-nowrap gap10 align-items-center add-specificaion-value-box" style="display:none;">
+                                                <input type="text" class="form-control" placeholder="Nhập vào">
+                                                <a href="javascript:;" class="text-base add-specificaion-value-add" style="font-size: 18px">
+                                                    <i class="icofont-checked"></i>
+                                                </a>
+                                                <a href="javascript:;" class="add-specificaion-value-cancel" style="font-size: 18px;">
+                                                    <i class="icofont-close-squared-alt "></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
             </div>
             <div class="row" style="display:none;">
                 <div class="col-12">
@@ -312,125 +598,147 @@
                     <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
                         <label class="label">Phân loại</label>
                         <div class="wrap_input">
-                            <button id="btn-add-product-attributes" class="btn btn-add btn-add-attributes"><i class="icofont-plus"></i>Thêm nhóm phân loại</button>
+                            <button style="@(product!=null && product.attributes!=null && product.attributes.Count>=2?"display:none;":"")"  id="product-attributes-add" class="btn btn-add btn-add-attributes"><i class="icofont-plus"></i>Thêm nhóm phân loại</button>
                         </div>
                     </div>
                 </div>
             </div>
-           <nw id="product-attributes-box">
-                
-                   
-                <div id="product-attributes-2" class="item-edit item flex flex-lg-nowrap gap10 mb-2 w-100">
-                    <label class="label">Phân loại hàng 2</label>
-                    <div class="wrap_input pb-4">
-                        <span class="delete">
-                            <i class="icofont-close"></i>
-                        </span>
-                        <div class="row ">
-                            <div class="col-md-6">
-                                <div class="box-list">
+           
+            <nw id="product-attributes" style="@((product != null && product.attributes != null && product.attributes.Count > 0)? "":"display:none;")">
+                @if (product != null && product.attributes != null && product.attributes.Count > 0)
+                {
+                    @for (int i = 1; i <= product.attributes.Count; i++)
+                    {
 
-                                    <div class="form-group namesp mb-0">
-                                        <input type="text" class="form-control" placeholder="" value="Màu sắc">
-                                        <span class="note">12/14</span>
+                        <div class="item-edit item flex flex-lg-nowrap gap10 mb-2 w-100 attributes-list">
+                            <label class="label">Phân loại hàng @(product.attributes.Count < 2 ? "" : i)</label>
+                            <div class="wrap_input pb-4">
+                                <span class="delete">
+                                    <i class="icofont-close"></i>
+                                </span>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="box-list">
+                                            <h6>
+                                                <b>@(product.attributes[(i - 1)].name == null ? "" : product.attributes[(i - 1)].name)</b>
+                                                <nw class="change-attribute-name wrap_input" style="display:none; font-size:16px!important;">
+                                                    <input type="text" class="attr-name" value="@(product.attributes[(i - 1)].name == null ? "" : product.attributes[(i - 1)].name)" />
+                                                    <a href="javascript:;" class="text-base confirm-edit" style="font-size: 18px">
+                                                        <i class="icofont-checked"></i>
+                                                    </a>
+                                                    <a href="javascript:;" class="cancel-edit" style="font-size: 18px;">
+                                                        <i class="icofont-close-squared-alt "></i>
+                                                    </a>
+                                               </nw>
+                                                <a href="javascript:;" class="open-edit"><i class="icofont-ui-edit"></i></a>
+                                               
+                                            </h6>
+
+                                        </div>
                                     </div>
+                                </div>
+                                <div class="line-bottom"></div>
+                                <div class="row row-attributes-value ui-sortable">
+                                    @if(product!=null && product.attributes_detail!=null && product.attributes_detail.Count>0){
+                                        var attribute_by_id = product.attributes_detail.Where(x => x.attribute_id == (i-1).ToString());
+                                        if (attribute_by_id != null && attribute_by_id.Count() > 0)
+                                        {
+                                            foreach (var attr_detail in attribute_by_id)
+                                            {
+                                                <div class="col-md-6 lastest-attribute-value item ui-sortable-handle attributes-detail" draggable="true">
+                                                    <div class="box-list">
+                                                        <div class="form-group namesp flex-input-choose">
+                                                            <label class="choose choose-wrap">
+                                                                <input type="file" name="myFile">
+                                                                <div class="choose-content">
+                                                                    @if(attr_detail!=null && attr_detail.img!=null && attr_detail.img.Trim() != "")
+                                                                    {
+                                                                        <div class="items magnific_popup" data-id="-1">
+                                                                            <button type="button" class="delete"><i class="icofont-close-line"></i></button>
+                                                                            <a class="thumb_img thumb_1x1 magnific_thumb">
+                                                                                <img src="@attr_detail.img">
+                                                                            </a>
+                                                                        </div>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <i class="icofont-image"></i>
+                                                                    }
+                                                                </div>
+                                                            </label>
+                                                            <div class="relative w-100">
+                                                                <input type="text" class="form-control" placeholder="" value="@attr_detail.name">
+                                                                <span class="note"><nw class="count">@attr_detail.name.Length</nw>/14</span>
+                                                            </div>
+                                                            <div class="right-action">
+                                                                <a class="icon-action delete-attribute-detail" href="javascript:;"><i class="icofont-trash"></i></a>
+                                                                <a class="icon-action attribute-item-draggable" href="javascript:;"><i class="icofont-drag"></i></a>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <div class="col-md-6 lastest-attribute-value item ui-sortable-handle attributes-detail" draggable="true">
+                                                <div class="box-list">
+                                                    <div class="form-group namesp flex-input-choose">
+                                                        <label class="choose choose-wrap">
+                                                            <input type="file" name="myFile">
+                                                            <div class="choose-content">
+                                                                <i class="icofont-image"></i>
+
+                                                            </div>
+                                                        </label>
+                                                        <div class="relative w-100">
+                                                            <input type="text" class="form-control" placeholder="" value="">
+                                                            <span class="note"><nw class="count">0</nw>/14</span>
+                                                        </div>
+                                                        <div class="right-action">
+                                                            <a class="icon-action delete-attribute-detail" href="javascript:;"><i class="icofont-trash"></i></a>
+                                                            <a class="icon-action attribute-item-draggable" href="javascript:;"><i class="icofont-drag"></i></a>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <div class="col-md-6 lastest-attribute-value item ui-sortable-handle attributes-detail" draggable="true">
+                                            <div class="box-list">
+                                                <div class="form-group namesp flex-input-choose">
+                                                    <label class="choose choose-wrap">
+                                                        <input type="file" name="myFile">
+                                                        <div class="choose-content">
+                                                            <i class="icofont-image"></i>
+
+                                                        </div>
+                                                    </label>
+                                                    <div class="relative w-100">
+                                                        <input type="text" class="form-control" placeholder="" value="">
+                                                        <span class="note"><nw class="count">0</nw>/14</span>
+                                                    </div>
+                                                    <div class="right-action">
+                                                        <a class="icon-action delete-attribute-detail" href="javascript:;"><i class="icofont-trash"></i></a>
+                                                        <a class="icon-action attribute-item-draggable" href="javascript:;"><i class="icofont-drag"></i></a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>
-                        <div class="line-bottom"></div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="box-list">
-                                    <div class="form-group namesp flex-input-choose">
-                                        <label class="choose choose-wrap">
-                                            <input type="file" name="myFile">
-                                            <div class="choose-content">
-                                                <i class="icofont-image"></i>
-                                            </div>
-                                        </label>
-                                        <div class="relative w-100">
-                                            <input type="text" class="form-control" placeholder="" value="Màu sắc">
-                                            <span class="note">12/14</span>
-                                        </div>
-                                        <div class="right-action">
-                                            <a class="icon-action" href="javascript:;"><i class="icofont-trash"></i></a>
-                                            <a class="icon-action" href="javascript:;"><i class="icofont-drag"></i></a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="box-list">
-                                    <div class="form-group namesp flex-input-choose">
-                                        <label class="choose choose-wrap">
-                                            <input type="file" name="myFile">
-                                            <div class="choose-content">
-                                                <i class="icofont-image"></i>
-                                            </div>
-                                        </label>
-                                        <div class="relative w-100">
-                                            <input type="text" class="form-control" placeholder="" value="Màu sắc">
-                                            <span class="note">12/14</span>
-                                        </div>
-                                        <div class="right-action">
-                                            <a class="icon-action" href="javascript:;"><i class="icofont-trash"></i></a>
-                                            <a class="icon-action" href="javascript:;"><i class="icofont-drag"></i></a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="box-list">
-                                    <div class="form-group namesp flex-input-choose">
-                                        <label class="choose choose-wrap">
-                                            <input type="file" name="myFile">
-                                            <div class="choose-content">
-                                                <i class="icofont-image"></i>
-                                            </div>
-                                        </label>
-                                        <div class="relative w-100">
-                                            <input type="text" class="form-control" placeholder="" value="Màu sắc">
-                                            <span class="note">12/14</span>
-                                        </div>
-                                        <div class="right-action">
-                                            <a class="icon-action" href="javascript:;"><i class="icofont-trash"></i></a>
-                                            <a class="icon-action" href="javascript:;"><i class="icofont-drag"></i></a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="box-list">
-                                    <div class="form-group namesp flex-input-choose">
-                                        <label class="choose choose-wrap">
-                                            <input type="file" name="myFile">
-                                            <div class="choose-content">
-                                                <i class="icofont-image"></i>
-                                            </div>
-                                        </label>
-                                        <div class="relative w-100">
-                                            <input type="text" class="form-control" placeholder="" value="Màu sắc">
-                                            <span class="note">12/14</span>
-                                        </div>
-                                        <div class="right-action">
-                                            <a class="icon-action" href="javascript:;"><i class="icofont-trash"></i></a>
-                                            <a class="icon-action" href="javascript:;"><i class="icofont-drag"></i></a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-           </nw>
-
-
-            <div class="item-edit item flex flex-lg-nowrap gap10 mb-2 w-100">
+                    }
+                }
+            </nw>
+            <div id="product-attributes-table" class="item-edit item flex flex-lg-nowrap gap10 mb-2 w-100" style="@((product != null && product.attributes != null && product.attributes.Count > 0)? "":"display:none;")">
                 <label class="label">
                     Danh sách
                     phân loại hàng
@@ -438,24 +746,45 @@
                 <div class="wrap_input pb-4">
                     <div class="flex flex-lg-nowrap gap10 mb-2">
                         <div class="w-100">
-                            <table id="product-attributes-all-price" class="w-100">
+                            <table id="product-attributes-apply" class="w-100">
                                 <tbody>
                                     <tr>
                                         <td class="td-price">
                                             <div class="form-group mb-0 price">
-                                                <input type="text" class="form-control input-price" placeholder="Giá nhập">
+                                                <input type="text" class="form-control input-price" placeholder="Giá nhập">  
                                                 <span class="note">đ</span>
                                             </div>
                                         </td>
                                         <td class="td-profit">
                                             <div class="form-group mb-0 price">
-                                                <input type="text" class="form-control input-price" placeholder="Lợi nhuận">
+                                                <input type="text" class="form-control input-price" placeholder="Lợi nhuận"> 
                                                 <span class="note">đ</span>
                                             </div>
                                         </td>
                                         <td class="td-stock">
                                             <div class="form-group mb-0">
                                                 <input type="text" class="form-control input-price" placeholder="Kho hàng">
+                                            </div>
+                                        </td>
+                                        <td class="td-weight" style="@(product!=null && (product.is_one_weight==false ||product.is_one_weight==null)?"display:none;":"")">
+                                            <div class="form-group mb-0">
+                                                <input type="text" class="form-control input-price" placeholder="Cân nặng">
+                                            </div>
+                                        </td>
+                                        <td class="td-dismenssion" style="@(product!=null && (product.is_one_weight==false ||product.is_one_weight==null)?"display:none;":"")">
+                                            <div class="flex gap10 flex-nowrap align-items-center">
+                                                <div class="td-dismenssion-height form-group mb-0 price">
+                                                    <input type="text" class="form-control" placeholder="nhập chiều rộng" value="">
+                                                    <span class="note">R (cm)</span>
+                                                </div>
+                                                <div class=" td-dismenssion-width form-group mb-0 price">
+                                                    <input type="text" class="form-control" placeholder="nhập chiều dài" value="">
+                                                    <span class="note">D (cm)</span>
+                                                </div>
+                                                <div class="td-dismenssion-depth form-group mb-0 price">
+                                                    <input type="text" class="form-control" placeholder="nhập chiều cao" value="">
+                                                    <span class="note">C (cm)</span>
+                                                </div>
                                             </div>
                                         </td>
                                         <td class="td-sku">
@@ -470,97 +799,18 @@
                         </div>
                         <button class="btn btn-round btn-base  btn-all">Áp dụng cho tất cả phân loại</button>
                     </div>
-                    <div id="product-attributes-price" class="table-responsive table-scroll">
-                        <table class="table w-100">
-                            <thead>
-                                <tr class="text-uppercase tr-head">
-                                    <th class="th-attributes th-attribute-0" style="min-width: 150px;display:none" >Phân loại 1</th>
-                                    <th class="th-attributes th-attribute-1" style="min-width: 150px; display: none">Phân loại 2</th>
-                                    <th class="th-price">Giá</th>
-                                    <th class="th-profit">Lợi nhuận</th>
-                                    <th class="th-amount">Giá bán</th>
-                                    <th class="th-stock">Kho hàng</th>
-                                    <th class="th-sku">SKU phân loại</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                               
-                                @*<tr class="tr-main" data-attribute-1="Phân loại 1" data-attribute-2="Phân loại 2-1">
-                                    <td class="td-attributes td-attribute-1" rowspan="2"> Phân loại 1</td>
-                                    <td class="td-attributes td-attribute-2">Phân loại 2-1</td>
-                                    <td class="td-price">
-                                        <div class="form-group mb-0 price">
-                                            <input type="text" class="form-control" placeholder="Giá nhập">
-                                            <span class="note">đ</span>
-                                        </div>
-                                    </td>
-                                    <td class="td-profit">
-                                        <div class="form-group mb-0 price">
-                                            <input type="text" class="form-control" placeholder="Lợi nhuận">
-                                            <span class="note">đ</span>
-                                        </div>
-                                    </td>
-                                    <td class="td-amount">
-                                        <div class="form-group mb-0 price">
-                                            <input type="text" class="form-control" placeholder="Giá bán">
-                                            <span class="note">đ</span>
-                                        </div>
-                                    </td>
-                                    <td class="td-stock">
-                                        <div class="form-group mb-0">
-                                            <input type="text" class="form-control" placeholder="Kho hàng">
-                                        </div>
-                                    </td>
-                                    <td class="td-sku">
-                                        <div class="form-group mb-0">
-                                            <input type="text" class="form-control" placeholder="SKU phân loại">
-                                        </div>
-                                    </td>
-                                </tr>  
-                                <tr class="tr-sub" data-attribute-1="Phân loại 1" data-attribute-2="Phân loại 2-2">
-                                    <td class="td-attribute-2">Phân loại 2-2</td>
-                                    <td class="td-price">
-                                        <div class="form-group mb-0 price">
-                                            <input type="text" class="form-control" placeholder="Giá nhập">
-                                            <span class="note">đ</span>
-                                        </div>
-                                    </td>
-                                    <td class="td-profit">
-                                        <div class="form-group mb-0 price">
-                                            <input type="text" class="form-control" placeholder="Lợi nhuận">
-                                            <span class="note">đ</span>
-                                        </div>
-                                    </td>
-                                    <td class="td-amount">
-                                        <div class="form-group mb-0 price">
-                                            <input type="text" class="form-control" placeholder="Giá bán">
-                                            <span class="note">đ</span>
-                                        </div>
-                                    </td>
-                                    <td class="td-stock">
-                                        <div class="form-group mb-0">
-                                            <input type="text" class="form-control" placeholder="Kho hàng">
-                                        </div>
-                                    </td>
-                                    <td class="td-sku">
-                                        <div class="form-group mb-0">
-                                            <input type="text" class="form-control" placeholder="SKU phân loại">
-                                        </div>
-                                    </td>
-                                </tr>*@
-                            </tbody>
-                        </table>
+                    <div id="product-attributes-prices" class="table-responsive table-scroll" style=" max-height: max-content !important; ">
                     </div>
                 </div>
             </div>
-            <nw id="single-product-amount" style="" class="box-info bg-white p-3 mb-3 col-12">
+            <nw id="single-product-amount" style="@((product != null && product.attributes != null && product.attributes.Count > 0)? "display:none;":"")" class="box-info bg-white p-3 mb-3 col-12">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="item flex flex-lg-nowrap gap10 mb-2 w-100 ">
                             <label class="label">Giá nhập</label>
                             <div class="wrap_input">
                                 <div id="main-price" class="form-group price">
-                                    <input type="text" class="form-control" placeholder="Nhập giá">
+                                    <input type="text" class="form-control input-price" placeholder="Nhập giá" value="@(product==null ?"0":product.amount.ToString("N0"))">
                                     <span class="note">đ</span>
                                 </div>
                             </div>
@@ -573,7 +823,7 @@
                             <label class="label">Lợi nhuận</label>
                             <div class="wrap_input">
                                 <div id="main-profit" class="form-group price">
-                                    <input type="text" class="form-control" placeholder="Nhập giá">
+                                    <input type="text" class="form-control input-price" placeholder="Nhập giá" value="@(product==null ?"0":product.profit.ToString("N0"))">
                                     <span class="note">đ</span>
                                 </div>
                             </div>
@@ -586,7 +836,7 @@
                             <label class="label">Giá bán</label>
                             <div class="wrap_input">
                                 <div id="main-amount" class="form-group price product-single-amount">
-                                    <input type="text" class="form-control" placeholder="Giá bán" disabled="">
+                                    <input type="text" class="form-control input-price" placeholder="Nhập giá" value="@(product==null ?"0":product.amount.ToString("N0"))" readonly>
                                     <span class="note">đ</span>
                                 </div>
                             </div>
@@ -599,29 +849,14 @@
                             <label class="label">Kho</label>
                             <div id="main-stock" class="wrap_input">
                                 <div class="form-group price">
-                                    <input type="text" class="form-control" placeholder="0">
+                                    <input type="text" class="form-control input-price" placeholder="Nhập giá" value="@(product==null ?"0":product.quanity_of_stock.ToString("N0"))">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </nw>
-            @*<div class="row">
-                <div class="col-md-6">
-                    <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
-                        <label class="label">Mua nhiều giảm giá</label>
-                        <div class="wrap_input">
-                            <button class="btn btn-add btn-add-discount-groupbuy"><i class="icofont-plus"></i>Thêm khoảng giá</button>
-                            <p class="mt-1">
-                                Mua nhiều giảm giá sẽ bị ẩn khi sản phẩm đang tham gia Mua Kèm Deal
-                                Sốc hay Combo
-                                Khuyễn Mãi
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>*@
-          
+
             <div id="discount-groupbuy" class="item-edit item flex flex-lg-nowrap gap10 mb-2 w-100">
                 <label class="label">Mua nhiều giảm giá</label>
                 <div class="wrap_input pb-4">
@@ -636,12 +871,60 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               
+                                @if(product!=null && product.discount_group_buy!=null && product.discount_group_buy.Count > 0)
+                                {
+                                    int i = 0;
+                                    foreach(var item in product.discount_group_buy)
+                                    {
+                                        <tr>
+                                            <td>Khoảng giá  @(++i)</td>
+                                            <td>
+                                                <div class="flex gap10 flex-nowrap align-items-center justify-content-center">
+                                                    <div class="form-group mb-0">
+                                                        <input type="text" class="form-control input-price" placeholder="Từ sản phẩm" value="@item.from.ToString("N0")">
+                                                    </div>
+                                                    <i class="icofont-arrow-right"></i>
+                                                    <div class="form-group mb-0">
+                                                        <input type="text" class="form-control input-price" placeholder="Đến sản phẩm" value="@item.to.ToString("N0")">
+                                                    </div>
+                                                </div>
+
+                                            </td>
+                                            <td>
+                                                <div class="flex gap10 flex-nowrap align-items-center justify-content-center">
+                                                    <label class="radio mb-3">
+                                                        <input type="radio" name="discount-type-@i" @(item.type == 0 ? "checked" : "")>
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                    <div class="form-group mb-0 price mr-3">
+                                                        <input type="text" class="form-control input-price" placeholder="Nhập số" @(item.type == 0 ? "" : "readonly") value=" @(item.type == 0 ? item.discount.ToString("N0") : "") ">
+                                                        <span class="note">đ</span>
+                                                    </div>
+                                                    <label class="radio mb-3">
+                                                        <input type="radio" name="discount-type-@i" @(item.type == 1 ? "checked" : "")>
+                                                        <span class="checkmark"></span>
+
+                                                    </label>
+                                                    <div class="form-group mb-0 price">
+                                                        <input type="text" class="form-control input-price" placeholder="Nhập số" @(item.type == 1 ? "" : "readonly") value="@(item.type ==1? item.discount.ToString("N0") : "")">
+                                                        <span class="note">%</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="javascript:;" class="delete-row">
+                                                    <i class="icofont-trash"></i>
+                                                </a>
+                                            </td>
+
+                                        </tr>
+                                    }
+                                }
                                 <tr class="summary">
                                     <td></td>
                                     <td class="text-left">
                                         <button class="btn btn-add">
-                                           <i class="icofont-plus"></i>Thêm khoảng
+                                            <i class="icofont-plus"></i>Thêm khoảng
                                             giá
                                         </button>
                                     </td>
@@ -650,6 +933,61 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="single-weight" class="box-info bg-white p-3 mb-3">
+            <h5 class="title-box mb-2 text-uppercase">Vận chuyển</h5>
+            <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                <label class="label">Thiết lập cân nặng & kích thước cho từng phân loại</label>
+                <div class="wrap_input">
+                    <label class="switch no-text switch-active">
+                        <input type="checkbox" class="switch-weight" @(product!=null && product.is_one_weight==true? "checked":"")>
+                        <span class="slider round"></span>
+                    </label>
+
+                </div>
+            </div>
+            <div class="box-input-ship">
+                <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                    <label class="label">Cân nặng*</label>
+                    <div class="wrap_input">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="form-group mb-0 price">
+                                    <input type="text" class="form-control input-price weight" placeholder="Nhập cân nặng" value="@(product!=null && product.weight!=null? ((float)product.weight).ToString("N0"):"")" @(product != null && product.is_one_weight == true ? "readonly" : "")>
+                                    <span class="note">gr</span>
+                                </div>
+                                <p class="mt-1">Sau khi đóng gói</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item flex flex-lg-nowrap gap10 mb-2 w-100">
+                    <label class="label">Kích thước đóng gói </label>
+                    <div class="wrap_input box-kichthuoc">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4">
+                                <div class="form-group mb-0 price">
+                                    <input type="text" class="form-control input-price dismenssion-height" placeholder="Nhập kích thước" value="@(product!=null && product.package_height!=null? ((float)product.package_height).ToString("N0"):"")" @(product != null && product.is_one_weight == true ? "readonly" : "")>
+                                    <span class="note">cm</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4">
+                                <div class="form-group mb-0 price">
+                                    <input type="text" class="form-control input-price dismenssion-width" placeholder="Nhập kích thước" value="@(product!=null && product.package_width!=null? ((float)product.package_width).ToString("N0"):"")" @(product != null && product.is_one_weight == true ? "readonly" : "")>
+                                    <span class="note">cm</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4">
+                                <div class="form-group mb-0 price">
+                                    <input type="text" class="form-control input-price dismenssion-depth" placeholder="Nhập kích thước input-price" value="@(product!=null && product.package_depth!=null? ((float)product.package_depth).ToString("N0"):"")" @(product != null && product.is_one_weight == true ? "readonly" : "")>
+                                    <span class="note">cm</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mt-1">Phí vận chuyển thực tế sẽ thay đổi nếu bạn nhập sai kích thước</p>
                     </div>
                 </div>
             </div>
@@ -663,12 +1001,12 @@
                         <div class="wrap_input">
                             <div class="flex gap10 mb-1">
                                 <label class="radio mb0 ml5">
-                                    <input type="radio" name="preorder_status" value="0">
+                                    <input type="radio" name="preorder_status" value="0" @((product == null || product.preorder_status == 0) ? "checked" : "")>
                                     <span class="checkmark"></span>
                                     Không
                                 </label>
                                 <label class="radio mb0 ml5">
-                                    <input type="radio" name="preorder_status" value="1">
+                                    <input type="radio" name="preorder_status" value="1" @((product != null && product.preorder_status == 1) ? "checked" : "")>
                                     <span class="checkmark"></span>
                                     Có
                                 </label>
@@ -688,8 +1026,27 @@
                         <div class="wrap_input">
                             <div class="form-group">
                                 <select class="select2 w-100">
-                                    <option value="0">Mới</option>
-                                    <option value="1">Cũ</option>
+                                    @{
+                                        if (product!=null && product.condition_of_product==0)
+                                        {
+                                            <option value="0" selected>Mới</option>
+
+                                        }
+                                        else
+                                        {
+                                            <option value="0" selected>Mới</option>
+                                        }
+                                        if (product != null && product.condition_of_product == 1)
+                                        {
+                                            <option value="1"selected>Cũ</option>
+
+                                        }
+                                        else
+                                        {
+                                            <option value="1">Cũ</option>
+                                        }
+                                    }
+                                    
                                 </select>
                             </div>
                         </div>
@@ -702,7 +1059,7 @@
                         <label class="label">SKU sản phẩm</label>
                         <div class="wrap_input">
                             <div class="form-group price">
-                                <input type="text" class="form-control" placeholder="Vui lòng nhập">
+                                <input type="text" class="form-control" placeholder="Vui lòng nhập" value="@(product != null ? product.sku : "")">
                             </div>
                         </div>
                     </div>
@@ -799,7 +1156,11 @@
         </div>
     </div>
 </div>
+
+
 @section Scripts {
+    <script src="/js/Sortable.min.js" ></script>
+
     <script src="/modules/product/common.js"></script>
-    <script src="/modules/product/detail.js"></script>
+    <script src="/modules/product/detail_new.js"></script>
 }

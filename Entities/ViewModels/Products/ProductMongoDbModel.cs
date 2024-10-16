@@ -23,7 +23,6 @@ namespace Entities.ViewModels.Products
         public double amount { get; set; }
         public double? amount_min { get; set; }
         public double? amount_max { get; set; }
-        public string label_price { get; set; }
         public int quanity_of_stock { get; set; }
 
         public double discount { get; set; }
@@ -47,6 +46,11 @@ namespace Entities.ViewModels.Products
         public DateTime updated_last { get; set; }
         public string parent_product_id { get; set; }
         public int status { get; set; }
+        public bool? is_one_weight { get; set; }
+        public float? weight { get; set; }
+        public float? package_width { get; set; }
+        public float? package_height { get; set; }
+        public float? package_depth { get; set; }
 
     }
 }

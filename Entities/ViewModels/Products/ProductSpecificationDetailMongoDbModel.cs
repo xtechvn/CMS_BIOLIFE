@@ -19,6 +19,7 @@ namespace Entities.ViewModels.Products
         public int attribute_id { get; set; }
         public int value_type { get; set; }
         public string value { get; set; }
+        public string type_ids { get; set; }
 
     }
 }

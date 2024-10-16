@@ -149,6 +149,7 @@ var _product_constants = {
                                     <div >
                                         <a href="javascript:;" class="product-copy-sp">Sao chép</a><br />
                                         <a href="javascript:;" class="product-remove-sp">Ẩn</a><br />
+                                        <a href="javascript:;" class="product-open-sp">Hiển thị</a><br />
                                         <a href="javascript:;" class="product-remove-sp2">Xóa</a><br />
                                     </div>
 
@@ -209,7 +210,7 @@ var _product_constants = {
                                     </video>
                                 </a>
                             </div>`,
-        ProductDetail_Attribute_Row_Item: ` <div class="col-md-6 lastest-attribute-value item">
+        ProductDetail_Attribute_Row_Item: ` <div class="col-md-6 lastest-attribute-value item" draggable="true">
                             <div class="box-list">
                                 <div class="form-group namesp flex-input-choose">
                                     <div id="image_row_item" class="item flex flex-lg-nowrap gap10 mb-2 "style="flex-wrap: nowrap !important;position: relative !important;" >
@@ -235,7 +236,7 @@ var _product_constants = {
                                     </div>
                                     <div class="right-action">
                                         <a class="icon-action attribute-item-delete" style="display:none;" href="javascript:;"><i class="icofont-trash"></i></a>
-                                        <a class="icon-action attribute-item-add" href="javascript:;"><i class="fa fa-plus"></i></a>
+                                        <a class="icon-action attribute-item-draggable" href="javascript:;"><i class="icofont-drag"></i></a>
                                     </div>
 
                                 </div>
@@ -464,3 +465,80 @@ var _product_constants = {
                     </div>`
     }
 }
+
+
+var _product_constants_2 = {
+    Values: {
+        GroupProduct: 32,
+        GroupProductName: 'BioLife',
+
+    },
+    Attributes: {
+        Input:` <div class="col-md-6 lastest-attribute-value item ui-sortable-handle attributes-detail" draggable="true">
+                                                    <div class="box-list">
+                                                        <div class="form-group namesp flex-input-choose">
+                                                            <label class="choose choose-wrap">
+                                                                <input type="file" name="myFile">
+                                                                <div class="choose-content">
+                                                                    <i class="icofont-image"></i>
+                                                                </div>
+                                                            </label>
+                                                            <div class="relative w-100">
+                                                                <input type="text" class="form-control" placeholder="" value="">
+                                                                <span class="note"><nw class="count">0</nw>/14</span>
+                                                            </div>
+                                                            <div class="right-action">
+                                                                <a class="icon-action delete-attribute-detail" href="javascript:;"><i class="icofont-trash"></i></a>
+                                                                <a class="icon-action attribute-item-draggable" href="javascript:;"><i class="icofont-drag"></i></a>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>`
+    },
+    DiscountGroupBuy: {
+        Tr:` <tr>
+                                            <td>Khoảng giá  @(++i)</td>
+                                            <td>
+                                                <div class="flex gap10 flex-nowrap align-items-center justify-content-center">
+                                                    <div class="form-group mb-0">
+                                                        <input type="text" class="form-control input-price " placeholder="Từ sản phẩm" value="">
+                                                    </div>
+                                                    <i class="icofont-arrow-right"></i>
+                                                    <div class="form-group mb-0">
+                                                        <input type="text" class="form-control input-price" placeholder="Đến sản phẩm" value="">
+                                                    </div>
+                                                </div>
+
+                                            </td>
+                                            <td>
+                                                <div class="flex gap10 flex-nowrap align-items-center justify-content-center">
+                                                    <label class="radio mb-3">
+                                                        <input type="radio" name="discount-type-@i"checked>
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                    <div class="form-group mb-0 price mr-3">
+                                                        <input type="text" class="form-control input-price" placeholder="Nhập số"">
+                                                        <span class="note">đ</span>
+                                                    </div>
+                                                    <label class="radio mb-3">
+                                                        <input type="radio" name="discount-type-@i" >
+                                                        <span class="checkmark"></span>
+
+                                                    </label>
+                                                    <div class="form-group mb-0 price">
+                                                        <input type="text" class="form-control input-price" placeholder="">
+                                                        <span class="note">%</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                 <a href="javascript:;" class="delete-row">
+                                            <i class="icofont-trash"></i>
+                                       </a>
+                                            </td>
+
+                                        </tr>`
+    }
+}
+

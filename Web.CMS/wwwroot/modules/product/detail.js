@@ -201,6 +201,31 @@ var product_detail = {
                 product_detail.DeleteRowAttributeTablePrice(text, id)
             }
         });
+        $('body').on('click', '.attribute-item-draggable', function () {
+            var element = $(this)
+            element.closest('.row-attributes-value').sortable({
+                group: "row-attributes-value",
+                animation: 150,
+                ghostClass: "row-attributes-value",
+            });
+
+            //const column = document.querySelector('.row-attributes-value');
+
+            //new Sortable(column, {
+            //    animation: 150,
+            //    ghostClass: 'blue-background-class'
+            //});
+            //const columns = document.querySelectorAll(".row-attributes-value");
+
+            //columns.forEach((column) => {
+            //    new Sortable(column, {
+            //        group: "shared",
+            //        animation: 150,
+            //        ghostClass: "blue-background-class",
+            //    });
+
+            //});
+        });
         $('body').on('click', '.attribute-item-add', function () {
             var element = $(this)
 
@@ -215,6 +240,7 @@ var product_detail = {
             //element.closest('.row-attributes-value').find('.attributes-name').removeClass('attributes-name')
 
         });
+  
         $('body').on('click', '.attribute-name-edit', function () {
             var element = $(this)
             element.hide()
@@ -458,6 +484,7 @@ var product_detail = {
         });
         $('body').on('click', '.action .btn-outline-base', function () {
             $.magnificPopup.close()
+
         });
         $('body').on('click', '.action .btn-round', function () {
             product_detail.RenderSelectedGroupProduct()
@@ -520,6 +547,7 @@ var product_detail = {
                         discount = parseFloat(element.find('.discount-percent').find('input').val().replaceAll(',', ''))
                         if (discount > 100) {
                             _msgalert.error("Chiết khấu tối đa 100%")
+                                element.find('.discount-percent').find('input').val(100)
                         }
                     } break
                 }
@@ -1091,13 +1119,18 @@ var product_detail = {
             case 'images':
             case 'avatar': {
                 var max_item = _product_constants.VALUES.ProductDetail_Max_Image
-                if (element.closest('.flex-lg-nowrap').find('.magnific_popup').length >= max_item) {
+                if ((element.closest('.flex-lg-nowrap').find('.magnific_popup').length - 1) >= max_item) {
                     _msgalert.error('Số lượng ảnh vượt quá giới hạn')
                     element.val(null)
                 }
                 else {
                     if ($.inArray(element.val().split('.').pop().toLowerCase(), _product_constants.VALUES.ImageExtension) == -1) {
                         _msgalert.error("Vui lòng chỉ upload các định dạng sau: " + _product_constants.VALUES.ImageExtension.join(', '));
+                        return
+                    }
+                    if ((element.closest('.flex-lg-nowrap').find('.magnific_popup').length - 1 + element[0].files.length) > max_item) {
+                        _msgalert.error('Số lượng ảnh vượt quá giới hạn')
+                        element.val(null)
                         return
                     }
                     $(element[0].files).each(function (index, item) {
@@ -1116,13 +1149,18 @@ var product_detail = {
             } break
             case 'videos': {
                 var max_item = _product_constants.VALUES.ProductDetail_Max_Avt
-                if (element.closest('.flex-lg-nowrap').find('.magnific_popup').length >= max_item) {
+                if ((element.closest('.flex-lg-nowrap').find('.magnific_popup').length - 1 )>= max_item) {
                     _msgalert.error('Số lượng video vượt quá giới hạn')
                     element.val(null)
                 }
                 else {
                     if ($.inArray(element.val().split('.').pop().toLowerCase(), _product_constants.VALUES.VideoExtension) == -1) {
                         _msgalert.error("Vui lòng chỉ upload các định dạng sau: " + _product_constants.VALUES.VideoExtension.join(', '));
+                        return
+                    }
+                    if ((element.closest('.flex-lg-nowrap').find('.magnific_popup').length - 1 + element[0].files.length) > max_item) {
+                        _msgalert.error('Số lượng Video vượt quá giới hạn')
+                        element.val(null)
                         return
                     }
                     $(element[0].files).each(function (index, item) {
@@ -1141,13 +1179,18 @@ var product_detail = {
             } break
             case 'image_row_item': {
      
-                if (element.closest('.flex-lg-nowrap').find('.magnific_popup').length >= 1) {
+                if ((element.closest('.flex-lg-nowrap').find('.magnific_popup').length - 1) >= 1) {
                     _msgalert.error('Số lượng ảnh vượt quá giới hạn')
                     element.val(null)
                 }
                 else {
                     if ($.inArray(element.val().split('.').pop().toLowerCase(), _product_constants.VALUES.ImageExtension) == -1) {
                         _msgalert.error("Vui lòng chỉ upload các định dạng sau: " + _product_constants.VALUES.ImageExtension.join(', '));
+                        return
+                    }
+                    if ((element.closest('.flex-lg-nowrap').find('.magnific_popup').length - 1 + element[0].files.length) > max_item) {
+                        _msgalert.error('Số lượng ảnh vượt quá giới hạn')
+                        element.val(null)
                         return
                     }
                     $(element[0].files).each(function (index, item) {
@@ -1401,12 +1444,32 @@ var product_detail = {
     ValidateProduct: function () {
         var success = true;
         var value = $('#product-name input').val()
+        var description_textarea = $('#description textarea').val()
+        var group_id_input = $('#group-id input').val()
+        var main_profit_input = $('#main-profit input').val()
+        var main_price_input = $('#main-price input').val()
         //-- product-name:
         if (value == undefined || value.trim() == '') {
             _msgalert.error('Tên sản phẩm không được bỏ trống')
             success = false
         } else if (value.length > 120) {
             _msgalert.error('Tên sản phẩm không được quá 120 ký tự')
+            success = false
+        }
+        if (description_textarea == undefined || description_textarea.trim() == '') {
+            _msgalert.error('Mô tả sản phẩm không được bỏ trống')
+            success = false
+        } 
+        if(group_id_input == undefined || group_id_input.trim() == '') {
+            _msgalert.error('Ngành hàng không được bỏ trống')
+            success = false
+        }
+        if (main_profit_input == undefined || group_id_input.trim() == '') {
+            _msgalert.error('Lợi nhuận không được bỏ trống')
+            success = false
+        }
+        if (main_price_input == undefined || group_id_input.trim() == '') {
+            _msgalert.error('Giá nhập không được bỏ trống')
             success = false
         }
         if (!success) return success
