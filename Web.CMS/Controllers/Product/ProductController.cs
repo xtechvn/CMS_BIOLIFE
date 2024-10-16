@@ -183,6 +183,7 @@ namespace WEB.CMS.Controllers
                     product_main.amount_min = amount_variations.OrderBy(x => x).First();
                     product_main.quanity_of_stock = request.variations.Sum(x => x.quanity_of_stock);
                     product_main.is_one_weight = request.is_one_weight;
+                    product_main.weight = request.weight;
                     product_main.package_width = request.package_width;
                     product_main.package_height = request.package_height;
                     product_main.package_depth = request.package_depth;
@@ -256,17 +257,24 @@ namespace WEB.CMS.Controllers
                         data = rs
                     });
                 }
-
+                return Ok(new
+                {
+                    is_success = false,
+                    msg = "Thêm mới / Cập nhật sản phẩm thất bại, vui lòng liên hệ bộ phận IT",
+                    err=rs
+                });
             }
             catch (Exception ex)
             {
                 LogHelper.InsertLogTelegram("Summit - ProductController: " + ex.ToString());
+                return Ok(new
+                {
+                    is_success = false,
+                    msg = "Thêm mới / Cập nhật sản phẩm thất bại, vui lòng liên hệ bộ phận IT",
+                    err = ex.ToString(),
+                });
             }
-            return Ok(new
-            {
-                is_success = false,
-                msg = "Thêm mới / Cập nhật sản phẩm thất bại, vui lòng liên hệ bộ phận IT",
-            });
+           
         }
         public async Task<IActionResult> SummitImages(string data_image)
         {
