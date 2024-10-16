@@ -897,7 +897,7 @@ var product_detail_new = {
                     package_depth: (package_depth == undefined || isNaN(package_depth) || package_depth <= 0) ? null : package_depth,
 
                 }
-                debugger
+                
                 for (var i = 0; i < $('.attributes-list').length; i++) {
                     var attr_value = element.attr('data-attribute-' + i)
 
@@ -916,14 +916,16 @@ var product_detail_new = {
         model.condition_of_product = $('#condition_of_product').find(':selected').val()
         model.sku = $('#sku input').val()
 
+        var weight = parseFloat($('#single-weight .weight').val().replaceAll(',', ''))
         var package_width = parseFloat($('#single-weight .dismenssion-width').val().replaceAll(',', ''))
         var package_height = parseFloat($('#single-weight .dismenssion-height').val().replaceAll(',', ''))
         var package_depth = parseFloat($('#single-weight .dismenssion-depth').val().replaceAll(',', ''))
+        model.weight = (weight == undefined || isNaN(weight) || weight <= 0) ? null : weight;
         model.package_width = (package_width == undefined || isNaN(package_width) || package_width <= 0) ? null : package_width;
         model.package_height = (package_height == undefined || isNaN(package_height) || package_height <= 0) ? null : package_height;
         model.package_depth = (package_depth == undefined || isNaN(package_depth) || package_depth <= 0) ? null : package_depth;
         model.is_one_weight = $('#single-weight .switch-weight').is(':checked')
-        debugger
+        
         _product_function.POST('/Product/Summit', { request: model }, function (result) {
             if (result.is_success) {
                 _global_function.RemoveLoading()

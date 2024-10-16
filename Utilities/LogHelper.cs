@@ -14,7 +14,7 @@ namespace Utilities
     public static class LogHelper
     {
         public static string botToken = "5321912147:AAFhcJ9DolwPWL74WbMjOOyP6-0G7w88PWY";
-        public static string group_Id = "-739120187";
+        public static string group_Id = "-1002177864322";
         public static string enviromment = "DEV";
         public static string CompanyType = " ";
         public static int CompanyTypeInt = 0;
