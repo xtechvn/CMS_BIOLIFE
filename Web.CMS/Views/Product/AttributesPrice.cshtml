@@ -149,16 +149,16 @@
                             </td>
                             <td class="td-dismenssion" style="@((is_one_weight==false ||is_one_weight==null)?"display:none;":"")">
                                 <div class="flex gap10 flex-nowrap align-items-center">
-                                    <div class="form-group mb-0 price">
-                                        <input type="text" class="td-dismenssion-height form-control input-price" placeholder="nhập chiều rộng" value="@(sub_selected != null && sub_selected.package_height!=null ? ((float)sub_selected.package_height).ToString("N0"):"")">
+                                    <div class="form-group mb-0 input-price td-dismenssion-height">
+                                        <input type="text" class=" form-control input-price" placeholder="nhập chiều rộng" value="@(sub_selected != null && sub_selected.package_height!=null ? ((float)sub_selected.package_height).ToString("N0"):"")">
                                         <span class="note">R</span>
                                     </div>
-                                    <div class="form-group mb-0 price">
-                                        <input type="text" class="td-dismenssion-width form-control input-price" placeholder="nhập chiều dài" value="@(sub_selected != null && sub_selected.package_width!=null ? ((float)sub_selected.package_width).ToString("N0"):"")">
+                                    <div class="form-group mb-0 input-price td-dismenssion-width">
+                                        <input type="text" class=" form-control input-price" placeholder="nhập chiều dài" value="@(sub_selected != null && sub_selected.package_width!=null ? ((float)sub_selected.package_width).ToString("N0"):"")">
                                         <span class="note">D</span>
                                     </div>
-                                    <div class="form-group mb-0 price">
-                                        <input type="text" class="td-dismenssion-depth form-control input-price" placeholder="nhập chiều cao" value="@(sub_selected != null && sub_selected.package_depth!=null ? ((float)sub_selected.package_depth).ToString("N0"):"")">
+                                    <div class="form-group mb-0 input-price td-dismenssion-depth">
+                                        <input type="text" class=" form-control input-price" placeholder="nhập chiều cao" value="@(sub_selected != null && sub_selected.package_depth!=null ? ((float)sub_selected.package_depth).ToString("N0"):"")">
                                         <span class="note">C</span>
                                     </div>
                                     <span class="note">cm</span>
