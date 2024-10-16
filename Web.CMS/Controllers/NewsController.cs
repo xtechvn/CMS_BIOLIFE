@@ -191,7 +191,7 @@ namespace WEB.CMS.Controllers
                     var j_param = new Dictionary<string, object>
                             {
                                 { "store_name", "SP_GetAllArticle" },
-                                { "index_es", "es_biolife_sp_get_article" },
+                                { "index_es", "es_biolife_sp_getallarticle" },
                                 {"project_type", Convert.ToInt16(ProjectType.BIOLIFE) },
                                   {"id" , articleId }
                             };
@@ -256,7 +256,7 @@ namespace WEB.CMS.Controllers
                     var j_param = new Dictionary<string, object>
                             {
                                 { "store_name", "SP_GetAllArticle" },
-                                { "index_es", "es_biolife_sp_get_article" },
+                                { "index_es", "es_biolife_sp_getallarticle" },
                                 {"project_type", Convert.ToInt16(ProjectType.BIOLIFE) },
                                   {"id" , Id }
                             };

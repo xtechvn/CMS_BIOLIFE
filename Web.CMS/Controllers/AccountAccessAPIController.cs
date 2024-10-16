@@ -5,11 +5,13 @@ using Entities.ViewModels.AccountAccessAPI;
 using Entities.ViewModels.AccountAccessApiPermission;
 using Microsoft.AspNetCore.Mvc;
 using Nest;
+using Newtonsoft.Json;
 using Repositories.IRepositories;
 using System.Collections.Generic;
 using Utilities;
 using Utilities.Contants;
 using WEB.CMS.Customize;
+using WEB.CMS.RabitMQ;
 using static Utilities.Contants.Constants;
 
 namespace WEB.CMS.Controllers
@@ -20,16 +22,20 @@ namespace WEB.CMS.Controllers
         private readonly IAccountAccessApiRepository _accountAccessApiRepository;
         private readonly IAllCodeRepository _allCodeRepository;
         private readonly IAccountAccessApiPermissionRepository _accountAccessApiPermissionRepository;
-        public AccountAccessAPIController(IAccountAccessApiRepository accountAccessApiRepository, IAllCodeRepository allCodeRepository, IAccountAccessApiPermissionRepository accountAccessApiPermissionRepository)
+        private readonly IConfiguration _configuration;
+        private readonly WorkQueueClient work_queue;
+        public AccountAccessAPIController(IAccountAccessApiRepository accountAccessApiRepository, IAllCodeRepository allCodeRepository, IAccountAccessApiPermissionRepository accountAccessApiPermissionRepository, IConfiguration configuration)
         {
             _accountAccessApiRepository = accountAccessApiRepository;
             _allCodeRepository = allCodeRepository;
             _accountAccessApiPermissionRepository = accountAccessApiPermissionRepository;
+            work_queue = new WorkQueueClient(configuration);
+            _configuration = configuration;
         }
 
         public async Task<IActionResult> Index()
         {
-            List<AllCode> lstAllCode = await _allCodeRepository.GetAllSortByIDAndType(((int)AllCodeTypeEqualsPROJECT_TYPESortById.Default),AllCodeType.PROJECT_TYPE);
+            List<AllCode> lstAllCode = await _allCodeRepository.GetAllSortByIDAndType(((int)AllCodeTypeEqualsPROJECT_TYPESortById.Default), AllCodeType.PROJECT_TYPE);
             List<AccountAccessApiViewModel> lstAcountAccessAPIVM = await _accountAccessApiRepository.GetAllAccountAccessAPI();
             return View(lstAcountAccessAPIVM);
         }
@@ -37,7 +43,7 @@ namespace WEB.CMS.Controllers
 
         [HttpPost]
         [HttpGet]
-        public async Task<IActionResult> Update(int id,int id_AllCode, int id_AccountAccessAPIPermission) 
+        public async Task<IActionResult> Update(int id, int id_AllCode, int id_AccountAccessAPIPermission)
         {
             AccountAccessApiViewModel AccountAccessApiViewModel = await _accountAccessApiRepository.GetAccountAccessApiByID(id);
             List<AllCode> Code = await _allCodeRepository.GetAllSortByIDAndType(id_AllCode, AllCodeType.PROJECT_TYPE);
@@ -59,7 +65,7 @@ namespace WEB.CMS.Controllers
         {
             try
             {
-                var rs =await _accountAccessApiRepository.ResetPassword(id);
+                var rs = await _accountAccessApiRepository.ResetPassword(id);
                 if (rs > 0)
                 {
                     return new JsonResult(new
@@ -91,12 +97,12 @@ namespace WEB.CMS.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> InsertAccountAccessAPI(AccountAccessApiSubmitModel model,int codevalue) 
+        public async Task<IActionResult> InsertAccountAccessAPI(AccountAccessApiSubmitModel model, int codevalue)
         {
-            try 
+            try
             {
                 var rsAAA = await _accountAccessApiRepository.InsertAccountAccessAPI(model);
-                AAAPSubmitModel AAApermission = new AAAPSubmitModel() 
+                AAAPSubmitModel AAApermission = new AAAPSubmitModel()
                 {
                     ProjectType = codevalue,
                     AccountAccessApiId = rsAAA
@@ -104,13 +110,24 @@ namespace WEB.CMS.Controllers
                 var rsAAAP = await _accountAccessApiPermissionRepository.InsertAccountAccessApiPermission(AAApermission);
                 if (rsAAA > 0 && rsAAAP > 0)
                 {
+                    // Tạo message để push vào queue
+                    var j_param = new Dictionary<string, object>
+                            {
+                                { "store_name", "sp_GetAccountAccess" },
+                                { "index_es", "es_biolife_sp_getaccountaccess" },
+                                {"project_type", Convert.ToInt16(ProjectType.BIOLIFE) },
+                                  {"id" , model.Id }
+                            };
+                    var _data_push = JsonConvert.SerializeObject(j_param);
+                    // Push message vào queue
+                    var response_queue = work_queue.InsertQueueSimple(_data_push, QueueName.queue_app_push);
                     return new JsonResult(new
                     {
                         isSuccess = true,
                         message = "Thêm mới thành công"
                     });
                 }
-                else 
+                else
                 {
                     return new JsonResult(new
                     {
@@ -118,7 +135,7 @@ namespace WEB.CMS.Controllers
                         message = "Thêm mới thất bại"
                     });
                 }
-            } 
+            }
             catch (Exception ex)
             {
                 LogHelper.InsertLogTelegram("Insert - AccountAccessAPIController: " + ex);
@@ -145,7 +162,19 @@ namespace WEB.CMS.Controllers
                 };
                 var rsAAAP = await _accountAccessApiPermissionRepository.UpdateAccountAccessApiPermission(AAApermission);
                 if (rsAAA > 0 && rsAAAP > 0)
+
                 {
+                    // Tạo message để push vào queue
+                    var j_param = new Dictionary<string, object>
+                            {
+                                { "store_name", "sp_GetAccountAccess" },
+                                { "index_es", "es_biolife_sp_getaccountaccess" },
+                                {"project_type", Convert.ToInt16(ProjectType.BIOLIFE) },
+                                  {"id" , model.Id }
+                            };
+                    var _data_push = JsonConvert.SerializeObject(j_param);
+                    // Push message vào queue
+                    var response_queue = work_queue.InsertQueueSimple(_data_push, QueueName.queue_app_push);
                     return new JsonResult(new
                     {
                         isSuccess = true,

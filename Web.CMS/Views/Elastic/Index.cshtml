@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Quản lý sản phẩm v2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container mt-5">
+    <h1 class="mb-4">Queue Pusher</h1>
+
+    <div class="form-group">
+        <label for="storeId">ID</label>
+        <input type="text" class="form-control" id="storeId" value="-1" placeholder="Nhập ID">
+    </div>
+
+    <div class="form-group">
+        <label for="storeSelect">Store Name</label>
+        <select class="form-control" id="storeSelect">
+            <option value="SP_GetAllArticle">SP_GetAllArticle</option>
+            <option value="sp_getGroupProduct">sp_getGroupProduct</option>
+            <option value="sp_GetAccountAccess">sp_GetAccountAccess</option>
+             @* <option value="sp_article">sp_article</option> *@
+            <!-- Thêm các tùy chọn khác nếu cần -->
+        </select>
+    </div>
+
+    <button class="btn btn-primary mt-2" onclick="pushToQueue()">Đồng bộ</button>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    function pushToQueue() {
+        var id = $('#storeId').val();
+        var storeName = $('#storeSelect').val();
+
+        if (id === '') {
+            alert('Vui lòng nhập ID');
+            return;
+        }
+
+        $.ajax({
+            url: '@Url.Action("PushToQueue", "Elastic")',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ storeName: storeName, id: id }),
+            success: function (response) {
+                if (response.isSuccess) {
+                    alert('Push queue thành công');
+                } else {
+                    alert('Push queue thất bại: ' + response.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                alert('Có lỗi xảy ra: ' + error);
+            }
+        });
+    }
+</script>
