@@ -170,7 +170,8 @@ var product_index = {
         _product_function.POST('/Product/ProductListing', request, function (result) {
             if (result.is_success && result.data && result.data.length > 0) {
                 product_index.RenderSearch(JSON.parse(result.data), JSON.parse(result.subdata))
-
+              
+                $('.hanmuc').closest('.flex-lg-nowrap').find('.count').html(JSON.parse(result.data).length)
             }
             else {
                 $('#product_list').html('')
@@ -178,7 +179,6 @@ var product_index = {
             }
             $('#product_list').closest('.table-responsive').removeClass('placeholder')
             $('.hanmuc').closest('.flex-lg-nowrap').removeClass('placeholder')
-            $('.hanmuc').closest('.flex-lg-nowrap').find('.count').html(JSON.parse(result.data).length)
         });
 
     },
