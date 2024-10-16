@@ -4,6 +4,7 @@ using Entities.ViewModels.Products;
 using HuloToys_Service.ElasticSearch.NewEs;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Repositories.IRepositories;
 using Utilities;
 using Utilities.Contants;
 using Utilities.Contants.ProductV2;
@@ -18,20 +19,20 @@ namespace WEB.CMS.Controllers
     {
         private readonly ProductDetailMongoAccess _productV2DetailMongoAccess;
         private readonly ProductSpecificationMongoAccess _productSpecificationMongoAccess;
-        private readonly GroupProductESService _groupProductESService;
         private readonly IConfiguration _configuration;
+        private readonly IGroupProductRepository _groupProductRepository;
         private readonly RedisConn _redisConn;
         private StaticAPIService _staticAPIService;
         private readonly int group_product_root = 31;
         private readonly int db_index = 9;
-        public ProductController(IConfiguration configuration, RedisConn redisConn)
+        public ProductController(IConfiguration configuration, RedisConn redisConn, IGroupProductRepository groupProductRepository)
         {
             _productV2DetailMongoAccess = new ProductDetailMongoAccess(configuration);
-            _groupProductESService = new GroupProductESService(configuration["DataBaseConfig:Elastic:Host"], configuration);
             _productSpecificationMongoAccess = new ProductSpecificationMongoAccess(configuration);
             _staticAPIService = new StaticAPIService(configuration);
             _redisConn = redisConn;
             _redisConn.Connect();
+            _groupProductRepository = groupProductRepository;
             db_index = Convert.ToInt32(configuration["Redis:Database:db_search_result"]);
             _configuration = configuration;
         }
@@ -54,7 +55,7 @@ namespace WEB.CMS.Controllers
                     return Ok(new
                     {
                         is_success = true,
-                        data = _groupProductESService.GetListGroupProductByParentId(group_id),
+                        data = await _groupProductRepository.getCategoryByParentId(group_id),
                         position = position
 
                     });
@@ -125,7 +126,7 @@ namespace WEB.CMS.Controllers
                         var split_value = product.group_product_id.Split(",");
                         for (int i = 0; i < split_value.Length; i++)
                         {
-                            var group = _groupProductESService.GetDetailGroupProductById(Convert.ToInt64(split_value[i]));
+                            var group = await _groupProductRepository.GetById(Convert.ToInt32(split_value[i]));
                             if (group != null)
                                 group_string += group.Name;
                             if (i < (split_value.Length - 1)) group_string += " > ";
@@ -349,7 +350,7 @@ namespace WEB.CMS.Controllers
                     {
                         try
                         {
-                            groups.Add(_groupProductESService.GetDetailGroupProductById(Convert.ToInt32(id)));
+                            groups.Add( await _groupProductRepository.GetById(Convert.ToInt32(id)));
                         }
                         catch { }
                     }
@@ -577,7 +578,7 @@ namespace WEB.CMS.Controllers
                     var split_value = product.group_product_id.Split(",");
                     for (int i = 0; i < split_value.Length; i++)
                     {
-                        var group = _groupProductESService.GetDetailGroupProductById(Convert.ToInt64(split_value[i]));
+                        var group = await _groupProductRepository.GetById(Convert.ToInt32(split_value[i]));
                         group_string += group.Name;
                         if (i < (split_value.Length - 1)) group_string += " > ";
                     }
