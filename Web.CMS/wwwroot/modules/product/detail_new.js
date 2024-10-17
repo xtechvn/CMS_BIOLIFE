@@ -879,10 +879,10 @@ var product_detail_new = {
                 var profit = parseFloat(element.find('.td-profit').find('input').val().replaceAll(',', ''))
                 var amount = parseFloat(element.find('.td-amount').find('input').val().replaceAll(',', ''))
                 var quanity_of_stock = parseFloat(element.find('.td-stock').find('input').val().replaceAll(',', ''))
-                var weight = parseFloat(element.find('.td-weight').find('input').val().replaceAll(',', ''))
-                var package_width = parseFloat(element.find('.td-dismenssion-width').find('input').val().replaceAll(',', ''))
-                var package_height = parseFloat(element.find('.td-dismenssion-height').find('input').val().replaceAll(',', ''))
-                var package_depth = parseFloat(element.find('.td-dismenssion-depth').find('input').val().replaceAll(',', ''))
+                //var weight = parseFloat(element.find('.td-weight').find('input').val().replaceAll(',', ''))
+                //var package_width = parseFloat(element.find('.td-dismenssion-width').find('input').val().replaceAll(',', ''))
+                //var package_height = parseFloat(element.find('.td-dismenssion-height').find('input').val().replaceAll(',', ''))
+                //var package_depth = parseFloat(element.find('.td-dismenssion-depth').find('input').val().replaceAll(',', ''))
                 var variation = {
                     _id: var_id,
                     variation_attributes: [],
@@ -891,10 +891,10 @@ var product_detail_new = {
                     amount: (amount == undefined || isNaN(amount) || amount <= 0) ? null : amount,
                     quanity_of_stock: (quanity_of_stock == undefined || isNaN(quanity_of_stock) || quanity_of_stock <= 0) ? null : quanity_of_stock,
                     sku: element.find('.td-sku').find('input').val(),
-                    weight: (weight == undefined || isNaN(weight) || weight <= 0) ? null : weight,
-                    package_width: (package_width == undefined || isNaN(package_width) || package_width <= 0) ? null : package_width,
-                    package_height: (package_height == undefined || isNaN(package_height) || package_height <= 0) ? null : package_height,
-                    package_depth: (package_depth == undefined || isNaN(package_depth) || package_depth <= 0) ? null : package_depth,
+                    //weight: (weight == undefined || isNaN(weight) || weight <= 0) ? null : weight,
+                    //package_width: (package_width == undefined || isNaN(package_width) || package_width <= 0) ? null : package_width,
+                    //package_height: (package_height == undefined || isNaN(package_height) || package_height <= 0) ? null : package_height,
+                    //package_depth: (package_depth == undefined || isNaN(package_depth) || package_depth <= 0) ? null : package_depth,
 
                 }
                 
@@ -920,11 +920,11 @@ var product_detail_new = {
         var package_width = parseFloat($('#single-weight .dismenssion-width').val().replaceAll(',', ''))
         var package_height = parseFloat($('#single-weight .dismenssion-height').val().replaceAll(',', ''))
         var package_depth = parseFloat($('#single-weight .dismenssion-depth').val().replaceAll(',', ''))
-        model.weight = (weight == undefined || isNaN(weight) || weight <= 0) ? null : weight;
-        model.package_width = (package_width == undefined || isNaN(package_width) || package_width <= 0) ? null : package_width;
-        model.package_height = (package_height == undefined || isNaN(package_height) || package_height <= 0) ? null : package_height;
-        model.package_depth = (package_depth == undefined || isNaN(package_depth) || package_depth <= 0) ? null : package_depth;
-        model.is_one_weight = $('#single-weight .switch-weight').is(':checked')
+        //model.weight = (weight == undefined || isNaN(weight) || weight <= 0) ? null : weight;
+        //model.package_width = (package_width == undefined || isNaN(package_width) || package_width <= 0) ? null : package_width;
+        //model.package_height = (package_height == undefined || isNaN(package_height) || package_height <= 0) ? null : package_height;
+        //model.package_depth = (package_depth == undefined || isNaN(package_depth) || package_depth <= 0) ? null : package_depth;
+        //model.is_one_weight = $('#single-weight .switch-weight').is(':checked')
         
         _product_function.POST('/Product/Summit', { request: model }, function (result) {
             if (result.is_success) {
