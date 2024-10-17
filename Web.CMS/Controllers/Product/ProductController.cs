@@ -182,11 +182,11 @@ namespace WEB.CMS.Controllers
                     product_main.amount_max = amount_variations.OrderByDescending(x => x).First();
                     product_main.amount_min = amount_variations.OrderBy(x => x).First();
                     product_main.quanity_of_stock = request.variations.Sum(x => x.quanity_of_stock);
-                    product_main.is_one_weight = request.is_one_weight;
-                    product_main.weight = request.weight;
-                    product_main.package_width = request.package_width;
-                    product_main.package_height = request.package_height;
-                    product_main.package_depth = request.package_depth;
+                    //product_main.is_one_weight = request.is_one_weight;
+                    //product_main.weight = request.weight;
+                    //product_main.package_width = request.package_width;
+                    //product_main.package_height = request.package_height;
+                    //product_main.package_depth = request.package_depth;
                     
 
                 }
@@ -228,11 +228,11 @@ namespace WEB.CMS.Controllers
                         product_by_variations.amount = variation.amount;
                         product_by_variations.quanity_of_stock = variation.quanity_of_stock;
                         product_by_variations.sku = variation.sku;
-                        product_by_variations.is_one_weight = product_main.is_one_weight;
-                        product_by_variations.weight = variation.weight;
-                        product_by_variations.package_depth = variation.package_depth;
-                        product_by_variations.package_height = variation.package_height;
-                        product_by_variations.package_width = variation.package_width;
+                        //product_by_variations.is_one_weight = product_main.is_one_weight;
+                        //product_by_variations.weight = variation.weight;
+                        //product_by_variations.package_depth = variation.package_depth;
+                        //product_by_variations.package_height = variation.package_height;
+                        //product_by_variations.package_width = variation.package_width;
                         product_by_variations.updated_last = DateTime.Now;
                         if (variation._id != null && variation._id != "")
                         {
@@ -617,7 +617,7 @@ namespace WEB.CMS.Controllers
                     var product = await _productV2DetailMongoAccess.GetByID(product_id);
                     if (product != null && product._id != null)
                     {
-                        ViewBag.IsOneWeight = product.is_one_weight;
+                        //ViewBag.IsOneWeight = product.is_one_weight;
                         ViewBag.Attributes = product.attributes;
                         ViewBag.AttributesDetail = product.attributes_detail;
                         subs.AddRange(await _productV2DetailMongoAccess.SubListing(product_id));
