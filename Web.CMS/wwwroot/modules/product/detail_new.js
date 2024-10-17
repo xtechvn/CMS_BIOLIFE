@@ -916,10 +916,10 @@ var product_detail_new = {
         model.condition_of_product = $('#condition_of_product').find(':selected').val()
         model.sku = $('#sku input').val()
 
-        var weight = parseFloat($('#single-weight .weight').val().replaceAll(',', ''))
-        var package_width = parseFloat($('#single-weight .dismenssion-width').val().replaceAll(',', ''))
-        var package_height = parseFloat($('#single-weight .dismenssion-height').val().replaceAll(',', ''))
-        var package_depth = parseFloat($('#single-weight .dismenssion-depth').val().replaceAll(',', ''))
+        //var weight = parseFloat($('#single-weight .weight').val().replaceAll(',', ''))
+        //var package_width = parseFloat($('#single-weight .dismenssion-width').val().replaceAll(',', ''))
+        //var package_height = parseFloat($('#single-weight .dismenssion-height').val().replaceAll(',', ''))
+        //var package_depth = parseFloat($('#single-weight .dismenssion-depth').val().replaceAll(',', ''))
         //model.weight = (weight == undefined || isNaN(weight) || weight <= 0) ? null : weight;
         //model.package_width = (package_width == undefined || isNaN(package_width) || package_width <= 0) ? null : package_width;
         //model.package_height = (package_height == undefined || isNaN(package_height) || package_height <= 0) ? null : package_height;
