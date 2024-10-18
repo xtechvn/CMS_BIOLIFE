@@ -94,19 +94,26 @@ namespace WEB.Adavigo.CMS.Service
                     string img_edited = imgSrc;
                    
                     var jpegEncoder = new JpegEncoder { Quality = 100 };
-                    using (var image = SixLabors.ImageSharp.Image.Load(imgSrc))
+                    try
                     {
-                        var proportion = (double)imgSrc.Length / 1024;
-                        var maxWidth = (int)(image.Width / proportion);
-                        var maxHeight = (int)(image.Height / proportion);
-                        image.Mutate(x => x
-                            .Resize(new ResizeOptions
-                            {
-                                Mode = ResizeMode.Max,
-                                Size = new Size(maxWidth, maxHeight)
-                            }));
-                        // Save the Image
-                        img_edited = image.ToBase64String(image.Metadata.DecodedImageFormat);
+                        using (var image = SixLabors.ImageSharp.Image.Load(imgSrc))
+                        {
+                            var proportion = (double)imgSrc.Length / 1024;
+                            var maxWidth = (int)(image.Width / proportion);
+                            var maxHeight = (int)(image.Height / proportion);
+                            image.Mutate(x => x
+                                .Resize(new ResizeOptions
+                                {
+                                    Mode = ResizeMode.Max,
+                                    Size = new Size(maxWidth, maxHeight)
+                                }));
+                            // Save the Image
+                            img_edited = image.ToBase64String(image.Metadata.DecodedImageFormat);
+                        }
+                    }
+                    catch
+                    {
+
                     }
                     var ImageBase64 = new ImageBase64();
                     var base64Data = img_edited.Split(',')[0];

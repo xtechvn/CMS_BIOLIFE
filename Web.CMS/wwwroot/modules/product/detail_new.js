@@ -830,7 +830,7 @@ var product_detail_new = {
                 attribute_id: element.find('.item').attr('data-id'),
                 value_type: element.find('.item').attr('data-type'),
                 value: element.find('.item').find('.namesp').find('input').val(),
-                type_ids: element.find('.item').find('.namesp').find('input').attr('data-value'),
+                //type_ids: element.find('.item').find('.namesp').find('input').attr('data-value'),
             })
 
         })

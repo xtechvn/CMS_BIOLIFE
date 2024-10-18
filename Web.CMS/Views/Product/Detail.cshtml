@@ -248,7 +248,7 @@
                         <label class="label">Thương hiệu</label>
                         <div class="wrap_input">
                             <div class="form-group namesp">
-                                <input type="text" class="form-control spec-value" placeholder="Chọn Thương hiệu" data-value="@(brand!=null && brand._id!=null && brand.type_ids!="null"?brand.type_ids:"")" value="@(brand!=null && brand._id!=null && brand.value!="null"?brand.value:"")">
+                                <input type="text" class="form-control spec-value" placeholder="Chọn Thương hiệu" @* data-value="@(brand!=null && brand._id!=null && brand.type_ids!="null"?brand.type_ids:"")" *@ value="@(brand!=null && brand._id!=null && brand.value!="null"?brand.value:"")">
                                 <a href="javascript:;" class="edit"><i class="icofont-thin-down"></i></a>
                             </div>
                             <div class="select-option p-2" style="width:90%;display:none;">
@@ -303,7 +303,7 @@
                         <label class="label">Chất liệu</label>
                         <div class="wrap_input">
                             <div class="form-group namesp">
-                                <input type="text" class="form-control spec-value" placeholder="Chọn Chất liệu" data-value="@(material!=null && material._id!=null && material.type_ids!="null"?material.type_ids:"")" value="@(material!=null && material._id!=null&& material.value!="null"?material.value:"")">
+                                <input type="text" class="form-control spec-value" placeholder="Chọn Chất liệu" @* data-value="@(material!=null && material._id!=null && material.type_ids!="null"?material.type_ids:"")" *@ value="@(material!=null && material._id!=null&& material.value!="null"?material.value:"")">
                                 <a href="javascript:;" class="edit"><i class="icofont-thin-down"></i></a>
                             </div>
                             <div class="select-option p-2" style="width:90%;display:none;">
@@ -357,7 +357,7 @@
                         <label class="label">Độ tuổi khuyến nghị</label>
                         <div class="wrap_input">
                             <div class="form-group namesp">
-                                <input type="text" class="form-control spec-value" placeholder="Độ tuổi khuyến nghị"  data-value="@(age_restriction!=null && age_restriction._id!=null && age_restriction.type_ids!="null"?age_restriction.type_ids:"")" value="@(age_restriction!=null && age_restriction._id!=null && age_restriction.value!="null"?age_restriction.value:"")">
+                                <input type="text" class="form-control spec-value" placeholder="Độ tuổi khuyến nghị" @*  data-value="@(age_restriction!=null && age_restriction._id!=null && age_restriction.type_ids!="null"?age_restriction.type_ids:"")" *@ value="@(age_restriction!=null && age_restriction._id!=null && age_restriction.value!="null"?age_restriction.value:"")">
                                 <a href="javascript:;" class="edit"><i class="icofont-thin-down"></i></a>
                             </div>
                             <div class="select-option p-2" style="width:90%;display:none;">
@@ -412,7 +412,7 @@
                         <div class="wrap_input">
                             <div class="datepicker-wrap namesp">
                                 <input id="datepicker" placeholder="Vui lòng chọn"
-                                       class="datepicker-input form-control" type="text" data-value="@(date_manuafacter!=null && date_manuafacter._id!=null && date_manuafacter.type_ids!="null"?date_manuafacter.type_ids:"")" value="@(date_manuafacter!=null && date_manuafacter._id!=null?date_manuafacter.value:"")">
+                                       class="datepicker-input form-control" type="text" @* data-value="@(date_manuafacter!=null && date_manuafacter._id!=null && date_manuafacter.type_ids!="null"?date_manuafacter.type_ids:"")" *@ value="@(date_manuafacter!=null && date_manuafacter._id!=null?date_manuafacter.value:"")">
                             </div>
                         </div>
                     </div>
@@ -476,7 +476,7 @@
                         <label class="label">Địa chỉ tổ chức chịu trách nghiệm sản xuất</label>
                         <div class="wrap_input">
                             <div class="form-group namesp">
-                                <input type="text" class="form-control spec-value" placeholder="Địa chỉ tổ chức chịu trách nghiệm sản xuất" data-value="@(manuafacter_location!=null && manuafacter_location._id!=null && manuafacter_location.type_ids!="null"?manuafacter_location.type_ids:"")" value="@(manuafacter_location!=null && manuafacter_location._id!=null&& manuafacter_location.value!="null"?manuafacter_location.value:"")">
+                                <input type="text" class="form-control spec-value" placeholder="Địa chỉ tổ chức chịu trách nghiệm sản xuất" @* data-value="@(manuafacter_location!=null && manuafacter_location._id!=null && manuafacter_location.type_ids!="null"?manuafacter_location.type_ids:"")" *@ value="@(manuafacter_location!=null && manuafacter_location._id!=null&& manuafacter_location.value!="null"?manuafacter_location.value:"")">
                                 <a href="javascript:;" class="edit"><i class="icofont-thin-down"></i></a>
                             </div>
                             <div class="select-option p-2" style="width:90%;display:none;">
@@ -530,7 +530,7 @@
                         <label class="label">Sản phẩm đặt theo yêu cầu</label>
                         <div class="wrap_input">
                             <div class="form-group namesp">
-                                <input type="text" class="form-control spec-value" placeholder="Sản phẩm đặt theo yêu cầu" data-value="@(specific_requirement != null && specific_requirement._id != null && specific_requirement.type_ids != "null" ? specific_requirement.type_ids : "")" value="@(specific_requirement!=null && specific_requirement._id!=null&& specific_requirement.value!="null"?specific_requirement.value:"")">
+                                <input type="text" class="form-control spec-value" placeholder="Sản phẩm đặt theo yêu cầu" @* data-value="@(specific_requirement != null && specific_requirement._id != null && specific_requirement.type_ids != "null" ? specific_requirement.type_ids : "")" *@ value="@(specific_requirement!=null && specific_requirement._id!=null&& specific_requirement.value!="null"?specific_requirement.value:"")">
                                 <a href="javascript:;" class="edit"><i class="icofont-thin-down"></i></a>
                             </div>
                             <div class="select-option p-2" style="width:90%;display:none;">
