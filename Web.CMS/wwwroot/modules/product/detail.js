@@ -1382,9 +1382,9 @@ var product_detail = {
         }
 
 
-        model.preorder_status = $('input[name="preorder_status"]:checked').val() == '1' ? 1 : 0
-        model.condition_of_product = $('#condition_of_product').find(':selected').val()
-        model.sku = $('#sku input').val()
+        //model.preorder_status = $('input[name="preorder_status"]:checked').val() == '1' ? 1 : 0
+        //model.condition_of_product = $('#condition_of_product').find(':selected').val()
+        //model.sku = $('#sku input').val()
 
         _product_function.POST('/Product/Summit', { request: model }, function (result) {
             if (result.is_success) {

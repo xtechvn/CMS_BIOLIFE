@@ -153,7 +153,7 @@ var product_detail_new = {
             )
             element.closest('.add-specificaion-value-box').find('input').val('')
             product_detail_new.RenderSpecificationSelectOption(element.closest('.them-chatlieu').find('ul').find('li'))
-            var type = element.closest('.col-md-6').find('.item').attr('data-type')
+            var type = element.closest('.col-md-6').find('.item').attr('data-id')
 
             _product_function.POST('/Product/AddProductSpecification', { type: type, name: name }, function (result) {
 
@@ -912,9 +912,9 @@ var product_detail_new = {
         }
 
 
-        model.preorder_status = $('input[name="preorder_status"]:checked').val() == '1' ? 1 : 0
-        model.condition_of_product = $('#condition_of_product').find(':selected').val()
-        model.sku = $('#sku input').val()
+        //model.preorder_status = $('input[name="preorder_status"]:checked').val() == '1' ? 1 : 0
+        //model.condition_of_product = $('#condition_of_product').find(':selected').val()
+        //model.sku = $('#sku input').val()
 
         //var weight = parseFloat($('#single-weight .weight').val().replaceAll(',', ''))
         //var package_width = parseFloat($('#single-weight .dismenssion-width').val().replaceAll(',', ''))

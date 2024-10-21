@@ -184,7 +184,11 @@ var product_index = {
     },
     RenderSearch: function (main_products, sub_products) {
         var html = ''
-
+        main_products.sort(function (a, b) {
+            // Turn your strings into dates, and then subtract them
+            // to get a value that is either negative, positive, or zero.
+            return new Date(b.updated_last) - new Date(a.updated_last);
+        });
         $(main_products).each(function (index, item) {
             var img_src = item.avatar
             if (img_src != null && !img_src.includes(_product_constants.VALUES.StaticDomain)
